@@ -19,7 +19,59 @@
 </ul>
 <h6 id="directions">Directions:</h6>
 <ul>
-<li>Launch Disk Utility and select the plugged in SSD. Format as below</li>
+<li>Launch Disk Utility and select the plugged in SSD. Format as below
+<span class="image-container"><span class="link"><a target="_blank" rel="noopener noreferrer" 
+  href="images/01-Light.png"><img class="img" src="images/01-Light.png"
+        alt="DiskUtility - Format Disk Settings"/></a></span><span class="caption"><span class="title">Disk Utility - Format Disk</span></span></span></li>
+<li>Make a note of the Disk Id. In my case it was <code>disk5</code></li>
+<li>Create a new Windows 10 Virtual Machine under VMware Fusion.</li>
+<li>Delete the default Disk the VMware Fusion creates when setting up the machine.</li>
+<li>Exit VMware Fusion and launch Terminal and run the following command. Adjust the Virtual Manchine path as needed.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">/Applications/VMware<span class="se">\ </span>Fusion.app/Contents/Library/vmware-rawdiskCreator <span class="se">\
+</span><span class="se"></span>create /dev/disk5 <span class="se">\
+</span><span class="se"></span>fullDevice ~/Virtual<span class="se">\ </span>Machines.localized/Boot<span class="se">\ </span>Camp.vmwarevm/external-hdd <span class="se">\
+</span><span class="se"></span>ide
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Open <code>Boot Camp.vmx</code> file in a text editor like Visual Studio Code and add the below lines.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">ide1:0.present</span> <span class="o">=</span> <span class="s">&#34;TRUE&#34;</span>
+<span class="na">ide1:0.fileName</span> <span class="o">=</span> <span class="s">&#34;external-hdd.vmdk&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>If you are running macOS Catalina you will need to give <code>Full Disk Access</code> Permissions to <code>com.vmware.DiskHelper</code>. If you do not see it in the list. Try to start the Virtual Machine. You will get an error starting after which the item will show up in the list.
+<span class="image-container"><span class="link"><a target="_blank" rel="noopener noreferrer" 
+  href="images/02-Light.png"><img class="img" src="images/02-Light.png"
+        alt="Security &amp;amp; Privacy - Full Disk Access"/></a></span><span class="caption"><span class="title">Security & Privacy - Full Disk Access</span></span></span></li>
+<li>Quit and Restart VMWare fusion. Start the Boot Camp vm. You will be prompted for you admin password.</li>
+<li>Once the VM starts boot off the Windows 10 ISO and install Windows 10 on the attached disk. Delete all partitions on the disk during install and let windows create new partitions as needed.</li>
+<li>Once the install is fully finished, install VMware Tools to help facilitate copying of files.</li>
+<li>On the Mac launch <code>Boot Camp Assistant.app</code>. From the <code>Action</code> menu select <code>Download Windows Support Software</code>. Follow the steps to get the Boot Camp windows drivers.</li>
+<li>Copy the Drivers to the Windows machine. Shutdown the VM.</li>
+<li>You may now reboot into the windows partition by rebooting the Mac and holding down the Option key during boot.</li>
+<li>After Windows boots up, you will have to install the Boot Camp drivers by launching BootCamp setup from the <code>WindowsSupport\BootCamp\Setup.exe</code> folder.</li>
+</ul>
+<h6 id="additional-steps">Additional Steps</h6>
+<ul>
+<li>After installation of the Boot Camp drivers and reboot, Windows still had a few missing drivers under Device Manager. All I had to do was select <code>Update Driver</code> and select the <code>WindowsSupport\$WinPEDriver$</code> folder to look for drivers.</li>
+<li>Speakers were not working properly on the 2019 iMac even though all drivers were installed. I had to go to <code>Device Manager</code>-&gt;<code>Sound, video and game controllers</code>-&gt;<code>High Definition Audio Device</code>. Select Update driver and point it to <code>WindowsSupport\$WinPEDriver$\Cirrus</code>. This installed the correct drivers and the Speakers started working.</li>
 </ul></article><section class="article labels"><a class="category" href=/categories/how-tos/>How Tos</a><a class="category" href=/categories/operating-system/>Operating System</a><a class="tag" href=/tags/bootcamp/>Bootcamp</a><a class="tag" href=/tags/virtual-machine/>Virtual Machine</a></section></div></div><section id="footer" class="footer"><div class="footer-wrap">
     <p class="copyright">©2020 Hiren Patel.</p>
     <p class="powerby"><span>Powered by </span><a href="https://gohugo.io" 
