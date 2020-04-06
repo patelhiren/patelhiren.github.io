@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Categories on Hiren Patel&#39;s Blog</title>
+    <title>Categories on Hiren Patel</title>
     <link>/categories/</link>
-    <description>Recent content in Categories on Hiren Patel&#39;s Blog</description>
+    <description>Recent content in Categories on Hiren Patel</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>©2020 Hiren Patel.</copyright>
+    <lastBuildDate>Mon, 06 Apr 2020 14:02:10 -0400</lastBuildDate>
     
         <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How Tos</title>
+      <link>/categories/how-tos/</link>
+      <pubDate>Mon, 06 Apr 2020 14:02:10 -0400</pubDate>
+      
+      <guid>/categories/how-tos/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Operating System</title>
+      <link>/categories/operating-system/</link>
+      <pubDate>Mon, 06 Apr 2020 14:02:10 -0400</pubDate>
+      
+      <guid>/categories/operating-system/</guid>
+      <description></description>
+      
+    </item>
     
   </channel>
 </rss>
