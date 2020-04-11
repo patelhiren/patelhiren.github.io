@@ -14,10 +14,10 @@
     
     <item>
       <title>Catalina and Skype for Business Screensharing</title>
-      <link>/2020/04/10/catalina-and-skype-for-business-screensharing/</link>
+      <link>/blog/catalina-and-skype-for-business-screensharing/</link>
       <pubDate>Fri, 10 Apr 2020 20:11:49 -0400</pubDate>
       
-      <guid>/2020/04/10/catalina-and-skype-for-business-screensharing/</guid>
+      <guid>/blog/catalina-and-skype-for-business-screensharing/</guid>
       <description>&lt;p&gt;After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.&lt;/p&gt;</description>
       
     </item>
