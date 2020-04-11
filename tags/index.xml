@@ -1,55 +1,51 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Hiren Patel</title>
-    <link>/tags/</link>
+    <link>https://patelhiren.com/tags/</link>
     <description>Recent content in Tags on Hiren Patel</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>©2020 Hiren Patel.</copyright>
     <lastBuildDate>Fri, 10 Apr 2020 20:11:49 -0400</lastBuildDate>
     
-        <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://patelhiren.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Catalina</title>
-      <link>/tags/catalina/</link>
+      <link>https://patelhiren.com/tags/catalina/</link>
       <pubDate>Fri, 10 Apr 2020 20:11:49 -0400</pubDate>
       
-      <guid>/tags/catalina/</guid>
+      <guid>https://patelhiren.com/tags/catalina/</guid>
       <description></description>
-      
     </item>
     
     <item>
       <title>macOS</title>
-      <link>/tags/macos/</link>
+      <link>https://patelhiren.com/tags/macos/</link>
       <pubDate>Fri, 10 Apr 2020 20:11:49 -0400</pubDate>
       
-      <guid>/tags/macos/</guid>
+      <guid>https://patelhiren.com/tags/macos/</guid>
       <description></description>
-      
     </item>
     
     <item>
       <title>Bootcamp</title>
-      <link>/tags/bootcamp/</link>
+      <link>https://patelhiren.com/tags/bootcamp/</link>
       <pubDate>Mon, 06 Apr 2020 14:02:10 -0400</pubDate>
       
-      <guid>/tags/bootcamp/</guid>
+      <guid>https://patelhiren.com/tags/bootcamp/</guid>
       <description></description>
-      
     </item>
     
     <item>
       <title>Virtual Machine</title>
-      <link>/tags/virtual-machine/</link>
+      <link>https://patelhiren.com/tags/virtual-machine/</link>
       <pubDate>Mon, 06 Apr 2020 14:02:10 -0400</pubDate>
       
-      <guid>/tags/virtual-machine/</guid>
+      <guid>https://patelhiren.com/tags/virtual-machine/</guid>
       <description></description>
-      
     </item>
     
   </channel>
