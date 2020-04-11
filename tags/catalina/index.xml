@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Posts on Hiren Patel</title>
-    <link>/posts/</link>
-    <description>Recent content in Posts on Hiren Patel</description>
+    <title>Catalina on Hiren Patel</title>
+    <link>/tags/catalina/</link>
+    <description>Recent content in Catalina on Hiren Patel</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>©2020 Hiren Patel.</copyright>
     <lastBuildDate>Fri, 10 Apr 2020 20:11:49 -0400</lastBuildDate>
     
-        <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/catalina/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,16 +19,6 @@
       
       <guid>/2020/04/10/catalina-and-skype-for-business-screensharing/</guid>
       <description>&lt;p&gt;After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Boot Camp on External Drive</title>
-      <link>/2020/04/06/boot-camp-on-external-drive/</link>
-      <pubDate>Mon, 06 Apr 2020 14:02:10 -0400</pubDate>
-      
-      <guid>/2020/04/06/boot-camp-on-external-drive/</guid>
-      <description>&lt;p&gt;I had a spare SSD and a USB enclosure for it. Installing windows on an external drive is unsupported by Microsoft and the setup will abort stating Windows cannot be installed on an external drive. Here is how I managed to install Windows 10 Pro on the external SSD and boot from it on my iMac.&lt;/p&gt;</description>
       
     </item>
     
