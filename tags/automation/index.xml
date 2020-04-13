@@ -30,8 +30,8 @@
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;brew install pngcrush
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;If using Xcode method, the &lt;code&gt;pngcrush&lt;/code&gt; binary will be at &lt;code&gt;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/pngcrush&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;If using Homebrew, the &lt;code&gt;pngcrush&lt;/code&gt; binary will be at &lt;code&gt;/usr/local/bin/pngcrush&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;If using Xcode method, the &lt;em&gt;&lt;strong&gt;pngcrush&lt;/strong&gt;&lt;/em&gt; binary will be at &lt;code&gt;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/pngcrush&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If using Homebrew, the &lt;em&gt;&lt;strong&gt;pngcrush&lt;/strong&gt;&lt;/em&gt; binary will be at &lt;code&gt;/usr/local/bin/pngcrush&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;For the rest of the article I will assume the Homebrew method is used. You just need to adjust the paths for the binary if the Xcode method is used.&lt;/p&gt;
 &lt;p&gt;To crush a PNG image via Terminal you can run the below command.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -46,8 +46,8 @@ pngcrush input.png crushed.png
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;automating-the-process-using-automator-on-macos&#34;&gt;Automating the process using Automator on macOS.&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Launch &lt;code&gt;Automator&lt;/code&gt; via Spotlight Search.&lt;/li&gt;
-&lt;li&gt;Select &lt;em&gt;File&lt;/em&gt;, &lt;em&gt;New&lt;/em&gt; from the menu. Select &lt;code&gt;Quick Action&lt;/code&gt; and click the &lt;em&gt;Choose&lt;/em&gt; button.&lt;/li&gt;
+&lt;li&gt;Launch &lt;em&gt;&lt;strong&gt;Automator&lt;/strong&gt;&lt;/em&gt; via Spotlight Search.&lt;/li&gt;
+&lt;li&gt;Select &lt;em&gt;File&lt;/em&gt;, &lt;em&gt;New&lt;/em&gt; from the menu. Select &lt;em&gt;&lt;strong&gt;Quick Action&lt;/strong&gt;&lt;/em&gt; and click the &lt;em&gt;Choose&lt;/em&gt; button.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; 
   href=&#34;images/01-Light.png&#34;&gt;&lt;img  src=&#34;images/01-Light.png&#34;
