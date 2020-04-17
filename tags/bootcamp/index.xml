@@ -33,9 +33,32 @@
 &lt;h6 id=&#34;directions&#34;&gt;Directions:&lt;/h6&gt;
 &lt;ul&gt;
 &lt;li&gt;Launch Disk Utility and select the plugged in SSD. Format as below
-&lt;span class=&#34;image-container&#34;&gt;&lt;span class=&#34;link&#34;&gt;&lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; 
-  href=&#34;images/01-Light.png&#34;&gt;&lt;img class=&#34;img&#34; src=&#34;images/01-Light.png&#34;
-        alt=&#34;DiskUtility - Format Disk Settings&#34;/&gt;&lt;/a&gt;&lt;/span&gt;&lt;span class=&#34;caption&#34;&gt;&lt;span class=&#34;title&#34;&gt;Disk Utility - Format Disk&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;span class=&#34;image-container&#34;&gt;
+    &lt;span class=&#34;link&#34;&gt;
+        &lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; href=&#34;images/01.png&#34;&gt;
+            &lt;picture&gt;&lt;source 
+                        srcset=&#34;
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_400x0_resize_box_2.png 400w,
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_600x0_resize_box_2.png 600w,
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_800x0_resize_box_2.png 1000w,
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_1000x0_resize_box_2.png&#34; 
+                        media=&#34;(prefers-color-scheme: dark)&#34;
+                    /&gt;&lt;source 
+                    srcset=&#34;
+                    /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_400x0_resize_box_2.png 400w,
+                    /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_600x0_resize_box_2.png 600w,
+                    /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_800x0_resize_box_2.png 1000w,
+                    /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_1000x0_resize_box_2.png&#34; 
+                /&gt;
+                &lt;img alt=&#34;DiskUtility - Format Disk Settings&#34; 
+                        src=&#34;https://patelhiren.com/blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_600x0_resize_box_2.png&#34; /&gt;
+            &lt;/picture&gt;
+        &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;span class=&#34;caption&#34;&gt;
+        &lt;span class=&#34;title&#34;&gt;Disk Utility - Format Disk&lt;/span&gt;
+    &lt;/span&gt;
+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Make a note of the Disk Id. In my case it was &lt;code&gt;disk5&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Create a new Windows 10 Virtual Machine under VMware Fusion.&lt;/li&gt;
 &lt;li&gt;Delete the default Disk the VMware Fusion creates when setting up the machine.&lt;/li&gt;
@@ -70,9 +93,32 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;If you are running macOS Catalina you will need to give &lt;code&gt;Full Disk Access&lt;/code&gt; Permissions to &lt;code&gt;com.vmware.DiskHelper&lt;/code&gt;. If you do not see it in the list. Try to start the Virtual Machine. You will get an error starting after which the item will show up in the list.
-&lt;span class=&#34;image-container&#34;&gt;&lt;span class=&#34;link&#34;&gt;&lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; 
-  href=&#34;images/02-Light.png&#34;&gt;&lt;img class=&#34;img&#34; src=&#34;images/02-Light.png&#34;
-        alt=&#34;Security &amp;amp;amp; Privacy - Full Disk Access&#34;/&gt;&lt;/a&gt;&lt;/span&gt;&lt;span class=&#34;caption&#34;&gt;&lt;span class=&#34;title&#34;&gt;Security &amp; Privacy - Full Disk Access&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;span class=&#34;image-container&#34;&gt;
+    &lt;span class=&#34;link&#34;&gt;
+        &lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; href=&#34;images/02.png&#34;&gt;
+            &lt;picture&gt;&lt;source 
+                        srcset=&#34;
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_400x0_resize_box_2.png 400w,
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_600x0_resize_box_2.png 600w,
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_800x0_resize_box_2.png 1000w,
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_1000x0_resize_box_2.png&#34; 
+                        media=&#34;(prefers-color-scheme: dark)&#34;
+                    /&gt;&lt;source 
+                    srcset=&#34;
+                    /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_400x0_resize_box_2.png 400w,
+                    /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_600x0_resize_box_2.png 600w,
+                    /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_800x0_resize_box_2.png 1000w,
+                    /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_1000x0_resize_box_2.png&#34; 
+                /&gt;
+                &lt;img alt=&#34;Security &amp;amp;amp; Privacy - Full Disk Access&#34; 
+                        src=&#34;https://patelhiren.com/blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_600x0_resize_box_2.png&#34; /&gt;
+            &lt;/picture&gt;
+        &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;span class=&#34;caption&#34;&gt;
+        &lt;span class=&#34;title&#34;&gt;Security &amp; Privacy - Full Disk Access&lt;/span&gt;
+    &lt;/span&gt;
+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Quit and Restart VMWare fusion. Start the Boot Camp vm. You will be prompted for you admin password.&lt;/li&gt;
 &lt;li&gt;Once the VM starts boot off the Windows 10 ISO and install Windows 10 on the attached disk. Delete all partitions on the disk during install and let windows create new partitions as needed.&lt;/li&gt;
 &lt;li&gt;Once the install is fully finished, install VMware Tools to help facilitate copying of files.&lt;/li&gt;
