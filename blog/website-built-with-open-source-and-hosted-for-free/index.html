@@ -27,12 +27,12 @@
 <p>The above goals meant I was going to be building a Static Site using one of the many <a href="https://www.staticgen.com"target="_blank">Static Site Generator Tools</a></p>
 <h2 id="tools">Tools</h2>
 <p>After deciding I wanted a static site, I researched the various <a href="https://www.staticgen.com"target="_blank">Static Site Generator Tools</a> and settled on <a href="https://gohugo.com"target="_blank"><em>Hugo</em></a> as my choice.</p>
-<p>Hugo written in <a href="https://golang.org"target="_blank">Go</a>, is highly reviewed and praised for its speed of site generation. It supports macOS (my primary OS of choice), Windows, Linux, OpenBSD and FreeBSD. It has a very well documented site and looks to have an active community developing and supporting it. It allows me to create my content in <a href="https://daringfireball.net/projects/markdown/"target="_blank">Markdown</a> syntax thus allowing me to keep it in plain text on the filesystem. It also supports code syntax highlighting and 🕶. You can check details of Hugo&rsquo;s Makrdown support at <a href="https://www.markdownguide.org/tools/hugo/"target="_blank">markdownguide.org</a></p>
+<p>Hugo written in <a href="https://golang.org"target="_blank">Go</a>, is highly reviewed and praised for its speed of site generation. It supports macOS (my primary OS of choice), Windows, Linux, OpenBSD and FreeBSD. It has a very well documented site and looks to have an active community developing and supporting it. It allows me to create my content in <a href="https://daringfireball.net/projects/markdown/"target="_blank">Markdown</a> syntax thus allowing me to keep it in plain text on the filesystem. It also supports code syntax highlighting and emoji 👌. You can check details of Hugo&rsquo;s Makrdown support at <a href="https://www.markdownguide.org/tools/hugo/"target="_blank">markdownguide.org</a></p>
 <p>Hugo supports a variety of <a href="https://themes.gohugo.io"target="_blank">Themes</a>. I settled on <a href="https://themes.gohugo.io/hugo-notepadium/"target="_blank">Notepadium</a> because it provided most of what I wanted out of box. I plan to customize it a bit to my liking as I learn more.</p>
 <h2 id="hosting">Hosting</h2>
 <p>For hosting I decided to use <a href="https://pages.github.com"target="_blank">GitHub Pages</a>. GitHub Pages is free, supports SSL and provides automatic CDN for serving fast webpages closer to your user. It also had the added benefit of having my generated site auotmatically have commit history and remote backup.</p>
 <h2 id="installing-hugo-and-building-your-site">Installing Hugo and Building your site</h2>
-<p>I use macOS as my primary OS so these steps are for for the Mac. However the steps should be very similar if you are using any other supported OS. <a href="https://brew.sh"target="_blank">Homebrew</a> and <em>git</em> is expected to be installed before you follow the rest of the steps.</p>
+<p>I use macOS as my primary OS so these steps are for for the Mac. However the steps should be very similar if you are using any other supported OS. <a href="https://brew.sh"target="_blank">Homebrew</a> and <em>git</em> <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> is expected to be installed before you follow the rest of the steps.</p>
 <p>Install Hugo</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -82,7 +82,7 @@ git submodule add https://github.com/cntrump/hugo-notepadium themes/notepadium
 <pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="nb">echo</span> <span class="s1">&#39;theme = &#34;notepadium&#34;&#39;</span> &gt;&gt; config.toml
 </code></pre></td></tr></table>
 </div>
-</div><p>Create a new post <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+</div><p>Create a new post <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -91,7 +91,7 @@ git submodule add https://github.com/cntrump/hugo-notepadium themes/notepadium
 <pre class="chroma"><code class="language-zsh" data-lang="zsh">hugo new blog/my-first-post/index.md
 </code></pre></td></tr></table>
 </div>
-</div><p>You can find your content under <em>content</em> folder. You can open the newly created index.md file in any Markdown editor of choice <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> and edit and save your content. Here is an example post to suggest what&rsquo;s possible.</p>
+</div><p>You can find your content under <em>content</em> folder. You can open the newly created index.md file in any Markdown editor of choice <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> and edit and save your content. Here is an example post to suggest what&rsquo;s possible.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -260,7 +260,7 @@ This is the extended content of my first post.
 <h2 id="hosting-your-site-on-github-pages">Hosting your site on GitHub Pages</h2>
 <ul>
 <li>Create a repository to hold your Hugo content and source files on GitHub. Mine is called <em>patelhiren.com</em></li>
-<li>Create a repository called <em><username>.github.io</em>. Replace <em><username></em> with your GitHub username. Mine is called patelhiren.github.io.</li>
+<li>Create a repository called <em>&lt;username&gt;.github.io</em>. Replace <em>&lt;username&gt;</em> with your GitHub username. Mine is called patelhiren.github.io.</li>
 <li>Clone your source project via:</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -388,10 +388,10 @@ git push origin master
 </code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>Your site will then be available at https://<username>.github.io.</li>
+<li>Your site will then be available at <code>https://&lt;username&gt;.github.io</code>.</li>
 </ul>
 <h2 id="customizing-github-pages-to-use-a-custom-domain">Customizing GitHub pages to use a custom domain</h2>
-<p>If you plan to use your own doamin instead of the <username>.githug.io you need to follow the guide at <a href="https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site"target="_blank">Managing a custom domain for your GitHub Pages site</a>.</p>
+<p>If you plan to use your own doamin instead of the &lt;username&gt;.github.io you need to follow the guide at <a href="https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site"target="_blank">Managing a custom domain for your GitHub Pages site</a>.</p>
 <p>For my site I did the following:</p>
 <ul>
 <li>Create a file called <code>CNAME</code> and set its contents to <em>patelhiren.com</em>.</li>
@@ -450,10 +450,13 @@ git push origin master
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>Creating a blog post this way with a folder as the post name allows you to keep images within the same folder instead of keeping images in the root folder. This felt like better grouping of content vs the default Hugo suggested way of generating new post via <em>hugo new blog/my-first-post</em>. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>For a git GUI, I prefer <a href="https://www.git-fork.com"target="_blank">Fork</a>. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p>I prefer <a href="https://code.visualstudio.com"target="_blank">Visual Studio Code</a>. Tip: If using Visual Studio Code you can press <em>CMD+K,V</em> to activate side-by-side live preview of the Markdown you are typing. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Creating a blog post this way with a folder as the post name allows you to keep images within the same folder instead of keeping images in the root folder. This felt like better grouping of content vs the default Hugo suggested way of generating new post via <em>hugo new blog/my-first-post</em>. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>I prefer <a href="https://code.visualstudio.com"target="_blank">Visual Studio Code</a>. Tip: If using Visual Studio Code you can press <em>CMD+K,V</em> to activate side-by-side live preview of the Markdown you are typing. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section></article><section class="article labels"><a class="category" href=/categories/how-tos/>How Tos</a><a class="category" href=/categories/patelhiren.com/>patelhiren.com</a><a class="tag" href=/tags/web/>Web</a><a class="tag" href=/tags/hugo/>Hugo</a><a class="tag" href=/tags/github/>GitHub</a><a class="tag" href=/tags/github-pages/>GitHub Pages</a></section></div><section class="article navigation"><p><a class="link" href="/blog/pngcrush-automator-action/"><span class="li">&rarr;</span>PNG Crush Automator Action</a></p></section></div><section id="footer" class="footer"><div class="footer-wrap">
