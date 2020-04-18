@@ -19,18 +19,18 @@
       
       <guid>https://patelhiren.com/blog/boot-camp-on-external-drive/</guid>
       <description>&lt;p&gt;I had a spare SSD and a USB enclosure for it. Installing windows on an external drive is unsupported by Microsoft and the setup will abort stating Windows cannot be installed on an external drive. Here is how I managed to install Windows 10 Pro on the external SSD and boot from it on my iMac.&lt;/p&gt;
-&lt;h6 id=&#34;my-environment&#34;&gt;My Environment:&lt;/h6&gt;
+&lt;h6 id=&#34;my-environment&#34;&gt;My Environment&lt;/h6&gt;
 &lt;ul&gt;
 &lt;li&gt;27-inch iMac 2019, running macOS Catalina 10.15.4&lt;/li&gt;
 &lt;li&gt;120 GB ScanDisk Plus SSD&lt;/li&gt;
 &lt;li&gt;2.5-inch SATA USB enclosure&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h6 id=&#34;software-needed&#34;&gt;Software needed:&lt;/h6&gt;
+&lt;h6 id=&#34;software-needed&#34;&gt;Software needed&lt;/h6&gt;
 &lt;ul&gt;
 &lt;li&gt;VMware Fusion 11.5.3 (Trial is fine)&lt;/li&gt;
 &lt;li&gt;Windows 10 ISO&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h6 id=&#34;directions&#34;&gt;Directions:&lt;/h6&gt;
+&lt;h6 id=&#34;directions&#34;&gt;Directions&lt;/h6&gt;
 &lt;ul&gt;
 &lt;li&gt;Launch Disk Utility and select the plugged in SSD. Format as below
 &lt;span class=&#34;image-container&#34;&gt;

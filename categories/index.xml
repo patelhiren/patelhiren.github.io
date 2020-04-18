@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>©2020 Hiren Patel.</copyright>
-    <lastBuildDate>Sun, 12 Apr 2020 22:04:30 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 18 Apr 2020 16:08:20 -0400</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How Tos</title>
+      <link>https://patelhiren.com/categories/how-tos/</link>
+      <pubDate>Sat, 18 Apr 2020 16:08:20 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/categories/how-tos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>patelhiren.com</title>
+      <link>https://patelhiren.com/categories/patelhiren.com/</link>
+      <pubDate>Sat, 18 Apr 2020 16:08:20 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/categories/patelhiren.com/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Web</title>
@@ -27,15 +45,6 @@
       <pubDate>Fri, 10 Apr 2020 20:11:49 -0400</pubDate>
       
       <guid>https://patelhiren.com/categories/troubleshooting/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>How Tos</title>
-      <link>https://patelhiren.com/categories/how-tos/</link>
-      <pubDate>Mon, 06 Apr 2020 14:02:10 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/categories/how-tos/</guid>
       <description></description>
     </item>
     

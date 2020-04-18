@@ -7,10 +7,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>©2020 Hiren Patel.</copyright>
-    <lastBuildDate>Sun, 12 Apr 2020 22:04:30 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 18 Apr 2020 16:08:20 -0400</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GitHub</title>
+      <link>https://patelhiren.com/tags/github/</link>
+      <pubDate>Sat, 18 Apr 2020 16:08:20 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GitHub Pages</title>
+      <link>https://patelhiren.com/tags/github-pages/</link>
+      <pubDate>Sat, 18 Apr 2020 16:08:20 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/tags/github-pages/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://patelhiren.com/tags/hugo/</link>
+      <pubDate>Sat, 18 Apr 2020 16:08:20 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Web</title>
+      <link>https://patelhiren.com/tags/web/</link>
+      <pubDate>Sat, 18 Apr 2020 16:08:20 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/tags/web/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Automation</title>
