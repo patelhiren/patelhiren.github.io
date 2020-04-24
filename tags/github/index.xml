@@ -411,18 +411,33 @@ git push origin master
 &lt;li&gt;Added the &lt;code&gt;CNAME&lt;/code&gt; file to the git repo at patelhiren.github.io.&lt;/li&gt;
 &lt;li&gt;Got to Repo Settings at &lt;a href=&#34;https://github.com/patelhiren/patelhiren.github.io/settings&#34;&gt;https://github.com/patelhiren/patelhiren.github.io/settings&lt;/a&gt; and set &lt;strong&gt;Custom domain&lt;/strong&gt; and &lt;strong&gt;Enforce HTTPS&lt;/strong&gt; settings.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;span class=&#34;image-container&#34;&gt;
+&lt;p&gt;
+
+&lt;span class=&#34;image-container&#34;&gt;
     &lt;span class=&#34;link&#34;&gt;
         &lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; href=&#34;images/01.png&#34;&gt;
             &lt;picture&gt;&lt;source 
                     srcset=&#34;
+                    
                     /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_400x0_resize_box_2.png 400w,
+                    
+                    
+                    
                     /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_600x0_resize_box_2.png 600w,
+                    
+
+                    
                     /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_800x0_resize_box_2.png 1000w,
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_1000x0_resize_box_2.png&#34; 
+                    
+
+                    
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_1000x0_resize_box_2.png
+                    
+                    &#34; 
                 /&gt;
+                
                 &lt;img alt=&#34;GitHub Pages Custom Domain Settings&#34; 
-                        src=&#34;https://patelhiren.com/blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_600x0_resize_box_2.png&#34; /&gt;
+                        src=&#34;https://patelhiren.com/blog/website-built-with-open-source-and-hosted-for-free/images/01.png&#34; /&gt;
             &lt;/picture&gt;
         &lt;/a&gt;
     &lt;/span&gt;
