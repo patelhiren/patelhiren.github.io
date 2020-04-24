@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Documentation on Hiren Patel</title>
+    <link>https://patelhiren.com/tags/documentation/</link>
+    <description>Recent content in Documentation on Hiren Patel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>©2020 Hiren Patel.</copyright>
+    <lastBuildDate>Fri, 24 Apr 2020 12:06:38 -0400</lastBuildDate>
+    
+	<atom:link href="https://patelhiren.com/tags/documentation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Using Mermaidjs to Generate Flowcharts</title>
+      <link>https://patelhiren.com/blog/using-mermaidjs-to-generate-flowcharts/</link>
+      <pubDate>Fri, 24 Apr 2020 12:06:38 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/blog/using-mermaidjs-to-generate-flowcharts/</guid>
+      <description>&lt;p&gt;I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about &lt;a href=&#34;https://github.com/mermaid-js/mermaid&#34;title=&#34;mermaid-js GitHub Page&#34;target=&#34;_blank&#34;&gt;mermaid-js&lt;/a&gt; which allows one to use Markdown like syntax to generte various diagrams including flow charts.&lt;/p&gt;
+&lt;p&gt;There is a live editor available at &lt;a href=&#34;https://mermaidjs.github.io/mermaid-live-editor/&#34;&gt;https://mermaidjs.github.io/mermaid-live-editor/&lt;/a&gt; that allows you to to enter Markdown like text and generate a PNG/SVG output that you can download and embed in your documentation.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34; data-lang=&#34;mermaid&#34;&gt;graph TD
+A[Christmas] --&amp;gt;|Get money| B(Go shopping)
+B --&amp;gt; C{Let me think}
+C --&amp;gt;|One| D[Laptop]
+C --&amp;gt;|Two| E[iPhone]
+C --&amp;gt;|Three| F[fa:fa-car Car]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The embedded code block above would generate a flow chart image like the one below.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;image-container&#34;&gt;
+    &lt;span class=&#34;link&#34;&gt;
+        &lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; href=&#34;images/mermaid-diagram.png&#34;&gt;
+            &lt;picture&gt;&lt;source 
+                    srcset=&#34;
+                    /blog/using-mermaidjs-to-generate-flowcharts/images/mermaid-diagram_hu27af54d18f72a9b8b41f2c62380a50e4_13186_400x0_resize_box_2.png 400w,
+                    /blog/using-mermaidjs-to-generate-flowcharts/images/mermaid-diagram_hu27af54d18f72a9b8b41f2c62380a50e4_13186_600x0_resize_box_2.png 600w,
+                    /blog/using-mermaidjs-to-generate-flowcharts/images/mermaid-diagram_hu27af54d18f72a9b8b41f2c62380a50e4_13186_800x0_resize_box_2.png 1000w,
+                    /blog/using-mermaidjs-to-generate-flowcharts/images/mermaid-diagram_hu27af54d18f72a9b8b41f2c62380a50e4_13186_1000x0_resize_box_2.png&#34; 
+                /&gt;
+                &lt;img alt=&#34;mermaid - flow chart&#34; 
+                        src=&#34;https://patelhiren.com/blog/using-mermaidjs-to-generate-flowcharts/images/mermaid-diagram_hu27af54d18f72a9b8b41f2c62380a50e4_13186_600x0_resize_box_2.png&#34; /&gt;
+            &lt;/picture&gt;
+        &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;span class=&#34;caption&#34;&gt;
+        &lt;span class=&#34;title&#34;&gt;&lt;/span&gt;
+    &lt;/span&gt;
+&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;mermaid-js supports generating&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Flow Chart&lt;/li&gt;
+&lt;li&gt;Sequence Diagram&lt;/li&gt;
+&lt;li&gt;Class Diagram&lt;/li&gt;
+&lt;li&gt;State Diagram&lt;/li&gt;
+&lt;li&gt;Gantt Chart&lt;/li&gt;
+&lt;li&gt;Pie Chart&lt;/li&gt;
+&lt;li&gt;ER Diagram&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Documentation is available at &lt;a href=&#34;https://mermaid-js.github.io/mermaid&#34;&gt;https://mermaid-js.github.io/mermaid&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

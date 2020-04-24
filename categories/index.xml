@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>©2020 Hiren Patel.</copyright>
-    <lastBuildDate>Sat, 18 Apr 2020 16:08:20 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 24 Apr 2020 12:06:38 -0400</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Interesting Tools</title>
+      <link>https://patelhiren.com/categories/interesting-tools/</link>
+      <pubDate>Fri, 24 Apr 2020 12:06:38 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/categories/interesting-tools/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>How Tos</title>
