@@ -37,14 +37,14 @@ C --&amp;gt;|Three| F[fa:fa-car Car]
                     &lt;source 
                         srcset=&#34;
                         
+                        
+                        
+
+                        
+
+                        
+
                         /blog/using-mermaid-js-to-generate-flow-charts/images/Dark/mermaid-diagram.png
-                        
-                        
-                        
-
-                        
-
-                        
                         &#34;
                         media=&#34;(prefers-color-scheme: dark)&#34;
                     /&gt;&lt;source 
@@ -56,6 +56,8 @@ C --&amp;gt;|Three| F[fa:fa-car Car]
                     
 
                     
+
+                    /blog/using-mermaid-js-to-generate-flow-charts/images/mermaid-diagram.png
                     &#34; 
                 /&gt;
                 

@@ -37,14 +37,14 @@ C --&amp;gt;|Three| F[fa:fa-car Car]
                     &lt;source 
                         srcset=&#34;
                         
+                        
+                        
+
+                        
+
+                        
+
                         /blog/using-mermaid-js-to-generate-flow-charts/images/Dark/mermaid-diagram.png
-                        
-                        
-                        
-
-                        
-
-                        
                         &#34;
                         media=&#34;(prefers-color-scheme: dark)&#34;
                     /&gt;&lt;source 
@@ -56,6 +56,8 @@ C --&amp;gt;|Three| F[fa:fa-car Car]
                     
 
                     
+
+                    /blog/using-mermaid-js-to-generate-flow-charts/images/mermaid-diagram.png
                     &#34; 
                 /&gt;
                 
@@ -500,8 +502,10 @@ git push origin master
                     
 
                     
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_1000x0_resize_box_2.png
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_1000x0_resize_box_2.png 1200w,
                     
+
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01.png
                     &#34; 
                 /&gt;
                 
@@ -616,8 +620,10 @@ pngcrush input.png crushed.png
                     
 
                     
-                    /blog/pngcrush-automator-action/images/01_hu57fa4703ef8765fef9d7e6fd433a74fa_927894_1000x0_resize_box_2.png
+                    /blog/pngcrush-automator-action/images/01_hu57fa4703ef8765fef9d7e6fd433a74fa_927894_1000x0_resize_box_2.png 1200w,
                     
+
+                    /blog/pngcrush-automator-action/images/01.png
                     &#34; 
                 /&gt;
                 
@@ -658,8 +664,10 @@ pngcrush input.png crushed.png
                     
 
                     
-                    /blog/pngcrush-automator-action/images/02_hu57fa4703ef8765fef9d7e6fd433a74fa_734562_1000x0_resize_box_2.png
+                    /blog/pngcrush-automator-action/images/02_hu57fa4703ef8765fef9d7e6fd433a74fa_734562_1000x0_resize_box_2.png 1200w,
                     
+
+                    /blog/pngcrush-automator-action/images/02.png
                     &#34; 
                 /&gt;
                 
@@ -695,8 +703,10 @@ pngcrush input.png crushed.png
                     
 
                     
-                    /blog/pngcrush-automator-action/images/03_hu57fa4703ef8765fef9d7e6fd433a74fa_483613_1000x0_resize_box_2.png
+                    /blog/pngcrush-automator-action/images/03_hu57fa4703ef8765fef9d7e6fd433a74fa_483613_1000x0_resize_box_2.png 1200w,
                     
+
+                    /blog/pngcrush-automator-action/images/03.png
                     &#34; 
                 /&gt;
                 
@@ -772,8 +782,10 @@ pngcrush input.png crushed.png
                     
 
                     
-                    /blog/pngcrush-automator-action/images/04_hu57fa4703ef8765fef9d7e6fd433a74fa_894941_1000x0_resize_box_2.png
+                    /blog/pngcrush-automator-action/images/04_hu57fa4703ef8765fef9d7e6fd433a74fa_894941_1000x0_resize_box_2.png 1200w,
                     
+
+                    /blog/pngcrush-automator-action/images/04.png
                     &#34; 
                 /&gt;
                 
@@ -807,8 +819,10 @@ pngcrush input.png crushed.png
                     
 
                     
-                    /blog/pngcrush-automator-action/images/05_hu66c66eef13015fd0d383e1d348905754_469811_1000x0_resize_box_2.png
+                    /blog/pngcrush-automator-action/images/05_hu66c66eef13015fd0d383e1d348905754_469811_1000x0_resize_box_2.png 1200w,
                     
+
+                    /blog/pngcrush-automator-action/images/05.png
                     &#34; 
                 /&gt;
                 
@@ -838,6 +852,8 @@ pngcrush input.png crushed.png
                     
 
                     
+
+                    /blog/pngcrush-automator-action/images/06.png
                     &#34; 
                 /&gt;
                 
@@ -920,8 +936,10 @@ pngcrush input.png crushed.png
                         
 
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_1000x0_resize_box_2.png
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_1000x0_resize_box_2.png 1200w,
                         
+
+                        /blog/boot-camp-on-external-drive/images/Dark/01.png
                         &#34;
                         media=&#34;(prefers-color-scheme: dark)&#34;
                     /&gt;&lt;source 
@@ -939,8 +957,10 @@ pngcrush input.png crushed.png
                     
 
                     
-                    /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_1000x0_resize_box_2.png
+                    /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_1000x0_resize_box_2.png 1200w,
                     
+
+                    /blog/boot-camp-on-external-drive/images/01.png
                     &#34; 
                 /&gt;
                 
@@ -1009,8 +1029,10 @@ pngcrush input.png crushed.png
                         
 
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_1000x0_resize_box_2.png
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_1000x0_resize_box_2.png 1200w,
                         
+
+                        /blog/boot-camp-on-external-drive/images/Dark/02.png
                         &#34;
                         media=&#34;(prefers-color-scheme: dark)&#34;
                     /&gt;&lt;source 
@@ -1028,8 +1050,10 @@ pngcrush input.png crushed.png
                     
 
                     
-                    /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_1000x0_resize_box_2.png
+                    /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_1000x0_resize_box_2.png 1200w,
                     
+
+                    /blog/boot-camp-on-external-drive/images/02.png
                     &#34; 
                 /&gt;
                 
