@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>macOS on Hiren Patel</title>
-    <link>https://patelhiren.com/tags/macos/</link>
-    <description>Recent content in macOS on Hiren Patel</description>
+    <title>VPN on Hiren Patel</title>
+    <link>https://patelhiren.com/tags/vpn/</link>
+    <description>Recent content in VPN on Hiren Patel</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>©2020 Hiren Patel.</copyright>
     <lastBuildDate>Sun, 26 Apr 2020 12:55:50 -0400</lastBuildDate>
     
-	<atom:link href="https://patelhiren.com/tags/macos/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://patelhiren.com/tags/vpn/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -95,31 +95,6 @@
 &lt;li&gt;This will offer a &lt;em&gt;client.ovpn&lt;/em&gt; file that you can import into &lt;em&gt;Tunnelblick&lt;/em&gt; for connection to your corporate network.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The page offer options to download the Mobile VPN with SSL Client software for Mac and Windows as well if you want those.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Catalina and Skype for Business Screensharing</title>
-      <link>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</link>
-      <pubDate>Fri, 10 Apr 2020 20:11:49 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</guid>
-      <description>&lt;p&gt;After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.&lt;/p&gt;
-&lt;p&gt;macOS Catalina introduced new Privacy settings that prevents Skype for Business screensharing to work if proper permissions are not provided. On trying to start Screensharing via &lt;strong&gt;Conversations-&amp;gt;Share Screen&lt;/strong&gt; option, Skype would display a message stating check the &lt;strong&gt;Skype For Business&lt;/strong&gt; option under &lt;strong&gt;System Preferences-&amp;gt;Security &amp;amp; Privacy-&amp;gt;Privacy Tab-&amp;gt;Screen Recording&lt;/strong&gt;. However navigating there did not display &amp;ldquo;Skype For Business* as an option.&lt;/p&gt;
-&lt;p&gt;To correct it I first reset the &amp;ldquo;Screen Recording&amp;rdquo; permissions for Skype by running this command on Terminal.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;tccutil reset ScreenCapture com.microsoft.SkypeForBusiness
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;If you do not provide the &lt;strong&gt;com.microsoft.SkypeForBusiness&lt;/strong&gt; identifier, the Screen Recording permissions for all apps will be reset and you will have to provide permissions again as needed.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;After running that command. I relaunched Skype, selected a Conversation and tried sharing via the screen via the menu option again. I got the same error I got earlier from Skype and no Screen Recording permission prompt was displayed by the OS.&lt;/p&gt;
-&lt;p&gt;I had to select the &amp;ldquo;Share Screen&amp;rdquo; icon on the top right of the conversation window. When I tapped that, the OS permissions prompt for Screen Recording came up. I gave the required permission, restarted Skype and was successfully able to share my screen.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;For the record this was on Skype for Business version 16.28.175.&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.68.3" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>Using Tunnelblick to Connect to WatchGuard VPN&nbsp;&ndash;&nbsp;Hiren Patel</title><link rel="stylesheet" href="/css/core.min.b69f7d8f9fc15db8c7632a5198aaab77c7e6b59d05c03dc3fbfaa50ddc85d1aeddc1386959c33f60c7480c48fe35b9f7.css" integrity="sha384-tp99j5/BXbjHYypRmKqrd8fmtZ0FwD3D&#43;/qlDdyF0a7dwThpWcM/YMdIDEj&#43;Nbn3"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#191919">
+<meta name="msapplication-TileColor" content="#00aba9">
+<body>
+    <div class="base-body"><section id="header" class="site header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><img class="site logo" src="/patelhiren-logo.png" alt /><span class="site name">Hiren Patel</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/tags/">Tags</a></nav></div></span></div><div class="site slogan"><span class="title">Documenting things as I learn.</span></div></section><div id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">Using Tunnelblick to Connect to WatchGuard VPN</h1><p class="article date">Apr 26, 2020</p></section><article class="article markdown-body"><p>I needed to connect to a corporate VPN that used <a href="https://www.watchguard.com"target="_blank">WatchGuard</a>. The IT provided <em>Mobile VPN with SSL Client</em> software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.</p>
+<p>I discovered that the <em>WatchGuard</em> VPN internally is an OpenVPN server. I use <a href="https://tunnelblick.net"target="_blank">Tunnelblick</a> for my personal OpenVPN connections and that has worked reliably on macOS Catalina. So if I just had the connection <em>ovpn</em> config file I could use <em>Tunnelblick</em> for my VPN connections.</p>
+<p>WatchGuard has a detailed support document that walks the user through downloading their software to use for VPN connection at <a href="https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html">https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html</a>.</p>
+<p>Turns out that page also provides an option to download the <em>ovpn</em> config that can be used with <em>Tunnelblick</em>.</p>
+<h2 id="acquiring-the-ovpn-config">Acquiring the OVPN config</h2>
+<ul>
+<li>Browse to <code>https://&lt;yourvpnserverip:port&gt;/sslvpn.html</code>. You will be greeted with a login page.</li>
+</ul>
+<p>
+
+<span class="image-container">
+    <span class="link">
+        <a target="_blank" rel="noopener noreferrer" href="images/01.jpg">
+            <picture><source 
+                    srcset="
+                    
+                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01_hu657c574761ea48e57c808b0297ce1c55_28832_400x0_resize_q75_box.jpg 400w,
+                    
+                    
+                    
+
+                    
+
+                    
+
+                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01.jpg
+                    " 
+                />
+                
+                <img alt="WatchGuard - Login Page" 
+                        src="/blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01.jpg" />
+            </picture>
+        </a>
+    </span>
+    <span class="caption">
+        <span class="title">WatchGuard - Login Page</span>
+    </span>
+</span></a></p>
+<ul>
+<li>Login using your corporate credentials.</li>
+<li>You will be offered a download page.</li>
+</ul>
+<p>
+
+<span class="image-container">
+    <span class="link">
+        <a target="_blank" rel="noopener noreferrer" href="images/02.jpg">
+            <picture><source 
+                    srcset="
+                    
+                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02_hu3d03a01dcc18bc5be0e67db3d8d209a6_168343_400x0_resize_q75_box.jpg 400w,
+                    
+                    
+                    
+
+                    
+
+                    
+
+                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02.jpg
+                    " 
+                />
+                
+                <img alt="WatchGuard - Download Page" 
+                        src="/blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02.jpg" />
+            </picture>
+        </a>
+    </span>
+    <span class="caption">
+        <span class="title">WatchGuard - Download Page</span>
+    </span>
+</span></a></p>
+<ul>
+<li>Select the <strong><em>Download</em></strong> option under <em>Mobile VPN with SSL client profile</em>.</li>
+<li>This will offer a <em>client.ovpn</em> file that you can import into <em>Tunnelblick</em> for connection to your corporate network.</li>
+</ul>
+<p>The page offer options to download the Mobile VPN with SSL Client software for Mac and Windows as well if you want those.</p></article><section class="article labels"><a class="category" href=/categories/how-tos/>How Tos</a><a class="tag" href=/tags/vpn/>VPN</a><a class="tag" href=/tags/catalina/>Catalina</a><a class="tag" href=/tags/macos/>macOS</a></section></div><section class="article navigation"><p><a class="link" href="/blog/using-mermaid-js-to-generate-flow-charts/"><span class="li">&rarr;</span>Using mermaid-js to generate Flow Charts</a></p></section></div><section id="footer" class="footer"><div class="footer-wrap">
+    <p class="copyright">©2020 Hiren Patel.</p>
+    <p class="powerby"><span>Powered by </span><a href="https://gohugo.io" 
+        target="_blank">Hugo</a><span> and the </span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank">Notepadium</a></p>
+</div></section></div>
+</body>
+
+</html>

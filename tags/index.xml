@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>©2020 Hiren Patel.</copyright>
-    <lastBuildDate>Fri, 24 Apr 2020 12:06:38 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 26 Apr 2020 12:55:50 -0400</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Catalina</title>
+      <link>https://patelhiren.com/tags/catalina/</link>
+      <pubDate>Sun, 26 Apr 2020 12:55:50 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/tags/catalina/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>macOS</title>
+      <link>https://patelhiren.com/tags/macos/</link>
+      <pubDate>Sun, 26 Apr 2020 12:55:50 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/tags/macos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VPN</title>
+      <link>https://patelhiren.com/tags/vpn/</link>
+      <pubDate>Sun, 26 Apr 2020 12:55:50 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/tags/vpn/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Automation</title>
@@ -72,24 +99,6 @@
       <pubDate>Sun, 12 Apr 2020 22:04:30 -0400</pubDate>
       
       <guid>https://patelhiren.com/tags/terminal/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Catalina</title>
-      <link>https://patelhiren.com/tags/catalina/</link>
-      <pubDate>Fri, 10 Apr 2020 20:11:49 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/tags/catalina/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>macOS</title>
-      <link>https://patelhiren.com/tags/macos/</link>
-      <pubDate>Fri, 10 Apr 2020 20:11:49 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/tags/macos/</guid>
       <description></description>
     </item>
     
