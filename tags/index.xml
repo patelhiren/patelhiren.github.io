@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Hiren Patel</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>©2020 Hiren Patel.</copyright>
+    <copyright>© Copyright {year}, Hiren Patel</copyright>
     <lastBuildDate>Sun, 26 Apr 2020 12:55:50 -0400</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/tags/index.xml" rel="self" type="application/rss+xml" />
@@ -54,15 +54,6 @@
       <pubDate>Fri, 24 Apr 2020 12:06:38 -0400</pubDate>
       
       <guid>https://patelhiren.com/tags/documentation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Web</title>
-      <link>https://patelhiren.com/tags/web/</link>
-      <pubDate>Fri, 24 Apr 2020 12:06:38 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/tags/web/</guid>
       <description></description>
     </item>
     
