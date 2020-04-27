@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Hiren Patel</title>
     <link>https://patelhiren.com/</link>
@@ -18,21 +18,23 @@
       <pubDate>Sun, 26 Apr 2020 12:55:50 -0400</pubDate>
       
       <guid>https://patelhiren.com/blog/using-tunnelblick-to-connect-to-watchguard-vpn/</guid>
-      <description>&lt;p&gt;I needed to connect to a corporate VPN that used &lt;a href=&#34;https://www.watchguard.com&#34;target=&#34;_blank&#34;&gt;WatchGuard&lt;/a&gt;. The IT provided &lt;em&gt;Mobile VPN with SSL Client&lt;/em&gt; software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.&lt;/p&gt;
-&lt;p&gt;I discovered that the &lt;em&gt;WatchGuard&lt;/em&gt; VPN internally is an OpenVPN server. I use &lt;a href=&#34;https://tunnelblick.net&#34;target=&#34;_blank&#34;&gt;Tunnelblick&lt;/a&gt; for my personal OpenVPN connections and that has worked reliably on macOS Catalina. So if I just had the connection &lt;em&gt;ovpn&lt;/em&gt; config file I could use &lt;em&gt;Tunnelblick&lt;/em&gt; for my VPN connections.&lt;/p&gt;
-&lt;p&gt;WatchGuard has a detailed support document that walks the user through downloading their software to use for VPN connection at &lt;a href=&#34;https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html&#34;&gt;https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Turns out that page also provides an option to download the &lt;em&gt;ovpn&lt;/em&gt; config that can be used with &lt;em&gt;Tunnelblick&lt;/em&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;acquiring-the-ovpn-config&#34;&gt;Acquiring the OVPN config&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Browse to &lt;code&gt;https://&amp;lt;yourvpnserverip:port&amp;gt;/sslvpn.html&lt;/code&gt;. You will be greeted with a login page.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;
+      <description>&lt;p&gt;I needed to connect to a corporate VPN that used &lt;a href=&#34;https://www.watchguard.com&#34;target=&#34;_blank&#34;&gt;WatchGuard&lt;/a&gt;. The IT provided &lt;em&gt;Mobile VPN with SSL Client&lt;/em&gt; software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>I needed to connect to a corporate VPN that used <a href="https://www.watchguard.com"target="_blank">WatchGuard</a>. The IT provided <em>Mobile VPN with SSL Client</em> software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.</p>
+<p>I discovered that the <em>WatchGuard</em> VPN internally is an OpenVPN server. I use <a href="https://tunnelblick.net"target="_blank">Tunnelblick</a> for my personal OpenVPN connections and that has worked reliably on macOS Catalina. So if I just had the connection <em>ovpn</em> config file I could use <em>Tunnelblick</em> for my VPN connections.</p>
+<p>WatchGuard has a detailed support document that walks the user through downloading their software to use for VPN connection at <a href="https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html">https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html</a>.</p>
+<p>Turns out that page also provides an option to download the <em>ovpn</em> config that can be used with <em>Tunnelblick</em>.</p>
+<h2 id="acquiring-the-ovpn-config">Acquiring the OVPN config</h2>
+<ul>
+<li>Browse to <code>https://&lt;yourvpnserverip:port&gt;/sslvpn.html</code>. You will be greeted with a login page.</li>
+</ul>
+<p>
 
-&lt;span class=&#34;image-container&#34;&gt;
-    &lt;span class=&#34;link&#34;&gt;
-        &lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; href=&#34;images/01.jpg&#34;&gt;
-            &lt;picture&gt;&lt;source 
-                    srcset=&#34;
+<span class="image-container">
+    <span class="link">
+        <a target="_blank" rel="noopener noreferrer" href="images/01.jpg">
+            <picture><source 
+                    srcset="
                     
                     /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01_hu657c574761ea48e57c808b0297ce1c55_28832_400x0_resize_q75_box.jpg 400w,
                     
@@ -44,29 +46,29 @@
                     
 
                     /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01.jpg
-                    &#34; 
-                /&gt;
+                    " 
+                />
                 
-                &lt;img alt=&#34;WatchGuard - Login Page&#34; 
-                        src=&#34;https://patelhiren.com/blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01.jpg&#34; /&gt;
-            &lt;/picture&gt;
-        &lt;/a&gt;
-    &lt;/span&gt;
-    &lt;span class=&#34;caption&#34;&gt;
-        &lt;span class=&#34;title&#34;&gt;WatchGuard - Login Page&lt;/span&gt;
-    &lt;/span&gt;
-&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Login using your corporate credentials.&lt;/li&gt;
-&lt;li&gt;You will be offered a download page.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;
+                <img alt="WatchGuard - Login Page" 
+                        src="/blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01.jpg" />
+            </picture>
+        </a>
+    </span>
+    <span class="caption">
+        <span class="title">WatchGuard - Login Page</span>
+    </span>
+</span></a></p>
+<ul>
+<li>Login using your corporate credentials.</li>
+<li>You will be offered a download page.</li>
+</ul>
+<p>
 
-&lt;span class=&#34;image-container&#34;&gt;
-    &lt;span class=&#34;link&#34;&gt;
-        &lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; href=&#34;images/02.jpg&#34;&gt;
-            &lt;picture&gt;&lt;source 
-                    srcset=&#34;
+<span class="image-container">
+    <span class="link">
+        <a target="_blank" rel="noopener noreferrer" href="images/02.jpg">
+            <picture><source 
+                    srcset="
                     
                     /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02_hu3d03a01dcc18bc5be0e67db3d8d209a6_168343_400x0_resize_q75_box.jpg 400w,
                     
@@ -78,23 +80,24 @@
                     
 
                     /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02.jpg
-                    &#34; 
-                /&gt;
+                    " 
+                />
                 
-                &lt;img alt=&#34;WatchGuard - Download Page&#34; 
-                        src=&#34;https://patelhiren.com/blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02.jpg&#34; /&gt;
-            &lt;/picture&gt;
-        &lt;/a&gt;
-    &lt;/span&gt;
-    &lt;span class=&#34;caption&#34;&gt;
-        &lt;span class=&#34;title&#34;&gt;WatchGuard - Download Page&lt;/span&gt;
-    &lt;/span&gt;
-&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Select the &lt;strong&gt;&lt;em&gt;Download&lt;/em&gt;&lt;/strong&gt; option under &lt;em&gt;Mobile VPN with SSL client profile&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;This will offer a &lt;em&gt;client.ovpn&lt;/em&gt; file that you can import into &lt;em&gt;Tunnelblick&lt;/em&gt; for connection to your corporate network.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The page offer options to download the Mobile VPN with SSL Client software for Mac and Windows as well if you want those.&lt;/p&gt;</description>
+                <img alt="WatchGuard - Download Page" 
+                        src="/blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02.jpg" />
+            </picture>
+        </a>
+    </span>
+    <span class="caption">
+        <span class="title">WatchGuard - Download Page</span>
+    </span>
+</span></a></p>
+<ul>
+<li>Select the <strong><em>Download</em></strong> option under <em>Mobile VPN with SSL client profile</em>.</li>
+<li>This will offer a <em>client.ovpn</em> file that you can import into <em>Tunnelblick</em> for connection to your corporate network.</li>
+</ul>
+<p>The page offer options to download the Mobile VPN with SSL Client software for Mac and Windows as well if you want those.</p>]]></content:encoded>
+      
     </item>
     
     <item>
@@ -103,24 +106,26 @@
       <pubDate>Fri, 24 Apr 2020 12:06:38 -0400</pubDate>
       
       <guid>https://patelhiren.com/blog/using-mermaid-js-to-generate-flow-charts/</guid>
-      <description>&lt;p&gt;I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about &lt;a href=&#34;https://github.com/mermaid-js/mermaid&#34;title=&#34;mermaid-js GitHub Page&#34;target=&#34;_blank&#34;&gt;mermaid-js&lt;/a&gt; which allows one to use Markdown like syntax to generte various diagrams including flow charts.&lt;/p&gt;
-&lt;p&gt;There is a live editor available at &lt;a href=&#34;https://mermaidjs.github.io/mermaid-live-editor/&#34;&gt;https://mermaidjs.github.io/mermaid-live-editor/&lt;/a&gt; that allows you to to enter Markdown like text and generate a PNG/SVG output that you can download and embed in your documentation.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34; data-lang=&#34;mermaid&#34;&gt;graph TD
-A[Christmas] --&amp;gt;|Get money| B(Go shopping)
-B --&amp;gt; C{Let me think}
-C --&amp;gt;|One| D[Laptop]
-C --&amp;gt;|Two| E[iPhone]
-C --&amp;gt;|Three| F[fa:fa-car Car]
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The embedded code block above would generate a flow chart image like the one below.&lt;/p&gt;
-&lt;p&gt;
+      <description>&lt;p&gt;I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about &lt;a href=&#34;https://github.com/mermaid-js/mermaid&#34;title=&#34;mermaid-js GitHub Page&#34;target=&#34;_blank&#34;&gt;mermaid-js&lt;/a&gt; which allows one to use Markdown like syntax to generte various diagrams including flow charts.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about <a href="https://github.com/mermaid-js/mermaid"title="mermaid-js GitHub Page"target="_blank">mermaid-js</a> which allows one to use Markdown like syntax to generte various diagrams including flow charts.</p>
+<p>There is a live editor available at <a href="https://mermaidjs.github.io/mermaid-live-editor/">https://mermaidjs.github.io/mermaid-live-editor/</a> that allows you to to enter Markdown like text and generate a PNG/SVG output that you can download and embed in your documentation.</p>
+<pre><code class="language-mermaid" data-lang="mermaid">graph TD
+A[Christmas] --&gt;|Get money| B(Go shopping)
+B --&gt; C{Let me think}
+C --&gt;|One| D[Laptop]
+C --&gt;|Two| E[iPhone]
+C --&gt;|Three| F[fa:fa-car Car]
+</code></pre><p>The embedded code block above would generate a flow chart image like the one below.</p>
+<p>
 
-&lt;span class=&#34;image-container&#34;&gt;
-    &lt;span class=&#34;link&#34;&gt;
-        &lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; href=&#34;images/mermaid-diagram.png&#34;&gt;
-            &lt;picture&gt;
+<span class="image-container">
+    <span class="link">
+        <a target="_blank" rel="noopener noreferrer" href="images/mermaid-diagram.png">
+            <picture>
 
-                    &lt;source 
-                        srcset=&#34;
+                    <source 
+                        srcset="
                         
                         
                         
@@ -130,10 +135,10 @@ C --&amp;gt;|Three| F[fa:fa-car Car]
                         
 
                         /blog/using-mermaid-js-to-generate-flow-charts/images/Dark/mermaid-diagram.png
-                        &#34;
-                        media=&#34;(prefers-color-scheme: dark)&#34;
-                    /&gt;&lt;source 
-                    srcset=&#34;
+                        "
+                        media="(prefers-color-scheme: dark)"
+                    /><source 
+                    srcset="
                     
                     
                     
@@ -143,29 +148,30 @@ C --&amp;gt;|Three| F[fa:fa-car Car]
                     
 
                     /blog/using-mermaid-js-to-generate-flow-charts/images/mermaid-diagram.png
-                    &#34; 
-                /&gt;
+                    " 
+                />
                 
-                &lt;img alt=&#34;mermaid - flow chart&#34; 
-                        src=&#34;https://patelhiren.com/blog/using-mermaid-js-to-generate-flow-charts/images/mermaid-diagram.png&#34; /&gt;
-            &lt;/picture&gt;
-        &lt;/a&gt;
-    &lt;/span&gt;
-    &lt;span class=&#34;caption&#34;&gt;
-        &lt;span class=&#34;title&#34;&gt;&lt;/span&gt;
-    &lt;/span&gt;
-&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;mermaid-js supports generating&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Flow Chart&lt;/li&gt;
-&lt;li&gt;Sequence Diagram&lt;/li&gt;
-&lt;li&gt;Class Diagram&lt;/li&gt;
-&lt;li&gt;State Diagram&lt;/li&gt;
-&lt;li&gt;Gantt Chart&lt;/li&gt;
-&lt;li&gt;Pie Chart&lt;/li&gt;
-&lt;li&gt;ER Diagram&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Documentation is available at &lt;a href=&#34;https://mermaid-js.github.io/mermaid&#34;&gt;https://mermaid-js.github.io/mermaid&lt;/a&gt;.&lt;/p&gt;</description>
+                <img alt="mermaid - flow chart" 
+                        src="/blog/using-mermaid-js-to-generate-flow-charts/images/mermaid-diagram.png" />
+            </picture>
+        </a>
+    </span>
+    <span class="caption">
+        <span class="title"></span>
+    </span>
+</span></a></p>
+<p>mermaid-js supports generating</p>
+<ul>
+<li>Flow Chart</li>
+<li>Sequence Diagram</li>
+<li>Class Diagram</li>
+<li>State Diagram</li>
+<li>Gantt Chart</li>
+<li>Pie Chart</li>
+<li>ER Diagram</li>
+</ul>
+<p>Documentation is available at <a href="https://mermaid-js.github.io/mermaid">https://mermaid-js.github.io/mermaid</a>.</p>]]></content:encoded>
+      
     </item>
     
     <item>
@@ -175,405 +181,408 @@ C --&amp;gt;|Three| F[fa:fa-car Car]
       
       <guid>https://patelhiren.com/blog/website-built-with-open-source-and-hosted-for-free/</guid>
       <description>&lt;p&gt;For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Introducing &lt;a href=&#34;https://patelhiren.com&#34;title=&#34;Hiren Patel&amp;#39;s Blog&#34;target=&#34;_blank&#34;&gt;patelhiren.com&lt;/a&gt; in all its glory. 🎉&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;goals&#34;&gt;Goals&lt;/h2&gt;
-&lt;p&gt;For this site I had a few basic goals in mind.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;It should serve as a log to help me remember and reivew how I did things. I hope that others may find it helpful as well.&lt;/li&gt;
-&lt;li&gt;The website should be fast and light. Should not be overburdened with Javascript.&lt;/li&gt;
-&lt;li&gt;Should be able to host website with a simple webserver. No server side software should be necessary.&lt;/li&gt;
-&lt;li&gt;Allowed me to keep my content in a standard text + image format for easy parsing even when not viewing via a browser. I did not want my content to be stored in binary formats in a database. I want it to be stored in plain text files on the filesystem.&lt;/li&gt;
-&lt;li&gt;Support code syntax highlighting.&lt;/li&gt;
-&lt;li&gt;Support SSL encryption on the website.&lt;/li&gt;
-&lt;li&gt;Support emoji.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The above goals meant I was going to be building a Static Site using one of the many &lt;a href=&#34;https://www.staticgen.com&#34;target=&#34;_blank&#34;&gt;Static Site Generator Tools&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;tools&#34;&gt;Tools&lt;/h2&gt;
-&lt;p&gt;After deciding I wanted a static site, I researched the various &lt;a href=&#34;https://www.staticgen.com&#34;target=&#34;_blank&#34;&gt;Static Site Generator Tools&lt;/a&gt; and settled on &lt;a href=&#34;https://gohugo.com&#34;target=&#34;_blank&#34;&gt;&lt;em&gt;Hugo&lt;/em&gt;&lt;/a&gt; as my choice.&lt;/p&gt;
-&lt;p&gt;Hugo written in &lt;a href=&#34;https://golang.org&#34;target=&#34;_blank&#34;&gt;Go&lt;/a&gt;, is highly reviewed and praised for its speed of site generation. It supports macOS (my primary OS of choice), Windows, Linux, OpenBSD and FreeBSD. It has a very well documented site and looks to have an active community developing and supporting it. It allows me to create my content in &lt;a href=&#34;https://daringfireball.net/projects/markdown/&#34;target=&#34;_blank&#34;&gt;Markdown&lt;/a&gt; syntax thus allowing me to keep it in plain text on the filesystem. It also supports code syntax highlighting and emoji 👌. You can check details of Hugo&amp;rsquo;s Makrdown support at &lt;a href=&#34;https://www.markdownguide.org/tools/hugo/&#34;target=&#34;_blank&#34;&gt;markdownguide.org&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Hugo supports a variety of &lt;a href=&#34;https://themes.gohugo.io&#34;target=&#34;_blank&#34;&gt;Themes&lt;/a&gt;. I settled on &lt;a href=&#34;https://themes.gohugo.io/hugo-notepadium/&#34;target=&#34;_blank&#34;&gt;Notepadium&lt;/a&gt; because it provided most of what I wanted out of box. I plan to customize it a bit to my liking as I learn more.&lt;/p&gt;
-&lt;h2 id=&#34;hosting&#34;&gt;Hosting&lt;/h2&gt;
-&lt;p&gt;For hosting I decided to use &lt;a href=&#34;https://pages.github.com&#34;target=&#34;_blank&#34;&gt;GitHub Pages&lt;/a&gt;. GitHub Pages is free, supports SSL and provides automatic CDN for serving fast webpages closer to your user. It also had the added benefit of having my generated site auotmatically have commit history and remote backup.&lt;/p&gt;
-&lt;h2 id=&#34;installing-hugo-and-building-your-site&#34;&gt;Installing Hugo and Building your site&lt;/h2&gt;
-&lt;p&gt;I use macOS as my primary OS so these steps are for for the Mac. However the steps should be very similar if you are using any other supported OS. &lt;a href=&#34;https://brew.sh&#34;target=&#34;_blank&#34;&gt;Homebrew&lt;/a&gt; and &lt;em&gt;git&lt;/em&gt; &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; is expected to be installed before you follow the rest of the steps.&lt;/p&gt;
-&lt;p&gt;Install Hugo&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;brew install hugo
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;To verify the install run&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;hugo version
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Create your new site&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;hugo new site patelhiren.com
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Add the &lt;em&gt;&lt;a href=&#34;https://themes.gohugo.io/hugo-notepadium/&#34;target=&#34;_blank&#34;&gt;Notepadium&lt;/a&gt;&lt;/em&gt; Theme&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; patelhiren.com
+&lt;p&gt;&lt;strong&gt;Introducing &lt;a href=&#34;https://patelhiren.com&#34;title=&#34;Hiren Patel&amp;#39;s Blog&#34;target=&#34;_blank&#34;&gt;patelhiren.com&lt;/a&gt; in all its glory. 🎉&lt;/strong&gt;&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.</p>
+<p><strong>Introducing <a href="https://patelhiren.com"title="Hiren Patel&#39;s Blog"target="_blank">patelhiren.com</a> in all its glory. 🎉</strong></p>
+<h2 id="goals">Goals</h2>
+<p>For this site I had a few basic goals in mind.</p>
+<ul>
+<li>It should serve as a log to help me remember and reivew how I did things. I hope that others may find it helpful as well.</li>
+<li>The website should be fast and light. Should not be overburdened with Javascript.</li>
+<li>Should be able to host website with a simple webserver. No server side software should be necessary.</li>
+<li>Allowed me to keep my content in a standard text + image format for easy parsing even when not viewing via a browser. I did not want my content to be stored in binary formats in a database. I want it to be stored in plain text files on the filesystem.</li>
+<li>Support code syntax highlighting.</li>
+<li>Support SSL encryption on the website.</li>
+<li>Support emoji.</li>
+</ul>
+<p>The above goals meant I was going to be building a Static Site using one of the many <a href="https://www.staticgen.com"target="_blank">Static Site Generator Tools</a></p>
+<h2 id="tools">Tools</h2>
+<p>After deciding I wanted a static site, I researched the various <a href="https://www.staticgen.com"target="_blank">Static Site Generator Tools</a> and settled on <a href="https://gohugo.com"target="_blank"><em>Hugo</em></a> as my choice.</p>
+<p>Hugo written in <a href="https://golang.org"target="_blank">Go</a>, is highly reviewed and praised for its speed of site generation. It supports macOS (my primary OS of choice), Windows, Linux, OpenBSD and FreeBSD. It has a very well documented site and looks to have an active community developing and supporting it. It allows me to create my content in <a href="https://daringfireball.net/projects/markdown/"target="_blank">Markdown</a> syntax thus allowing me to keep it in plain text on the filesystem. It also supports code syntax highlighting and emoji 👌. You can check details of Hugo&rsquo;s Makrdown support at <a href="https://www.markdownguide.org/tools/hugo/"target="_blank">markdownguide.org</a></p>
+<p>Hugo supports a variety of <a href="https://themes.gohugo.io"target="_blank">Themes</a>. I settled on <a href="https://themes.gohugo.io/hugo-notepadium/"target="_blank">Notepadium</a> because it provided most of what I wanted out of box. I plan to customize it a bit to my liking as I learn more.</p>
+<h2 id="hosting">Hosting</h2>
+<p>For hosting I decided to use <a href="https://pages.github.com"target="_blank">GitHub Pages</a>. GitHub Pages is free, supports SSL and provides automatic CDN for serving fast webpages closer to your user. It also had the added benefit of having my generated site auotmatically have commit history and remote backup.</p>
+<h2 id="installing-hugo-and-building-your-site">Installing Hugo and Building your site</h2>
+<p>I use macOS as my primary OS so these steps are for for the Mac. However the steps should be very similar if you are using any other supported OS. <a href="https://brew.sh"target="_blank">Homebrew</a> and <em>git</em> <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> is expected to be installed before you follow the rest of the steps.</p>
+<p>Install Hugo</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">brew install hugo
+</code></pre></td></tr></table>
+</div>
+</div><p>To verify the install run</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">hugo version
+</code></pre></td></tr></table>
+</div>
+</div><p>Create your new site</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">hugo new site patelhiren.com
+</code></pre></td></tr></table>
+</div>
+</div><p>Add the <em><a href="https://themes.gohugo.io/hugo-notepadium/"target="_blank">Notepadium</a></em> Theme</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="nb">cd</span> patelhiren.com
 git init
 git submodule add https://github.com/cntrump/hugo-notepadium themes/notepadium
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Activate the theme for your site by adding it to the &lt;em&gt;config.toml&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;theme = &amp;#34;notepadium&amp;#34;&amp;#39;&lt;/span&gt; &amp;gt;&amp;gt; config.toml
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Create a new post &lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;hugo new blog/my-first-post/index.md
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;You can find your content under &lt;em&gt;content&lt;/em&gt; folder. You can open the newly created index.md file in any Markdown editor of choice &lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; and edit and save your content. Here is an example post to suggest what&amp;rsquo;s possible.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;---
-title: &amp;#34;My First Post&amp;#34;
-description: &amp;#34;This is my first post in Hugo. This shows up in Google search.&amp;#34;
+</code></pre></td></tr></table>
+</div>
+</div><p>Activate the theme for your site by adding it to the <em>config.toml</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="nb">echo</span> <span class="s1">&#39;theme = &#34;notepadium&#34;&#39;</span> &gt;&gt; config.toml
+</code></pre></td></tr></table>
+</div>
+</div><p>Create a new post <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">hugo new blog/my-first-post/index.md
+</code></pre></td></tr></table>
+</div>
+</div><p>You can find your content under <em>content</em> folder. You can open the newly created index.md file in any Markdown editor of choice <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> and edit and save your content. Here is an example post to suggest what&rsquo;s possible.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-txt" data-lang="txt">---
+title: &#34;My First Post&#34;
+description: &#34;This is my first post in Hugo. This shows up in Google search.&#34;
 date: 2020-04-18T16:08:20-04:00
 draft: true
 tags: [
-    &amp;#34;Tag 1&amp;#34;,
-    &amp;#34;Tag 2&amp;#34;
+    &#34;Tag 1&#34;,
+    &#34;Tag 2&#34;
 ]
 categories: [
-    &amp;#34;Category 1&amp;#34;,
-    &amp;#34;Category 2&amp;#34;
+    &#34;Category 1&#34;,
+    &#34;Category 2&#34;
 ]
 ---
 
 Hello everyone welcome to you website.
 
-&amp;lt;!--more--&amp;gt;
+&lt;!--more--&gt;
 
 This is the extended content of my first post.
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Once you save your content you can test it locally by activating Hugo local web server.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;hugo server -D
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;You can navigate to your local site at &lt;a href=&#34;http://localhost:1313/&#34;&gt;http://localhost:1313/&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Edit you &lt;em&gt;config.toml&lt;/em&gt; to configure the rest of your site settings. Here is mine.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span class=&#34;nx&#34;&gt;baseURL&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://patelhiren.com/&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;languageCode&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;en-us&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;title&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Hiren Patel&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;theme&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;notepadium&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;copyright&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;©2020 Hiren Patel.&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;enableEmoji&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;enableRobotsTXT&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>Once you save your content you can test it locally by activating Hugo local web server.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">hugo server -D
+</code></pre></td></tr></table>
+</div>
+</div><p>You can navigate to your local site at <a href="http://localhost:1313/">http://localhost:1313/</a>.</p>
+<p>Edit you <em>config.toml</em> to configure the rest of your site settings. Here is mine.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">baseURL</span> <span class="p">=</span> <span class="s2">&#34;https://patelhiren.com/&#34;</span>
+<span class="nx">languageCode</span> <span class="p">=</span> <span class="s2">&#34;en-us&#34;</span>
+<span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;Hiren Patel&#34;</span>
+<span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;notepadium&#34;</span>
+<span class="nx">copyright</span> <span class="p">=</span> <span class="s2">&#34;©2020 Hiren Patel.&#34;</span>
+<span class="nx">enableEmoji</span> <span class="p">=</span> <span class="kc">true</span>
+<span class="nx">enableRobotsTXT</span> <span class="p">=</span> <span class="kc">true</span>
 
-&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;markup&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;highlight&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;codeFences&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;noClasses&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;linenos&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
+<span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">highlight</span><span class="p">]</span>
+<span class="nx">codeFences</span> <span class="p">=</span> <span class="kc">true</span>
+<span class="nx">noClasses</span> <span class="p">=</span> <span class="kc">false</span>
+<span class="nx">linenos</span> <span class="p">=</span> <span class="kc">true</span>
 
-&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;markup&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;goldmark&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;renderer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;unsafe&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;  &lt;span class=&#34;c&#34;&gt;# enable raw HTML in Markdown&lt;/span&gt;
+<span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">goldmark</span><span class="p">.</span><span class="nx">renderer</span><span class="p">]</span>
+<span class="nx">unsafe</span> <span class="p">=</span> <span class="kc">true</span>  <span class="c"># enable raw HTML in Markdown</span>
 
-&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;params&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;style&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;auto&amp;#34;&lt;/span&gt;  &lt;span class=&#34;c&#34;&gt;# default: auto. light: light theme, dark: dark theme, auto: based on system.&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;dateFormat&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Jan 02, 2006&amp;#34;&lt;/span&gt;  &lt;span class=&#34;c&#34;&gt;# if unset, default is &amp;#34;2006-01-02&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;readingTime&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;  &lt;span class=&#34;c&#34;&gt;# show reading time after article date&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;logo&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;patelhiren-logo.png&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;slogan&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Documenting things as I learn.&amp;#34;&lt;/span&gt;
+<span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+<span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;auto&#34;</span>  <span class="c"># default: auto. light: light theme, dark: dark theme, auto: based on system.</span>
+<span class="nx">dateFormat</span> <span class="p">=</span> <span class="s2">&#34;Jan 02, 2006&#34;</span>  <span class="c"># if unset, default is &#34;2006-01-02&#34;</span>
+<span class="nx">readingTime</span> <span class="p">=</span> <span class="kc">false</span>  <span class="c"># show reading time after article date</span>
+<span class="nx">logo</span> <span class="p">=</span> <span class="s2">&#34;patelhiren-logo.png&#34;</span>
+<span class="nx">slogan</span> <span class="p">=</span> <span class="s2">&#34;Documenting things as I learn.&#34;</span>
 
-&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;params&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;assets&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;css&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;css/fonts.css&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;css/light.css&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;css/dark.css&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+<span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">assets</span><span class="p">]</span>
+<span class="nx">css</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;css/fonts.css&#34;</span><span class="p">,</span> <span class="s2">&#34;css/light.css&#34;</span><span class="p">,</span> <span class="s2">&#34;css/dark.css&#34;</span><span class="p">]</span>
 
-&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;params&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;comments&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;enable&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;  &lt;span class=&#34;c&#34;&gt;# En/Disable comments globally, default: false. You can always enable comments on per page.&lt;/span&gt;
+<span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">comments</span><span class="p">]</span>
+<span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>  <span class="c"># En/Disable comments globally, default: false. You can always enable comments on per page.</span>
 
-&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;params&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;share&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;enable&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;  &lt;span class=&#34;c&#34;&gt;# En/Disable share globally, default: false. You can always enable share on per page.&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;addThisId&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;inlineToolId&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+<span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">share</span><span class="p">]</span>
+<span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>  <span class="c"># En/Disable share globally, default: false. You can always enable share on per page.</span>
+<span class="nx">addThisId</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+<span class="nx">inlineToolId</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
 
-&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;params&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;math&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;enable&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;# load math globally, default: false. You can always enable math on per page.&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;use&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;katex&amp;#34;&lt;/span&gt;  &lt;span class=&#34;c&#34;&gt;# builtin: &amp;#34;katex&amp;#34;, &amp;#34;mathjax&amp;#34;.  default: &amp;#34;katex&amp;#34;&lt;/span&gt;
+<span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">math</span><span class="p">]</span>
+<span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span> <span class="c"># load math globally, default: false. You can always enable math on per page.</span>
+<span class="nx">use</span> <span class="p">=</span> <span class="s2">&#34;katex&#34;</span>  <span class="c"># builtin: &#34;katex&#34;, &#34;mathjax&#34;.  default: &#34;katex&#34;</span>
 
-&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;params&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;syntax&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;use&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;none&amp;#34;&lt;/span&gt;  &lt;span class=&#34;c&#34;&gt;# builtin: &amp;#34;prismjs&amp;#34;, &amp;#34;hljs&amp;#34;. &amp;#34;none&amp;#34; means Chroma&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;theme&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;xcode&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;darkTheme&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;xcode-dark&amp;#34;&lt;/span&gt;
+<span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">syntax</span><span class="p">]</span>
+<span class="nx">use</span> <span class="p">=</span> <span class="s2">&#34;none&#34;</span>  <span class="c"># builtin: &#34;prismjs&#34;, &#34;hljs&#34;. &#34;none&#34; means Chroma</span>
+<span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;xcode&#34;</span>
+<span class="nx">darkTheme</span> <span class="p">=</span> <span class="s2">&#34;xcode-dark&#34;</span>
 
-&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;params&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;nav&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;showCategories&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;       &lt;span class=&#34;c&#34;&gt;# /categories/&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;showTags&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;             &lt;span class=&#34;c&#34;&gt;# /tags/&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;To build your static site run:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;hugo -D
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;The output will be saved under &lt;em&gt;./public/&lt;/em&gt; directory. You may copy the contents of this folder to any webserver and your website will be servered.&lt;/p&gt;
-&lt;h2 id=&#34;hosting-your-site-on-github-pages&#34;&gt;Hosting your site on GitHub Pages&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Create a repository to hold your Hugo content and source files on GitHub. Mine is called &lt;em&gt;patelhiren.com&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;Create a repository called &lt;em&gt;&amp;lt;username&amp;gt;.github.io&lt;/em&gt;. Replace &lt;em&gt;&amp;lt;username&amp;gt;&lt;/em&gt; with your GitHub username. Mine is called patelhiren.github.io.&lt;/li&gt;
-&lt;li&gt;Clone your source project via:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# adjust to match your git url.&lt;/span&gt;
+<span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">nav</span><span class="p">]</span>
+<span class="nx">showCategories</span> <span class="p">=</span> <span class="kc">true</span>       <span class="c"># /categories/</span>
+<span class="nx">showTags</span> <span class="p">=</span> <span class="kc">true</span>             <span class="c"># /tags/</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>To build your static site run:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">hugo -D
+</code></pre></td></tr></table>
+</div>
+</div><p>The output will be saved under <em>./public/</em> directory. You may copy the contents of this folder to any webserver and your website will be servered.</p>
+<h2 id="hosting-your-site-on-github-pages">Hosting your site on GitHub Pages</h2>
+<ul>
+<li>Create a repository to hold your Hugo content and source files on GitHub. Mine is called <em>patelhiren.com</em></li>
+<li>Create a repository called <em>&lt;username&gt;.github.io</em>. Replace <em>&lt;username&gt;</em> with your GitHub username. Mine is called patelhiren.github.io.</li>
+<li>Clone your source project via:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># adjust to match your git url.</span>
 git clone git@github.com:patelhiren/patelhiren.com.git
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Paste your existing source files in the new repository folder.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Run and verify your local Hugo files from local repo by running &lt;code&gt;hugo server -D&lt;/code&gt; and accessing the site at &lt;a href=&#34;http://localhost:1313/&#34;&gt;http://localhost:1313/&lt;/a&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Once you are happy with the results:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Press Ctrl+C to kill the server&lt;/li&gt;
-&lt;li&gt;Before proceeding completely remove the public directory&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Add your public site as a git submodule. Like so:&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# adjust to match your GitHub Pages repo&lt;/span&gt;
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>Paste your existing source files in the new repository folder.</p>
+</li>
+<li>
+<p>Run and verify your local Hugo files from local repo by running <code>hugo server -D</code> and accessing the site at <a href="http://localhost:1313/">http://localhost:1313/</a>.</p>
+</li>
+<li>
+<p>Once you are happy with the results:</p>
+<ul>
+<li>Press Ctrl+C to kill the server</li>
+<li>Before proceeding completely remove the public directory</li>
+</ul>
+</li>
+<li>
+<p>Add your public site as a git submodule. Like so:</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># adjust to match your GitHub Pages repo</span>
 git submodule add -b master git@github.com:patelhiren/patelhiren.github.io.git
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;automating-the-deployment-process&#34;&gt;Automating the deployment process&lt;/h3&gt;
-&lt;p&gt;Create a new file &lt;code&gt;deploy.sh&lt;/code&gt; and set its contents to below script. This will allow you to run &lt;code&gt;deploy.sh&lt;/code&gt; to build your site and deploy to GitHub in one go.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/bin/sh
-&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# If a command fails then the deploy stops&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; -e
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="automating-the-deployment-process">Automating the deployment process</h3>
+<p>Create a new file <code>deploy.sh</code> and set its contents to below script. This will allow you to run <code>deploy.sh</code> to build your site and deploy to GitHub in one go.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="cp">#!/bin/sh
+</span><span class="cp"></span>
+<span class="c1"># If a command fails then the deploy stops</span>
+<span class="nb">set</span> -e
 
-&lt;span class=&#34;nb&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;\033[0;32mDeploying updates to GitHub...\033[0m\n&amp;#34;&lt;/span&gt;
+<span class="nb">printf</span> <span class="s2">&#34;\033[0;32mDeploying updates to GitHub...\033[0m\n&#34;</span>
 
-&lt;span class=&#34;c1&#34;&gt;# Go To Public folder&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; public
+<span class="c1"># Go To Public folder</span>
+<span class="nb">cd</span> public
 
-&lt;span class=&#34;c1&#34;&gt;# Discard local changes on public folder&lt;/span&gt;
+<span class="c1"># Discard local changes on public folder</span>
 git reset
 git checkout .
 git clean -fdx
 
-&lt;span class=&#34;c1&#34;&gt;# Pull the latest changes before updating&lt;/span&gt;
+<span class="c1"># Pull the latest changes before updating</span>
 git checkout master
 git pull origin master
 
-&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ..
+<span class="nb">cd</span> ..
 
-&lt;span class=&#34;c1&#34;&gt;# Garbage collect hugo image-processing generated images.&lt;/span&gt;
+<span class="c1"># Garbage collect hugo image-processing generated images.</span>
 hugo --gc
 
-&lt;span class=&#34;c1&#34;&gt;# Build the project.&lt;/span&gt;
-hugo &lt;span class=&#34;c1&#34;&gt;# if using a theme, replace with `hugo -t &amp;lt;YOURTHEME&amp;gt;`&lt;/span&gt;
+<span class="c1"># Build the project.</span>
+hugo <span class="c1"># if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`</span>
 
-&lt;span class=&#34;c1&#34;&gt;# Go To Public folder&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; public
+<span class="c1"># Go To Public folder</span>
+<span class="nb">cd</span> public
 
-&lt;span class=&#34;c1&#34;&gt;# Add changes to git.&lt;/span&gt;
+<span class="c1"># Add changes to git.</span>
 git add .
 
-&lt;span class=&#34;c1&#34;&gt;# Commit changes.&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;msg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;rebuilding site &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;date&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt; -n &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$*&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
-  &lt;span class=&#34;nv&#34;&gt;msg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$*&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
-git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$msg&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+<span class="c1"># Commit changes.</span>
+<span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;rebuilding site </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&#34;</span>
+<span class="k">if</span> <span class="o">[</span> -n <span class="s2">&#34;</span><span class="nv">$*</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$*</span><span class="s2">&#34;</span>
+<span class="k">fi</span>
+git commit -m <span class="s2">&#34;</span><span class="nv">$msg</span><span class="s2">&#34;</span>
 
-&lt;span class=&#34;c1&#34;&gt;# Push source and build repos.&lt;/span&gt;
+<span class="c1"># Push source and build repos.</span>
 git push origin master
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;Your site will then be available at &lt;code&gt;https://&amp;lt;username&amp;gt;.github.io&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;customizing-github-pages-to-use-a-custom-domain&#34;&gt;Customizing GitHub pages to use a custom domain&lt;/h2&gt;
-&lt;p&gt;If you plan to use your own doamin instead of the &amp;lt;username&amp;gt;.github.io you need to follow the guide at &lt;a href=&#34;https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site&#34;target=&#34;_blank&#34;&gt;Managing a custom domain for your GitHub Pages site&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;For my site I did the following:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Create a file called &lt;code&gt;CNAME&lt;/code&gt; and set its contents to &lt;em&gt;patelhiren.com&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;Added the &lt;code&gt;CNAME&lt;/code&gt; file to the git repo at patelhiren.github.io.&lt;/li&gt;
-&lt;li&gt;Got to Repo Settings at &lt;a href=&#34;https://github.com/patelhiren/patelhiren.github.io/settings&#34;&gt;https://github.com/patelhiren/patelhiren.github.io/settings&lt;/a&gt; and set &lt;strong&gt;Custom domain&lt;/strong&gt; and &lt;strong&gt;Enforce HTTPS&lt;/strong&gt; settings.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Your site will then be available at <code>https://&lt;username&gt;.github.io</code>.</li>
+</ul>
+<h2 id="customizing-github-pages-to-use-a-custom-domain">Customizing GitHub pages to use a custom domain</h2>
+<p>If you plan to use your own doamin instead of the &lt;username&gt;.github.io you need to follow the guide at <a href="https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site"target="_blank">Managing a custom domain for your GitHub Pages site</a>.</p>
+<p>For my site I did the following:</p>
+<ul>
+<li>Create a file called <code>CNAME</code> and set its contents to <em>patelhiren.com</em>.</li>
+<li>Added the <code>CNAME</code> file to the git repo at patelhiren.github.io.</li>
+<li>Got to Repo Settings at <a href="https://github.com/patelhiren/patelhiren.github.io/settings">https://github.com/patelhiren/patelhiren.github.io/settings</a> and set <strong>Custom domain</strong> and <strong>Enforce HTTPS</strong> settings.</li>
+</ul>
+<p>
 
-&lt;span class=&#34;image-container&#34;&gt;
-    &lt;span class=&#34;link&#34;&gt;
-        &lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; href=&#34;images/01.png&#34;&gt;
-            &lt;picture&gt;&lt;source 
-                    srcset=&#34;
+<span class="image-container">
+    <span class="link">
+        <a target="_blank" rel="noopener noreferrer" href="images/01.png">
+            <picture><source 
+                    srcset="
                     
                     /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_400x0_resize_box_2.png 400w,
                     
@@ -591,61 +600,62 @@ git push origin master
                     
 
                     /blog/website-built-with-open-source-and-hosted-for-free/images/01.png
-                    &#34; 
-                /&gt;
+                    " 
+                />
                 
-                &lt;img alt=&#34;GitHub Pages Custom Domain Settings&#34; 
-                        src=&#34;https://patelhiren.com/blog/website-built-with-open-source-and-hosted-for-free/images/01.png&#34; /&gt;
-            &lt;/picture&gt;
-        &lt;/a&gt;
-    &lt;/span&gt;
-    &lt;span class=&#34;caption&#34;&gt;
-        &lt;span class=&#34;title&#34;&gt;GitHub Pages Custom Subdomain Settings&lt;/span&gt;
-    &lt;/span&gt;
-&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;publishing-new-postchanges&#34;&gt;Publishing new Post/Changes&lt;/h2&gt;
-&lt;p&gt;To publish a new post:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Create a new post similar to to command below.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;hugo new blog/my-new-post/index.md
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Set and edit your post using Markdown tools.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Run and verify your local Hugo files from local repo by running &lt;code&gt;hugo server -D&lt;/code&gt; and accessing the site at &lt;a href=&#34;http://localhost:1313/&#34;&gt;http://localhost:1313/&lt;/a&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Run &lt;code&gt;deploy.sh&lt;/code&gt; to deploy your site.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Commit your changes to your source repo.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;This is all that should be necessary. It looks like a lot of steps, but in practice it is very simple and doesn&amp;rsquo;t require as much work to maintain for publishing new posts.&lt;/p&gt;
-&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
-&lt;p&gt;For a git GUI, I prefer &lt;a href=&#34;https://www.git-fork.com&#34;target=&#34;_blank&#34;&gt;Fork&lt;/a&gt;. &lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:2&#34; role=&#34;doc-endnote&#34;&gt;
-&lt;p&gt;Creating a blog post this way with a folder as the post name allows you to keep images within the same folder instead of keeping images in the root folder. This felt like better grouping of content vs the default Hugo suggested way of generating new post via &lt;em&gt;hugo new blog/my-first-post&lt;/em&gt;. &lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:3&#34; role=&#34;doc-endnote&#34;&gt;
-&lt;p&gt;I prefer &lt;a href=&#34;https://code.visualstudio.com&#34;target=&#34;_blank&#34;&gt;Visual Studio Code&lt;/a&gt;. Tip: If using Visual Studio Code you can press &lt;em&gt;CMD+K,V&lt;/em&gt; to activate side-by-side live preview of the Markdown you are typing. &lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/section&gt;</description>
+                <img alt="GitHub Pages Custom Domain Settings" 
+                        src="/blog/website-built-with-open-source-and-hosted-for-free/images/01.png" />
+            </picture>
+        </a>
+    </span>
+    <span class="caption">
+        <span class="title">GitHub Pages Custom Subdomain Settings</span>
+    </span>
+</span></a></p>
+<h2 id="publishing-new-postchanges">Publishing new Post/Changes</h2>
+<p>To publish a new post:</p>
+<ul>
+<li>Create a new post similar to to command below.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">hugo new blog/my-new-post/index.md
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>Set and edit your post using Markdown tools.</p>
+</li>
+<li>
+<p>Run and verify your local Hugo files from local repo by running <code>hugo server -D</code> and accessing the site at <a href="http://localhost:1313/">http://localhost:1313/</a>.</p>
+</li>
+<li>
+<p>Run <code>deploy.sh</code> to deploy your site.</p>
+</li>
+<li>
+<p>Commit your changes to your source repo.</p>
+</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>This is all that should be necessary. It looks like a lot of steps, but in practice it is very simple and doesn&rsquo;t require as much work to maintain for publishing new posts.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>For a git GUI, I prefer <a href="https://www.git-fork.com"target="_blank">Fork</a>. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Creating a blog post this way with a folder as the post name allows you to keep images within the same folder instead of keeping images in the root folder. This felt like better grouping of content vs the default Hugo suggested way of generating new post via <em>hugo new blog/my-first-post</em>. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>I prefer <a href="https://code.visualstudio.com"target="_blank">Visual Studio Code</a>. Tip: If using Visual Studio Code you can press <em>CMD+K,V</em> to activate side-by-side live preview of the Markdown you are typing. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>]]></content:encoded>
+      
     </item>
     
     <item>
@@ -654,44 +664,46 @@ git push origin master
       <pubDate>Sun, 12 Apr 2020 22:04:30 -0400</pubDate>
       
       <guid>https://patelhiren.com/blog/pngcrush-automator-action/</guid>
-      <description>&lt;p&gt;When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS &lt;a href=&#34;https://support.apple.com/guide/automator/welcome/mac&#34;target=&#34;_blank&#34;&gt;Automator&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;To crush png images I use the opensource tool &lt;a href=&#34;https://pmt.sourceforge.io/pngcrush/&#34;target=&#34;_blank&#34;&gt;PNG Crush&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;If you have &lt;a href=&#34;https://developer.apple.com/xcode/&#34;target=&#34;_blank&#34;&gt;Xcode&lt;/a&gt; installed, the pngcrush tool is included as a part of the iOS SDK and there is no additional download required.&lt;/p&gt;
-&lt;p&gt;If you do not have Xcode you may install &lt;em&gt;PNG Crush&lt;/em&gt; via &lt;a href=&#34;https://brew.sh&#34;target=&#34;_blank&#34;&gt;Homebrew&lt;/a&gt; using the following command.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;brew install pngcrush
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;If using Xcode method, the &lt;em&gt;&lt;strong&gt;pngcrush&lt;/strong&gt;&lt;/em&gt; binary will be at &lt;code&gt;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/pngcrush&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;If using Homebrew, the &lt;em&gt;&lt;strong&gt;pngcrush&lt;/strong&gt;&lt;/em&gt; binary will be at &lt;code&gt;/usr/local/bin/pngcrush&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;For the rest of the article I will assume the Homebrew method is used. You just need to adjust the paths for the binary if the Xcode method is used.&lt;/p&gt;
-&lt;p&gt;To crush a PNG image via Terminal you can run the below command.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# pngcrush will process the input.png and create a compressed crushed.png&lt;/span&gt;
+      <description>&lt;p&gt;When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS &lt;a href=&#34;https://support.apple.com/guide/automator/welcome/mac&#34;target=&#34;_blank&#34;&gt;Automator&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS <a href="https://support.apple.com/guide/automator/welcome/mac"target="_blank">Automator</a>.</p>
+<p>To crush png images I use the opensource tool <a href="https://pmt.sourceforge.io/pngcrush/"target="_blank">PNG Crush</a>.</p>
+<p>If you have <a href="https://developer.apple.com/xcode/"target="_blank">Xcode</a> installed, the pngcrush tool is included as a part of the iOS SDK and there is no additional download required.</p>
+<p>If you do not have Xcode you may install <em>PNG Crush</em> via <a href="https://brew.sh"target="_blank">Homebrew</a> using the following command.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">brew install pngcrush
+</code></pre></td></tr></table>
+</div>
+</div><p>If using Xcode method, the <em><strong>pngcrush</strong></em> binary will be at <code>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/pngcrush</code>.</p>
+<p>If using Homebrew, the <em><strong>pngcrush</strong></em> binary will be at <code>/usr/local/bin/pngcrush</code></p>
+<p>For the rest of the article I will assume the Homebrew method is used. You just need to adjust the paths for the binary if the Xcode method is used.</p>
+<p>To crush a PNG image via Terminal you can run the below command.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># pngcrush will process the input.png and create a compressed crushed.png</span>
 pngcrush input.png crushed.png
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;automating-the-process-using-automator-on-macos&#34;&gt;Automating the process using Automator on macOS.&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Launch &lt;em&gt;&lt;strong&gt;Automator&lt;/strong&gt;&lt;/em&gt; via Spotlight Search.&lt;/li&gt;
-&lt;li&gt;Select &lt;em&gt;File&lt;/em&gt;, &lt;em&gt;New&lt;/em&gt; from the menu. Select &lt;em&gt;&lt;strong&gt;Quick Action&lt;/strong&gt;&lt;/em&gt; and click the &lt;em&gt;Choose&lt;/em&gt; button.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="automating-the-process-using-automator-on-macos">Automating the process using Automator on macOS.</h2>
+<ul>
+<li>Launch <em><strong>Automator</strong></em> via Spotlight Search.</li>
+<li>Select <em>File</em>, <em>New</em> from the menu. Select <em><strong>Quick Action</strong></em> and click the <em>Choose</em> button.</li>
+</ul>
+<p>
 
-&lt;span class=&#34;image-container&#34;&gt;
-    &lt;span class=&#34;link&#34;&gt;
-        &lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; href=&#34;images/01.png&#34;&gt;
-            &lt;picture&gt;&lt;source 
-                    srcset=&#34;
+<span class="image-container">
+    <span class="link">
+        <a target="_blank" rel="noopener noreferrer" href="images/01.png">
+            <picture><source 
+                    srcset="
                     
                     /blog/pngcrush-automator-action/images/01_hu57fa4703ef8765fef9d7e6fd433a74fa_927894_400x0_resize_box_2.png 400w,
                     
@@ -709,33 +721,33 @@ pngcrush input.png crushed.png
                     
 
                     /blog/pngcrush-automator-action/images/01.png
-                    &#34; 
-                /&gt;
+                    " 
+                />
                 
-                &lt;img alt=&#34;Automator - New&#34; 
-                        src=&#34;https://patelhiren.com/blog/pngcrush-automator-action/images/01.png&#34; /&gt;
-            &lt;/picture&gt;
-        &lt;/a&gt;
-    &lt;/span&gt;
-    &lt;span class=&#34;caption&#34;&gt;
-        &lt;span class=&#34;title&#34;&gt;&lt;/span&gt;
-    &lt;/span&gt;
-&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;In the new windows that loads, select the options as below.
-&lt;ul&gt;
-&lt;li&gt;Workflow receives current - &lt;em&gt;&lt;strong&gt;image files&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;in - &lt;em&gt;&lt;strong&gt;Finder.app&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;
+                <img alt="Automator - New" 
+                        src="/blog/pngcrush-automator-action/images/01.png" />
+            </picture>
+        </a>
+    </span>
+    <span class="caption">
+        <span class="title"></span>
+    </span>
+</span></a></p>
+<ul>
+<li>In the new windows that loads, select the options as below.
+<ul>
+<li>Workflow receives current - <em><strong>image files</strong></em></li>
+<li>in - <em><strong>Finder.app</strong></em></li>
+</ul>
+</li>
+</ul>
+<p>
 
-&lt;span class=&#34;image-container&#34;&gt;
-    &lt;span class=&#34;link&#34;&gt;
-        &lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; href=&#34;images/02.png&#34;&gt;
-            &lt;picture&gt;&lt;source 
-                    srcset=&#34;
+<span class="image-container">
+    <span class="link">
+        <a target="_blank" rel="noopener noreferrer" href="images/02.png">
+            <picture><source 
+                    srcset="
                     
                     /blog/pngcrush-automator-action/images/02_hu57fa4703ef8765fef9d7e6fd433a74fa_734562_400x0_resize_box_2.png 400w,
                     
@@ -753,28 +765,28 @@ pngcrush input.png crushed.png
                     
 
                     /blog/pngcrush-automator-action/images/02.png
-                    &#34; 
-                /&gt;
+                    " 
+                />
                 
-                &lt;img alt=&#34;Automator - New Action&#34; 
-                        src=&#34;https://patelhiren.com/blog/pngcrush-automator-action/images/02.png&#34; /&gt;
-            &lt;/picture&gt;
-        &lt;/a&gt;
-    &lt;/span&gt;
-    &lt;span class=&#34;caption&#34;&gt;
-        &lt;span class=&#34;title&#34;&gt;&lt;/span&gt;
-    &lt;/span&gt;
-&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;In the search box, type &lt;em&gt;&lt;strong&gt;Shell&lt;/strong&gt;&lt;/em&gt; and select the &lt;em&gt;&lt;strong&gt;Run Shell Script&lt;/strong&gt;&lt;/em&gt; option to add to the automation on the right by double clicking on it.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;
+                <img alt="Automator - New Action" 
+                        src="/blog/pngcrush-automator-action/images/02.png" />
+            </picture>
+        </a>
+    </span>
+    <span class="caption">
+        <span class="title"></span>
+    </span>
+</span></a></p>
+<ul>
+<li>In the search box, type <em><strong>Shell</strong></em> and select the <em><strong>Run Shell Script</strong></em> option to add to the automation on the right by double clicking on it.</li>
+</ul>
+<p>
 
-&lt;span class=&#34;image-container&#34;&gt;
-    &lt;span class=&#34;link&#34;&gt;
-        &lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; href=&#34;images/03.png&#34;&gt;
-            &lt;picture&gt;&lt;source 
-                    srcset=&#34;
+<span class="image-container">
+    <span class="link">
+        <a target="_blank" rel="noopener noreferrer" href="images/03.png">
+            <picture><source 
+                    srcset="
                     
                     /blog/pngcrush-automator-action/images/03_hu57fa4703ef8765fef9d7e6fd433a74fa_483613_400x0_resize_box_2.png 400w,
                     
@@ -792,68 +804,68 @@ pngcrush input.png crushed.png
                     
 
                     /blog/pngcrush-automator-action/images/03.png
-                    &#34; 
-                /&gt;
+                    " 
+                />
                 
-                &lt;img alt=&#34;Automator - Run Shell Script&#34; 
-                        src=&#34;https://patelhiren.com/blog/pngcrush-automator-action/images/03.png&#34; /&gt;
-            &lt;/picture&gt;
-        &lt;/a&gt;
-    &lt;/span&gt;
-    &lt;span class=&#34;caption&#34;&gt;
-        &lt;span class=&#34;title&#34;&gt;&lt;/span&gt;
-    &lt;/span&gt;
-&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Change the &lt;em&gt;&lt;strong&gt;Pass Input&lt;/strong&gt;&lt;/em&gt; option to &lt;em&gt;&lt;strong&gt;as arguments&lt;/strong&gt;&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;Enter the below script commands in the Shell Script box.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; f in &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$@&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;do&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;# Verify that the extension of the file is actually png&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;# (case insensitive compare)&lt;/span&gt;
-  &lt;span class=&#34;nv&#34;&gt;filename&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;basename &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$f&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;nv&#34;&gt;ext&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;filename&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;##*.&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$ext&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -i png&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;# If the file is a png, run pngcrush on it.&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;# Save the output in the same place with a temporary extension&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;# of .crushed_&lt;/span&gt;
-    /usr/local/bin/pngcrush &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$f&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$f&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;.crushed_&amp;#34;&lt;/span&gt;
-        &lt;span class=&#34;c1&#34;&gt;# Overwrite the original file with the crushed file.&lt;/span&gt;
-    mv &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$f&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;.crushed_&amp;#34;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$f&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;Save the automation as &lt;em&gt;&lt;strong&gt;PNG Crush&lt;/strong&gt;&lt;/em&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;
+                <img alt="Automator - Run Shell Script" 
+                        src="/blog/pngcrush-automator-action/images/03.png" />
+            </picture>
+        </a>
+    </span>
+    <span class="caption">
+        <span class="title"></span>
+    </span>
+</span></a></p>
+<ul>
+<li>Change the <em><strong>Pass Input</strong></em> option to <em><strong>as arguments</strong></em>.</li>
+<li>Enter the below script commands in the Shell Script box.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="k">for</span> f in <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
+<span class="k">do</span>
+    <span class="c1"># Verify that the extension of the file is actually png</span>
+    <span class="c1"># (case insensitive compare)</span>
+  <span class="nv">filename</span><span class="o">=</span><span class="k">$(</span>basename <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">&#34;</span><span class="k">)</span>
+  <span class="nv">ext</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">filename</span><span class="p">##*.</span><span class="si">}</span><span class="s2">&#34;</span>
+  <span class="k">if</span> <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$ext</span><span class="s2">&#34;</span> <span class="p">|</span> grep -i png<span class="p">;</span> <span class="k">then</span>
+    <span class="c1"># If the file is a png, run pngcrush on it.</span>
+    <span class="c1"># Save the output in the same place with a temporary extension</span>
+    <span class="c1"># of .crushed_</span>
+    /usr/local/bin/pngcrush <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">.crushed_&#34;</span>
+        <span class="c1"># Overwrite the original file with the crushed file.</span>
+    mv <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">.crushed_&#34;</span> <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">&#34;</span>
+  <span class="k">fi</span>
+<span class="k">done</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Save the automation as <em><strong>PNG Crush</strong></em>.</li>
+</ul>
+<p>
 
-&lt;span class=&#34;image-container&#34;&gt;
-    &lt;span class=&#34;link&#34;&gt;
-        &lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; href=&#34;images/04.png&#34;&gt;
-            &lt;picture&gt;&lt;source 
-                    srcset=&#34;
+<span class="image-container">
+    <span class="link">
+        <a target="_blank" rel="noopener noreferrer" href="images/04.png">
+            <picture><source 
+                    srcset="
                     
                     /blog/pngcrush-automator-action/images/04_hu57fa4703ef8765fef9d7e6fd433a74fa_894941_400x0_resize_box_2.png 400w,
                     
@@ -871,26 +883,26 @@ pngcrush input.png crushed.png
                     
 
                     /blog/pngcrush-automator-action/images/04.png
-                    &#34; 
-                /&gt;
+                    " 
+                />
                 
-                &lt;img alt=&#34;Automator - Final Code&#34; 
-                        src=&#34;https://patelhiren.com/blog/pngcrush-automator-action/images/04.png&#34; /&gt;
-            &lt;/picture&gt;
-        &lt;/a&gt;
-    &lt;/span&gt;
-    &lt;span class=&#34;caption&#34;&gt;
-        &lt;span class=&#34;title&#34;&gt;&lt;/span&gt;
-    &lt;/span&gt;
-&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;You may now browse to any png file(s) in Finder and right click, select &lt;em&gt;&lt;strong&gt;Services&lt;/strong&gt;&lt;/em&gt; -&amp;gt; &lt;em&gt;&lt;strong&gt;PNG Crush&lt;/strong&gt;&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;
+                <img alt="Automator - Final Code" 
+                        src="/blog/pngcrush-automator-action/images/04.png" />
+            </picture>
+        </a>
+    </span>
+    <span class="caption">
+        <span class="title"></span>
+    </span>
+</span></a></p>
+<p>You may now browse to any png file(s) in Finder and right click, select <em><strong>Services</strong></em> -&gt; <em><strong>PNG Crush</strong></em>.</p>
+<p>
 
-&lt;span class=&#34;image-container&#34;&gt;
-    &lt;span class=&#34;link&#34;&gt;
-        &lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; href=&#34;images/05.png&#34;&gt;
-            &lt;picture&gt;&lt;source 
-                    srcset=&#34;
+<span class="image-container">
+    <span class="link">
+        <a target="_blank" rel="noopener noreferrer" href="images/05.png">
+            <picture><source 
+                    srcset="
                     
                     /blog/pngcrush-automator-action/images/05_hu66c66eef13015fd0d383e1d348905754_469811_400x0_resize_box_2.png 400w,
                     
@@ -908,26 +920,26 @@ pngcrush input.png crushed.png
                     
 
                     /blog/pngcrush-automator-action/images/05.png
-                    &#34; 
-                /&gt;
+                    " 
+                />
                 
-                &lt;img alt=&#34;Finder - Services Menu&#34; 
-                        src=&#34;https://patelhiren.com/blog/pngcrush-automator-action/images/05.png&#34; /&gt;
-            &lt;/picture&gt;
-        &lt;/a&gt;
-    &lt;/span&gt;
-    &lt;span class=&#34;caption&#34;&gt;
-        &lt;span class=&#34;title&#34;&gt;&lt;/span&gt;
-    &lt;/span&gt;
-&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;While the automation is running you will see a spinning cog in you Menu bar in the top right. When the cog disappears the automation is done and your images have been processed by &lt;em&gt;&lt;strong&gt;pngcrush&lt;/strong&gt;&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;
+                <img alt="Finder - Services Menu" 
+                        src="/blog/pngcrush-automator-action/images/05.png" />
+            </picture>
+        </a>
+    </span>
+    <span class="caption">
+        <span class="title"></span>
+    </span>
+</span></a></p>
+<p>While the automation is running you will see a spinning cog in you Menu bar in the top right. When the cog disappears the automation is done and your images have been processed by <em><strong>pngcrush</strong></em>.</p>
+<p>
 
-&lt;span class=&#34;image-container&#34;&gt;
-    &lt;span class=&#34;link&#34;&gt;
-        &lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; href=&#34;images/06.png&#34;&gt;
-            &lt;picture&gt;&lt;source 
-                    srcset=&#34;
+<span class="image-container">
+    <span class="link">
+        <a target="_blank" rel="noopener noreferrer" href="images/06.png">
+            <picture><source 
+                    srcset="
                     
                     /blog/pngcrush-automator-action/images/06_hu199dd5201849aa5e82e86ff561cd249f_36199_400x0_resize_box_2.png 400w,
                     
@@ -939,18 +951,19 @@ pngcrush input.png crushed.png
                     
 
                     /blog/pngcrush-automator-action/images/06.png
-                    &#34; 
-                /&gt;
+                    " 
+                />
                 
-                &lt;img alt=&#34;Finder - Automator Running&#34; 
-                        src=&#34;https://patelhiren.com/blog/pngcrush-automator-action/images/06.png&#34; /&gt;
-            &lt;/picture&gt;
-        &lt;/a&gt;
-    &lt;/span&gt;
-    &lt;span class=&#34;caption&#34;&gt;
-        &lt;span class=&#34;title&#34;&gt;&lt;/span&gt;
-    &lt;/span&gt;
-&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</description>
+                <img alt="Finder - Automator Running" 
+                        src="/blog/pngcrush-automator-action/images/06.png" />
+            </picture>
+        </a>
+    </span>
+    <span class="caption">
+        <span class="title"></span>
+    </span>
+</span></a></p>]]></content:encoded>
+      
     </item>
     
     <item>
@@ -959,23 +972,26 @@ pngcrush input.png crushed.png
       <pubDate>Fri, 10 Apr 2020 20:11:49 -0400</pubDate>
       
       <guid>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</guid>
-      <description>&lt;p&gt;After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.&lt;/p&gt;
-&lt;p&gt;macOS Catalina introduced new Privacy settings that prevents Skype for Business screensharing to work if proper permissions are not provided. On trying to start Screensharing via &lt;strong&gt;Conversations-&amp;gt;Share Screen&lt;/strong&gt; option, Skype would display a message stating check the &lt;strong&gt;Skype For Business&lt;/strong&gt; option under &lt;strong&gt;System Preferences-&amp;gt;Security &amp;amp; Privacy-&amp;gt;Privacy Tab-&amp;gt;Screen Recording&lt;/strong&gt;. However navigating there did not display &amp;ldquo;Skype For Business* as an option.&lt;/p&gt;
-&lt;p&gt;To correct it I first reset the &amp;ldquo;Screen Recording&amp;rdquo; permissions for Skype by running this command on Terminal.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;tccutil reset ScreenCapture com.microsoft.SkypeForBusiness
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;If you do not provide the &lt;strong&gt;com.microsoft.SkypeForBusiness&lt;/strong&gt; identifier, the Screen Recording permissions for all apps will be reset and you will have to provide permissions again as needed.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;After running that command. I relaunched Skype, selected a Conversation and tried sharing via the screen via the menu option again. I got the same error I got earlier from Skype and no Screen Recording permission prompt was displayed by the OS.&lt;/p&gt;
-&lt;p&gt;I had to select the &amp;ldquo;Share Screen&amp;rdquo; icon on the top right of the conversation window. When I tapped that, the OS permissions prompt for Screen Recording came up. I gave the required permission, restarted Skype and was successfully able to share my screen.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;For the record this was on Skype for Business version 16.28.175.&lt;/em&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.</p>
+<p>macOS Catalina introduced new Privacy settings that prevents Skype for Business screensharing to work if proper permissions are not provided. On trying to start Screensharing via <strong>Conversations-&gt;Share Screen</strong> option, Skype would display a message stating check the <strong>Skype For Business</strong> option under <strong>System Preferences-&gt;Security &amp; Privacy-&gt;Privacy Tab-&gt;Screen Recording</strong>. However navigating there did not display &ldquo;Skype For Business* as an option.</p>
+<p>To correct it I first reset the &ldquo;Screen Recording&rdquo; permissions for Skype by running this command on Terminal.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">tccutil reset ScreenCapture com.microsoft.SkypeForBusiness
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>If you do not provide the <strong>com.microsoft.SkypeForBusiness</strong> identifier, the Screen Recording permissions for all apps will be reset and you will have to provide permissions again as needed.</p>
+</blockquote>
+<p>After running that command. I relaunched Skype, selected a Conversation and tried sharing via the screen via the menu option again. I got the same error I got earlier from Skype and no Screen Recording permission prompt was displayed by the OS.</p>
+<p>I had to select the &ldquo;Share Screen&rdquo; icon on the top right of the conversation window. When I tapped that, the OS permissions prompt for Screen Recording came up. I gave the required permission, restarted Skype and was successfully able to share my screen.</p>
+<p><em>For the record this was on Skype for Business version 16.28.175.</em></p>]]></content:encoded>
+      
     </item>
     
     <item>
@@ -984,30 +1000,32 @@ pngcrush input.png crushed.png
       <pubDate>Mon, 06 Apr 2020 14:02:10 -0400</pubDate>
       
       <guid>https://patelhiren.com/blog/boot-camp-on-external-drive/</guid>
-      <description>&lt;p&gt;I had a spare SSD and a USB enclosure for it. Installing windows on an external drive is unsupported by Microsoft and the setup will abort stating Windows cannot be installed on an external drive. Here is how I managed to install Windows 10 Pro on the external SSD and boot from it on my iMac.&lt;/p&gt;
-&lt;h6 id=&#34;my-environment&#34;&gt;My Environment&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;27-inch iMac 2019, running macOS Catalina 10.15.4&lt;/li&gt;
-&lt;li&gt;120 GB ScanDisk Plus SSD&lt;/li&gt;
-&lt;li&gt;2.5-inch SATA USB enclosure&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h6 id=&#34;software-needed&#34;&gt;Software needed&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;VMware Fusion 11.5.3 (Trial is fine)&lt;/li&gt;
-&lt;li&gt;Windows 10 ISO&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h6 id=&#34;directions&#34;&gt;Directions&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;Launch Disk Utility and select the plugged in SSD. Format as below
+      <description>&lt;p&gt;I had a spare SSD and a USB enclosure for it. Installing windows on an external drive is unsupported by Microsoft and the setup will abort stating Windows cannot be installed on an external drive. Here is how I managed to install Windows 10 Pro on the external SSD and boot from it on my iMac.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>I had a spare SSD and a USB enclosure for it. Installing windows on an external drive is unsupported by Microsoft and the setup will abort stating Windows cannot be installed on an external drive. Here is how I managed to install Windows 10 Pro on the external SSD and boot from it on my iMac.</p>
+<h6 id="my-environment">My Environment</h6>
+<ul>
+<li>27-inch iMac 2019, running macOS Catalina 10.15.4</li>
+<li>120 GB ScanDisk Plus SSD</li>
+<li>2.5-inch SATA USB enclosure</li>
+</ul>
+<h6 id="software-needed">Software needed</h6>
+<ul>
+<li>VMware Fusion 11.5.3 (Trial is fine)</li>
+<li>Windows 10 ISO</li>
+</ul>
+<h6 id="directions">Directions</h6>
+<ul>
+<li>Launch Disk Utility and select the plugged in SSD. Format as below
 
 
-&lt;span class=&#34;image-container&#34;&gt;
-    &lt;span class=&#34;link&#34;&gt;
-        &lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; href=&#34;images/01.png&#34;&gt;
-            &lt;picture&gt;
+<span class="image-container">
+    <span class="link">
+        <a target="_blank" rel="noopener noreferrer" href="images/01.png">
+            <picture>
 
-                    &lt;source 
-                        srcset=&#34;
+                    <source 
+                        srcset="
                         
                         /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_400x0_resize_box_2.png 400w,
                         
@@ -1025,10 +1043,10 @@ pngcrush input.png crushed.png
                         
 
                         /blog/boot-camp-on-external-drive/images/Dark/01.png
-                        &#34;
-                        media=&#34;(prefers-color-scheme: dark)&#34;
-                    /&gt;&lt;source 
-                    srcset=&#34;
+                        "
+                        media="(prefers-color-scheme: dark)"
+                    /><source 
+                    srcset="
                     
                     /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_400x0_resize_box_2.png 400w,
                     
@@ -1046,61 +1064,61 @@ pngcrush input.png crushed.png
                     
 
                     /blog/boot-camp-on-external-drive/images/01.png
-                    &#34; 
-                /&gt;
+                    " 
+                />
                 
-                &lt;img alt=&#34;DiskUtility - Format Disk Settings&#34; 
-                        src=&#34;https://patelhiren.com/blog/boot-camp-on-external-drive/images/01.png&#34; /&gt;
-            &lt;/picture&gt;
-        &lt;/a&gt;
-    &lt;/span&gt;
-    &lt;span class=&#34;caption&#34;&gt;
-        &lt;span class=&#34;title&#34;&gt;Disk Utility - Format Disk&lt;/span&gt;
-    &lt;/span&gt;
-&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Make a note of the Disk Id. In my case it was &lt;code&gt;disk5&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Create a new Windows 10 Virtual Machine under VMware Fusion.&lt;/li&gt;
-&lt;li&gt;Delete the default Disk the VMware Fusion creates when setting up the machine.&lt;/li&gt;
-&lt;li&gt;Exit VMware Fusion and launch Terminal and run the following command. Adjust the Virtual Manchine path as needed.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;/Applications/VMware&lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt;Fusion.app/Contents/Library/vmware-rawdiskCreator &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;create /dev/disk5 &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;fullDevice ~/Virtual&lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt;Machines.localized/Boot&lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt;Camp.vmwarevm/external-hdd &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;ide
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;Open &lt;code&gt;Boot Camp.vmx&lt;/code&gt; file in a text editor like Visual Studio Code and add the below lines.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;na&#34;&gt;ide1:0.present&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;TRUE&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;ide1:0.fileName&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;external-hdd.vmdk&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;If you are running macOS Catalina you will need to give &lt;code&gt;Full Disk Access&lt;/code&gt; Permissions to &lt;code&gt;com.vmware.DiskHelper&lt;/code&gt;. If you do not see it in the list. Try to start the Virtual Machine. You will get an error starting after which the item will show up in the list.
+                <img alt="DiskUtility - Format Disk Settings" 
+                        src="/blog/boot-camp-on-external-drive/images/01.png" />
+            </picture>
+        </a>
+    </span>
+    <span class="caption">
+        <span class="title">Disk Utility - Format Disk</span>
+    </span>
+</span></a></li>
+<li>Make a note of the Disk Id. In my case it was <code>disk5</code></li>
+<li>Create a new Windows 10 Virtual Machine under VMware Fusion.</li>
+<li>Delete the default Disk the VMware Fusion creates when setting up the machine.</li>
+<li>Exit VMware Fusion and launch Terminal and run the following command. Adjust the Virtual Manchine path as needed.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">/Applications/VMware<span class="se">\ </span>Fusion.app/Contents/Library/vmware-rawdiskCreator <span class="se">\
+</span><span class="se"></span>create /dev/disk5 <span class="se">\
+</span><span class="se"></span>fullDevice ~/Virtual<span class="se">\ </span>Machines.localized/Boot<span class="se">\ </span>Camp.vmwarevm/external-hdd <span class="se">\
+</span><span class="se"></span>ide
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Open <code>Boot Camp.vmx</code> file in a text editor like Visual Studio Code and add the below lines.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">ide1:0.present</span> <span class="o">=</span> <span class="s">&#34;TRUE&#34;</span>
+<span class="na">ide1:0.fileName</span> <span class="o">=</span> <span class="s">&#34;external-hdd.vmdk&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>If you are running macOS Catalina you will need to give <code>Full Disk Access</code> Permissions to <code>com.vmware.DiskHelper</code>. If you do not see it in the list. Try to start the Virtual Machine. You will get an error starting after which the item will show up in the list.
 
 
-&lt;span class=&#34;image-container&#34;&gt;
-    &lt;span class=&#34;link&#34;&gt;
-        &lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; href=&#34;images/02.png&#34;&gt;
-            &lt;picture&gt;
+<span class="image-container">
+    <span class="link">
+        <a target="_blank" rel="noopener noreferrer" href="images/02.png">
+            <picture>
 
-                    &lt;source 
-                        srcset=&#34;
+                    <source 
+                        srcset="
                         
                         /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_400x0_resize_box_2.png 400w,
                         
@@ -1118,10 +1136,10 @@ pngcrush input.png crushed.png
                         
 
                         /blog/boot-camp-on-external-drive/images/Dark/02.png
-                        &#34;
-                        media=&#34;(prefers-color-scheme: dark)&#34;
-                    /&gt;&lt;source 
-                    srcset=&#34;
+                        "
+                        media="(prefers-color-scheme: dark)"
+                    /><source 
+                    srcset="
                     
                     /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_400x0_resize_box_2.png 400w,
                     
@@ -1139,32 +1157,33 @@ pngcrush input.png crushed.png
                     
 
                     /blog/boot-camp-on-external-drive/images/02.png
-                    &#34; 
-                /&gt;
+                    " 
+                />
                 
-                &lt;img alt=&#34;Security &amp;amp;amp; Privacy - Full Disk Access&#34; 
-                        src=&#34;https://patelhiren.com/blog/boot-camp-on-external-drive/images/02.png&#34; /&gt;
-            &lt;/picture&gt;
-        &lt;/a&gt;
-    &lt;/span&gt;
-    &lt;span class=&#34;caption&#34;&gt;
-        &lt;span class=&#34;title&#34;&gt;Security &amp; Privacy - Full Disk Access&lt;/span&gt;
-    &lt;/span&gt;
-&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Quit and Restart VMWare fusion. Start the Boot Camp vm. You will be prompted for you admin password.&lt;/li&gt;
-&lt;li&gt;Once the VM starts boot off the Windows 10 ISO and install Windows 10 on the attached disk. Delete all partitions on the disk during install and let windows create new partitions as needed.&lt;/li&gt;
-&lt;li&gt;Once the install is fully finished, install VMware Tools to help facilitate copying of files.&lt;/li&gt;
-&lt;li&gt;On the Mac launch &lt;code&gt;Boot Camp Assistant.app&lt;/code&gt;. From the &lt;code&gt;Action&lt;/code&gt; menu select &lt;code&gt;Download Windows Support Software&lt;/code&gt;. Follow the steps to get the Boot Camp windows drivers.&lt;/li&gt;
-&lt;li&gt;Copy the Drivers to the Windows machine. Shutdown the VM.&lt;/li&gt;
-&lt;li&gt;You may now reboot into the windows partition by rebooting the Mac and holding down the Option key during boot.&lt;/li&gt;
-&lt;li&gt;After Windows boots up, you will have to install the Boot Camp drivers by launching BootCamp setup from the &lt;code&gt;WindowsSupport\BootCamp\Setup.exe&lt;/code&gt; folder.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h6 id=&#34;additional-steps&#34;&gt;Additional Steps&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;After installation of the Boot Camp drivers and reboot, Windows still had a few missing drivers under Device Manager. All I had to do was select &lt;code&gt;Update Driver&lt;/code&gt; and select the &lt;code&gt;WindowsSupport\$WinPEDriver$&lt;/code&gt; folder to look for drivers.&lt;/li&gt;
-&lt;li&gt;Speakers were not working properly on the 2019 iMac even though all drivers were installed. I had to go to &lt;code&gt;Device Manager&lt;/code&gt;-&amp;gt;&lt;code&gt;Sound, video and game controllers&lt;/code&gt;-&amp;gt;&lt;code&gt;High Definition Audio Device&lt;/code&gt;. Select Update driver and point it to &lt;code&gt;WindowsSupport\$WinPEDriver$\Cirrus&lt;/code&gt;. This installed the correct drivers and the Speakers started working.&lt;/li&gt;
-&lt;li&gt;Another speed bump I ran into was that after a few Windows updates were applied windows declined to update to the November 2019 update stating installing Windows on External USB is unsupported. 😒 I had to go to the Registry at &lt;code&gt;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control&lt;/code&gt; and set the &lt;code&gt;PortableOperatingSystem&lt;/code&gt; value to &lt;code&gt;0&lt;/code&gt; and reboot. After that the update installed ok. 😏&lt;/li&gt;
-&lt;/ul&gt;</description>
+                <img alt="Security &amp;amp; Privacy - Full Disk Access" 
+                        src="/blog/boot-camp-on-external-drive/images/02.png" />
+            </picture>
+        </a>
+    </span>
+    <span class="caption">
+        <span class="title">Security & Privacy - Full Disk Access</span>
+    </span>
+</span></a></li>
+<li>Quit and Restart VMWare fusion. Start the Boot Camp vm. You will be prompted for you admin password.</li>
+<li>Once the VM starts boot off the Windows 10 ISO and install Windows 10 on the attached disk. Delete all partitions on the disk during install and let windows create new partitions as needed.</li>
+<li>Once the install is fully finished, install VMware Tools to help facilitate copying of files.</li>
+<li>On the Mac launch <code>Boot Camp Assistant.app</code>. From the <code>Action</code> menu select <code>Download Windows Support Software</code>. Follow the steps to get the Boot Camp windows drivers.</li>
+<li>Copy the Drivers to the Windows machine. Shutdown the VM.</li>
+<li>You may now reboot into the windows partition by rebooting the Mac and holding down the Option key during boot.</li>
+<li>After Windows boots up, you will have to install the Boot Camp drivers by launching BootCamp setup from the <code>WindowsSupport\BootCamp\Setup.exe</code> folder.</li>
+</ul>
+<h6 id="additional-steps">Additional Steps</h6>
+<ul>
+<li>After installation of the Boot Camp drivers and reboot, Windows still had a few missing drivers under Device Manager. All I had to do was select <code>Update Driver</code> and select the <code>WindowsSupport\$WinPEDriver$</code> folder to look for drivers.</li>
+<li>Speakers were not working properly on the 2019 iMac even though all drivers were installed. I had to go to <code>Device Manager</code>-&gt;<code>Sound, video and game controllers</code>-&gt;<code>High Definition Audio Device</code>. Select Update driver and point it to <code>WindowsSupport\$WinPEDriver$\Cirrus</code>. This installed the correct drivers and the Speakers started working.</li>
+<li>Another speed bump I ran into was that after a few Windows updates were applied windows declined to update to the November 2019 update stating installing Windows on External USB is unsupported. 😒 I had to go to the Registry at <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control</code> and set the <code>PortableOperatingSystem</code> value to <code>0</code> and reboot. After that the update installed ok. 😏</li>
+</ul>]]></content:encoded>
+      
     </item>
     
   </channel>

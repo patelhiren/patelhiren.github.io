@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on Hiren Patel</title>
     <link>https://patelhiren.com/tags/</link>
@@ -19,6 +19,9 @@
       
       <guid>https://patelhiren.com/tags/catalina/</guid>
       <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
     </item>
     
     <item>
@@ -28,6 +31,9 @@
       
       <guid>https://patelhiren.com/tags/macos/</guid>
       <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
     </item>
     
     <item>
@@ -37,6 +43,9 @@
       
       <guid>https://patelhiren.com/tags/vpn/</guid>
       <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
     </item>
     
     <item>
@@ -46,6 +55,9 @@
       
       <guid>https://patelhiren.com/tags/automation/</guid>
       <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
     </item>
     
     <item>
@@ -55,6 +67,9 @@
       
       <guid>https://patelhiren.com/tags/documentation/</guid>
       <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
     </item>
     
     <item>
@@ -64,6 +79,9 @@
       
       <guid>https://patelhiren.com/tags/github/</guid>
       <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
     </item>
     
     <item>
@@ -73,6 +91,9 @@
       
       <guid>https://patelhiren.com/tags/github-pages/</guid>
       <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
     </item>
     
     <item>
@@ -82,6 +103,9 @@
       
       <guid>https://patelhiren.com/tags/hugo/</guid>
       <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
     </item>
     
     <item>
@@ -91,6 +115,9 @@
       
       <guid>https://patelhiren.com/tags/terminal/</guid>
       <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
     </item>
     
     <item>
@@ -100,6 +127,9 @@
       
       <guid>https://patelhiren.com/tags/bootcamp/</guid>
       <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
     </item>
     
     <item>
@@ -109,6 +139,9 @@
       
       <guid>https://patelhiren.com/tags/virtual-machine/</guid>
       <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
     </item>
     
   </channel>

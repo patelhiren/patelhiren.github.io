@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Categories on Hiren Patel</title>
     <link>https://patelhiren.com/categories/</link>
@@ -19,6 +19,9 @@
       
       <guid>https://patelhiren.com/categories/how-tos/</guid>
       <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
     </item>
     
     <item>
@@ -28,6 +31,9 @@
       
       <guid>https://patelhiren.com/categories/interesting-tools/</guid>
       <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
     </item>
     
     <item>
@@ -37,6 +43,9 @@
       
       <guid>https://patelhiren.com/categories/web/</guid>
       <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
     </item>
     
     <item>
@@ -46,6 +55,9 @@
       
       <guid>https://patelhiren.com/categories/patelhiren.com/</guid>
       <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
     </item>
     
     <item>
@@ -55,6 +67,9 @@
       
       <guid>https://patelhiren.com/categories/troubleshooting/</guid>
       <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
     </item>
     
   </channel>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>VPN on Hiren Patel</title>
     <link>https://patelhiren.com/tags/vpn/</link>
@@ -18,21 +18,23 @@
       <pubDate>Sun, 26 Apr 2020 12:55:50 -0400</pubDate>
       
       <guid>https://patelhiren.com/blog/using-tunnelblick-to-connect-to-watchguard-vpn/</guid>
-      <description>&lt;p&gt;I needed to connect to a corporate VPN that used &lt;a href=&#34;https://www.watchguard.com&#34;target=&#34;_blank&#34;&gt;WatchGuard&lt;/a&gt;. The IT provided &lt;em&gt;Mobile VPN with SSL Client&lt;/em&gt; software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.&lt;/p&gt;
-&lt;p&gt;I discovered that the &lt;em&gt;WatchGuard&lt;/em&gt; VPN internally is an OpenVPN server. I use &lt;a href=&#34;https://tunnelblick.net&#34;target=&#34;_blank&#34;&gt;Tunnelblick&lt;/a&gt; for my personal OpenVPN connections and that has worked reliably on macOS Catalina. So if I just had the connection &lt;em&gt;ovpn&lt;/em&gt; config file I could use &lt;em&gt;Tunnelblick&lt;/em&gt; for my VPN connections.&lt;/p&gt;
-&lt;p&gt;WatchGuard has a detailed support document that walks the user through downloading their software to use for VPN connection at &lt;a href=&#34;https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html&#34;&gt;https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Turns out that page also provides an option to download the &lt;em&gt;ovpn&lt;/em&gt; config that can be used with &lt;em&gt;Tunnelblick&lt;/em&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;acquiring-the-ovpn-config&#34;&gt;Acquiring the OVPN config&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Browse to &lt;code&gt;https://&amp;lt;yourvpnserverip:port&amp;gt;/sslvpn.html&lt;/code&gt;. You will be greeted with a login page.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;
+      <description>&lt;p&gt;I needed to connect to a corporate VPN that used &lt;a href=&#34;https://www.watchguard.com&#34;target=&#34;_blank&#34;&gt;WatchGuard&lt;/a&gt;. The IT provided &lt;em&gt;Mobile VPN with SSL Client&lt;/em&gt; software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>I needed to connect to a corporate VPN that used <a href="https://www.watchguard.com"target="_blank">WatchGuard</a>. The IT provided <em>Mobile VPN with SSL Client</em> software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.</p>
+<p>I discovered that the <em>WatchGuard</em> VPN internally is an OpenVPN server. I use <a href="https://tunnelblick.net"target="_blank">Tunnelblick</a> for my personal OpenVPN connections and that has worked reliably on macOS Catalina. So if I just had the connection <em>ovpn</em> config file I could use <em>Tunnelblick</em> for my VPN connections.</p>
+<p>WatchGuard has a detailed support document that walks the user through downloading their software to use for VPN connection at <a href="https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html">https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html</a>.</p>
+<p>Turns out that page also provides an option to download the <em>ovpn</em> config that can be used with <em>Tunnelblick</em>.</p>
+<h2 id="acquiring-the-ovpn-config">Acquiring the OVPN config</h2>
+<ul>
+<li>Browse to <code>https://&lt;yourvpnserverip:port&gt;/sslvpn.html</code>. You will be greeted with a login page.</li>
+</ul>
+<p>
 
-&lt;span class=&#34;image-container&#34;&gt;
-    &lt;span class=&#34;link&#34;&gt;
-        &lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; href=&#34;images/01.jpg&#34;&gt;
-            &lt;picture&gt;&lt;source 
-                    srcset=&#34;
+<span class="image-container">
+    <span class="link">
+        <a target="_blank" rel="noopener noreferrer" href="images/01.jpg">
+            <picture><source 
+                    srcset="
                     
                     /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01_hu657c574761ea48e57c808b0297ce1c55_28832_400x0_resize_q75_box.jpg 400w,
                     
@@ -44,29 +46,29 @@
                     
 
                     /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01.jpg
-                    &#34; 
-                /&gt;
+                    " 
+                />
                 
-                &lt;img alt=&#34;WatchGuard - Login Page&#34; 
-                        src=&#34;https://patelhiren.com/blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01.jpg&#34; /&gt;
-            &lt;/picture&gt;
-        &lt;/a&gt;
-    &lt;/span&gt;
-    &lt;span class=&#34;caption&#34;&gt;
-        &lt;span class=&#34;title&#34;&gt;WatchGuard - Login Page&lt;/span&gt;
-    &lt;/span&gt;
-&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Login using your corporate credentials.&lt;/li&gt;
-&lt;li&gt;You will be offered a download page.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;
+                <img alt="WatchGuard - Login Page" 
+                        src="/blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01.jpg" />
+            </picture>
+        </a>
+    </span>
+    <span class="caption">
+        <span class="title">WatchGuard - Login Page</span>
+    </span>
+</span></a></p>
+<ul>
+<li>Login using your corporate credentials.</li>
+<li>You will be offered a download page.</li>
+</ul>
+<p>
 
-&lt;span class=&#34;image-container&#34;&gt;
-    &lt;span class=&#34;link&#34;&gt;
-        &lt;a target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; href=&#34;images/02.jpg&#34;&gt;
-            &lt;picture&gt;&lt;source 
-                    srcset=&#34;
+<span class="image-container">
+    <span class="link">
+        <a target="_blank" rel="noopener noreferrer" href="images/02.jpg">
+            <picture><source 
+                    srcset="
                     
                     /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02_hu3d03a01dcc18bc5be0e67db3d8d209a6_168343_400x0_resize_q75_box.jpg 400w,
                     
@@ -78,23 +80,24 @@
                     
 
                     /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02.jpg
-                    &#34; 
-                /&gt;
+                    " 
+                />
                 
-                &lt;img alt=&#34;WatchGuard - Download Page&#34; 
-                        src=&#34;https://patelhiren.com/blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02.jpg&#34; /&gt;
-            &lt;/picture&gt;
-        &lt;/a&gt;
-    &lt;/span&gt;
-    &lt;span class=&#34;caption&#34;&gt;
-        &lt;span class=&#34;title&#34;&gt;WatchGuard - Download Page&lt;/span&gt;
-    &lt;/span&gt;
-&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Select the &lt;strong&gt;&lt;em&gt;Download&lt;/em&gt;&lt;/strong&gt; option under &lt;em&gt;Mobile VPN with SSL client profile&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;This will offer a &lt;em&gt;client.ovpn&lt;/em&gt; file that you can import into &lt;em&gt;Tunnelblick&lt;/em&gt; for connection to your corporate network.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The page offer options to download the Mobile VPN with SSL Client software for Mac and Windows as well if you want those.&lt;/p&gt;</description>
+                <img alt="WatchGuard - Download Page" 
+                        src="/blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02.jpg" />
+            </picture>
+        </a>
+    </span>
+    <span class="caption">
+        <span class="title">WatchGuard - Download Page</span>
+    </span>
+</span></a></p>
+<ul>
+<li>Select the <strong><em>Download</em></strong> option under <em>Mobile VPN with SSL client profile</em>.</li>
+<li>This will offer a <em>client.ovpn</em> file that you can import into <em>Tunnelblick</em> for connection to your corporate network.</li>
+</ul>
+<p>The page offer options to download the Mobile VPN with SSL Client software for Mac and Windows as well if you want those.</p>]]></content:encoded>
+      
     </item>
     
   </channel>
