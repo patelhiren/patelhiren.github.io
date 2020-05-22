@@ -28,7 +28,7 @@
     </a>
 </div></span>
         </div></section><div id="content"><div class="article-container"><section class="article header">
-    <h1 class="article title">Domain Specific DNS Servers on macOS</h1><p class="article date">May 22, 2020</p></section><article class="article markdown-body"><p>My work has multiple domains (corp.network and lab.network) that the nameservers resolve. When in the office the resolution works perfectly. However while conncting over VPN via Tunnelblick the resolution to lab.network was failing.</p>
+    <h1 class="article title">Domain Specific DNS Servers on macOS</h1><p class="article date">May 22, 2020</p></section><article class="article markdown-body"><p>My work has multiple domains (<code>corp.network</code> and <code>lab.network</code>) that the nameservers resolve. When in the office the resolution works perfectly. However while conncting over VPN via Tunnelblick the resolution to lab.network was failing.</p>
 <p>I could go into my System Preferences-&gt;Network Settings and modify my wifi interface settings to enter a new DNS value for those specific domains. But that felt tedious. Instead I used the below method to specify custom DNS resolver settings for my work domains.</p>
 <p>Under <code>/etc/resolver</code> create a file with a name of your choice. I chose <code>corp.netowrk</code> just for clarity.</p>
 <p>Here is an example of what the contents could be.</p>
@@ -55,7 +55,8 @@
 <span class="na">nameserver 10.0.1.1</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>The above would make it so any lookup to <code>xxx.corp.network</code> would use the specified nameserver at <code>10.0.0.1</code> and <code>10.0.0.2</code>.</p>
+</div><p>The above would make it so any lookup to <code>xxx.corp.network</code> would use the specified nameserver at <code>10.0.0.1</code> and <code>10.0.0.2</code>.
+If I try to access <code>devserver.lab.network</code> it would ask the nameserver at <code>10.0.1.1</code> for its IP.</p>
 <p>You could take it a step further and provide backup lookup settings. For example you may have a server located at <code>demo.corp.com</code> that resolves different IPs based on if you are connected to VPN or not. So <code>demo.corp.com</code> should be resolved via VPN nameservers when you are connected to VPN, but via ISP name servers when not connected to VPN. To achive this you could create two files under <code>/etc/resolver</code> like so.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
