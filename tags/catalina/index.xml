@@ -36,6 +36,17 @@
 <span class="na">nameserver 10.0.0.2</span>
 </code></pre></td></tr></table>
 </div>
+</div><p>I could create another file for the lab network with a different dns server.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain lab.network</span>
+<span class="na">nameserver 10.0.1.1</span>
+</code></pre></td></tr></table>
+</div>
 </div><p>The above would make it so any lookup to <code>xxx.corp.network</code> would use the specified nameserver at <code>10.0.0.1</code> and <code>10.0.0.2</code>.</p>
 <p>You could take it a step further and provide backup lookup settings. For example you may have a server located at <code>demo.corp.com</code> that resolves different IPs based on if you are connected to VPN or not. So <code>demo.corp.com</code> should be resolved via VPN nameservers when you are connected to VPN, but via ISP name servers when not connected to VPN. To achive this you could create two files under <code>/etc/resolver</code> like so.</p>
 <div class="highlight"><div class="chroma">
