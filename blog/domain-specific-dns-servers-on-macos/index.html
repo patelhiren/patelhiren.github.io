@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.68.3" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>Domain Specific DNS Servers on macOS&nbsp;&ndash;&nbsp;Hiren Patel</title><link rel="stylesheet" href="/css/core.min.ccdbbaeb866774f14e38d6f2540c871298cb086eb049b6a8ed5186e315bcea6640cf8a4b076ee4c275ba28acf018ac1f.css" integrity="sha384-zNu664ZndPFOONbyVAyHEpjLCG6wSbao7VGG4xW86mZAz4pLB27kwnW6KKzwGKwf"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Domain Specific DNS Servers on macOS" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#191919">
+<meta name="msapplication-TileColor" content="#00aba9">
+<body>
+    <div class="base-body"><section id="header" class="site header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><img class="site logo" src="/patelhiren-logo.png" alt /><span class="site name">Hiren Patel</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/about/">About</a></nav></div></span></div><div class="site slogan wrap">
+            <span class="title left-side">Documenting things as I learn.</span>
+            <span class="right-side"><div class="social-buttons">
+    <a href="/index.xml" aria-label="Subscribe in your RSS reader">
+        <span>
+            <i class="fa fa-rss"></i>
+        </span>
+    </a>
+    <a href="https://twitter.com/patelhiren" target="_blank" aria-label="Follow @patelhiren on Twitter">
+        <span>
+            <i class="fa fa-twitter"></i>
+        </span>
+    </a>
+</div></span>
+        </div></section><div id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">Domain Specific DNS Servers on macOS</h1><p class="article date">May 22, 2020</p></section><article class="article markdown-body"><p>My work has multiple domains (corp.network and lab.network) that the nameservers resolve. When in the office the resolution works perfectly. However while conncting over VPN via Tunnelblick the resolution to lab.network was failing.</p>
+<p>I could go into my System Preferences-&gt;Network Settings and modify my wifi interface settings to enter a new DNS value for those specific domains. But that felt tedious. Instead I used the below method to specify custom DNS resolver settings for my work domains.</p>
+<p>Under <code>/etc/resolver</code> create a file with a name of your choice. I chose <code>corp.netowrk</code> just for clarity.</p>
+<p>Here is an example of what the contents could be.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain corp.network</span>
+<span class="na">nameserver 10.0.0.1</span>
+<span class="na">nameserver 10.0.0.2</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The above would make it so any lookup to <code>xxx.corp.network</code> would use the specified nameserver at <code>10.0.0.1</code> and <code>10.0.0.2</code>.</p>
+<p>You could take it a step further and provide backup lookup settings. For example you may have a server located at <code>demo.corp.com</code> that resolves different IPs based on if you are connected to VPN or not. So <code>demo.corp.com</code> should be resolved via VPN nameservers when you are connected to VPN, but via ISP name servers when not connected to VPN. To achive this you could create two files under <code>/etc/resolver</code> like so.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain corp.com</span>
+<span class="na">nameserver 10.0.0.1</span>
+<span class="na">nameserver 10.0.0.2</span>
+<span class="na">search_order 1</span>
+<span class="na">timeout 5</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain corp.com</span>
+<span class="na">nameserver 1.1.1.1</span>
+<span class="na">nameserver 1.0.0.1</span>
+<span class="na">search_order 2</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The above two files make it so the macOS DNS resolver will first try to use the VPN domains for resolution. If we dont get a response withing 5 seconds, it will fallback to the second file and use <a href="https://1.1.1.1/dns/"target="_blank">Cloudflare DNS</a> to do an internet lookup of the IP address.</p></article><section class="article labels"><a class="category" href=/categories/how-tos/>How Tos</a><a class="tag" href=/tags/vpn/>VPN</a><a class="tag" href=/tags/catalina/>Catalina</a><a class="tag" href=/tags/macos/>macOS</a></section></div><section class="article navigation"><p><a class="link" href="/blog/using-tunnelblick-to-connect-to-watchguard-vpn/"><span class="li">&rarr;</span>Using Tunnelblick to Connect to WatchGuard VPN</a></p></section></div><section id="footer" class="footer"><div class="footer-wrap">
+    <p class="copyright">© Copyright 2020, Hiren Patel</p>
+    
+    <p class="disclaimer">Disclaimer: The opinions expressed herein are my own personal opinions and do not represent my employer’s view in any way.</p>
+    
+</div></section>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-164651249-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</div>
+</body>
+
+</html>

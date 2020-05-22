@@ -7,10 +7,70 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Sun, 26 Apr 2020 12:55:50 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2020 14:36:00 -0400</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Domain Specific DNS Servers on macOS</title>
+      <link>https://patelhiren.com/blog/domain-specific-dns-servers-on-macos/</link>
+      <pubDate>Fri, 22 May 2020 14:36:00 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/blog/domain-specific-dns-servers-on-macos/</guid>
+      <description>&lt;p&gt;My work has multiple domains (corp.network and lab.network) that the nameservers resolve. When in the office the resolution works perfectly. However while conncting over VPN via Tunnelblick the resolution to lab.network was failing.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>My work has multiple domains (corp.network and lab.network) that the nameservers resolve. When in the office the resolution works perfectly. However while conncting over VPN via Tunnelblick the resolution to lab.network was failing.</p>
+<p>I could go into my System Preferences-&gt;Network Settings and modify my wifi interface settings to enter a new DNS value for those specific domains. But that felt tedious. Instead I used the below method to specify custom DNS resolver settings for my work domains.</p>
+<p>Under <code>/etc/resolver</code> create a file with a name of your choice. I chose <code>corp.netowrk</code> just for clarity.</p>
+<p>Here is an example of what the contents could be.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain corp.network</span>
+<span class="na">nameserver 10.0.0.1</span>
+<span class="na">nameserver 10.0.0.2</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The above would make it so any lookup to <code>xxx.corp.network</code> would use the specified nameserver at <code>10.0.0.1</code> and <code>10.0.0.2</code>.</p>
+<p>You could take it a step further and provide backup lookup settings. For example you may have a server located at <code>demo.corp.com</code> that resolves different IPs based on if you are connected to VPN or not. So <code>demo.corp.com</code> should be resolved via VPN nameservers when you are connected to VPN, but via ISP name servers when not connected to VPN. To achive this you could create two files under <code>/etc/resolver</code> like so.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain corp.com</span>
+<span class="na">nameserver 10.0.0.1</span>
+<span class="na">nameserver 10.0.0.2</span>
+<span class="na">search_order 1</span>
+<span class="na">timeout 5</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain corp.com</span>
+<span class="na">nameserver 1.1.1.1</span>
+<span class="na">nameserver 1.0.0.1</span>
+<span class="na">search_order 2</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The above two files make it so the macOS DNS resolver will first try to use the VPN domains for resolution. If we dont get a response withing 5 seconds, it will fallback to the second file and use <a href="https://1.1.1.1/dns/"target="_blank">Cloudflare DNS</a> to do an internet lookup of the IP address.</p>]]></content:encoded>
+      
+    </item>
     
     <item>
       <title>Using Tunnelblick to Connect to WatchGuard VPN</title>
