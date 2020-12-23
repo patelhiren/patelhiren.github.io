@@ -7,10 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Fri, 22 May 2020 15:08:53 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 23 Dec 2020 09:31:48 -0500</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Docker</title>
+      <link>https://patelhiren.com/tags/docker/</link>
+      <pubDate>Wed, 23 Dec 2020 09:31:48 -0500</pubDate>
+      
+      <guid>https://patelhiren.com/tags/docker/</guid>
+      <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
+    </item>
+    
+    <item>
+      <title>Ubiquiti</title>
+      <link>https://patelhiren.com/tags/ubiquiti/</link>
+      <pubDate>Wed, 23 Dec 2020 09:31:48 -0500</pubDate>
+      
+      <guid>https://patelhiren.com/tags/ubiquiti/</guid>
+      <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
+    </item>
     
     <item>
       <title>Android</title>

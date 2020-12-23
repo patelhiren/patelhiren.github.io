@@ -7,17 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Fri, 22 May 2020 15:08:53 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 23 Dec 2020 09:31:48 -0500</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Programming</title>
-      <link>https://patelhiren.com/categories/programming/</link>
-      <pubDate>Fri, 22 May 2020 15:08:53 -0400</pubDate>
+      <title>How Tos</title>
+      <link>https://patelhiren.com/categories/how-tos/</link>
+      <pubDate>Wed, 23 Dec 2020 09:31:48 -0500</pubDate>
       
-      <guid>https://patelhiren.com/categories/programming/</guid>
+      <guid>https://patelhiren.com/categories/how-tos/</guid>
       <description></description>
       
       <content:encoded><![CDATA[]]></content:encoded>
@@ -25,11 +25,23 @@
     </item>
     
     <item>
-      <title>How Tos</title>
-      <link>https://patelhiren.com/categories/how-tos/</link>
-      <pubDate>Fri, 22 May 2020 14:36:00 -0400</pubDate>
+      <title>Networking</title>
+      <link>https://patelhiren.com/categories/networking/</link>
+      <pubDate>Wed, 23 Dec 2020 09:31:48 -0500</pubDate>
       
-      <guid>https://patelhiren.com/categories/how-tos/</guid>
+      <guid>https://patelhiren.com/categories/networking/</guid>
+      <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
+    </item>
+    
+    <item>
+      <title>Programming</title>
+      <link>https://patelhiren.com/categories/programming/</link>
+      <pubDate>Wed, 23 Dec 2020 09:31:48 -0500</pubDate>
+      
+      <guid>https://patelhiren.com/categories/programming/</guid>
       <description></description>
       
       <content:encoded><![CDATA[]]></content:encoded>
