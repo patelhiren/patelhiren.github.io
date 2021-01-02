@@ -7,10 +7,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Wed, 23 Dec 2020 09:31:48 -0500</lastBuildDate>
+    <lastBuildDate>Sat, 02 Jan 2021 17:30:27 -0500</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>macOS and Active Directory Passwords</title>
+      <link>https://patelhiren.com/blog/macos-and-active-directory-passwords/</link>
+      <pubDate>Sat, 02 Jan 2021 17:30:27 -0500</pubDate>
+      
+      <guid>https://patelhiren.com/blog/macos-and-active-directory-passwords/</guid>
+      <description>&lt;p&gt;Macs connected to Active Directory routinely need to update passwords. When working remote, Active Directory password change is not exactly easy. Here are the steps I follow to update my Active Directory password and keep my local mac password in sync.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>Macs connected to Active Directory routinely need to update passwords. When working remote, Active Directory password change is not exactly easy. Here are the steps I follow to update my Active Directory password and keep my local mac password in sync.</p>
+<p>Connect to corporate VPN so that Active Directory is reachable over VPN. Open Terminal and run the following command.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">kpasswd myusername@FULLADDOMAIN.COM
+</code></pre></td></tr></table>
+</div>
+</div><pre><code class="language-console" data-lang="console">myusername@FULLADDOMAIN.COM's Password: 
+New password for myusername@FULLADDOMAIN.COM: 
+Verify password - New password for myusername@FULLADDOMAIN.COM: 
+Success
+</code></pre><p>Once password change is confirmed, run the following to force sync the updated password to keychain.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">dsconfigad -passinterval <span class="m">0</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Wait about a minute, log out and log back in. You should be logging in with the new password. If login still requires the old password the password sync with active directory did not happen yet. Log back in with the old password, connect to VPN (You will need to use your new password when connecting to VPN) and run the <code>dsconfigad -passinterval 0</code> command and wait a mintue or so before trying to log out/login.</p>
+<p>The process once finished will make sure your local keychain password and AD passwords are in sync.</p>]]></content:encoded>
+      
+    </item>
     
     <item>
       <title>Cross Compiling on macOS via Docker</title>

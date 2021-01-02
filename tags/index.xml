@@ -7,10 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Wed, 23 Dec 2020 09:31:48 -0500</lastBuildDate>
+    <lastBuildDate>Sat, 02 Jan 2021 17:30:27 -0500</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Active Directory</title>
+      <link>https://patelhiren.com/tags/active-directory/</link>
+      <pubDate>Sat, 02 Jan 2021 17:30:27 -0500</pubDate>
+      
+      <guid>https://patelhiren.com/tags/active-directory/</guid>
+      <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
+    </item>
+    
+    <item>
+      <title>macOS</title>
+      <link>https://patelhiren.com/tags/macos/</link>
+      <pubDate>Sat, 02 Jan 2021 17:30:27 -0500</pubDate>
+      
+      <guid>https://patelhiren.com/tags/macos/</guid>
+      <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
+    </item>
     
     <item>
       <title>Docker</title>
@@ -54,18 +78,6 @@
       <pubDate>Fri, 22 May 2020 14:36:00 -0400</pubDate>
       
       <guid>https://patelhiren.com/tags/catalina/</guid>
-      <description></description>
-      
-      <content:encoded><![CDATA[]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>macOS</title>
-      <link>https://patelhiren.com/tags/macos/</link>
-      <pubDate>Fri, 22 May 2020 14:36:00 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/tags/macos/</guid>
       <description></description>
       
       <content:encoded><![CDATA[]]></content:encoded>

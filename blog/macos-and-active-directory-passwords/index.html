@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.73.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>macOS and Active Directory Passwords&nbsp;&ndash;&nbsp;Hiren Patel</title><link rel="stylesheet" href="/css/core.min.ccdbbaeb866774f14e38d6f2540c871298cb086eb049b6a8ed5186e315bcea6640cf8a4b076ee4c275ba28acf018ac1f.css" integrity="sha384-zNu664ZndPFOONbyVAyHEpjLCG6wSbao7VGG4xW86mZAz4pLB27kwnW6KKzwGKwf"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="macOS and Active Directory Passwords" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#191919">
+<meta name="msapplication-TileColor" content="#00aba9">
+<body>
+    <div class="base-body"><section id="header" class="site header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><img class="site logo" src="/patelhiren-logo.png" alt /><span class="site name">Hiren Patel</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/about/">About</a></nav></div></span></div><div class="site slogan wrap">
+            <span class="title left-side">Documenting things as I learn.</span>
+            <span class="right-side"><div class="social-buttons">
+    <a href="/index.xml" aria-label="Subscribe in your RSS reader">
+        <span>
+            <i class="fa fa-rss"></i>
+        </span>
+    </a>
+    <a href="https://twitter.com/patelhiren" target="_blank" aria-label="Follow @patelhiren on Twitter">
+        <span>
+            <i class="fa fa-twitter"></i>
+        </span>
+    </a>
+</div></span>
+        </div></section><div id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">macOS and Active Directory Passwords</h1><p class="article date">Jan 02, 2021</p></section><article class="article markdown-body"><p>Macs connected to Active Directory routinely need to update passwords. When working remote, Active Directory password change is not exactly easy. Here are the steps I follow to update my Active Directory password and keep my local mac password in sync.</p>
+<p>Connect to corporate VPN so that Active Directory is reachable over VPN. Open Terminal and run the following command.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">kpasswd myusername@FULLADDOMAIN.COM
+</code></pre></td></tr></table>
+</div>
+</div><pre><code class="language-console" data-lang="console">myusername@FULLADDOMAIN.COM's Password: 
+New password for myusername@FULLADDOMAIN.COM: 
+Verify password - New password for myusername@FULLADDOMAIN.COM: 
+Success
+</code></pre><p>Once password change is confirmed, run the following to force sync the updated password to keychain.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">dsconfigad -passinterval <span class="m">0</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Wait about a minute, log out and log back in. You should be logging in with the new password. If login still requires the old password the password sync with active directory did not happen yet. Log back in with the old password, connect to VPN (You will need to use your new password when connecting to VPN) and run the <code>dsconfigad -passinterval 0</code> command and wait a mintue or so before trying to log out/login.</p>
+<p>The process once finished will make sure your local keychain password and AD passwords are in sync.</p></article><section class="article labels"><a class="category" href=/categories/how-tos/>How Tos</a><a class="tag" href=/tags/macos/>macOS</a><a class="tag" href=/tags/active-directory/>Active Directory</a></section></div><section class="article navigation"><p><a class="link" href="/blog/cross-compiling-on-macos-via-docker/"><span class="li">&rarr;</span>Cross Compiling on macOS via Docker</a></p></section></div><section id="footer" class="footer"><div class="footer-wrap">
+    <p class="copyright">© Copyright 2021, Hiren Patel</p>
+    
+    <p class="disclaimer">Disclaimer: The opinions expressed herein are my own personal opinions and do not represent my employer’s view in any way.</p>
+    
+</div></section>
+    
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+        data-cf-beacon='{"token": "0ceb2b0172264816ba290291f3b99e4f"}'></script>
+    
+</div>
+</body>
+
+</html>
