@@ -7,10 +7,51 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Sat, 02 Jan 2021 17:30:27 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 23 Mar 2021 22:29:29 -0400</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Setting Visual Studio Code as Default Text Editor on macOS</title>
+      <link>https://patelhiren.com/blog/setting-vscode-as-default-text-editor-on-macos/</link>
+      <pubDate>Tue, 23 Mar 2021 22:29:29 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/blog/setting-vscode-as-default-text-editor-on-macos/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://code.visualstudio.com&#34;target=&#34;_blank&#34;&gt;Visual Studio Code&lt;/a&gt; is quite capable has become my editor of choice on macOS. Here is how to set it as the default text editor instead of &lt;em&gt;Text Edit&lt;/em&gt;.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p><a href="https://code.visualstudio.com"target="_blank">Visual Studio Code</a> is quite capable has become my editor of choice on macOS. Here is how to set it as the default text editor instead of <em>Text Edit</em>.</p>
+<p>Install <a href="https://github.com/moretension/duti"target="_blank">duti</a>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">brew install duti
+</code></pre></td></tr></table>
+</div>
+</div><p>Set <em>Visual Studio Code</em> as the default editor for all text files and public files by running the below commands using <em>duti</em>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># Mark vscode as default editor for all text files</span>
+duti -s com.microsoft.VSCode public.plain-text all
+
+<span class="c1"># Some files without extensions are considered public.data and not public.text. Set those to open in vscode as well</span>
+duti -s com.microsoft.VSCode public.data all
+
+</code></pre></td></tr></table>
+</div>
+</div><p>The changes should take effect right away and no reboot or relaunch of <em>Finder</em> should be needed.</p>]]></content:encoded>
+      
+    </item>
     
     <item>
       <title>macOS and Active Directory Passwords</title>

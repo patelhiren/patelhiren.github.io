@@ -7,17 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Sat, 02 Jan 2021 17:30:27 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 23 Mar 2021 22:29:29 -0400</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Active Directory</title>
-      <link>https://patelhiren.com/tags/active-directory/</link>
-      <pubDate>Sat, 02 Jan 2021 17:30:27 -0500</pubDate>
+      <title>macOS</title>
+      <link>https://patelhiren.com/tags/macos/</link>
+      <pubDate>Tue, 23 Mar 2021 22:29:29 -0400</pubDate>
       
-      <guid>https://patelhiren.com/tags/active-directory/</guid>
+      <guid>https://patelhiren.com/tags/macos/</guid>
       <description></description>
       
       <content:encoded><![CDATA[]]></content:encoded>
@@ -25,11 +25,11 @@
     </item>
     
     <item>
-      <title>macOS</title>
-      <link>https://patelhiren.com/tags/macos/</link>
+      <title>Active Directory</title>
+      <link>https://patelhiren.com/tags/active-directory/</link>
       <pubDate>Sat, 02 Jan 2021 17:30:27 -0500</pubDate>
       
-      <guid>https://patelhiren.com/tags/macos/</guid>
+      <guid>https://patelhiren.com/tags/active-directory/</guid>
       <description></description>
       
       <content:encoded><![CDATA[]]></content:encoded>
