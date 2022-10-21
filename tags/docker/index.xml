@@ -24,41 +24,49 @@
 <p>Get and install <a href="https://docs.docker.com/docker-for-mac/install/"target="_blank">Docker Desktop</a> is not already installed. Once installed we can use <a href="https://github.com/dockcross/dockcross"target="_blank">DockCross</a> to setup an cross compile tool chain we want. Here is an example of how I setup the linux-arm64 toolchain.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">mkdir -p ~/Documents/dockcross
-<span class="nb">cd</span> ~/Documents/dockcross
-docker run --rm dockcross/linux-arm64 &gt; ./dockcross-linux-arm64
-chmod +x ./dockcross-linux-arm64
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">mkdir -p ~/Documents/dockcross
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ~/Documents/dockcross
+</span></span><span class="line"><span class="cl">docker run --rm dockcross/linux-arm64 &gt; ./dockcross-linux-arm64
+</span></span><span class="line"><span class="cl">chmod +x ./dockcross-linux-arm64
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>This will setup a linux-arm64 cross compiler. To compile files using this compiler you have to place the files in the same directory as the binary. Here is an exaple of how to compile.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">./dockcross-linux-arm64 bash <span class="se">\
-</span><span class="se"></span>-c <span class="s1">&#39;$CC -s -O3 main.c -o ./udp-broadcast-relay-redux&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">./dockcross-linux-arm64 bash <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-c <span class="s1">&#39;$CC -s -O3 main.c -o ./udp-broadcast-relay-redux&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Examining the compiled binary with <em>file</em> command should display <em>ARM aarch64</em> architecture.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">file udp-broadcast-relay-redux
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">file udp-broadcast-relay-redux
+</span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code class="language-console" data-lang="console">udp-broadcast-relay-redux: ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), 
-dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, for GNU/Linux 4.10.8, stripped
-</code></pre><blockquote>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">udp-broadcast-relay-redux: ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), 
+</span></span></span><span class="line"><span class="cl"><span class="go">dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, for GNU/Linux 4.10.8, stripped
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
 <p><strong>Note:</strong> Using <em>$CC</em> is important. If you use <em>gcc</em> directly it will compile using <em>x86_64</em> version.</p>
 </blockquote>]]></content:encoded>
       

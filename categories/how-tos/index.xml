@@ -7,10 +7,142 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Tue, 23 Mar 2021 22:29:29 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 21 Oct 2022 13:32:11 -0400</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/categories/how-tos/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Setting up Keras Tensorflow2 on M1 Mac</title>
+      <link>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</link>
+      <pubDate>Fri, 21 Oct 2022 13:32:11 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</guid>
+      <description>&lt;p&gt;I am currently reading &lt;a href=&#34;https://www.amazon.com/gp/product/B0B18D695W&#34;target=&#34;_blank&#34;&gt;Deep Learning with TensorFlow and Keras&lt;/a&gt; to get started with Machine Learning/Deep Learning. Here is how I setup a local &lt;em&gt;Keras/Tensorflow 2.0&lt;/em&gt; environment on my &lt;em&gt;M1 Max MacBook Pro&lt;/em&gt; running &lt;em&gt;macOS 12.6&lt;/em&gt;.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>I am currently reading <a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank">Deep Learning with TensorFlow and Keras</a> to get started with Machine Learning/Deep Learning. Here is how I setup a local <em>Keras/Tensorflow 2.0</em> environment on my <em>M1 Max MacBook Pro</em> running <em>macOS 12.6</em>.</p>
+<p>Install <a href="https://github.com/conda-forge/miniforge"target="_blank"><em>miniforge</em></a>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">brew install --cask miniforge
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I use zsh with <a href="https://iterm2.com"target="_blank">iTerm2</a> as my terminal so I need to initialize conda with the following command.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">conda init zsh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We now create an environment named <em>tensorflow</em> where we could run our ML/DL Keras training.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">conda create -n tensorflow <span class="nv">python</span><span class="o">=</span>3.9.5
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We then switch to the <em>tensorflow</em> environment and install dependencies.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># Install tensorflow dependencies</span>
+</span></span><span class="line"><span class="cl">conda install -c apple tensorflow-deps
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Install tensorflow macos</span>
+</span></span><span class="line"><span class="cl">python -m pip install tensorflow-macos
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Install tensorflow metal plugin</span>
+</span></span><span class="line"><span class="cl">python -m pip install tensorflow-metal
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Install libjpeg (needed by mathplotlib)</span>
+</span></span><span class="line"><span class="cl">brew install libjpeg
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Install mathplotlib and jupyterlab</span>
+</span></span><span class="line"><span class="cl">conda install -y matplotlib jupyterlab
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>You may now run <code>jupyter lab</code> command from the <em>tensorflow</em> environment to start the jupyter lab environment from the command line. I however prefer using <a href="https://code.visualstudio.com/"target="_blank">Visual Studio Code</a> and start an environment under vscode as documented below.</p>
+<ul>
+<li>Install the <code>Jupyter</code> extension under vscode.</li>
+<li>Load the <em>Command Pallet</em> using (<code>Cmd+Shift+P</code>) and select <code>Jupyter: Select Interpreter to Start Jupyter Server</code> and then select <code>Python 3.9.5 ('tensorflow')</code> or whatever environment you want to use.</li>
+<li>Load the <em>Command Pallet</em> using (<code>Cmd+Shift+P</code>) and select <code>Create: New Jupyter Notebook</code></li>
+<li>You may now run all the Jupyter notebook in vscode. When run the code cell, vscode will start the jupyter server if it is not already started in the selected environment.</li>
+</ul>
+<p>Code:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+</span></span><span class="line"><span class="cl"><span class="n">W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;W&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;b&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@tf</span><span class="o">.</span><span class="n">function</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">W</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl"><span class="n">out_a</span> <span class="o">=</span> <span class="n">model</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">out_a</span><span class="p">)</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Output:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">Metal device set to: Apple M1 Max
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">systemMemory: 32.00 GB
+</span></span><span class="line"><span class="cl">maxCacheSize: 10.67 GB
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">tf.Tensor(
+</span></span><span class="line"><span class="cl">[[1. 0.]
+</span></span><span class="line"><span class="cl"> [1. 0.]], shape=(2, 2), dtype=float32)
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></content:encoded>
+      
+    </item>
     
     <item>
       <title>Setting Visual Studio Code as default text editor on macOS</title>
@@ -24,28 +156,28 @@
 <p>Install <a href="https://github.com/moretension/duti"target="_blank">duti</a>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">brew install duti
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">brew install duti
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Set <em>Visual Studio Code</em> as the default editor for all text files and public files by running the below commands using <em>duti</em>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># Mark vscode as default editor for all text files</span>
-duti -s com.microsoft.VSCode public.plain-text all
-
-<span class="c1"># Some files without extensions are considered public.data and not public.text. Set those to open in vscode as well</span>
-duti -s com.microsoft.VSCode public.data all
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># Mark vscode as default editor for all text files</span>
+</span></span><span class="line"><span class="cl">duti -s com.microsoft.VSCode public.plain-text all
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Some files without extensions are considered public.data and not public.text. Set those to open in vscode as well</span>
+</span></span><span class="line"><span class="cl">duti -s com.microsoft.VSCode public.data all
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The changes should take effect right away and no reboot or relaunch of <em>Finder</em> should be needed.</p>]]></content:encoded>
       
@@ -63,24 +195,34 @@ duti -s com.microsoft.VSCode public.data all
 <p>Connect to corporate VPN so that Active Directory is reachable over VPN. Open Terminal and run the following command.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">kpasswd myusername@FULLADDOMAIN.COM
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">kpasswd myusername@FULLADDOMAIN.COM
+</span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code class="language-console" data-lang="console">myusername@FULLADDOMAIN.COM's Password: 
-New password for myusername@FULLADDOMAIN.COM: 
-Verify password - New password for myusername@FULLADDOMAIN.COM: 
-Success
-</code></pre><p>Once password change is confirmed, run the following to force sync the updated password to keychain.</p>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">myusername@FULLADDOMAIN.COM&#39;s Password: 
+</span></span></span><span class="line"><span class="cl"><span class="go">New password for myusername@FULLADDOMAIN.COM: 
+</span></span></span><span class="line"><span class="cl"><span class="go">Verify password - New password for myusername@FULLADDOMAIN.COM: 
+</span></span></span><span class="line"><span class="cl"><span class="go">Success
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Once password change is confirmed, run the following to force sync the updated password to keychain.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">dsconfigad -passinterval <span class="m">0</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">dsconfigad -passinterval <span class="m">0</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Wait about a minute, log out and log back in. You should be logging in with the new password. If login still requires the old password the password sync with active directory did not happen yet. Log back in with the old password, connect to VPN (You will need to use your new password when connecting to VPN) and run the <code>dsconfigad -passinterval 0</code> command and wait a mintue or so before trying to log out/login.</p>
 <p>The process once finished will make sure your local keychain password and AD passwords are in sync.</p>]]></content:encoded>
@@ -99,41 +241,49 @@ Success
 <p>Get and install <a href="https://docs.docker.com/docker-for-mac/install/"target="_blank">Docker Desktop</a> is not already installed. Once installed we can use <a href="https://github.com/dockcross/dockcross"target="_blank">DockCross</a> to setup an cross compile tool chain we want. Here is an example of how I setup the linux-arm64 toolchain.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">mkdir -p ~/Documents/dockcross
-<span class="nb">cd</span> ~/Documents/dockcross
-docker run --rm dockcross/linux-arm64 &gt; ./dockcross-linux-arm64
-chmod +x ./dockcross-linux-arm64
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">mkdir -p ~/Documents/dockcross
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ~/Documents/dockcross
+</span></span><span class="line"><span class="cl">docker run --rm dockcross/linux-arm64 &gt; ./dockcross-linux-arm64
+</span></span><span class="line"><span class="cl">chmod +x ./dockcross-linux-arm64
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>This will setup a linux-arm64 cross compiler. To compile files using this compiler you have to place the files in the same directory as the binary. Here is an exaple of how to compile.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">./dockcross-linux-arm64 bash <span class="se">\
-</span><span class="se"></span>-c <span class="s1">&#39;$CC -s -O3 main.c -o ./udp-broadcast-relay-redux&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">./dockcross-linux-arm64 bash <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-c <span class="s1">&#39;$CC -s -O3 main.c -o ./udp-broadcast-relay-redux&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Examining the compiled binary with <em>file</em> command should display <em>ARM aarch64</em> architecture.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">file udp-broadcast-relay-redux
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">file udp-broadcast-relay-redux
+</span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code class="language-console" data-lang="console">udp-broadcast-relay-redux: ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), 
-dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, for GNU/Linux 4.10.8, stripped
-</code></pre><blockquote>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">udp-broadcast-relay-redux: ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), 
+</span></span></span><span class="line"><span class="cl"><span class="go">dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, for GNU/Linux 4.10.8, stripped
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
 <p><strong>Note:</strong> Using <em>$CC</em> is important. If you use <em>gcc</em> directly it will compile using <em>x86_64</em> version.</p>
 </blockquote>]]></content:encoded>
       
@@ -153,59 +303,59 @@ dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, for GNU/Linux 4.10.8
 <p>Here is an example of what the contents could be.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain corp.network</span>
-<span class="na">nameserver 10.0.0.1</span>
-<span class="na">nameserver 10.0.0.2</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cfg" data-lang="cfg"><span class="line"><span class="cl"><span class="na">domain corp.network</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 10.0.0.1</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 10.0.0.2</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>I could create another file for the lab network with a different dns server.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain lab.network</span>
-<span class="na">nameserver 10.0.1.1</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cfg" data-lang="cfg"><span class="line"><span class="cl"><span class="na">domain lab.network</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 10.0.1.1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The above would make it so any lookup to <code>xxx.corp.network</code> would use the specified nameserver at <code>10.0.0.1</code> and <code>10.0.0.2</code>.
 If I try to access <code>devserver.lab.network</code> it would ask the nameserver at <code>10.0.1.1</code> for its IP.</p>
 <p>You could take it a step further and provide backup lookup settings. For example you may have a server located at <code>demo.corp.com</code> that resolves different IPs based on if you are connected to VPN or not. So <code>demo.corp.com</code> should be resolved via VPN nameservers when you are connected to VPN, but via ISP name servers when not connected to VPN. To achive this you could create two files under <code>/etc/resolver</code> like so.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain corp.com</span>
-<span class="na">nameserver 10.0.0.1</span>
-<span class="na">nameserver 10.0.0.2</span>
-<span class="na">search_order 1</span>
-<span class="na">timeout 5</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cfg" data-lang="cfg"><span class="line"><span class="cl"><span class="na">domain corp.com</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 10.0.0.1</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 10.0.0.2</span>
+</span></span><span class="line"><span class="cl"><span class="na">search_order 1</span>
+</span></span><span class="line"><span class="cl"><span class="na">timeout 5</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain corp.com</span>
-<span class="na">nameserver 1.1.1.1</span>
-<span class="na">nameserver 1.0.0.1</span>
-<span class="na">search_order 2</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cfg" data-lang="cfg"><span class="line"><span class="cl"><span class="na">domain corp.com</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 1.1.1.1</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 1.0.0.1</span>
+</span></span><span class="line"><span class="cl"><span class="na">search_order 2</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The above two files make it so the macOS DNS resolver will first try to use the VPN domains for resolution. If we dont get a response withing 5 seconds, it will fallback to the second file and use <a href="https://1.1.1.1/dns/"target="_blank">Cloudflare DNS</a> to do an internet lookup of the IP address.</p>]]></content:encoded>
       
@@ -221,7 +371,7 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
       
       <content:encoded><![CDATA[<p>I needed to connect to a corporate VPN that used <a href="https://www.watchguard.com"target="_blank">WatchGuard</a>. The IT provided <em>Mobile VPN with SSL Client</em> software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.</p>
 <p>I discovered that the <em>WatchGuard</em> VPN internally is an OpenVPN server. I use <a href="https://tunnelblick.net"target="_blank">Tunnelblick</a> for my personal OpenVPN connections and that has worked reliably on macOS Catalina. So if I just had the connection <em>ovpn</em> config file I could use <em>Tunnelblick</em> for my VPN connections.</p>
-<p>WatchGuard has a detailed support document that walks the user through downloading their software to use for VPN connection at <a href="https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html">https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html</a>.</p>
+<p>WatchGuard has a detailed support document that walks the user through downloading their software to use for VPN connection at <a href="https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html"target="_blank">https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html</a>.</p>
 <p>Turns out that page also provides an option to download the <em>ovpn</em> config that can be used with <em>Tunnelblick</em>.</p>
 <h2 id="acquiring-the-ovpn-config">Acquiring the OVPN config</h2>
 <ul>
@@ -333,65 +483,65 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
 <p>Install Hugo</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">brew install hugo
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">brew install hugo
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>To verify the install run</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">hugo version
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">hugo version
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Create your new site</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">hugo new site patelhiren.com
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">hugo new site patelhiren.com
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Add the <em><a href="https://themes.gohugo.io/hugo-notepadium/"target="_blank">Notepadium</a></em> Theme</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="nb">cd</span> patelhiren.com
-git init
-git submodule add https://github.com/cntrump/hugo-notepadium themes/notepadium
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">cd</span> patelhiren.com
+</span></span><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git submodule add https://github.com/cntrump/hugo-notepadium themes/notepadium
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Activate the theme for your site by adding it to the <em>config.toml</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="nb">echo</span> <span class="s1">&#39;theme = &#34;notepadium&#34;&#39;</span> &gt;&gt; config.toml
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;theme = &#34;notepadium&#34;&#39;</span> &gt;&gt; config.toml
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Create a new post <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">hugo new blog/my-first-post/index.md
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">hugo new blog/my-first-post/index.md
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>You can find your content under <em>content</em> folder. You can open the newly created index.md file in any Markdown editor of choice <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> and edit and save your content. Here is an example post to suggest what&rsquo;s possible.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -413,42 +563,42 @@ git submodule add https://github.com/cntrump/hugo-notepadium themes/notepadium
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-txt" data-lang="txt">---
-title: &#34;My First Post&#34;
-description: &#34;This is my first post in Hugo. This shows up in Google search.&#34;
-date: 2020-04-18T16:08:20-04:00
-draft: true
-tags: [
-    &#34;Tag 1&#34;,
-    &#34;Tag 2&#34;
-]
-categories: [
-    &#34;Category 1&#34;,
-    &#34;Category 2&#34;
-]
----
-
-Hello everyone welcome to you website.
-
-&lt;!--more--&gt;
-
-This is the extended content of my first post.
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">title: &#34;My First Post&#34;
+</span></span><span class="line"><span class="cl">description: &#34;This is my first post in Hugo. This shows up in Google search.&#34;
+</span></span><span class="line"><span class="cl">date: 2020-04-18T16:08:20-04:00
+</span></span><span class="line"><span class="cl">draft: true
+</span></span><span class="line"><span class="cl">tags: [
+</span></span><span class="line"><span class="cl">    &#34;Tag 1&#34;,
+</span></span><span class="line"><span class="cl">    &#34;Tag 2&#34;
+</span></span><span class="line"><span class="cl">]
+</span></span><span class="line"><span class="cl">categories: [
+</span></span><span class="line"><span class="cl">    &#34;Category 1&#34;,
+</span></span><span class="line"><span class="cl">    &#34;Category 2&#34;
+</span></span><span class="line"><span class="cl">]
+</span></span><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Hello everyone welcome to you website.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;!--more--&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">This is the extended content of my first post.
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Once you save your content you can test it locally by activating Hugo local web server.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">hugo server -D
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">hugo server -D
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p>You can navigate to your local site at <a href="http://localhost:1313/">http://localhost:1313/</a>.</p>
+</div><p>You can navigate to your local site at <a href="http://localhost:1313/"target="_blank">http://localhost:1313/</a>.</p>
 <p>Edit you <em>config.toml</em> to configure the rest of your site settings. Here is mine.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -496,62 +646,62 @@ This is the extended content of my first post.
 </span><span class="lnt">46
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">baseURL</span> <span class="p">=</span> <span class="s2">&#34;https://patelhiren.com/&#34;</span>
-<span class="nx">languageCode</span> <span class="p">=</span> <span class="s2">&#34;en-us&#34;</span>
-<span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;Hiren Patel&#34;</span>
-<span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;notepadium&#34;</span>
-<span class="nx">copyright</span> <span class="p">=</span> <span class="s2">&#34;©2020 Hiren Patel.&#34;</span>
-<span class="nx">enableEmoji</span> <span class="p">=</span> <span class="kc">true</span>
-<span class="nx">enableRobotsTXT</span> <span class="p">=</span> <span class="kc">true</span>
-
-<span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">highlight</span><span class="p">]</span>
-<span class="nx">codeFences</span> <span class="p">=</span> <span class="kc">true</span>
-<span class="nx">noClasses</span> <span class="p">=</span> <span class="kc">false</span>
-<span class="nx">linenos</span> <span class="p">=</span> <span class="kc">true</span>
-
-<span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">goldmark</span><span class="p">.</span><span class="nx">renderer</span><span class="p">]</span>
-<span class="nx">unsafe</span> <span class="p">=</span> <span class="kc">true</span>  <span class="c"># enable raw HTML in Markdown</span>
-
-<span class="p">[</span><span class="nx">params</span><span class="p">]</span>
-<span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;auto&#34;</span>  <span class="c"># default: auto. light: light theme, dark: dark theme, auto: based on system.</span>
-<span class="nx">dateFormat</span> <span class="p">=</span> <span class="s2">&#34;Jan 02, 2006&#34;</span>  <span class="c"># if unset, default is &#34;2006-01-02&#34;</span>
-<span class="nx">readingTime</span> <span class="p">=</span> <span class="kc">false</span>  <span class="c"># show reading time after article date</span>
-<span class="nx">logo</span> <span class="p">=</span> <span class="s2">&#34;patelhiren-logo.png&#34;</span>
-<span class="nx">slogan</span> <span class="p">=</span> <span class="s2">&#34;Documenting things as I learn.&#34;</span>
-
-<span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">assets</span><span class="p">]</span>
-<span class="nx">css</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;css/fonts.css&#34;</span><span class="p">,</span> <span class="s2">&#34;css/light.css&#34;</span><span class="p">,</span> <span class="s2">&#34;css/dark.css&#34;</span><span class="p">]</span>
-
-<span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">comments</span><span class="p">]</span>
-<span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>  <span class="c"># En/Disable comments globally, default: false. You can always enable comments on per page.</span>
-
-<span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">share</span><span class="p">]</span>
-<span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>  <span class="c"># En/Disable share globally, default: false. You can always enable share on per page.</span>
-<span class="nx">addThisId</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-<span class="nx">inlineToolId</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-
-<span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">math</span><span class="p">]</span>
-<span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span> <span class="c"># load math globally, default: false. You can always enable math on per page.</span>
-<span class="nx">use</span> <span class="p">=</span> <span class="s2">&#34;katex&#34;</span>  <span class="c"># builtin: &#34;katex&#34;, &#34;mathjax&#34;.  default: &#34;katex&#34;</span>
-
-<span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">syntax</span><span class="p">]</span>
-<span class="nx">use</span> <span class="p">=</span> <span class="s2">&#34;none&#34;</span>  <span class="c"># builtin: &#34;prismjs&#34;, &#34;hljs&#34;. &#34;none&#34; means Chroma</span>
-<span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;xcode&#34;</span>
-<span class="nx">darkTheme</span> <span class="p">=</span> <span class="s2">&#34;xcode-dark&#34;</span>
-
-<span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">nav</span><span class="p">]</span>
-<span class="nx">showCategories</span> <span class="p">=</span> <span class="kc">true</span>       <span class="c"># /categories/</span>
-<span class="nx">showTags</span> <span class="p">=</span> <span class="kc">true</span>             <span class="c"># /tags/</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">baseURL</span> <span class="p">=</span> <span class="s2">&#34;https://patelhiren.com/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">languageCode</span> <span class="p">=</span> <span class="s2">&#34;en-us&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;Hiren Patel&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;notepadium&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">copyright</span> <span class="p">=</span> <span class="s2">&#34;©2020 Hiren Patel.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">enableEmoji</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="nx">enableRobotsTXT</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">highlight</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">codeFences</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="nx">noClasses</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">linenos</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">goldmark</span><span class="p">.</span><span class="nx">renderer</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">unsafe</span> <span class="p">=</span> <span class="kc">true</span>  <span class="c"># enable raw HTML in Markdown</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;auto&#34;</span>  <span class="c"># default: auto. light: light theme, dark: dark theme, auto: based on system.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">dateFormat</span> <span class="p">=</span> <span class="s2">&#34;Jan 02, 2006&#34;</span>  <span class="c"># if unset, default is &#34;2006-01-02&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">readingTime</span> <span class="p">=</span> <span class="kc">false</span>  <span class="c"># show reading time after article date</span>
+</span></span><span class="line"><span class="cl"><span class="nx">logo</span> <span class="p">=</span> <span class="s2">&#34;patelhiren-logo.png&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">slogan</span> <span class="p">=</span> <span class="s2">&#34;Documenting things as I learn.&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">assets</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">css</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;css/fonts.css&#34;</span><span class="p">,</span> <span class="s2">&#34;css/light.css&#34;</span><span class="p">,</span> <span class="s2">&#34;css/dark.css&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">comments</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>  <span class="c"># En/Disable comments globally, default: false. You can always enable comments on per page.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">share</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>  <span class="c"># En/Disable share globally, default: false. You can always enable share on per page.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">addThisId</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">inlineToolId</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">math</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span> <span class="c"># load math globally, default: false. You can always enable math on per page.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">use</span> <span class="p">=</span> <span class="s2">&#34;katex&#34;</span>  <span class="c"># builtin: &#34;katex&#34;, &#34;mathjax&#34;.  default: &#34;katex&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">syntax</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">use</span> <span class="p">=</span> <span class="s2">&#34;none&#34;</span>  <span class="c"># builtin: &#34;prismjs&#34;, &#34;hljs&#34;. &#34;none&#34; means Chroma</span>
+</span></span><span class="line"><span class="cl"><span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;xcode&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">darkTheme</span> <span class="p">=</span> <span class="s2">&#34;xcode-dark&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">nav</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">showCategories</span> <span class="p">=</span> <span class="kc">true</span>       <span class="c"># /categories/</span>
+</span></span><span class="line"><span class="cl"><span class="nx">showTags</span> <span class="p">=</span> <span class="kc">true</span>             <span class="c"># /tags/</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>To build your static site run:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">hugo -D
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">hugo -D
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The output will be saved under <em>./public/</em> directory. You may copy the contents of this folder to any webserver and your website will be servered.</p>
 <h2 id="hosting-your-site-on-github-pages">Hosting your site on GitHub Pages</h2>
@@ -562,20 +712,20 @@ This is the extended content of my first post.
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># adjust to match your git url.</span>
-git clone git@github.com:patelhiren/patelhiren.com.git
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># adjust to match your git url.</span>
+</span></span><span class="line"><span class="cl">git clone git@github.com:patelhiren/patelhiren.com.git
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
 <p>Paste your existing source files in the new repository folder.</p>
 </li>
 <li>
-<p>Run and verify your local Hugo files from local repo by running <code>hugo server -D</code> and accessing the site at <a href="http://localhost:1313/">http://localhost:1313/</a>.</p>
+<p>Run and verify your local Hugo files from local repo by running <code>hugo server -D</code> and accessing the site at <a href="http://localhost:1313/"target="_blank">http://localhost:1313/</a>.</p>
 </li>
 <li>
 <p>Once you are happy with the results:</p>
@@ -590,19 +740,19 @@ git clone git@github.com:patelhiren/patelhiren.com.git
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># adjust to match your GitHub Pages repo</span>
-git submodule add -b master git@github.com:patelhiren/patelhiren.github.io.git
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># adjust to match your GitHub Pages repo</span>
+</span></span><span class="line"><span class="cl">git submodule add -b master git@github.com:patelhiren/patelhiren.github.io.git
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="automating-the-deployment-process">Automating the deployment process</h3>
 <p>Create a new file <code>deploy.sh</code> and set its contents to below script. This will allow you to run <code>deploy.sh</code> to build your site and deploy to GitHub in one go.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -646,49 +796,49 @@ git submodule add -b master git@github.com:patelhiren/patelhiren.github.io.git
 </span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="cp">#!/bin/sh
-</span><span class="cp"></span>
-<span class="c1"># If a command fails then the deploy stops</span>
-<span class="nb">set</span> -e
-
-<span class="nb">printf</span> <span class="s2">&#34;\033[0;32mDeploying updates to GitHub...\033[0m\n&#34;</span>
-
-<span class="c1"># Go To Public folder</span>
-<span class="nb">cd</span> public
-
-<span class="c1"># Discard local changes on public folder</span>
-git reset
-git checkout .
-git clean -fdx
-
-<span class="c1"># Pull the latest changes before updating</span>
-git checkout master
-git pull origin master
-
-<span class="nb">cd</span> ..
-
-<span class="c1"># Garbage collect hugo image-processing generated images.</span>
-hugo --gc
-
-<span class="c1"># Build the project.</span>
-hugo <span class="c1"># if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`</span>
-
-<span class="c1"># Go To Public folder</span>
-<span class="nb">cd</span> public
-
-<span class="c1"># Add changes to git.</span>
-git add .
-
-<span class="c1"># Commit changes.</span>
-<span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;rebuilding site </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&#34;</span>
-<span class="k">if</span> <span class="o">[</span> -n <span class="s2">&#34;</span><span class="nv">$*</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-  <span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$*</span><span class="s2">&#34;</span>
-<span class="k">fi</span>
-git commit -m <span class="s2">&#34;</span><span class="nv">$msg</span><span class="s2">&#34;</span>
-
-<span class="c1"># Push source and build repos.</span>
-git push origin master
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1"># If a command fails then the deploy stops</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -e
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">printf</span> <span class="s2">&#34;\033[0;32mDeploying updates to GitHub...\033[0m\n&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Go To Public folder</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> public
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Discard local changes on public folder</span>
+</span></span><span class="line"><span class="cl">git reset
+</span></span><span class="line"><span class="cl">git checkout .
+</span></span><span class="line"><span class="cl">git clean -fdx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Pull the latest changes before updating</span>
+</span></span><span class="line"><span class="cl">git checkout master
+</span></span><span class="line"><span class="cl">git pull origin master
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ..
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Garbage collect hugo image-processing generated images.</span>
+</span></span><span class="line"><span class="cl">hugo --gc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Build the project.</span>
+</span></span><span class="line"><span class="cl">hugo <span class="c1"># if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Go To Public folder</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> public
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Add changes to git.</span>
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Commit changes.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;rebuilding site </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> -n <span class="s2">&#34;</span><span class="nv">$*</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$*</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;</span><span class="nv">$msg</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Push source and build repos.</span>
+</span></span><span class="line"><span class="cl">git push origin master
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Your site will then be available at <code>https://&lt;username&gt;.github.io</code>.</li>
@@ -699,7 +849,7 @@ git push origin master
 <ul>
 <li>Create a file called <code>CNAME</code> and set its contents to <em>patelhiren.com</em>.</li>
 <li>Added the <code>CNAME</code> file to the git repo at patelhiren.github.io.</li>
-<li>Got to Repo Settings at <a href="https://github.com/patelhiren/patelhiren.github.io/settings">https://github.com/patelhiren/patelhiren.github.io/settings</a> and set <strong>Custom domain</strong> and <strong>Enforce HTTPS</strong> settings.</li>
+<li>Got to Repo Settings at <a href="https://github.com/patelhiren/patelhiren.github.io/settings"target="_blank">https://github.com/patelhiren/patelhiren.github.io/settings</a> and set <strong>Custom domain</strong> and <strong>Enforce HTTPS</strong> settings.</li>
 </ul>
 <p>
 
@@ -709,19 +859,19 @@ git push origin master
             <picture><source 
                     srcset="
                     
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_400x0_resize_box_2.png 400w,
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_400x0_resize_box_3.png 400w,
                     
                     
                     
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_600x0_resize_box_2.png 600w,
-                    
-
-                    
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_800x0_resize_box_2.png 1000w,
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_600x0_resize_box_3.png 600w,
                     
 
                     
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_1000x0_resize_box_2.png 1200w,
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_800x0_resize_box_3.png 1000w,
+                    
+
+                    
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_1000x0_resize_box_3.png 1200w,
                     
 
                     /blog/website-built-with-open-source-and-hosted-for-free/images/01.png
@@ -744,18 +894,18 @@ git push origin master
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">hugo new blog/my-new-post/index.md
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">hugo new blog/my-new-post/index.md
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
 <p>Set and edit your post using Markdown tools.</p>
 </li>
 <li>
-<p>Run and verify your local Hugo files from local repo by running <code>hugo server -D</code> and accessing the site at <a href="http://localhost:1313/">http://localhost:1313/</a>.</p>
+<p>Run and verify your local Hugo files from local repo by running <code>hugo server -D</code> and accessing the site at <a href="http://localhost:1313/"target="_blank">http://localhost:1313/</a>.</p>
 </li>
 <li>
 <p>Run <code>deploy.sh</code> to deploy your site.</p>
@@ -766,20 +916,20 @@ git push origin master
 </ul>
 <h2 id="conclusion">Conclusion</h2>
 <p>This is all that should be necessary. It looks like a lot of steps, but in practice it is very simple and doesn&rsquo;t require as much work to maintain for publishing new posts.</p>
-<section class="footnotes" role="doc-endnotes">
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
-<p>For a git GUI, I prefer <a href="https://www.git-fork.com"target="_blank">Fork</a>. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:1">
+<p>For a git GUI, I prefer <a href="https://www.git-fork.com"target="_blank">Fork</a>.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:2" role="doc-endnote">
-<p>Creating a blog post this way with a folder as the post name allows you to keep images within the same folder instead of keeping images in the root folder. This felt like better grouping of content vs the default Hugo suggested way of generating new post via <em>hugo new blog/my-first-post</em>. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:2">
+<p>Creating a blog post this way with a folder as the post name allows you to keep images within the same folder instead of keeping images in the root folder. This felt like better grouping of content vs the default Hugo suggested way of generating new post via <em>hugo new blog/my-first-post</em>.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:3" role="doc-endnote">
-<p>I prefer <a href="https://code.visualstudio.com"target="_blank">Visual Studio Code</a>. Tip: If using Visual Studio Code you can press <em>CMD+K,V</em> to activate side-by-side live preview of the Markdown you are typing. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:3">
+<p>I prefer <a href="https://code.visualstudio.com"target="_blank">Visual Studio Code</a>. Tip: If using Visual Studio Code you can press <em>CMD+K,V</em> to activate side-by-side live preview of the Markdown you are typing.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>]]></content:encoded>
+</div>]]></content:encoded>
       
     </item>
     
@@ -816,19 +966,19 @@ git push origin master
                     <source 
                         srcset="
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_400x0_resize_box_2.png 400w,
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_400x0_resize_box_3.png 400w,
                         
                         
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_600x0_resize_box_2.png 600w,
-                        
-
-                        
-                        /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_800x0_resize_box_2.png 1000w,
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_600x0_resize_box_3.png 600w,
                         
 
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_1000x0_resize_box_2.png 1200w,
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_800x0_resize_box_3.png 1000w,
+                        
+
+                        
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_1000x0_resize_box_3.png 1200w,
                         
 
                         /blog/boot-camp-on-external-drive/images/Dark/01.png
@@ -837,19 +987,19 @@ git push origin master
                     /><source 
                     srcset="
                     
-                    /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_400x0_resize_box_2.png 400w,
+                    /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_400x0_resize_box_3.png 400w,
                     
                     
                     
-                    /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_600x0_resize_box_2.png 600w,
-                    
-
-                    
-                    /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_800x0_resize_box_2.png 1000w,
+                    /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_600x0_resize_box_3.png 600w,
                     
 
                     
-                    /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_1000x0_resize_box_2.png 1200w,
+                    /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_800x0_resize_box_3.png 1000w,
+                    
+
+                    
+                    /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_1000x0_resize_box_3.png 1200w,
                     
 
                     /blog/boot-camp-on-external-drive/images/01.png
@@ -872,30 +1022,30 @@ git push origin master
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">/Applications/VMware<span class="se">\ </span>Fusion.app/Contents/Library/vmware-rawdiskCreator <span class="se">\
-</span><span class="se"></span>create /dev/disk5 <span class="se">\
-</span><span class="se"></span>fullDevice ~/Virtual<span class="se">\ </span>Machines.localized/Boot<span class="se">\ </span>Camp.vmwarevm/external-hdd <span class="se">\
-</span><span class="se"></span>ide
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">/Applications/VMware<span class="se">\ </span>Fusion.app/Contents/Library/vmware-rawdiskCreator <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>create /dev/disk5 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>fullDevice ~/Virtual<span class="se">\ </span>Machines.localized/Boot<span class="se">\ </span>Camp.vmwarevm/external-hdd <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>ide
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Open <code>Boot Camp.vmx</code> file in a text editor like Visual Studio Code and add the below lines.</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">ide1:0.present</span> <span class="o">=</span> <span class="s">&#34;TRUE&#34;</span>
-<span class="na">ide1:0.fileName</span> <span class="o">=</span> <span class="s">&#34;external-hdd.vmdk&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">ide1:0.present</span> <span class="o">=</span> <span class="s">&#34;TRUE&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="na">ide1:0.fileName</span> <span class="o">=</span> <span class="s">&#34;external-hdd.vmdk&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>If you are running macOS Catalina you will need to give <code>Full Disk Access</code> Permissions to <code>com.vmware.DiskHelper</code>. If you do not see it in the list. Try to start the Virtual Machine. You will get an error starting after which the item will show up in the list.
@@ -909,19 +1059,19 @@ git push origin master
                     <source 
                         srcset="
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_400x0_resize_box_2.png 400w,
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_400x0_resize_box_3.png 400w,
                         
                         
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_600x0_resize_box_2.png 600w,
-                        
-
-                        
-                        /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_800x0_resize_box_2.png 1000w,
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_600x0_resize_box_3.png 600w,
                         
 
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_1000x0_resize_box_2.png 1200w,
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_800x0_resize_box_3.png 1000w,
+                        
+
+                        
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_1000x0_resize_box_3.png 1200w,
                         
 
                         /blog/boot-camp-on-external-drive/images/Dark/02.png
@@ -930,19 +1080,19 @@ git push origin master
                     /><source 
                     srcset="
                     
-                    /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_400x0_resize_box_2.png 400w,
+                    /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_400x0_resize_box_3.png 400w,
                     
                     
                     
-                    /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_600x0_resize_box_2.png 600w,
-                    
-
-                    
-                    /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_800x0_resize_box_2.png 1000w,
+                    /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_600x0_resize_box_3.png 600w,
                     
 
                     
-                    /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_1000x0_resize_box_2.png 1200w,
+                    /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_800x0_resize_box_3.png 1000w,
+                    
+
+                    
+                    /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_1000x0_resize_box_3.png 1200w,
                     
 
                     /blog/boot-camp-on-external-drive/images/02.png

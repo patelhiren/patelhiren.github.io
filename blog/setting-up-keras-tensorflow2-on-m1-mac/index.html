@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.104.3" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>Setting up Keras Tensorflow2 on M1 Mac&nbsp;&ndash;&nbsp;Hiren Patel</title><link rel="stylesheet" href="/css/core.min.f5c1c6e2b2716e31ef4ae9808411c8b9032f2db42a871fa413c47053fbcefba05f8f2b065af88ebc39259e344a9f16ba.css" integrity="sha384-9cHG4rJxbjHvSumAhBHIuQMvLbQqhx&#43;kE8RwU/vO&#43;6BfjysGWviOvDklnjRKnxa6"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Setting up Keras Tensorflow2 on M1 Mac" /><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#191919">
+<meta name="msapplication-TileColor" content="#00aba9">
+<body>
+    <div class="base-body"><section id="header" class="site header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><img class="site logo" src="/patelhiren-logo.png" alt="website logo" width="42px" height="42px" /><span class="site name">Hiren Patel</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/about/">About</a></nav></div></span></div><div class="site slogan wrap">
+            <span class="title left-side">Documenting things as I learn.</span>
+            <span class="right-side"><div class="social-buttons">
+    <a href="/index.xml" aria-label="Subscribe in your RSS reader">
+        <span>
+            <i class="fa fa-rss"></i>
+        </span>
+    </a>
+    <a href="https://twitter.com/patelhiren" target="_blank" aria-label="Follow @patelhiren on Twitter">
+        <span>
+            <i class="fa fa-twitter"></i>
+        </span>
+    </a>
+</div></span>
+        </div></section><div id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">Setting up Keras Tensorflow2 on M1 Mac</h1><p class="article date">Oct 21, 2022</p></section><article class="article markdown-body"><p>I am currently reading <a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank">Deep Learning with TensorFlow and Keras</a> to get started with Machine Learning/Deep Learning. Here is how I setup a local <em>Keras/Tensorflow 2.0</em> environment on my <em>M1 Max MacBook Pro</em> running <em>macOS 12.6</em>.</p>
+<p>Install <a href="https://github.com/conda-forge/miniforge"target="_blank"><em>miniforge</em></a>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">brew install --cask miniforge
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I use zsh with <a href="https://iterm2.com"target="_blank">iTerm2</a> as my terminal so I need to initialize conda with the following command.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">conda init zsh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We now create an environment named <em>tensorflow</em> where we could run our ML/DL Keras training.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">conda create -n tensorflow <span class="nv">python</span><span class="o">=</span>3.9.5
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We then switch to the <em>tensorflow</em> environment and install dependencies.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># Install tensorflow dependencies</span>
+</span></span><span class="line"><span class="cl">conda install -c apple tensorflow-deps
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Install tensorflow macos</span>
+</span></span><span class="line"><span class="cl">python -m pip install tensorflow-macos
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Install tensorflow metal plugin</span>
+</span></span><span class="line"><span class="cl">python -m pip install tensorflow-metal
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Install libjpeg (needed by mathplotlib)</span>
+</span></span><span class="line"><span class="cl">brew install libjpeg
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Install mathplotlib and jupyterlab</span>
+</span></span><span class="line"><span class="cl">conda install -y matplotlib jupyterlab
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>You may now run <code>jupyter lab</code> command from the <em>tensorflow</em> environment to start the jupyter lab environment from the command line. I however prefer using <a href="https://code.visualstudio.com/"target="_blank">Visual Studio Code</a> and start an environment under vscode as documented below.</p>
+<ul>
+<li>Install the <code>Jupyter</code> extension under vscode.</li>
+<li>Load the <em>Command Pallet</em> using (<code>Cmd+Shift+P</code>) and select <code>Jupyter: Select Interpreter to Start Jupyter Server</code> and then select <code>Python 3.9.5 ('tensorflow')</code> or whatever environment you want to use.</li>
+<li>Load the <em>Command Pallet</em> using (<code>Cmd+Shift+P</code>) and select <code>Create: New Jupyter Notebook</code></li>
+<li>You may now run all the Jupyter notebook in vscode. When run the code cell, vscode will start the jupyter server if it is not already started in the selected environment.</li>
+</ul>
+<p>Code:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+</span></span><span class="line"><span class="cl"><span class="n">W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;W&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;b&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@tf</span><span class="o">.</span><span class="n">function</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">W</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl"><span class="n">out_a</span> <span class="o">=</span> <span class="n">model</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">out_a</span><span class="p">)</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Output:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">Metal device set to: Apple M1 Max
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">systemMemory: 32.00 GB
+</span></span><span class="line"><span class="cl">maxCacheSize: 10.67 GB
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">tf.Tensor(
+</span></span><span class="line"><span class="cl">[[1. 0.]
+</span></span><span class="line"><span class="cl"> [1. 0.]], shape=(2, 2), dtype=float32)
+</span></span></code></pre></td></tr></table>
+</div>
+</div></article><section class="article labels"><a class="category" href=/categories/how-tos/>How Tos</a><a class="category" href=/categories/programming/>Programming</a><a class="category" href=/categories/machine-learning/>Machine Learning</a><a class="tag" href=/tags/artificial-intelligence/>Artificial Intelligence</a><a class="tag" href=/tags/machine-learning/>Machine Learning</a><a class="tag" href=/tags/deep-learning/>Deep Learning</a><a class="tag" href=/tags/tensorflow/>TensorFlow</a><a class="tag" href=/tags/keras/>Keras</a></section></div><section class="article navigation"><p><a class="link" href="/blog/setting-vscode-as-default-text-editor-on-macos/"><span class="li">&rarr;</span>Setting Visual Studio Code as default text editor on macOS</a></p></section></div><section id="footer" class="footer"><div class="footer-wrap">
+    <p class="copyright">© Copyright 2022, Hiren Patel</p>
+    
+    <p class="disclaimer">Disclaimer: The opinions expressed herein are my own personal opinions and do not represent my employer’s view in any way.</p>
+    
+</div></section>
+    
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+        data-cf-beacon='{"token": "0ceb2b0172264816ba290291f3b99e4f"}'></script>
+    
+</div>
+</body>
+
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.81.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.104.3" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title>Using Tunnelblick to Connect to WatchGuard VPN&nbsp;&ndash;&nbsp;Hiren Patel</title><link rel="stylesheet" href="/css/core.min.4a3158e547a2e12e14cb51e59907c17e21ab8d5b1dab7d0b5fdc5d46aa9cccd6370566d36e0d004ef7c21eb3830b3caf.css" integrity="sha384-SjFY5Uei4S4Uy1HlmQfBfiGrjVsdq30LX9xdRqqczNY3BWbTbg0ATvfCHrODCzyv"><meta name="twitter:card" content="summary" />
+<meta name="supported-color-schemes" content="light dark"><title>Using Tunnelblick to Connect to WatchGuard VPN&nbsp;&ndash;&nbsp;Hiren Patel</title><link rel="stylesheet" href="/css/core.min.f5c1c6e2b2716e31ef4ae9808411c8b9032f2db42a871fa413c47053fbcefba05f8f2b065af88ebc39259e344a9f16ba.css" integrity="sha384-9cHG4rJxbjHvSumAhBHIuQMvLbQqhx&#43;kE8RwU/vO&#43;6BfjysGWviOvDklnjRKnxa6"><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Using Tunnelblick to Connect to WatchGuard VPN" /><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -30,7 +30,7 @@
         </div></section><div id="content"><div class="article-container"><section class="article header">
     <h1 class="article title">Using Tunnelblick to Connect to WatchGuard VPN</h1><p class="article date">Apr 26, 2020</p></section><article class="article markdown-body"><p>I needed to connect to a corporate VPN that used <a href="https://www.watchguard.com"target="_blank">WatchGuard</a>. The IT provided <em>Mobile VPN with SSL Client</em> software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.</p>
 <p>I discovered that the <em>WatchGuard</em> VPN internally is an OpenVPN server. I use <a href="https://tunnelblick.net"target="_blank">Tunnelblick</a> for my personal OpenVPN connections and that has worked reliably on macOS Catalina. So if I just had the connection <em>ovpn</em> config file I could use <em>Tunnelblick</em> for my VPN connections.</p>
-<p>WatchGuard has a detailed support document that walks the user through downloading their software to use for VPN connection at <a href="https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html">https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html</a>.</p>
+<p>WatchGuard has a detailed support document that walks the user through downloading their software to use for VPN connection at <a href="https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html"target="_blank">https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html</a>.</p>
 <p>Turns out that page also provides an option to download the <em>ovpn</em> config that can be used with <em>Tunnelblick</em>.</p>
 <h2 id="acquiring-the-ovpn-config">Acquiring the OVPN config</h2>
 <ul>
@@ -105,7 +105,7 @@
 <li>This will offer a <em>client.ovpn</em> file that you can import into <em>Tunnelblick</em> for connection to your corporate network.</li>
 </ul>
 <p>The page offer options to download the Mobile VPN with SSL Client software for Mac and Windows as well if you want those.</p></article><section class="article labels"><a class="category" href=/categories/how-tos/>How Tos</a><a class="tag" href=/tags/vpn/>VPN</a><a class="tag" href=/tags/catalina/>Catalina</a><a class="tag" href=/tags/macos/>macOS</a></section></div><section class="article navigation"><p><a class="link" href="/blog/domain-specific-dns-servers-on-macos/"><span class="li">&larr;</span>Domain Specific DNS Servers on macOS</a></p><p><a class="link" href="/blog/using-mermaid-js-to-generate-flow-charts/"><span class="li">&rarr;</span>Using mermaid-js to generate Flow Charts</a></p></section></div><section id="footer" class="footer"><div class="footer-wrap">
-    <p class="copyright">© Copyright 2021, Hiren Patel</p>
+    <p class="copyright">© Copyright 2022, Hiren Patel</p>
     
     <p class="disclaimer">Disclaimer: The opinions expressed herein are my own personal opinions and do not represent my employer’s view in any way.</p>
     

@@ -24,28 +24,28 @@
 <p>Install <a href="https://github.com/moretension/duti"target="_blank">duti</a>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">brew install duti
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">brew install duti
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Set <em>Visual Studio Code</em> as the default editor for all text files and public files by running the below commands using <em>duti</em>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># Mark vscode as default editor for all text files</span>
-duti -s com.microsoft.VSCode public.plain-text all
-
-<span class="c1"># Some files without extensions are considered public.data and not public.text. Set those to open in vscode as well</span>
-duti -s com.microsoft.VSCode public.data all
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># Mark vscode as default editor for all text files</span>
+</span></span><span class="line"><span class="cl">duti -s com.microsoft.VSCode public.plain-text all
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Some files without extensions are considered public.data and not public.text. Set those to open in vscode as well</span>
+</span></span><span class="line"><span class="cl">duti -s com.microsoft.VSCode public.data all
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The changes should take effect right away and no reboot or relaunch of <em>Finder</em> should be needed.</p>]]></content:encoded>
       
@@ -63,24 +63,34 @@ duti -s com.microsoft.VSCode public.data all
 <p>Connect to corporate VPN so that Active Directory is reachable over VPN. Open Terminal and run the following command.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">kpasswd myusername@FULLADDOMAIN.COM
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">kpasswd myusername@FULLADDOMAIN.COM
+</span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code class="language-console" data-lang="console">myusername@FULLADDOMAIN.COM's Password: 
-New password for myusername@FULLADDOMAIN.COM: 
-Verify password - New password for myusername@FULLADDOMAIN.COM: 
-Success
-</code></pre><p>Once password change is confirmed, run the following to force sync the updated password to keychain.</p>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">myusername@FULLADDOMAIN.COM&#39;s Password: 
+</span></span></span><span class="line"><span class="cl"><span class="go">New password for myusername@FULLADDOMAIN.COM: 
+</span></span></span><span class="line"><span class="cl"><span class="go">Verify password - New password for myusername@FULLADDOMAIN.COM: 
+</span></span></span><span class="line"><span class="cl"><span class="go">Success
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Once password change is confirmed, run the following to force sync the updated password to keychain.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">dsconfigad -passinterval <span class="m">0</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">dsconfigad -passinterval <span class="m">0</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Wait about a minute, log out and log back in. You should be logging in with the new password. If login still requires the old password the password sync with active directory did not happen yet. Log back in with the old password, connect to VPN (You will need to use your new password when connecting to VPN) and run the <code>dsconfigad -passinterval 0</code> command and wait a mintue or so before trying to log out/login.</p>
 <p>The process once finished will make sure your local keychain password and AD passwords are in sync.</p>]]></content:encoded>
@@ -101,59 +111,59 @@ Success
 <p>Here is an example of what the contents could be.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain corp.network</span>
-<span class="na">nameserver 10.0.0.1</span>
-<span class="na">nameserver 10.0.0.2</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cfg" data-lang="cfg"><span class="line"><span class="cl"><span class="na">domain corp.network</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 10.0.0.1</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 10.0.0.2</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>I could create another file for the lab network with a different dns server.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain lab.network</span>
-<span class="na">nameserver 10.0.1.1</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cfg" data-lang="cfg"><span class="line"><span class="cl"><span class="na">domain lab.network</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 10.0.1.1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The above would make it so any lookup to <code>xxx.corp.network</code> would use the specified nameserver at <code>10.0.0.1</code> and <code>10.0.0.2</code>.
 If I try to access <code>devserver.lab.network</code> it would ask the nameserver at <code>10.0.1.1</code> for its IP.</p>
 <p>You could take it a step further and provide backup lookup settings. For example you may have a server located at <code>demo.corp.com</code> that resolves different IPs based on if you are connected to VPN or not. So <code>demo.corp.com</code> should be resolved via VPN nameservers when you are connected to VPN, but via ISP name servers when not connected to VPN. To achive this you could create two files under <code>/etc/resolver</code> like so.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain corp.com</span>
-<span class="na">nameserver 10.0.0.1</span>
-<span class="na">nameserver 10.0.0.2</span>
-<span class="na">search_order 1</span>
-<span class="na">timeout 5</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cfg" data-lang="cfg"><span class="line"><span class="cl"><span class="na">domain corp.com</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 10.0.0.1</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 10.0.0.2</span>
+</span></span><span class="line"><span class="cl"><span class="na">search_order 1</span>
+</span></span><span class="line"><span class="cl"><span class="na">timeout 5</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain corp.com</span>
-<span class="na">nameserver 1.1.1.1</span>
-<span class="na">nameserver 1.0.0.1</span>
-<span class="na">search_order 2</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cfg" data-lang="cfg"><span class="line"><span class="cl"><span class="na">domain corp.com</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 1.1.1.1</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 1.0.0.1</span>
+</span></span><span class="line"><span class="cl"><span class="na">search_order 2</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The above two files make it so the macOS DNS resolver will first try to use the VPN domains for resolution. If we dont get a response withing 5 seconds, it will fallback to the second file and use <a href="https://1.1.1.1/dns/"target="_blank">Cloudflare DNS</a> to do an internet lookup of the IP address.</p>]]></content:encoded>
       
@@ -169,7 +179,7 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
       
       <content:encoded><![CDATA[<p>I needed to connect to a corporate VPN that used <a href="https://www.watchguard.com"target="_blank">WatchGuard</a>. The IT provided <em>Mobile VPN with SSL Client</em> software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.</p>
 <p>I discovered that the <em>WatchGuard</em> VPN internally is an OpenVPN server. I use <a href="https://tunnelblick.net"target="_blank">Tunnelblick</a> for my personal OpenVPN connections and that has worked reliably on macOS Catalina. So if I just had the connection <em>ovpn</em> config file I could use <em>Tunnelblick</em> for my VPN connections.</p>
-<p>WatchGuard has a detailed support document that walks the user through downloading their software to use for VPN connection at <a href="https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html">https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html</a>.</p>
+<p>WatchGuard has a detailed support document that walks the user through downloading their software to use for VPN connection at <a href="https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html"target="_blank">https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html</a>.</p>
 <p>Turns out that page also provides an option to download the <em>ovpn</em> config that can be used with <em>Tunnelblick</em>.</p>
 <h2 id="acquiring-the-ovpn-config">Acquiring the OVPN config</h2>
 <ul>
@@ -260,11 +270,11 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
 <p>To correct it I first reset the &ldquo;Screen Recording&rdquo; permissions for Skype by running this command on Terminal.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">tccutil reset ScreenCapture com.microsoft.SkypeForBusiness
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">tccutil reset ScreenCapture com.microsoft.SkypeForBusiness
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>If you do not provide the <strong>com.microsoft.SkypeForBusiness</strong> identifier, the Screen Recording permissions for all apps will be reset and you will have to provide permissions again as needed.</p>

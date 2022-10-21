@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.81.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.104.3" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title>Domain Specific DNS Servers on macOS&nbsp;&ndash;&nbsp;Hiren Patel</title><link rel="stylesheet" href="/css/core.min.4a3158e547a2e12e14cb51e59907c17e21ab8d5b1dab7d0b5fdc5d46aa9cccd6370566d36e0d004ef7c21eb3830b3caf.css" integrity="sha384-SjFY5Uei4S4Uy1HlmQfBfiGrjVsdq30LX9xdRqqczNY3BWbTbg0ATvfCHrODCzyv"><meta name="twitter:card" content="summary" />
+<meta name="supported-color-schemes" content="light dark"><title>Domain Specific DNS Servers on macOS&nbsp;&ndash;&nbsp;Hiren Patel</title><link rel="stylesheet" href="/css/core.min.f5c1c6e2b2716e31ef4ae9808411c8b9032f2db42a871fa413c47053fbcefba05f8f2b065af88ebc39259e344a9f16ba.css" integrity="sha384-9cHG4rJxbjHvSumAhBHIuQMvLbQqhx&#43;kE8RwU/vO&#43;6BfjysGWviOvDklnjRKnxa6"><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Domain Specific DNS Servers on macOS" /><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -34,62 +34,62 @@
 <p>Here is an example of what the contents could be.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain corp.network</span>
-<span class="na">nameserver 10.0.0.1</span>
-<span class="na">nameserver 10.0.0.2</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cfg" data-lang="cfg"><span class="line"><span class="cl"><span class="na">domain corp.network</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 10.0.0.1</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 10.0.0.2</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>I could create another file for the lab network with a different dns server.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain lab.network</span>
-<span class="na">nameserver 10.0.1.1</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cfg" data-lang="cfg"><span class="line"><span class="cl"><span class="na">domain lab.network</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 10.0.1.1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The above would make it so any lookup to <code>xxx.corp.network</code> would use the specified nameserver at <code>10.0.0.1</code> and <code>10.0.0.2</code>.
 If I try to access <code>devserver.lab.network</code> it would ask the nameserver at <code>10.0.1.1</code> for its IP.</p>
 <p>You could take it a step further and provide backup lookup settings. For example you may have a server located at <code>demo.corp.com</code> that resolves different IPs based on if you are connected to VPN or not. So <code>demo.corp.com</code> should be resolved via VPN nameservers when you are connected to VPN, but via ISP name servers when not connected to VPN. To achive this you could create two files under <code>/etc/resolver</code> like so.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain corp.com</span>
-<span class="na">nameserver 10.0.0.1</span>
-<span class="na">nameserver 10.0.0.2</span>
-<span class="na">search_order 1</span>
-<span class="na">timeout 5</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cfg" data-lang="cfg"><span class="line"><span class="cl"><span class="na">domain corp.com</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 10.0.0.1</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 10.0.0.2</span>
+</span></span><span class="line"><span class="cl"><span class="na">search_order 1</span>
+</span></span><span class="line"><span class="cl"><span class="na">timeout 5</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">domain corp.com</span>
-<span class="na">nameserver 1.1.1.1</span>
-<span class="na">nameserver 1.0.0.1</span>
-<span class="na">search_order 2</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cfg" data-lang="cfg"><span class="line"><span class="cl"><span class="na">domain corp.com</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 1.1.1.1</span>
+</span></span><span class="line"><span class="cl"><span class="na">nameserver 1.0.0.1</span>
+</span></span><span class="line"><span class="cl"><span class="na">search_order 2</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The above two files make it so the macOS DNS resolver will first try to use the VPN domains for resolution. If we dont get a response withing 5 seconds, it will fallback to the second file and use <a href="https://1.1.1.1/dns/"target="_blank">Cloudflare DNS</a> to do an internet lookup of the IP address.</p></article><section class="article labels"><a class="category" href=/categories/how-tos/>How Tos</a><a class="tag" href=/tags/vpn/>VPN</a><a class="tag" href=/tags/catalina/>Catalina</a><a class="tag" href=/tags/macos/>macOS</a></section></div><section class="article navigation"><p><a class="link" href="/blog/dagger-2-beginner-tutorial/"><span class="li">&larr;</span>Dagger 2 Beginner Tutorial</a></p><p><a class="link" href="/blog/using-tunnelblick-to-connect-to-watchguard-vpn/"><span class="li">&rarr;</span>Using Tunnelblick to Connect to WatchGuard VPN</a></p></section></div><section id="footer" class="footer"><div class="footer-wrap">
-    <p class="copyright">© Copyright 2021, Hiren Patel</p>
+    <p class="copyright">© Copyright 2022, Hiren Patel</p>
     
     <p class="disclaimer">Disclaimer: The opinions expressed herein are my own personal opinions and do not represent my employer’s view in any way.</p>
     

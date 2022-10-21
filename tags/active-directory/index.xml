@@ -24,24 +24,34 @@
 <p>Connect to corporate VPN so that Active Directory is reachable over VPN. Open Terminal and run the following command.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">kpasswd myusername@FULLADDOMAIN.COM
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">kpasswd myusername@FULLADDOMAIN.COM
+</span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code class="language-console" data-lang="console">myusername@FULLADDOMAIN.COM's Password: 
-New password for myusername@FULLADDOMAIN.COM: 
-Verify password - New password for myusername@FULLADDOMAIN.COM: 
-Success
-</code></pre><p>Once password change is confirmed, run the following to force sync the updated password to keychain.</p>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">myusername@FULLADDOMAIN.COM&#39;s Password: 
+</span></span></span><span class="line"><span class="cl"><span class="go">New password for myusername@FULLADDOMAIN.COM: 
+</span></span></span><span class="line"><span class="cl"><span class="go">Verify password - New password for myusername@FULLADDOMAIN.COM: 
+</span></span></span><span class="line"><span class="cl"><span class="go">Success
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Once password change is confirmed, run the following to force sync the updated password to keychain.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">dsconfigad -passinterval <span class="m">0</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">dsconfigad -passinterval <span class="m">0</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Wait about a minute, log out and log back in. You should be logging in with the new password. If login still requires the old password the password sync with active directory did not happen yet. Log back in with the old password, connect to VPN (You will need to use your new password when connecting to VPN) and run the <code>dsconfigad -passinterval 0</code> command and wait a mintue or so before trying to log out/login.</p>
 <p>The process once finished will make sure your local keychain password and AD passwords are in sync.</p>]]></content:encoded>

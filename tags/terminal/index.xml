@@ -26,11 +26,11 @@
 <p>If you do not have Xcode you may install <em>PNG Crush</em> via <a href="https://brew.sh"target="_blank">Homebrew</a> using the following command.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">brew install pngcrush
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">brew install pngcrush
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>If using Xcode method, the <em><strong>pngcrush</strong></em> binary will be at <code>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/pngcrush</code>.</p>
 <p>If using Homebrew, the <em><strong>pngcrush</strong></em> binary will be at <code>/usr/local/bin/pngcrush</code></p>
@@ -38,13 +38,13 @@
 <p>To crush a PNG image via Terminal you can run the below command.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># pngcrush will process the input.png and create a compressed crushed.png</span>
-pngcrush input.png crushed.png
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># pngcrush will process the input.png and create a compressed crushed.png</span>
+</span></span><span class="line"><span class="cl">pngcrush input.png crushed.png
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="automating-the-process-using-automator-on-macos">Automating the process using Automator on macOS.</h2>
 <ul>
@@ -59,19 +59,19 @@ pngcrush input.png crushed.png
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/01_hu57fa4703ef8765fef9d7e6fd433a74fa_927894_400x0_resize_box_2.png 400w,
+                    /blog/pngcrush-automator-action/images/01_hu57fa4703ef8765fef9d7e6fd433a74fa_927894_400x0_resize_box_3.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/01_hu57fa4703ef8765fef9d7e6fd433a74fa_927894_600x0_resize_box_2.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/01_hu57fa4703ef8765fef9d7e6fd433a74fa_927894_800x0_resize_box_2.png 1000w,
+                    /blog/pngcrush-automator-action/images/01_hu57fa4703ef8765fef9d7e6fd433a74fa_927894_600x0_resize_box_3.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/01_hu57fa4703ef8765fef9d7e6fd433a74fa_927894_1000x0_resize_box_2.png 1200w,
+                    /blog/pngcrush-automator-action/images/01_hu57fa4703ef8765fef9d7e6fd433a74fa_927894_800x0_resize_box_3.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/01_hu57fa4703ef8765fef9d7e6fd433a74fa_927894_1000x0_resize_box_3.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/01.png
@@ -103,19 +103,19 @@ pngcrush input.png crushed.png
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/02_hu57fa4703ef8765fef9d7e6fd433a74fa_734562_400x0_resize_box_2.png 400w,
+                    /blog/pngcrush-automator-action/images/02_hu57fa4703ef8765fef9d7e6fd433a74fa_734562_400x0_resize_box_3.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/02_hu57fa4703ef8765fef9d7e6fd433a74fa_734562_600x0_resize_box_2.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/02_hu57fa4703ef8765fef9d7e6fd433a74fa_734562_800x0_resize_box_2.png 1000w,
+                    /blog/pngcrush-automator-action/images/02_hu57fa4703ef8765fef9d7e6fd433a74fa_734562_600x0_resize_box_3.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/02_hu57fa4703ef8765fef9d7e6fd433a74fa_734562_1000x0_resize_box_2.png 1200w,
+                    /blog/pngcrush-automator-action/images/02_hu57fa4703ef8765fef9d7e6fd433a74fa_734562_800x0_resize_box_3.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/02_hu57fa4703ef8765fef9d7e6fd433a74fa_734562_1000x0_resize_box_3.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/02.png
@@ -142,19 +142,19 @@ pngcrush input.png crushed.png
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/03_hu57fa4703ef8765fef9d7e6fd433a74fa_483613_400x0_resize_box_2.png 400w,
+                    /blog/pngcrush-automator-action/images/03_hu57fa4703ef8765fef9d7e6fd433a74fa_483613_400x0_resize_box_3.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/03_hu57fa4703ef8765fef9d7e6fd433a74fa_483613_600x0_resize_box_2.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/03_hu57fa4703ef8765fef9d7e6fd433a74fa_483613_800x0_resize_box_2.png 1000w,
+                    /blog/pngcrush-automator-action/images/03_hu57fa4703ef8765fef9d7e6fd433a74fa_483613_600x0_resize_box_3.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/03_hu57fa4703ef8765fef9d7e6fd433a74fa_483613_1000x0_resize_box_2.png 1200w,
+                    /blog/pngcrush-automator-action/images/03_hu57fa4703ef8765fef9d7e6fd433a74fa_483613_800x0_resize_box_3.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/03_hu57fa4703ef8765fef9d7e6fd433a74fa_483613_1000x0_resize_box_3.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/03.png
@@ -176,7 +176,7 @@ pngcrush input.png crushed.png
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -193,22 +193,22 @@ pngcrush input.png crushed.png
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="k">for</span> f in <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
-<span class="k">do</span>
-    <span class="c1"># Verify that the extension of the file is actually png</span>
-    <span class="c1"># (case insensitive compare)</span>
-  <span class="nv">filename</span><span class="o">=</span><span class="k">$(</span>basename <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">&#34;</span><span class="k">)</span>
-  <span class="nv">ext</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">filename</span><span class="p">##*.</span><span class="si">}</span><span class="s2">&#34;</span>
-  <span class="k">if</span> <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$ext</span><span class="s2">&#34;</span> <span class="p">|</span> grep -i png<span class="p">;</span> <span class="k">then</span>
-    <span class="c1"># If the file is a png, run pngcrush on it.</span>
-    <span class="c1"># Save the output in the same place with a temporary extension</span>
-    <span class="c1"># of .crushed_</span>
-    /usr/local/bin/pngcrush <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">.crushed_&#34;</span>
-        <span class="c1"># Overwrite the original file with the crushed file.</span>
-    mv <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">.crushed_&#34;</span> <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">&#34;</span>
-  <span class="k">fi</span>
-<span class="k">done</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="k">for</span> f in <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Verify that the extension of the file is actually png</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># (case insensitive compare)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">filename</span><span class="o">=</span><span class="k">$(</span>basename <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">ext</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">filename</span><span class="p">##*.</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$ext</span><span class="s2">&#34;</span> <span class="p">|</span> grep -i png<span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># If the file is a png, run pngcrush on it.</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Save the output in the same place with a temporary extension</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># of .crushed_</span>
+</span></span><span class="line"><span class="cl">    /usr/local/bin/pngcrush <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">.crushed_&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Overwrite the original file with the crushed file.</span>
+</span></span><span class="line"><span class="cl">    mv <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">.crushed_&#34;</span> <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Save the automation as <em><strong>PNG Crush</strong></em>.</li>
@@ -221,19 +221,19 @@ pngcrush input.png crushed.png
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/04_hu57fa4703ef8765fef9d7e6fd433a74fa_894941_400x0_resize_box_2.png 400w,
+                    /blog/pngcrush-automator-action/images/04_hu57fa4703ef8765fef9d7e6fd433a74fa_894941_400x0_resize_box_3.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/04_hu57fa4703ef8765fef9d7e6fd433a74fa_894941_600x0_resize_box_2.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/04_hu57fa4703ef8765fef9d7e6fd433a74fa_894941_800x0_resize_box_2.png 1000w,
+                    /blog/pngcrush-automator-action/images/04_hu57fa4703ef8765fef9d7e6fd433a74fa_894941_600x0_resize_box_3.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/04_hu57fa4703ef8765fef9d7e6fd433a74fa_894941_1000x0_resize_box_2.png 1200w,
+                    /blog/pngcrush-automator-action/images/04_hu57fa4703ef8765fef9d7e6fd433a74fa_894941_800x0_resize_box_3.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/04_hu57fa4703ef8765fef9d7e6fd433a74fa_894941_1000x0_resize_box_3.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/04.png
@@ -258,19 +258,19 @@ pngcrush input.png crushed.png
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/05_hu66c66eef13015fd0d383e1d348905754_469811_400x0_resize_box_2.png 400w,
+                    /blog/pngcrush-automator-action/images/05_hu66c66eef13015fd0d383e1d348905754_469811_400x0_resize_box_3.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/05_hu66c66eef13015fd0d383e1d348905754_469811_600x0_resize_box_2.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/05_hu66c66eef13015fd0d383e1d348905754_469811_800x0_resize_box_2.png 1000w,
+                    /blog/pngcrush-automator-action/images/05_hu66c66eef13015fd0d383e1d348905754_469811_600x0_resize_box_3.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/05_hu66c66eef13015fd0d383e1d348905754_469811_1000x0_resize_box_2.png 1200w,
+                    /blog/pngcrush-automator-action/images/05_hu66c66eef13015fd0d383e1d348905754_469811_800x0_resize_box_3.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/05_hu66c66eef13015fd0d383e1d348905754_469811_1000x0_resize_box_3.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/05.png
@@ -295,7 +295,7 @@ pngcrush input.png crushed.png
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/06_hu199dd5201849aa5e82e86ff561cd249f_36199_400x0_resize_box_2.png 400w,
+                    /blog/pngcrush-automator-action/images/06_hu199dd5201849aa5e82e86ff561cd249f_36199_400x0_resize_box_3.png 400w,
                     
                     
                     

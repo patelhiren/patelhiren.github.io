@@ -25,11 +25,11 @@
 <p>To correct it I first reset the &ldquo;Screen Recording&rdquo; permissions for Skype by running this command on Terminal.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">tccutil reset ScreenCapture com.microsoft.SkypeForBusiness
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">tccutil reset ScreenCapture com.microsoft.SkypeForBusiness
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>If you do not provide the <strong>com.microsoft.SkypeForBusiness</strong> identifier, the Screen Recording permissions for all apps will be reset and you will have to provide permissions again as needed.</p>

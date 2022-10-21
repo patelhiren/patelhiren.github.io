@@ -21,8 +21,8 @@
       <description>&lt;p&gt;I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about &lt;a href=&#34;https://github.com/mermaid-js/mermaid&#34;title=&#34;mermaid-js GitHub Page&#34;target=&#34;_blank&#34;&gt;mermaid-js&lt;/a&gt; which allows one to use Markdown like syntax to generte various diagrams including flow charts.&lt;/p&gt;</description>
       
       <content:encoded><![CDATA[<p>I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about <a href="https://github.com/mermaid-js/mermaid"title="mermaid-js GitHub Page"target="_blank">mermaid-js</a> which allows one to use Markdown like syntax to generte various diagrams including flow charts.</p>
-<p>There is a live editor available at <a href="https://mermaidjs.github.io/mermaid-live-editor/">https://mermaidjs.github.io/mermaid-live-editor/</a> that allows you to to enter Markdown like text and generate a PNG/SVG output that you can download and embed in your documentation.</p>
-<pre><code class="language-mermaid" data-lang="mermaid">graph TD
+<p>There is a live editor available at <a href="https://mermaidjs.github.io/mermaid-live-editor/"target="_blank">https://mermaidjs.github.io/mermaid-live-editor/</a> that allows you to to enter Markdown like text and generate a PNG/SVG output that you can download and embed in your documentation.</p>
+<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph TD
 A[Christmas] --&gt;|Get money| B(Go shopping)
 B --&gt; C{Let me think}
 C --&gt;|One| D[Laptop]
@@ -82,7 +82,7 @@ C --&gt;|Three| F[fa:fa-car Car]
 <li>Pie Chart</li>
 <li>ER Diagram</li>
 </ul>
-<p>Documentation is available at <a href="https://mermaid-js.github.io/mermaid">https://mermaid-js.github.io/mermaid</a>.</p>]]></content:encoded>
+<p>Documentation is available at <a href="https://mermaid-js.github.io/mermaid"target="_blank">https://mermaid-js.github.io/mermaid</a>.</p>]]></content:encoded>
       
     </item>
     

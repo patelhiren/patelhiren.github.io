@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.81.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.104.3" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title>macOS and Active Directory Passwords&nbsp;&ndash;&nbsp;Hiren Patel</title><link rel="stylesheet" href="/css/core.min.4a3158e547a2e12e14cb51e59907c17e21ab8d5b1dab7d0b5fdc5d46aa9cccd6370566d36e0d004ef7c21eb3830b3caf.css" integrity="sha384-SjFY5Uei4S4Uy1HlmQfBfiGrjVsdq30LX9xdRqqczNY3BWbTbg0ATvfCHrODCzyv"><meta name="twitter:card" content="summary" />
+<meta name="supported-color-schemes" content="light dark"><title>macOS and Active Directory Passwords&nbsp;&ndash;&nbsp;Hiren Patel</title><link rel="stylesheet" href="/css/core.min.f5c1c6e2b2716e31ef4ae9808411c8b9032f2db42a871fa413c47053fbcefba05f8f2b065af88ebc39259e344a9f16ba.css" integrity="sha384-9cHG4rJxbjHvSumAhBHIuQMvLbQqhx&#43;kE8RwU/vO&#43;6BfjysGWviOvDklnjRKnxa6"><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="macOS and Active Directory Passwords" /><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -32,28 +32,38 @@
 <p>Connect to corporate VPN so that Active Directory is reachable over VPN. Open Terminal and run the following command.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">kpasswd myusername@FULLADDOMAIN.COM
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">kpasswd myusername@FULLADDOMAIN.COM
+</span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code class="language-console" data-lang="console">myusername@FULLADDOMAIN.COM's Password: 
-New password for myusername@FULLADDOMAIN.COM: 
-Verify password - New password for myusername@FULLADDOMAIN.COM: 
-Success
-</code></pre><p>Once password change is confirmed, run the following to force sync the updated password to keychain.</p>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">myusername@FULLADDOMAIN.COM&#39;s Password: 
+</span></span></span><span class="line"><span class="cl"><span class="go">New password for myusername@FULLADDOMAIN.COM: 
+</span></span></span><span class="line"><span class="cl"><span class="go">Verify password - New password for myusername@FULLADDOMAIN.COM: 
+</span></span></span><span class="line"><span class="cl"><span class="go">Success
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Once password change is confirmed, run the following to force sync the updated password to keychain.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">dsconfigad -passinterval <span class="m">0</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">dsconfigad -passinterval <span class="m">0</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Wait about a minute, log out and log back in. You should be logging in with the new password. If login still requires the old password the password sync with active directory did not happen yet. Log back in with the old password, connect to VPN (You will need to use your new password when connecting to VPN) and run the <code>dsconfigad -passinterval 0</code> command and wait a mintue or so before trying to log out/login.</p>
 <p>The process once finished will make sure your local keychain password and AD passwords are in sync.</p></article><section class="article labels"><a class="category" href=/categories/how-tos/>How Tos</a><a class="tag" href=/tags/macos/>macOS</a><a class="tag" href=/tags/active-directory/>Active Directory</a></section></div><section class="article navigation"><p><a class="link" href="/blog/setting-vscode-as-default-text-editor-on-macos/"><span class="li">&larr;</span>Setting Visual Studio Code as default text editor on macOS</a></p><p><a class="link" href="/blog/cross-compiling-on-macos-via-docker/"><span class="li">&rarr;</span>Cross Compiling on macOS via Docker</a></p></section></div><section id="footer" class="footer"><div class="footer-wrap">
-    <p class="copyright">© Copyright 2021, Hiren Patel</p>
+    <p class="copyright">© Copyright 2022, Hiren Patel</p>
     
     <p class="disclaimer">Disclaimer: The opinions expressed herein are my own personal opinions and do not represent my employer’s view in any way.</p>
     
