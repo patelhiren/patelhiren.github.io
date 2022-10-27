@@ -21,13 +21,13 @@
       <description>&lt;p&gt;I am currently reading &lt;a href=&#34;https://www.amazon.com/gp/product/B0B18D695W&#34;target=&#34;_blank&#34;&gt;Deep Learning with TensorFlow and Keras&lt;/a&gt; to get started with Machine Learning/Deep Learning. Here is how I setup a local &lt;em&gt;Keras/Tensorflow 2.0&lt;/em&gt; environment on my &lt;em&gt;M1 Max MacBook Pro&lt;/em&gt; running &lt;em&gt;macOS 12.6&lt;/em&gt;.&lt;/p&gt;</description>
       
       <content:encoded><![CDATA[<p>I am currently reading <a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank">Deep Learning with TensorFlow and Keras</a> to get started with Machine Learning/Deep Learning. Here is how I setup a local <em>Keras/Tensorflow 2.0</em> environment on my <em>M1 Max MacBook Pro</em> running <em>macOS 12.6</em>.</p>
-<p>Install <a href="https://github.com/conda-forge/miniforge"target="_blank"><em>miniforge</em></a>.</p>
+<p>Install <a href="https://docs.conda.io/en/latest/miniconda.html"target="_blank"><em>miniconda</em></a>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">brew install --cask miniforge
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">brew install --cask miniconda
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>I use zsh with <a href="https://iterm2.com"target="_blank">iTerm2</a> as my terminal so I need to initialize conda with the following command.</p>
@@ -39,13 +39,25 @@
 <pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">conda init zsh
 </span></span></code></pre></td></tr></table>
 </div>
+</div><p>This will make it so everytime iTerm2 is opened, the conda <em>base</em> environment will be activated. I prefer to activate my environment manually, so I did the below to deactivate the base environment on launch of iTerm2.</p>
+<p>In <code>~/.zshrc</code> add the following section after the <code># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</code> line.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># Deactivate base conda environment. You can activate an environment using conda activate &lt;&lt;environment-name&gt;&gt;</span>
+</span></span><span class="line"><span class="cl">conda deactivate
+</span></span></code></pre></td></tr></table>
+</div>
 </div><p>We now create an environment named <em>tensorflow</em> where we could run our ML/DL Keras training.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">conda create -n tensorflow <span class="nv">python</span><span class="o">=</span>3.9.5
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">conda create -n tensorflow <span class="nv">python</span><span class="o">=</span>3.9
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>We then switch to the <em>tensorflow</em> environment and install dependencies.</p>
@@ -65,9 +77,18 @@
 </span><span class="lnt">12
 </span><span class="lnt">13
 </span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># Install tensorflow dependencies</span>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># Activate tensorflow environment</span>
+</span></span><span class="line"><span class="cl">conda activate tensorflow
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Install apple tensorflow dependencies</span>
 </span></span><span class="line"><span class="cl">conda install -c apple tensorflow-deps
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Install tensorflow macos</span>
@@ -76,6 +97,9 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># Install tensorflow metal plugin</span>
 </span></span><span class="line"><span class="cl">python -m pip install tensorflow-metal
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Install tensorflow readymade datasets</span>
+</span></span><span class="line"><span class="cl">python -m pip install tensorflow-datasets
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Install libjpeg (needed by mathplotlib)</span>
 </span></span><span class="line"><span class="cl">brew install libjpeg
 </span></span><span class="line"><span class="cl">
@@ -83,61 +107,65 @@
 </span></span><span class="line"><span class="cl">conda install -y matplotlib jupyterlab
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>You may now run <code>jupyter lab</code> command from the <em>tensorflow</em> environment to start the jupyter lab environment from the command line. I however prefer using <a href="https://code.visualstudio.com/"target="_blank">Visual Studio Code</a> and start an environment under vscode as documented below.</p>
+</div><p>This may not be necessary for future installs. But I ran into an error with numpy when trying to run my notebook code.</p>
+<blockquote>
+<p><em><strong>module compiled against API version 0x10 but this version of numpy is 0xf</strong></em></p>
+</blockquote>
+<p>To correct this I had to run this command in my <em>tensorflow</em> environment.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">python -m pip install numpy --upgrade
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Another warning I ran into.</p>
+<blockquote>
+<p><em><strong>TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See <a href="https://ipywidgets.readthedocs.io/en/stable/user_install.html"target="_blank">https://ipywidgets.readthedocs.io/en/stable/user_install.html</a> from .autonotebook import tqdm as notebook_tqdm</strong></em></p>
+</blockquote>
+<p>To resolve I ran the below in my <em>tensorflow</em> environment.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">python -m pip install ipywidgets widgetsnbextension pandas-profiling
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>You may now run <code>jupyter notebook</code> command from the <em>tensorflow</em> environment to start the jupyter notebook environment from the command line. I however prefer using <a href="https://code.visualstudio.com/"target="_blank">Visual Studio Code</a> and start an environment under vscode as documented below.</p>
 <ul>
 <li>Install the <code>Jupyter</code> extension under vscode.</li>
-<li>Load the <em>Command Pallet</em> using (<code>Cmd+Shift+P</code>) and select <code>Jupyter: Select Interpreter to Start Jupyter Server</code> and then select <code>Python 3.9.5 ('tensorflow')</code> or whatever environment you want to use.</li>
+<li>Load the <em>Command Pallet</em> using (<code>Cmd+Shift+P</code>) and select <code>Jupyter: Select Interpreter to Start Jupyter Server</code> and then select <code>Python 3.9.13 ('tensorflow')</code> or whatever environment you want to use.</li>
 <li>Load the <em>Command Pallet</em> using (<code>Cmd+Shift+P</code>) and select <code>Create: New Jupyter Notebook</code></li>
 <li>You may now run all the Jupyter notebook in vscode. When run the code cell, vscode will start the jupyter server if it is not already started in the selected environment.</li>
 </ul>
-<p>Code:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-</span></span><span class="line"><span class="cl"><span class="n">W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;W&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;b&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nd">@tf</span><span class="o">.</span><span class="n">function</span>
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">W</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span>
-</span></span><span class="line"><span class="cl"><span class="n">out_a</span> <span class="o">=</span> <span class="n">model</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">out_a</span><span class="p">)</span> 
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>Output:</p>
+<h3 id="code">Code</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">Metal device set to: Apple M1 Max
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">systemMemory: 32.00 GB
-</span></span><span class="line"><span class="cl">maxCacheSize: 10.67 GB
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">tf.Tensor(
-</span></span><span class="line"><span class="cl">[[1. 0.]
-</span></span><span class="line"><span class="cl"> [1. 0.]], shape=(2, 2), dtype=float32)
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;TensorFlow has access to the following devices:&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;* </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="output">Output</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">TensorFlow has access to the following devices:
+</span></span><span class="line"><span class="cl">* PhysicalDevice(name=&#39;/physical_device:CPU:0&#39;, device_type=&#39;CPU&#39;)
+</span></span><span class="line"><span class="cl">* PhysicalDevice(name=&#39;/physical_device:GPU:0&#39;, device_type=&#39;GPU&#39;)
 </span></span></code></pre></td></tr></table>
 </div>
 </div>]]></content:encoded>
