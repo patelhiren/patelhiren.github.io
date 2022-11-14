@@ -1716,7 +1716,7 @@ C --&gt;|Three| F[fa:fa-car Car]
 </span></span><span class="line"><span class="cl">    <span class="c1"># If the file is a png, run pngcrush on it.</span>
 </span></span><span class="line"><span class="cl">    <span class="c1"># Save the output in the same place with a temporary extension</span>
 </span></span><span class="line"><span class="cl">    <span class="c1"># of .crushed_</span>
-</span></span><span class="line"><span class="cl">    /usr/local/bin/pngcrush <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">.crushed_&#34;</span>
+</span></span><span class="line"><span class="cl">    /opt/homebrew/bin/pngcrush <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">.crushed_&#34;</span>
 </span></span><span class="line"><span class="cl">        <span class="c1"># Overwrite the original file with the crushed file.</span>
 </span></span><span class="line"><span class="cl">    mv <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">.crushed_&#34;</span> <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="k">fi</span>
