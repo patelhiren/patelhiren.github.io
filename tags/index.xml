@@ -7,10 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Fri, 21 Oct 2022 13:32:11 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 13 Nov 2022 16:32:58 -0500</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Home Automation</title>
+      <link>https://patelhiren.com/tags/home-automation/</link>
+      <pubDate>Sun, 13 Nov 2022 16:32:58 -0500</pubDate>
+      
+      <guid>https://patelhiren.com/tags/home-automation/</guid>
+      <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
+    </item>
+    
+    <item>
+      <title>HomeKit</title>
+      <link>https://patelhiren.com/tags/homekit/</link>
+      <pubDate>Sun, 13 Nov 2022 16:32:58 -0500</pubDate>
+      
+      <guid>https://patelhiren.com/tags/homekit/</guid>
+      <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
+    </item>
     
     <item>
       <title>Artificial Intelligence</title>
