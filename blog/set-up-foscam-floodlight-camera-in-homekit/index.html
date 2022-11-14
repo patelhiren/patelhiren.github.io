@@ -69,12 +69,12 @@
     </span>
 </span></a></p>
 <p>Set the settings like so:</p>
-<h5 id="basic-settings">Basic Settings</h5>
+<h3 id="basic-settings">Basic Settings</h3>
 <ul>
 <li>Set Device name and Device time.</li>
 <li>Disable Voice prompt.</li>
 </ul>
-<h5 id="video-settings">Video Settings</h5>
+<h3 id="video-settings">Video Settings</h3>
 <ul>
 <li>Set Video encode settings like below. Set both the Main stream and Sub stream settings like the one in the screenshot. You make choose to use QHD stream type if you prefer 2K resolution, however I found the response time to be slower in HomeKit with that.</li>
 </ul>
@@ -160,7 +160,7 @@
         <span class="title">Color Adjustment Settings</span>
     </span>
 </span></a></p>
-<h5 id="detector-settings">Detector Settings</h5>
+<h3 id="detector-settings">Detector Settings</h3>
 <ul>
 <li>I found the camera&rsquo;s onboard motion detector to be too conservative for my liking so I disabled the <em>Motion Detection</em> &amp; <em>Sound Detection</em> under the <em>Detector</em> settings. The only setting turned on is the <em>PIR Detection</em>.</li>
 </ul>
@@ -200,7 +200,7 @@
         <span class="title">PIR Detection Settings</span>
     </span>
 </span></a></p>
-<h5 id="record-settings">Record Settings</h5>
+<h3 id="record-settings">Record Settings</h3>
 <ul>
 <li>Enable <em>SD card</em> option under <em>Record</em>.</li>
 <li>Under <em>Schedule Recording</em> I enabled 24/7 Recording including Audio by tapping the <em>All</em> area in the <em>Schedule</em> table.</li>
@@ -242,7 +242,7 @@
     </span>
 </span></a></p>
 <p>Save and close the Camera Settings window.</p>
-<h2 id="making-the-onscreen-time-readable">Making the Onscreen Time Readable</h2>
+<h3 id="making-the-onscreen-time-readable">Making the Onscreen Time Readable</h3>
 <p>By default the onscreen time has not background and so it is overlayed directly on the video. This makes the time in the video hard to read. In order to fix this we use the Privacy zone and setup a rectangle around the time. This way it will alway have a black background behind the time, improving readablity.</p>
 <p>Run the below command adjusting values for the <code>camera-ip</code>, <code>camera-user-name</code>, and <code>camera-user-password</code> to setup the privacy rectangle behind time.</p>
 <div class="highlight"><div class="chroma">
@@ -359,7 +359,7 @@
 <li><strong>Open CV Motion Detection</strong> - To expose custom motion detection sensing via OpenCV so Home Hub can process motion and record clips to HomeKit Secure Video.</li>
 <li><strong>Dummy Switch Plugin</strong> - To control the floodlight via HomeKit.</li>
 </ul>
-<h5 id="rtsp-camera-plugin-setup">RTSP Camera Plugin Setup</h5>
+<h3 id="rtsp-camera-plugin-setup">RTSP Camera Plugin Setup</h3>
 <ul>
 <li>Navigate to <em>RTSP Camera Plugin</em> page and click <em>Add Device</em>.</li>
 <li>Enter a name for your camera and click <em>Create</em></li>
@@ -445,14 +445,14 @@
 <li>Switch to the HomeKit Pairing tab and make sure the <em>Standalone Accessory Mode</em> is checked.</li>
 <li>You may now add the camera to HomeKit. The QR Code to pair with HomeKit will be available under the HomeKit tab of the camera under Scrypted.</li>
 </ul>
-<h2 id="adding-a-switch-to-control-the-floodlight">Adding a Switch to control the Floodlight</h2>
+<h3 id="adding-a-switch-to-control-the-floodlight">Adding a Switch to control the Floodlight</h3>
 <ul>
 <li>Goto the <em>Dummy Switch Plugin</em> page and click <em>Add Device</em> to add a new switch device.</li>
 <li>Set the <em>Reset Sensor</em> value to zero to make it a manual switch, instead of a switch that resets state after 10 seconds.</li>
 <li>Enable HomeKit integration, set HomeKit Pairing to Standalone mode and pair with HomeKit.</li>
 <li>The switch will not do anything if tapped on. To fix this we have to create <em>Automations</em> that will be triggered when the switch is turned on or off.</li>
 </ul>
-<h2 id="defining-automation-to-control-the-floodlight-via-dummy-switch">Defining Automation to control the Floodlight via Dummy Switch</h2>
+<h3 id="defining-automation-to-control-the-floodlight-via-dummy-switch">Defining Automation to control the Floodlight via Dummy Switch</h3>
 <ul>
 <li>From the Scrypted Menu, navigate to <em>Automations-&gt;Create Automation</em>.</li>
 <li>On the <em>General</em> tab, check the <em>Run Automations to Completion</em> checkbox.</li>
@@ -487,7 +487,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>This will now make the switch trigger the approrpriate automation to turn the floodlight on/off.</p>
-<p>Overall this setup is working very well and HomeKit recognizes People/Pets/Vehicles and Packages pretty well and quickly.</p></article><section class="article labels"><a class="category" href=/categories/home-automation/>Home Automation</a><a class="tag" href=/tags/homekit/>HomeKit</a><a class="tag" href=/tags/home-automation/>Home Automation</a></section></div><section class="article navigation"><p><a class="link" href="/blog/setting-up-keras-tensorflow2-on-m1-mac/"><span class="li">&rarr;</span>Setting up Keras Tensorflow2 on M1 Mac</a></p></section></div><section id="footer" class="footer"><div class="footer-wrap">
+<p>I also blocked the camera ips from accessing the internet except the <em>NTP</em> port via my firewall. The cameras connect locally to my Home Hub (Apple TV) and then are available to HomeKit everywhere through that. So that is an additional level of privacy I enjoy. Overall this setup is working very well and HomeKit recognizes People/Pets/Vehicles and Packages pretty well and quickly.</p></article><section class="article labels"><a class="category" href=/categories/home-automation/>Home Automation</a><a class="tag" href=/tags/homekit/>HomeKit</a><a class="tag" href=/tags/home-automation/>Home Automation</a></section></div><section class="article navigation"><p><a class="link" href="/blog/setting-up-keras-tensorflow2-on-m1-mac/"><span class="li">&rarr;</span>Setting up Keras Tensorflow2 on M1 Mac</a></p></section></div><section id="footer" class="footer"><div class="footer-wrap">
     <p class="copyright">© Copyright 2022, Hiren Patel</p>
     
     <p class="disclaimer">Disclaimer: The opinions expressed herein are my own personal opinions and do not represent my employer’s view in any way.</p>
