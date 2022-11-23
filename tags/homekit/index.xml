@@ -399,7 +399,7 @@
     </span>
 </span></a></p>
 <ul>
-<li>Switch to the <em>OpenCV Motion Detection</em> tab and set the settings as you wish to tweak. For my setup I only changed the <em>Frame Analysis Interval</em> from <em>250</em> to <em>100</em>.</li>
+<li>Switch to the <em>OpenCV Motion Detection</em> tab and set the settings as you wish to tweak. For my setup I only changed the <em>Motion Area</em> to <em>1000</em>, <em>Motion Threshold</em> to <em>15</em>, and <em>Frame Analysis Interval</em> to <em>500</em>.</li>
 </ul>
 <p>
 
@@ -409,11 +409,9 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/10_hubfef285d91658d28c17964e76564bbfa_104227_400x0_resize_box_3.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/10_hu4d13bbea201236aa5bfa85ccd287c067_110095_400x0_resize_box_3.png 400w,
                     
                     
-                    
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/10_hubfef285d91658d28c17964e76564bbfa_104227_600x0_resize_box_3.png 600w,
                     
 
                     
@@ -448,38 +446,51 @@
 <ul>
 <li>From the Scrypted Menu, navigate to <em>Automations-&gt;Create Automation</em>.</li>
 <li>On the <em>General</em> tab, check the <em>Run Automations to Completion</em> checkbox.</li>
-<li>On the <em>Edit</em> tab set the Name to an appropriate name like &ldquo;Turn on Floodlight&rdquo;.</li>
+<li>On the <em>Edit</em> tab set the Name to an appropriate name like &ldquo;Floodlight Automation&rdquo;.</li>
 <li>In <em>Automation Triggers</em> setion select your Dummy Switch (On|Off) from the dropdown.</li>
-<li>For <em>Trigger Condition</em>, enter <code>eventData === true</code> and click <em>Save Trigger</em></li>
+<li>Keep the <em>Trigger Condition</em> blank and click <em>Save Trigger</em></li>
 <li>For <em>Automation Actions</em>, select <em>Run Shell Script</em> from the dropdown.</li>
 <li>The script to turn on the floodlight is</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>curl <span class="s2">&#34;http://&lt;&lt;camera-ip-address&gt;&gt;:88/cgi-bin/CGIProxy.fcgi?cmd=openWhiteLight&amp;usr=&lt;&lt;camera-user-name&gt;&gt;&amp;pwd=&lt;&lt;camera-user-password&gt;&gt;&#34;</span>
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$EVENT_DATA</span><span class="s2">&#34;</span> <span class="o">=</span> <span class="nb">true</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">then</span>
+</span></span><span class="line"><span class="cl">    curl <span class="s2">&#34;http://&lt;&lt;camera-ip-address&gt;&gt;:88/cgi-bin/CGIProxy.fcgi?cmd=openWhiteLight&amp;usr=&lt;&lt;camera-user-name&gt;&gt;&amp;pwd=&lt;&lt;camera-user-password&gt;&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span> 
+</span></span><span class="line"><span class="cl">    curl <span class="s2">&#34;http://&lt;&lt;camera-ip-address&gt;&gt;:88/cgi-bin/CGIProxy.fcgi?cmd=closeWhiteLight&amp;usr=&lt;&lt;camera-user-name&gt;&gt;&amp;pwd=&lt;&lt;camera-user-password&gt;&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Every time the floodlight toggles the nightvision toggles at night in Auto mode.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># There is a bug in Foscam firmware currently which causes this to turn off</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># HDR setting even though it shows as enabled in app. Toggling the HDR option </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># turns it on again properly. So we just run this command to toggle HDR back on</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># everytime we control the floodlight via this script.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">curl <span class="s2">&#34;http://&lt;&lt;camera-ip-address&gt;&gt;:88/cgi-bin/CGIProxy.fcgi?cmd=setHdrMode&amp;mode=1&amp;usr=&lt;&lt;camera-user-name&gt;&gt;&amp;pwd=&lt;&lt;camera-user-password&gt;&gt;&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>Similarly create another automation, but this time for <em>Trigger Condition</em> <code>eventData === false</code>.</li>
-<li>The script to turn off the floodlight is</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>curl <span class="s2">&#34;http://&lt;&lt;camera-ip-address&gt;&gt;:88/cgi-bin/CGIProxy.fcgi?cmd=closeWhiteLight&amp;usr=&lt;&lt;camera-user-name&gt;&gt;&amp;pwd=&lt;&lt;camera-user-password&gt;&gt;&#34;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>This will now make the switch trigger the approrpriate automation to turn the floodlight on/off.</p>
-<p>I also blocked the camera ips from accessing the internet except the <em>NTP</em> port via my firewall. The cameras connect locally to my Home Hub (Apple TV) and then are available to HomeKit everywhere through that. So that is an additional level of privacy I enjoy. Overall this setup is working very well and HomeKit recognizes People/Pets/Vehicles and Packages pretty well and quickly.</p>]]></content:encoded>
+</div><p>I also blocked the camera ips from accessing the internet except the <em>NTP</em> port via my firewall. The cameras connect locally to my Home Hub (Apple TV) and then are available to HomeKit everywhere through that. So that is an additional level of privacy I enjoy. Overall this setup is working very well and HomeKit recognizes People/Pets/Vehicles and Packages pretty well and quickly.</p>]]></content:encoded>
       
     </item>
     
