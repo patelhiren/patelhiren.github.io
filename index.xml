@@ -68,7 +68,7 @@
 </ul>
 <h3 id="video-settings">Video Settings</h3>
 <ul>
-<li>Set Video encode settings like below. Set both the Main stream and Sub stream settings like the one in the screenshot. You make choose to use QHD stream type if you prefer 2K resolution, however I found the response time to be slower in HomeKit with that.</li>
+<li>Set Video encode settings like below. Set both the Main stream and Sub stream settings like the one in the screenshot. You may choose to use QHD stream type if you prefer 2K resolution, however I found the response time to be slower in HomeKit with that.</li>
 </ul>
 <p>
 
