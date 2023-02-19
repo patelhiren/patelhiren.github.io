@@ -7,17 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Sun, 13 Nov 2022 16:32:58 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 19 Feb 2023 12:18:21 -0500</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Home Automation</title>
-      <link>https://patelhiren.com/categories/home-automation/</link>
-      <pubDate>Sun, 13 Nov 2022 16:32:58 -0500</pubDate>
+      <title>How Tos</title>
+      <link>https://patelhiren.com/categories/how-tos/</link>
+      <pubDate>Sun, 19 Feb 2023 12:18:21 -0500</pubDate>
       
-      <guid>https://patelhiren.com/categories/home-automation/</guid>
+      <guid>https://patelhiren.com/categories/how-tos/</guid>
       <description></description>
       
       <content:encoded><![CDATA[]]></content:encoded>
@@ -25,11 +25,11 @@
     </item>
     
     <item>
-      <title>How Tos</title>
-      <link>https://patelhiren.com/categories/how-tos/</link>
-      <pubDate>Fri, 21 Oct 2022 13:32:11 -0400</pubDate>
+      <title>Home Automation</title>
+      <link>https://patelhiren.com/categories/home-automation/</link>
+      <pubDate>Sun, 13 Nov 2022 16:32:58 -0500</pubDate>
       
-      <guid>https://patelhiren.com/categories/how-tos/</guid>
+      <guid>https://patelhiren.com/categories/home-automation/</guid>
       <description></description>
       
       <content:encoded><![CDATA[]]></content:encoded>
