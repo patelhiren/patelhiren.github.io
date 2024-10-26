@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>patelhiren.com on Hiren Patel</title>
+    <title>Patelhiren.com on Hiren Patel</title>
     <link>https://patelhiren.com/categories/patelhiren.com/</link>
-    <description>Recent content in patelhiren.com on Hiren Patel</description>
+    <description>Recent content in Patelhiren.com on Hiren Patel</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright {year}, Hiren Patel</copyright>
@@ -19,10 +19,10 @@
       
       <guid>https://patelhiren.com/blog/website-built-with-open-source-and-hosted-for-free/</guid>
       <description>&lt;p&gt;For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Introducing &lt;a href=&#34;https://patelhiren.com&#34;title=&#34;Hiren Patel&amp;#39;s Blog&#34;target=&#34;_blank&#34;&gt;patelhiren.com&lt;/a&gt; in all its glory. 🎉&lt;/strong&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;strong&gt;Introducing &lt;a href=&#34;https://patelhiren.com&#34;title=&#34;Hiren Patel&amp;#39;s Blog&#34;target=&#34;_blank&#34;&gt;patelhiren.com&lt;/a&gt; in all its glory. &amp;#x1f389;&lt;/strong&gt;&lt;/p&gt;</description>
       
       <content:encoded><![CDATA[<p>For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.</p>
-<p><strong>Introducing <a href="https://patelhiren.com"title="Hiren Patel&#39;s Blog"target="_blank">patelhiren.com</a> in all its glory. 🎉</strong></p>
+<p><strong>Introducing <a href="https://patelhiren.com"title="Hiren Patel&#39;s Blog"target="_blank">patelhiren.com</a> in all its glory. &#x1f389;</strong></p>
 <h2 id="goals">Goals</h2>
 <p>For this site I had a few basic goals in mind.</p>
 <ul>
@@ -37,7 +37,7 @@
 <p>The above goals meant I was going to be building a Static Site using one of the many <a href="https://www.staticgen.com"target="_blank">Static Site Generator Tools</a></p>
 <h2 id="tools">Tools</h2>
 <p>After deciding I wanted a static site, I researched the various <a href="https://www.staticgen.com"target="_blank">Static Site Generator Tools</a> and settled on <a href="https://gohugo.io"target="_blank"><em>Hugo</em></a> as my choice.</p>
-<p>Hugo written in <a href="https://golang.org"target="_blank">Go</a>, is highly reviewed and praised for its speed of site generation. It supports macOS (my primary OS of choice), Windows, Linux, OpenBSD and FreeBSD. It has a very well documented site and looks to have an active community developing and supporting it. It allows me to create my content in <a href="https://daringfireball.net/projects/markdown/"target="_blank">Markdown</a> syntax thus allowing me to keep it in plain text on the filesystem. It also supports code syntax highlighting and emoji 👌. You can check details of Hugo&rsquo;s Makrdown support at <a href="https://www.markdownguide.org/tools/hugo/"target="_blank">markdownguide.org</a></p>
+<p>Hugo written in <a href="https://golang.org"target="_blank">Go</a>, is highly reviewed and praised for its speed of site generation. It supports macOS (my primary OS of choice), Windows, Linux, OpenBSD and FreeBSD. It has a very well documented site and looks to have an active community developing and supporting it. It allows me to create my content in <a href="https://daringfireball.net/projects/markdown/"target="_blank">Markdown</a> syntax thus allowing me to keep it in plain text on the filesystem. It also supports code syntax highlighting and emoji &#x1f44c;. You can check details of Hugo&rsquo;s Makrdown support at <a href="https://www.markdownguide.org/tools/hugo/"target="_blank">markdownguide.org</a></p>
 <p>Hugo supports a variety of <a href="https://themes.gohugo.io"target="_blank">Themes</a>. I settled on <a href="https://themes.gohugo.io/hugo-notepadium/"target="_blank">Notepadium</a> because it provided most of what I wanted out of box. I plan to customize it a bit to my liking as I learn more.</p>
 <h2 id="hosting">Hosting</h2>
 <p>For hosting I decided to use <a href="https://pages.github.com"target="_blank">GitHub Pages</a>. GitHub Pages is free, supports SSL and provides automatic CDN for serving fast webpages closer to your user. It also had the added benefit of having my generated site auotmatically have commit history and remote backup.</p>
@@ -422,19 +422,19 @@
             <picture><source 
                     srcset="
                     
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_400x0_resize_box_3.png 400w,
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu13273166032454448240.png 400w,
                     
                     
                     
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_600x0_resize_box_3.png 600w,
-                    
-
-                    
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_800x0_resize_box_3.png 1000w,
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu1759417586400108908.png 600w,
                     
 
                     
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_1000x0_resize_box_3.png 1200w,
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu9227253634962248620.png 1000w,
+                    
+
+                    
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu10938347202659600624.png 1200w,
                     
 
                     /blog/website-built-with-open-source-and-hosted-for-free/images/01.png

@@ -7,10 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Sun, 19 Feb 2023 12:18:21 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 25 Oct 2024 19:50:11 -0400</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MacOS</title>
+      <link>https://patelhiren.com/tags/macos/</link>
+      <pubDate>Fri, 25 Oct 2024 19:50:11 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/tags/macos/</guid>
+      <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
+    </item>
+    
+    <item>
+      <title>Sequoia</title>
+      <link>https://patelhiren.com/tags/sequoia/</link>
+      <pubDate>Fri, 25 Oct 2024 19:50:11 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/tags/sequoia/</guid>
+      <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
+    </item>
     
     <item>
       <title>Dcoker</title>
@@ -121,18 +145,6 @@
     </item>
     
     <item>
-      <title>macOS</title>
-      <link>https://patelhiren.com/tags/macos/</link>
-      <pubDate>Tue, 23 Mar 2021 22:29:29 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/tags/macos/</guid>
-      <description></description>
-      
-      <content:encoded><![CDATA[]]></content:encoded>
-      
-    </item>
-    
-    <item>
       <title>Visual Studio Code</title>
       <link>https://patelhiren.com/tags/visual-studio-code/</link>
       <pubDate>Tue, 23 Mar 2021 22:29:29 -0400</pubDate>
@@ -145,7 +157,7 @@
     </item>
     
     <item>
-      <title>vscode</title>
+      <title>Vscode</title>
       <link>https://patelhiren.com/tags/vscode/</link>
       <pubDate>Tue, 23 Mar 2021 22:29:29 -0400</pubDate>
       

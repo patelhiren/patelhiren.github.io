@@ -7,10 +7,73 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Sun, 19 Feb 2023 12:18:21 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 25 Oct 2024 19:50:11 -0400</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Fixing File Associations on macOS Sequoia</title>
+      <link>https://patelhiren.com/blog/fixing-file-associations-on-macos-sequoia/</link>
+      <pubDate>Fri, 25 Oct 2024 19:50:11 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/blog/fixing-file-associations-on-macos-sequoia/</guid>
+      <description>&lt;p&gt;After upgrading to macOS Sequoia (15.0), my QFX files would not open correctly in &lt;em&gt;&lt;a href=&#34;https://www.banktivity.com&#34;target=&#34;_blank&#34;&gt;Banktivity&lt;/a&gt;&lt;/em&gt;. Banktivity would not show as an option in &lt;em&gt;Open With&lt;/em&gt; in the File Info panel. I ended up having to use &lt;em&gt;lsregister&lt;/em&gt; utility to fix the association manually.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>After upgrading to macOS Sequoia (15.0), my QFX files would not open correctly in <em><a href="https://www.banktivity.com"target="_blank">Banktivity</a></em>. Banktivity would not show as an option in <em>Open With</em> in the File Info panel. I ended up having to use <em>lsregister</em> utility to fix the association manually.</p>
+<p>The problem turned out to be that macOS Launch Services db had references to older versions of Banktivity that were no longer installed. I had version 9 installed, but it had assoications registered to version 7, 8 and 9. I also found that my iOS device had both Banktivity 7 and Banktivity 9 installed. I belive this was causing conflicts on macOS because of iCloud File Sync. I found out the associated by running the below command.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -dump <span class="p">|</span> grep -i <span class="s2">&#34;path:.*banktivity&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Output:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">path:                       /Users/\*\*\*/Library/Daemon Containers/\*\*\*/Data/Library/Caches/Placeholders-v2.noindex/com.iggsoftware.banktivity4-mobile-7.5.2/Banktivity 7.app (0x52f8)
+</span></span><span class="line"><span class="cl">path:                       /Users/\*\*\*/Library/Daemon Containers/\*\*\*/Data/Library/Caches/Placeholders-v2.noindex/com.iggsoftware.banktivity-9.5.3/Banktivity.app (0x53a4)
+</span></span><span class="line"><span class="cl">path:                       /Applications/Banktivity.app (0x6568)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I unregistering all registered listed paths using the below command for each path.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -u <span class="s2">&#34;/Applications/Banktivity.app&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Once I unregistered all. I registered the only valid path.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -R -f -v /Applications/Banktivity.app
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This fixed my QFX file associations for Banktivity.</p>
+<p>PS: using the force cleanup of all file associations on Sequoia using the below command will fix the issue until a reboot. But it also breaks <em>System Settings</em>. None of the panels in <em>System Settings</em> load after running the below command.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain <span class="nb">local</span> -domain system -domain user
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>So I recommend not using this command.</p>]]></content:encoded>
+      
+    </item>
     
     <item>
       <title>Upgrading Portainer Community Edition on Docker</title>
@@ -78,11 +141,11 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/01_hu0a025a519ceb8d052e1f0a71b86c96bc_112262_400x0_resize_box_3.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/01_hu854835216039767888.png 400w,
                     
                     
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/01_hu0a025a519ceb8d052e1f0a71b86c96bc_112262_600x0_resize_box_3.png 600w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/01_hu1155203469866038401.png 600w,
                     
 
                     
@@ -120,19 +183,19 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu45c9a15eab44f340f9ad6c49725a8eb8_299617_400x0_resize_box_3.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu10715603915529705066.png 400w,
                     
                     
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu45c9a15eab44f340f9ad6c49725a8eb8_299617_600x0_resize_box_3.png 600w,
-                    
-
-                    
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu45c9a15eab44f340f9ad6c49725a8eb8_299617_800x0_resize_box_3.png 1000w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu14316823806985360839.png 600w,
                     
 
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu45c9a15eab44f340f9ad6c49725a8eb8_299617_1000x0_resize_box_3.png 1200w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu1555432292505962888.png 1000w,
+                    
+
+                    
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu6728639325262776162.png 1200w,
                     
 
                     /blog/set-up-foscam-floodlight-camera-in-homekit/images/02.png
@@ -166,19 +229,19 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu7921c6876f50425bbc3d1805b7b5ded3_275667_400x0_resize_box_3.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu924322101021826482.png 400w,
                     
                     
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu7921c6876f50425bbc3d1805b7b5ded3_275667_600x0_resize_box_3.png 600w,
-                    
-
-                    
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu7921c6876f50425bbc3d1805b7b5ded3_275667_800x0_resize_box_3.png 1000w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu3208633523759380406.png 600w,
                     
 
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu7921c6876f50425bbc3d1805b7b5ded3_275667_1000x0_resize_box_3.png 1200w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu10631119168180201951.png 1000w,
+                    
+
+                    
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu13199576637089040714.png 1200w,
                     
 
                     /blog/set-up-foscam-floodlight-camera-in-homekit/images/03.png
@@ -206,19 +269,19 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu7921c6876f50425bbc3d1805b7b5ded3_334226_400x0_resize_box_3.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu1024207893000157201.png 400w,
                     
                     
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu7921c6876f50425bbc3d1805b7b5ded3_334226_600x0_resize_box_3.png 600w,
-                    
-
-                    
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu7921c6876f50425bbc3d1805b7b5ded3_334226_800x0_resize_box_3.png 1000w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu13053976562220965075.png 600w,
                     
 
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu7921c6876f50425bbc3d1805b7b5ded3_334226_1000x0_resize_box_3.png 1200w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu5771694592035171665.png 1000w,
+                    
+
+                    
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu13745234138375822360.png 1200w,
                     
 
                     /blog/set-up-foscam-floodlight-camera-in-homekit/images/04.png
@@ -247,19 +310,19 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu7921c6876f50425bbc3d1805b7b5ded3_299816_400x0_resize_box_3.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu11836542350063629728.png 400w,
                     
                     
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu7921c6876f50425bbc3d1805b7b5ded3_299816_600x0_resize_box_3.png 600w,
-                    
-
-                    
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu7921c6876f50425bbc3d1805b7b5ded3_299816_800x0_resize_box_3.png 1000w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu12152731951925620717.png 600w,
                     
 
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu7921c6876f50425bbc3d1805b7b5ded3_299816_1000x0_resize_box_3.png 1200w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu15930760081947996542.png 1000w,
+                    
+
+                    
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu10783728860825662910.png 1200w,
                     
 
                     /blog/set-up-foscam-floodlight-camera-in-homekit/images/05.png
@@ -295,7 +358,7 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/06_hu922444d1f531acfccfd7b5cf3802777f_23504_400x0_resize_box_3.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/06_hu16984489087316007069.png 400w,
                     
                     
                     
@@ -418,7 +481,7 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/09_hu35afafbde4b94f8d097ed887b76c7008_49502_400x0_resize_box_3.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/09_hu1827515286913983319.png 400w,
                     
                     
                     
@@ -451,7 +514,7 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/10_hu4d13bbea201236aa5bfa85ccd287c067_110095_400x0_resize_box_3.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/10_hu4839033542985781733.png 400w,
                     
                     
                     
@@ -910,7 +973,7 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
             <picture><source 
                     srcset="
                     
-                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01_hu657c574761ea48e57c808b0297ce1c55_28832_400x0_resize_q75_box.jpg 400w,
+                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01_hu715290535129476507.jpg 400w,
                     
                     
                     
@@ -944,7 +1007,7 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
             <picture><source 
                     srcset="
                     
-                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02_hu3d03a01dcc18bc5be0e67db3d8d209a6_168343_400x0_resize_q75_box.jpg 400w,
+                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02_hu6277794632518365184.jpg 400w,
                     
                     
                     
@@ -1055,10 +1118,10 @@ C --&gt;|Three| F[fa:fa-car Car]
       
       <guid>https://patelhiren.com/blog/website-built-with-open-source-and-hosted-for-free/</guid>
       <description>&lt;p&gt;For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Introducing &lt;a href=&#34;https://patelhiren.com&#34;title=&#34;Hiren Patel&amp;#39;s Blog&#34;target=&#34;_blank&#34;&gt;patelhiren.com&lt;/a&gt; in all its glory. 🎉&lt;/strong&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;strong&gt;Introducing &lt;a href=&#34;https://patelhiren.com&#34;title=&#34;Hiren Patel&amp;#39;s Blog&#34;target=&#34;_blank&#34;&gt;patelhiren.com&lt;/a&gt; in all its glory. &amp;#x1f389;&lt;/strong&gt;&lt;/p&gt;</description>
       
       <content:encoded><![CDATA[<p>For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.</p>
-<p><strong>Introducing <a href="https://patelhiren.com"title="Hiren Patel&#39;s Blog"target="_blank">patelhiren.com</a> in all its glory. 🎉</strong></p>
+<p><strong>Introducing <a href="https://patelhiren.com"title="Hiren Patel&#39;s Blog"target="_blank">patelhiren.com</a> in all its glory. &#x1f389;</strong></p>
 <h2 id="goals">Goals</h2>
 <p>For this site I had a few basic goals in mind.</p>
 <ul>
@@ -1073,7 +1136,7 @@ C --&gt;|Three| F[fa:fa-car Car]
 <p>The above goals meant I was going to be building a Static Site using one of the many <a href="https://www.staticgen.com"target="_blank">Static Site Generator Tools</a></p>
 <h2 id="tools">Tools</h2>
 <p>After deciding I wanted a static site, I researched the various <a href="https://www.staticgen.com"target="_blank">Static Site Generator Tools</a> and settled on <a href="https://gohugo.io"target="_blank"><em>Hugo</em></a> as my choice.</p>
-<p>Hugo written in <a href="https://golang.org"target="_blank">Go</a>, is highly reviewed and praised for its speed of site generation. It supports macOS (my primary OS of choice), Windows, Linux, OpenBSD and FreeBSD. It has a very well documented site and looks to have an active community developing and supporting it. It allows me to create my content in <a href="https://daringfireball.net/projects/markdown/"target="_blank">Markdown</a> syntax thus allowing me to keep it in plain text on the filesystem. It also supports code syntax highlighting and emoji 👌. You can check details of Hugo&rsquo;s Makrdown support at <a href="https://www.markdownguide.org/tools/hugo/"target="_blank">markdownguide.org</a></p>
+<p>Hugo written in <a href="https://golang.org"target="_blank">Go</a>, is highly reviewed and praised for its speed of site generation. It supports macOS (my primary OS of choice), Windows, Linux, OpenBSD and FreeBSD. It has a very well documented site and looks to have an active community developing and supporting it. It allows me to create my content in <a href="https://daringfireball.net/projects/markdown/"target="_blank">Markdown</a> syntax thus allowing me to keep it in plain text on the filesystem. It also supports code syntax highlighting and emoji &#x1f44c;. You can check details of Hugo&rsquo;s Makrdown support at <a href="https://www.markdownguide.org/tools/hugo/"target="_blank">markdownguide.org</a></p>
 <p>Hugo supports a variety of <a href="https://themes.gohugo.io"target="_blank">Themes</a>. I settled on <a href="https://themes.gohugo.io/hugo-notepadium/"target="_blank">Notepadium</a> because it provided most of what I wanted out of box. I plan to customize it a bit to my liking as I learn more.</p>
 <h2 id="hosting">Hosting</h2>
 <p>For hosting I decided to use <a href="https://pages.github.com"target="_blank">GitHub Pages</a>. GitHub Pages is free, supports SSL and provides automatic CDN for serving fast webpages closer to your user. It also had the added benefit of having my generated site auotmatically have commit history and remote backup.</p>
@@ -1458,19 +1521,19 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_400x0_resize_box_3.png 400w,
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu13273166032454448240.png 400w,
                     
                     
                     
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_600x0_resize_box_3.png 600w,
-                    
-
-                    
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_800x0_resize_box_3.png 1000w,
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu1759417586400108908.png 600w,
                     
 
                     
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_huea3a84d2fac8c8b9bdce239262285038_202577_1000x0_resize_box_3.png 1200w,
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu9227253634962248620.png 1000w,
+                    
+
+                    
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu10938347202659600624.png 1200w,
                     
 
                     /blog/website-built-with-open-source-and-hosted-for-free/images/01.png
@@ -1579,19 +1642,19 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/01_hu57fa4703ef8765fef9d7e6fd433a74fa_927894_400x0_resize_box_3.png 400w,
+                    /blog/pngcrush-automator-action/images/01_hu10299906894841770542.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/01_hu57fa4703ef8765fef9d7e6fd433a74fa_927894_600x0_resize_box_3.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/01_hu57fa4703ef8765fef9d7e6fd433a74fa_927894_800x0_resize_box_3.png 1000w,
+                    /blog/pngcrush-automator-action/images/01_hu15144809330729729250.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/01_hu57fa4703ef8765fef9d7e6fd433a74fa_927894_1000x0_resize_box_3.png 1200w,
+                    /blog/pngcrush-automator-action/images/01_hu7445959027752455568.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/01_hu11732919017207006832.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/01.png
@@ -1623,19 +1686,19 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/02_hu57fa4703ef8765fef9d7e6fd433a74fa_734562_400x0_resize_box_3.png 400w,
+                    /blog/pngcrush-automator-action/images/02_hu17727269787472406711.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/02_hu57fa4703ef8765fef9d7e6fd433a74fa_734562_600x0_resize_box_3.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/02_hu57fa4703ef8765fef9d7e6fd433a74fa_734562_800x0_resize_box_3.png 1000w,
+                    /blog/pngcrush-automator-action/images/02_hu14804665408686312687.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/02_hu57fa4703ef8765fef9d7e6fd433a74fa_734562_1000x0_resize_box_3.png 1200w,
+                    /blog/pngcrush-automator-action/images/02_hu3689528950084346152.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/02_hu6912418297809607524.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/02.png
@@ -1662,19 +1725,19 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/03_hu57fa4703ef8765fef9d7e6fd433a74fa_483613_400x0_resize_box_3.png 400w,
+                    /blog/pngcrush-automator-action/images/03_hu11889311241427984287.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/03_hu57fa4703ef8765fef9d7e6fd433a74fa_483613_600x0_resize_box_3.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/03_hu57fa4703ef8765fef9d7e6fd433a74fa_483613_800x0_resize_box_3.png 1000w,
+                    /blog/pngcrush-automator-action/images/03_hu10259793895010358155.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/03_hu57fa4703ef8765fef9d7e6fd433a74fa_483613_1000x0_resize_box_3.png 1200w,
+                    /blog/pngcrush-automator-action/images/03_hu2327663832978502619.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/03_hu12576988910102508920.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/03.png
@@ -1741,19 +1804,19 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/04_hu57fa4703ef8765fef9d7e6fd433a74fa_894941_400x0_resize_box_3.png 400w,
+                    /blog/pngcrush-automator-action/images/04_hu7528804344232696783.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/04_hu57fa4703ef8765fef9d7e6fd433a74fa_894941_600x0_resize_box_3.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/04_hu57fa4703ef8765fef9d7e6fd433a74fa_894941_800x0_resize_box_3.png 1000w,
+                    /blog/pngcrush-automator-action/images/04_hu116686565856275343.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/04_hu57fa4703ef8765fef9d7e6fd433a74fa_894941_1000x0_resize_box_3.png 1200w,
+                    /blog/pngcrush-automator-action/images/04_hu18002071194194411037.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/04_hu17761922244676043234.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/04.png
@@ -1778,19 +1841,19 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/05_hu66c66eef13015fd0d383e1d348905754_469811_400x0_resize_box_3.png 400w,
+                    /blog/pngcrush-automator-action/images/05_hu13314229300956893167.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/05_hu66c66eef13015fd0d383e1d348905754_469811_600x0_resize_box_3.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/05_hu66c66eef13015fd0d383e1d348905754_469811_800x0_resize_box_3.png 1000w,
+                    /blog/pngcrush-automator-action/images/05_hu2719413684304142717.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/05_hu66c66eef13015fd0d383e1d348905754_469811_1000x0_resize_box_3.png 1200w,
+                    /blog/pngcrush-automator-action/images/05_hu3687499236447916352.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/05_hu3546587971612518519.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/05.png
@@ -1815,7 +1878,7 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/06_hu199dd5201849aa5e82e86ff561cd249f_36199_400x0_resize_box_3.png 400w,
+                    /blog/pngcrush-automator-action/images/06_hu3291881629291868817.png 400w,
                     
                     
                     
@@ -1901,19 +1964,19 @@ C --&gt;|Three| F[fa:fa-car Car]
                     <source 
                         srcset="
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_400x0_resize_box_3.png 400w,
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu17667460983435770336.png 400w,
                         
                         
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_600x0_resize_box_3.png 600w,
-                        
-
-                        
-                        /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_800x0_resize_box_3.png 1000w,
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu9479640607445988879.png 600w,
                         
 
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/01_hu35b83139b4b9a667c482960666e96ba3_414407_1000x0_resize_box_3.png 1200w,
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu7925333736478870640.png 1000w,
+                        
+
+                        
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu11906557128860464724.png 1200w,
                         
 
                         /blog/boot-camp-on-external-drive/images/Dark/01.png
@@ -1922,19 +1985,19 @@ C --&gt;|Three| F[fa:fa-car Car]
                     /><source 
                     srcset="
                     
-                    /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_400x0_resize_box_3.png 400w,
+                    /blog/boot-camp-on-external-drive/images/01_hu12634293452900107142.png 400w,
                     
                     
                     
-                    /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_600x0_resize_box_3.png 600w,
-                    
-
-                    
-                    /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_800x0_resize_box_3.png 1000w,
+                    /blog/boot-camp-on-external-drive/images/01_hu6812513141930793375.png 600w,
                     
 
                     
-                    /blog/boot-camp-on-external-drive/images/01_hu35b83139b4b9a667c482960666e96ba3_425087_1000x0_resize_box_3.png 1200w,
+                    /blog/boot-camp-on-external-drive/images/01_hu14211722585239382567.png 1000w,
+                    
+
+                    
+                    /blog/boot-camp-on-external-drive/images/01_hu4083080257819648894.png 1200w,
                     
 
                     /blog/boot-camp-on-external-drive/images/01.png
@@ -1994,19 +2057,19 @@ C --&gt;|Three| F[fa:fa-car Car]
                     <source 
                         srcset="
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_400x0_resize_box_3.png 400w,
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hu12640832218862831780.png 400w,
                         
                         
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_600x0_resize_box_3.png 600w,
-                        
-
-                        
-                        /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_800x0_resize_box_3.png 1000w,
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hu15205263807232602344.png 600w,
                         
 
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/02_hue427cd9cd612b4146ee4473fcbd27411_373608_1000x0_resize_box_3.png 1200w,
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hu15299460004328432526.png 1000w,
+                        
+
+                        
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hu12704947302097744581.png 1200w,
                         
 
                         /blog/boot-camp-on-external-drive/images/Dark/02.png
@@ -2015,26 +2078,26 @@ C --&gt;|Three| F[fa:fa-car Car]
                     /><source 
                     srcset="
                     
-                    /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_400x0_resize_box_3.png 400w,
+                    /blog/boot-camp-on-external-drive/images/02_hu718143400919912172.png 400w,
                     
                     
                     
-                    /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_600x0_resize_box_3.png 600w,
-                    
-
-                    
-                    /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_800x0_resize_box_3.png 1000w,
+                    /blog/boot-camp-on-external-drive/images/02_hu11413652094708466705.png 600w,
                     
 
                     
-                    /blog/boot-camp-on-external-drive/images/02_hu423960d78e17f636e1808ef9e342d8c7_393400_1000x0_resize_box_3.png 1200w,
+                    /blog/boot-camp-on-external-drive/images/02_hu17395743318038478867.png 1000w,
+                    
+
+                    
+                    /blog/boot-camp-on-external-drive/images/02_hu1391637072907716924.png 1200w,
                     
 
                     /blog/boot-camp-on-external-drive/images/02.png
                     " 
                 />
                 
-                <img alt="Security &amp;amp; Privacy - Full Disk Access" 
+                <img alt="Security &amp; Privacy - Full Disk Access" 
                         src="/blog/boot-camp-on-external-drive/images/02.png" />
             </picture>
         </a>
@@ -2055,7 +2118,7 @@ C --&gt;|Three| F[fa:fa-car Car]
 <ul>
 <li>After installation of the Boot Camp drivers and reboot, Windows still had a few missing drivers under Device Manager. All I had to do was select <code>Update Driver</code> and select the <code>WindowsSupport\$WinPEDriver$</code> folder to look for drivers.</li>
 <li>Speakers were not working properly on the 2019 iMac even though all drivers were installed. I had to go to <code>Device Manager</code>-&gt;<code>Sound, video and game controllers</code>-&gt;<code>High Definition Audio Device</code>. Select Update driver and point it to <code>WindowsSupport\$WinPEDriver$\Cirrus</code>. This installed the correct drivers and the Speakers started working.</li>
-<li>Another speed bump I ran into was that after a few Windows updates were applied windows declined to update to the November 2019 update stating installing Windows on External USB is unsupported. 😒 I had to go to the Registry at <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control</code> and set the <code>PortableOperatingSystem</code> value to <code>0</code> and reboot. After that the update installed ok. 😏</li>
+<li>Another speed bump I ran into was that after a few Windows updates were applied windows declined to update to the November 2019 update stating installing Windows on External USB is unsupported. &#x1f612; I had to go to the Registry at <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control</code> and set the <code>PortableOperatingSystem</code> value to <code>0</code> and reboot. After that the update installed ok. &#x1f60f;</li>
 </ul>]]></content:encoded>
       
     </item>

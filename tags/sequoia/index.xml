@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Sequoia on Hiren Patel</title>
+    <link>https://patelhiren.com/tags/sequoia/</link>
+    <description>Recent content in Sequoia on Hiren Patel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright {year}, Hiren Patel</copyright>
+    <lastBuildDate>Fri, 25 Oct 2024 19:50:11 -0400</lastBuildDate>
+    
+	<atom:link href="https://patelhiren.com/tags/sequoia/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Fixing File Associations on macOS Sequoia</title>
+      <link>https://patelhiren.com/blog/fixing-file-associations-on-macos-sequoia/</link>
+      <pubDate>Fri, 25 Oct 2024 19:50:11 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/blog/fixing-file-associations-on-macos-sequoia/</guid>
+      <description>&lt;p&gt;After upgrading to macOS Sequoia (15.0), my QFX files would not open correctly in &lt;em&gt;&lt;a href=&#34;https://www.banktivity.com&#34;target=&#34;_blank&#34;&gt;Banktivity&lt;/a&gt;&lt;/em&gt;. Banktivity would not show as an option in &lt;em&gt;Open With&lt;/em&gt; in the File Info panel. I ended up having to use &lt;em&gt;lsregister&lt;/em&gt; utility to fix the association manually.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>After upgrading to macOS Sequoia (15.0), my QFX files would not open correctly in <em><a href="https://www.banktivity.com"target="_blank">Banktivity</a></em>. Banktivity would not show as an option in <em>Open With</em> in the File Info panel. I ended up having to use <em>lsregister</em> utility to fix the association manually.</p>
+<p>The problem turned out to be that macOS Launch Services db had references to older versions of Banktivity that were no longer installed. I had version 9 installed, but it had assoications registered to version 7, 8 and 9. I also found that my iOS device had both Banktivity 7 and Banktivity 9 installed. I belive this was causing conflicts on macOS because of iCloud File Sync. I found out the associated by running the below command.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -dump <span class="p">|</span> grep -i <span class="s2">&#34;path:.*banktivity&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Output:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">path:                       /Users/\*\*\*/Library/Daemon Containers/\*\*\*/Data/Library/Caches/Placeholders-v2.noindex/com.iggsoftware.banktivity4-mobile-7.5.2/Banktivity 7.app (0x52f8)
+</span></span><span class="line"><span class="cl">path:                       /Users/\*\*\*/Library/Daemon Containers/\*\*\*/Data/Library/Caches/Placeholders-v2.noindex/com.iggsoftware.banktivity-9.5.3/Banktivity.app (0x53a4)
+</span></span><span class="line"><span class="cl">path:                       /Applications/Banktivity.app (0x6568)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I unregistering all registered listed paths using the below command for each path.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -u <span class="s2">&#34;/Applications/Banktivity.app&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Once I unregistered all. I registered the only valid path.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -R -f -v /Applications/Banktivity.app
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This fixed my QFX file associations for Banktivity.</p>
+<p>PS: using the force cleanup of all file associations on Sequoia using the below command will fix the issue until a reboot. But it also breaks <em>System Settings</em>. None of the panels in <em>System Settings</em> load after running the below command.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain <span class="nb">local</span> -domain system -domain user
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>So I recommend not using this command.</p>]]></content:encoded>
+      
+    </item>
+    
+  </channel>
+</rss>

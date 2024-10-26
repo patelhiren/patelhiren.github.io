@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"><url>
-    <loc>https://patelhiren.com/blog/</loc><lastmod>2023-02-19T12:18:21-05:00</lastmod></url><url>
+    <loc>https://patelhiren.com/blog/</loc><lastmod>2024-10-25T19:50:11-04:00</lastmod></url><url>
+    <loc>https://patelhiren.com/blog/fixing-file-associations-on-macos-sequoia/</loc><lastmod>2024-10-25T19:50:11-04:00</lastmod></url><url>
+    <loc>https://patelhiren.com/</loc><lastmod>2024-10-25T19:50:11-04:00</lastmod></url><url>
+    <loc>https://patelhiren.com/tags/macos/</loc><lastmod>2024-10-25T19:50:11-04:00</lastmod></url><url>
+    <loc>https://patelhiren.com/tags/sequoia/</loc><lastmod>2024-10-25T19:50:11-04:00</lastmod></url><url>
+    <loc>https://patelhiren.com/tags/</loc><lastmod>2024-10-25T19:50:11-04:00</lastmod></url><url>
     <loc>https://patelhiren.com/categories/</loc><lastmod>2023-02-19T12:18:21-05:00</lastmod></url><url>
     <loc>https://patelhiren.com/tags/dcoker/</loc><lastmod>2023-02-19T12:18:21-05:00</lastmod></url><url>
-    <loc>https://patelhiren.com/</loc><lastmod>2023-02-19T12:18:21-05:00</lastmod></url><url>
     <loc>https://patelhiren.com/categories/how-tos/</loc><lastmod>2023-02-19T12:18:21-05:00</lastmod></url><url>
     <loc>https://patelhiren.com/tags/portainer/</loc><lastmod>2023-02-19T12:18:21-05:00</lastmod></url><url>
-    <loc>https://patelhiren.com/tags/</loc><lastmod>2023-02-19T12:18:21-05:00</lastmod></url><url>
     <loc>https://patelhiren.com/blog/upgrading-portainer-ce-on-docker/</loc><lastmod>2023-02-19T12:18:21-05:00</lastmod></url><url>
     <loc>https://patelhiren.com/tags/home-automation/</loc><lastmod>2022-11-13T16:32:58-05:00</lastmod></url><url>
     <loc>https://patelhiren.com/categories/home-automation/</loc><lastmod>2022-11-13T16:32:58-05:00</lastmod></url><url>
@@ -20,7 +23,6 @@
     <loc>https://patelhiren.com/categories/programming/</loc><lastmod>2022-10-21T13:32:11-04:00</lastmod></url><url>
     <loc>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</loc><lastmod>2022-10-21T13:32:11-04:00</lastmod></url><url>
     <loc>https://patelhiren.com/tags/tensorflow/</loc><lastmod>2022-10-21T13:32:11-04:00</lastmod></url><url>
-    <loc>https://patelhiren.com/tags/macos/</loc><lastmod>2021-03-23T22:29:29-04:00</lastmod></url><url>
     <loc>https://patelhiren.com/blog/setting-vscode-as-default-text-editor-on-macos/</loc><lastmod>2021-03-23T22:29:29-04:00</lastmod></url><url>
     <loc>https://patelhiren.com/tags/visual-studio-code/</loc><lastmod>2021-03-23T22:29:29-04:00</lastmod></url><url>
     <loc>https://patelhiren.com/tags/vscode/</loc><lastmod>2021-03-23T22:29:29-04:00</lastmod></url><url>
