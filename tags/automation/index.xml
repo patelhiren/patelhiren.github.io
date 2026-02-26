@@ -1,5 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Automation on Hiren Patel</title><link>https://patelhiren.com/tags/automation/</link><description>Recent content in Automation on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Thu, 22 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://patelhiren.com/tags/automation/index.xml" rel="self" type="application/rss+xml"/><item><title>Tag-Teaming Claude Code with an AI Agent via Tmux</title><link>https://patelhiren.com/blog/tag-teaming-claude-code-with-ai-agent/</link><pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate><guid>https://patelhiren.com/blog/tag-teaming-claude-code-with-ai-agent/</guid><description>&lt;p&gt;&lt;a href="https://claude.ai/code"target="_blank" rel="noopener noreferrer"&gt;Claude Code&lt;/a&gt; is an impressive CLI that brings sophisticated AI-assisted coding directly into the terminal. Its TUI (Text User Interface) provides rich feedback through interactive menus, progress bars, and side-by-side diffs. However, long-running tasks present a challenge: if you need to step away from your computer, the session momentum is often lost.&lt;/p&gt;
-&lt;p&gt;To solve this, I’ve developed a workflow using &lt;a href="https://github.com/tmux/tmux/wiki"target="_blank" rel="noopener noreferrer"&gt;Tmux&lt;/a&gt; as a shared terminal state. This allows me to hand off a live session to my &lt;a href="https://clawd.bot/"target="_blank" rel="noopener noreferrer"&gt;Clawdbot&lt;/a&gt; agent and, conversely, take over a session that the agent started. It also provides a mechanism to optionally switch between different account tokens (such as a work account) on the fly.&lt;/p&gt;</description><content:encoded><![CDATA[<p><a href="https://claude.ai/code"target="_blank" rel="noopener noreferrer">Claude Code</a> is an impressive CLI that brings sophisticated AI-assisted coding directly into the terminal. Its TUI (Text User Interface) provides rich feedback through interactive menus, progress bars, and side-by-side diffs. However, long-running tasks present a challenge: if you need to step away from your computer, the session momentum is often lost.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Automation on Hiren Patel</title>
+    <link>https://patelhiren.com/tags/automation/</link>
+    <description>Recent content in Automation on Hiren Patel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright {year}, Hiren Patel</copyright>
+    <lastBuildDate>Thu, 22 Jan 2026 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://patelhiren.com/tags/automation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tag-Teaming Claude Code with an AI Agent via Tmux</title>
+      <link>https://patelhiren.com/blog/tag-teaming-claude-code-with-ai-agent/</link>
+      <pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://patelhiren.com/blog/tag-teaming-claude-code-with-ai-agent/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://claude.ai/code&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Claude Code&lt;/a&gt; is an impressive CLI that brings sophisticated AI-assisted coding directly into the terminal. Its TUI (Text User Interface) provides rich feedback through interactive menus, progress bars, and side-by-side diffs. However, long-running tasks present a challenge: if you need to step away from your computer, the session momentum is often lost.&lt;/p&gt;
+&lt;p&gt;To solve this, I’ve developed a workflow using &lt;a href=&#34;https://github.com/tmux/tmux/wiki&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Tmux&lt;/a&gt; as a shared terminal state. This allows me to hand off a live session to my &lt;a href=&#34;https://clawd.bot/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Clawdbot&lt;/a&gt; agent and, conversely, take over a session that the agent started. It also provides a mechanism to optionally switch between different account tokens (such as a work account) on the fly.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p><a href="https://claude.ai/code"target="_blank" rel="noopener noreferrer">Claude Code</a> is an impressive CLI that brings sophisticated AI-assisted coding directly into the terminal. Its TUI (Text User Interface) provides rich feedback through interactive menus, progress bars, and side-by-side diffs. However, long-running tasks present a challenge: if you need to step away from your computer, the session momentum is often lost.</p>
 <p>To solve this, I’ve developed a workflow using <a href="https://github.com/tmux/tmux/wiki"target="_blank" rel="noopener noreferrer">Tmux</a> as a shared terminal state. This allows me to hand off a live session to my <a href="https://clawd.bot/"target="_blank" rel="noopener noreferrer">Clawdbot</a> agent and, conversely, take over a session that the agent started. It also provides a mechanism to optionally switch between different account tokens (such as a work account) on the fly.</p>
 <h2 id="the-core-concept-persistence">The Core Concept: Persistence</h2>
 <p>The strategy relies on Tmux sessions to maintain a persistent terminal state in memory. By using named sessions, both the human and the AI agent can attach to and drive the exact same process. This ensures zero context loss when switching between &ldquo;manual&rdquo; and &ldquo;agent&rdquo; mode.</p>
@@ -114,7 +136,19 @@
 <li><strong>Naming</strong>: Use consistent session names so the agent knows where to look.</li>
 <li><strong>Power Settings</strong>: Configure your Mac to stay awake when the display is off to ensure the Tmux server remains active.</li>
 </ul>
-<p>By treating the terminal as a shared space, I’ve turned my AI agent into a true tag-team partner. We can hot-swap control of the keyboard and switch accounts on the fly without ever losing the &ldquo;zone.&rdquo;</p>]]></content:encoded></item><item><title>Using mermaid-js to generate Flow Charts</title><link>https://patelhiren.com/blog/using-mermaid-js-to-generate-flow-charts/</link><pubDate>Fri, 24 Apr 2020 12:06:38 -0400</pubDate><guid>https://patelhiren.com/blog/using-mermaid-js-to-generate-flow-charts/</guid><description>&lt;p&gt;I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about &lt;a href="https://github.com/mermaid-js/mermaid"title="mermaid-js GitHub Page"target="_blank" rel="noopener noreferrer"&gt;mermaid-js&lt;/a&gt; which allows one to use Markdown like syntax to generte various diagrams including flow charts.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about <a href="https://github.com/mermaid-js/mermaid"title="mermaid-js GitHub Page"target="_blank" rel="noopener noreferrer">mermaid-js</a> which allows one to use Markdown like syntax to generte various diagrams including flow charts.</p>
+<p>By treating the terminal as a shared space, I’ve turned my AI agent into a true tag-team partner. We can hot-swap control of the keyboard and switch accounts on the fly without ever losing the &ldquo;zone.&rdquo;</p>]]></content:encoded>
+      
+    </item>
+    
+    <item>
+      <title>Using mermaid-js to generate Flow Charts</title>
+      <link>https://patelhiren.com/blog/using-mermaid-js-to-generate-flow-charts/</link>
+      <pubDate>Fri, 24 Apr 2020 12:06:38 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/blog/using-mermaid-js-to-generate-flow-charts/</guid>
+      <description>&lt;p&gt;I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about &lt;a href=&#34;https://github.com/mermaid-js/mermaid&#34;title=&#34;mermaid-js GitHub Page&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;mermaid-js&lt;/a&gt; which allows one to use Markdown like syntax to generte various diagrams including flow charts.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about <a href="https://github.com/mermaid-js/mermaid"title="mermaid-js GitHub Page"target="_blank" rel="noopener noreferrer">mermaid-js</a> which allows one to use Markdown like syntax to generte various diagrams including flow charts.</p>
 <p>There is a live editor available at <a href="https://mermaidjs.github.io/mermaid-live-editor/"target="_blank" rel="noopener noreferrer">https://mermaidjs.github.io/mermaid-live-editor/</a> that allows you to to enter Markdown like text and generate a PNG/SVG output that you can download and embed in your documentation.</p>
 <pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph TD
 A[Christmas] --&gt;|Get money| B(Go shopping)
@@ -176,7 +210,19 @@ C --&gt;|Three| F[fa:fa-car Car]
 <li>Pie Chart</li>
 <li>ER Diagram</li>
 </ul>
-<p>Documentation is available at <a href="https://mermaid-js.github.io/mermaid"target="_blank" rel="noopener noreferrer">https://mermaid-js.github.io/mermaid</a>.</p>]]></content:encoded></item><item><title>PNG Crush Automator Action</title><link>https://patelhiren.com/blog/pngcrush-automator-action/</link><pubDate>Sun, 12 Apr 2020 22:04:30 -0400</pubDate><guid>https://patelhiren.com/blog/pngcrush-automator-action/</guid><description>&lt;p&gt;When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS &lt;a href="https://support.apple.com/guide/automator/welcome/mac"target="_blank" rel="noopener noreferrer"&gt;Automator&lt;/a&gt;.&lt;/p&gt;</description><content:encoded><![CDATA[<p>When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS <a href="https://support.apple.com/guide/automator/welcome/mac"target="_blank" rel="noopener noreferrer">Automator</a>.</p>
+<p>Documentation is available at <a href="https://mermaid-js.github.io/mermaid"target="_blank" rel="noopener noreferrer">https://mermaid-js.github.io/mermaid</a>.</p>]]></content:encoded>
+      
+    </item>
+    
+    <item>
+      <title>PNG Crush Automator Action</title>
+      <link>https://patelhiren.com/blog/pngcrush-automator-action/</link>
+      <pubDate>Sun, 12 Apr 2020 22:04:30 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/blog/pngcrush-automator-action/</guid>
+      <description>&lt;p&gt;When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS &lt;a href=&#34;https://support.apple.com/guide/automator/welcome/mac&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Automator&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS <a href="https://support.apple.com/guide/automator/welcome/mac"target="_blank" rel="noopener noreferrer">Automator</a>.</p>
 <p>To crush png images I use the opensource tool <a href="https://pmt.sourceforge.io/pngcrush/"target="_blank" rel="noopener noreferrer">PNG Crush</a>.</p>
 <p>If you have <a href="https://developer.apple.com/xcode/"target="_blank" rel="noopener noreferrer">Xcode</a> installed, the pngcrush tool is included as a part of the iOS SDK and there is no additional download required.</p>
 <p>If you do not have Xcode you may install <em>PNG Crush</em> via <a href="https://brew.sh"target="_blank" rel="noopener noreferrer">Homebrew</a> using the following command.</p>
@@ -472,4 +518,9 @@ C --&gt;|Three| F[fa:fa-car Car]
     <span class="caption">
         <span class="title"></span>
     </span>
-</span></a></p>]]></content:encoded></item></channel></rss>
+</span></a></p>]]></content:encoded>
+      
+    </item>
+    
+  </channel>
+</rss>

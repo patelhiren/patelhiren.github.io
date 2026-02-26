@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Launchd on Hiren Patel</title><link>https://patelhiren.com/tags/launchd/</link><description>Recent content in Launchd on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Wed, 25 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://patelhiren.com/tags/launchd/index.xml" rel="self" type="application/rss+xml"/><item><title>Using macOS newsyslog to Rotate Service Logs</title><link>https://patelhiren.com/blog/macos-newsyslog-openclaw-logs/</link><pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate><guid>https://patelhiren.com/blog/macos-newsyslog-openclaw-logs/</guid><description>&lt;p&gt;I noticed my &lt;a href="https://clawd.bot/"target="_blank" rel="noopener noreferrer"&gt;OpenClaw&lt;/a&gt; gateway log files were growing unbounded. The service runs via &lt;a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html"target="_blank" rel="noopener noreferrer"&gt;launchd&lt;/a&gt;, and while the app has built-in log rotation, the stdout/stderr capture in the launchd plist was bypassing it entirely.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I noticed my <a href="https://clawd.bot/"target="_blank" rel="noopener noreferrer">OpenClaw</a> gateway log files were growing unbounded. The service runs via <a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html"target="_blank" rel="noopener noreferrer">launchd</a>, and while the app has built-in log rotation, the stdout/stderr capture in the launchd plist was bypassing it entirely.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Launchd on Hiren Patel</title>
+    <link>https://patelhiren.com/tags/launchd/</link>
+    <description>Recent content in Launchd on Hiren Patel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright {year}, Hiren Patel</copyright>
+    <lastBuildDate>Wed, 25 Feb 2026 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://patelhiren.com/tags/launchd/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Using macOS newsyslog to Rotate Service Logs</title>
+      <link>https://patelhiren.com/blog/macos-newsyslog-openclaw-logs/</link>
+      <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://patelhiren.com/blog/macos-newsyslog-openclaw-logs/</guid>
+      <description>&lt;p&gt;I noticed my &lt;a href=&#34;https://clawd.bot/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;OpenClaw&lt;/a&gt; gateway log files were growing unbounded. The service runs via &lt;a href=&#34;https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;launchd&lt;/a&gt;, and while the app has built-in log rotation, the stdout/stderr capture in the launchd plist was bypassing it entirely.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>I noticed my <a href="https://clawd.bot/"target="_blank" rel="noopener noreferrer">OpenClaw</a> gateway log files were growing unbounded. The service runs via <a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html"target="_blank" rel="noopener noreferrer">launchd</a>, and while the app has built-in log rotation, the stdout/stderr capture in the launchd plist was bypassing it entirely.</p>
 <h2 id="the-problem">The Problem</h2>
 <p>When a macOS service uses <code>StandardOutPath</code> and <code>StandardErrorPath</code> in its launchd plist, those files just append forever. My logs had grown to 38MB with no mechanism to clean them up:</p>
 <div class="highlight"><div class="chroma">
@@ -125,4 +147,9 @@ Service exited with abnormal code: 1
 <li><a href="https://www.freebsd.org/cgi/man.cgi?newsyslog%288%29"target="_blank" rel="noopener noreferrer">newsyslog man page</a></li>
 <li><a href="https://docs.openclaw.ai/"target="_blank" rel="noopener noreferrer">OpenClaw documentation</a></li>
 <li><a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html"target="_blank" rel="noopener noreferrer">launchd documentation</a></li>
-</ul>]]></content:encoded></item></channel></rss>
+</ul>]]></content:encoded>
+      
+    </item>
+    
+  </channel>
+</rss>

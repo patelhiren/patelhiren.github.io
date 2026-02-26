@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Ubiquiti on Hiren Patel</title><link>https://patelhiren.com/tags/ubiquiti/</link><description>Recent content in Ubiquiti on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Wed, 23 Dec 2020 09:31:48 -0500</lastBuildDate><atom:link href="https://patelhiren.com/tags/ubiquiti/index.xml" rel="self" type="application/rss+xml"/><item><title>Cross Compiling on macOS via Docker</title><link>https://patelhiren.com/blog/cross-compiling-on-macos-via-docker/</link><pubDate>Wed, 23 Dec 2020 09:31:48 -0500</pubDate><guid>https://patelhiren.com/blog/cross-compiling-on-macos-via-docker/</guid><description>&lt;p&gt;I needed to compile an arm64 binary to run on the &lt;a href="https://store.ui.com/collections/unifi-network-routing-switching/products/udm-pro"target="_blank" rel="noopener noreferrer"&gt;UniFi Dream Machine Pro&lt;/a&gt;. This is how I used docker to setup cross compilation tools and compile the binary on macOS.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I needed to compile an arm64 binary to run on the <a href="https://store.ui.com/collections/unifi-network-routing-switching/products/udm-pro"target="_blank" rel="noopener noreferrer">UniFi Dream Machine Pro</a>. This is how I used docker to setup cross compilation tools and compile the binary on macOS.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Ubiquiti on Hiren Patel</title>
+    <link>https://patelhiren.com/tags/ubiquiti/</link>
+    <description>Recent content in Ubiquiti on Hiren Patel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright {year}, Hiren Patel</copyright>
+    <lastBuildDate>Wed, 23 Dec 2020 09:31:48 -0500</lastBuildDate>
+    
+	<atom:link href="https://patelhiren.com/tags/ubiquiti/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cross Compiling on macOS via Docker</title>
+      <link>https://patelhiren.com/blog/cross-compiling-on-macos-via-docker/</link>
+      <pubDate>Wed, 23 Dec 2020 09:31:48 -0500</pubDate>
+      
+      <guid>https://patelhiren.com/blog/cross-compiling-on-macos-via-docker/</guid>
+      <description>&lt;p&gt;I needed to compile an arm64 binary to run on the &lt;a href=&#34;https://store.ui.com/collections/unifi-network-routing-switching/products/udm-pro&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;UniFi Dream Machine Pro&lt;/a&gt;. This is how I used docker to setup cross compilation tools and compile the binary on macOS.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>I needed to compile an arm64 binary to run on the <a href="https://store.ui.com/collections/unifi-network-routing-switching/products/udm-pro"target="_blank" rel="noopener noreferrer">UniFi Dream Machine Pro</a>. This is how I used docker to setup cross compilation tools and compile the binary on macOS.</p>
 <p>Get and install <a href="https://docs.docker.com/docker-for-mac/install/"target="_blank" rel="noopener noreferrer">Docker Desktop</a> is not already installed. Once installed we can use <a href="https://github.com/dockcross/dockcross"target="_blank" rel="noopener noreferrer">DockCross</a> to setup an cross compile tool chain we want. Here is an example of how I setup the linux-arm64 toolchain.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -46,4 +68,9 @@
 </div>
 </div><blockquote>
 <p><strong>Note:</strong> Using <em>$CC</em> is important. If you use <em>gcc</em> directly it will compile using <em>x86_64</em> version.</p>
-</blockquote>]]></content:encoded></item></channel></rss>
+</blockquote>]]></content:encoded>
+      
+    </item>
+    
+  </channel>
+</rss>

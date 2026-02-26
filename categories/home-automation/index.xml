@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Home Automation on Hiren Patel</title><link>https://patelhiren.com/categories/home-automation/</link><description>Recent content in Home Automation on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Sun, 13 Nov 2022 16:32:58 -0500</lastBuildDate><atom:link href="https://patelhiren.com/categories/home-automation/index.xml" rel="self" type="application/rss+xml"/><item><title>Set up Foscam Floodlight Camera in HomeKit</title><link>https://patelhiren.com/blog/set-up-foscam-floodlight-camera-in-homekit/</link><pubDate>Sun, 13 Nov 2022 16:32:58 -0500</pubDate><guid>https://patelhiren.com/blog/set-up-foscam-floodlight-camera-in-homekit/</guid><description>&lt;p&gt;The &lt;a href="https://www.amazon.com/Foscam-Floodlight-Detection-Brightness-FLC/dp/B095S3HVL4"target="_blank" rel="noopener noreferrer"&gt;Foscam Floodlight Camera&lt;/a&gt; is competitively prized and has decent features including option to record 24/7 video locally to a micro sdcard without the need for a cloud subscription. It however does not support integration with HomeKit my preferred home automation platform. Here is how I setup the floodlight in HomeKit.&lt;/p&gt;</description><content:encoded><![CDATA[<p>The <a href="https://www.amazon.com/Foscam-Floodlight-Detection-Brightness-FLC/dp/B095S3HVL4"target="_blank" rel="noopener noreferrer">Foscam Floodlight Camera</a> is competitively prized and has decent features including option to record 24/7 video locally to a micro sdcard without the need for a cloud subscription. It however does not support integration with HomeKit my preferred home automation platform. Here is how I setup the floodlight in HomeKit.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Home Automation on Hiren Patel</title>
+    <link>https://patelhiren.com/categories/home-automation/</link>
+    <description>Recent content in Home Automation on Hiren Patel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright {year}, Hiren Patel</copyright>
+    <lastBuildDate>Sun, 13 Nov 2022 16:32:58 -0500</lastBuildDate>
+    
+	<atom:link href="https://patelhiren.com/categories/home-automation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Set up Foscam Floodlight Camera in HomeKit</title>
+      <link>https://patelhiren.com/blog/set-up-foscam-floodlight-camera-in-homekit/</link>
+      <pubDate>Sun, 13 Nov 2022 16:32:58 -0500</pubDate>
+      
+      <guid>https://patelhiren.com/blog/set-up-foscam-floodlight-camera-in-homekit/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;https://www.amazon.com/Foscam-Floodlight-Detection-Brightness-FLC/dp/B095S3HVL4&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Foscam Floodlight Camera&lt;/a&gt; is competitively prized and has decent features including option to record 24/7 video locally to a micro sdcard without the need for a cloud subscription. It however does not support integration with HomeKit my preferred home automation platform. Here is how I setup the floodlight in HomeKit.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>The <a href="https://www.amazon.com/Foscam-Floodlight-Detection-Brightness-FLC/dp/B095S3HVL4"target="_blank" rel="noopener noreferrer">Foscam Floodlight Camera</a> is competitively prized and has decent features including option to record 24/7 video locally to a micro sdcard without the need for a cloud subscription. It however does not support integration with HomeKit my preferred home automation platform. Here is how I setup the floodlight in HomeKit.</p>
 <p>Download and install the <a href="https://apps.apple.com/us/app/foscam-vms/id1521202507?mt=12"target="_blank" rel="noopener noreferrer">Foscam VMS</a> app from the Mac App Store. Signup and Signin to the Foscam Account.</p>
 <p>We will also need the <a href="https://apps.apple.com/us/app/foscam/id924381688"target="_blank" rel="noopener noreferrer">Foscam</a> iOS app.</p>
 <blockquote>
@@ -422,4 +444,9 @@
 <li>Enable HomeKit integration, and pair with HomeKit.</li>
 <li>The device will now let you to turn the floodlight on/off and set the brightness.</li>
 </ul>
-<p>I also blocked the camera ips from accessing the internet except the <em>NTP</em> port via my firewall. The cameras connect locally to my Home Hub (Apple TV) and then are available to HomeKit everywhere through that. So that is an additional level of privacy I enjoy. Overall this setup is working very well and HomeKit recognizes People/Pets/Vehicles and Packages pretty well and quickly.</p>]]></content:encoded></item></channel></rss>
+<p>I also blocked the camera ips from accessing the internet except the <em>NTP</em> port via my firewall. The cameras connect locally to my Home Hub (Apple TV) and then are available to HomeKit everywhere through that. So that is an additional level of privacy I enjoy. Overall this setup is working very well and HomeKit recognizes People/Pets/Vehicles and Packages pretty well and quickly.</p>]]></content:encoded>
+      
+    </item>
+    
+  </channel>
+</rss>

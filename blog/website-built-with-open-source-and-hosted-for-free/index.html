@@ -1,256 +1,518 @@
-<!doctype html><html lang=en><meta charset=utf-8><meta name=generator content="Hugo 0.157.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=color-scheme content="light dark"><meta name=supported-color-schemes content="light dark"><meta name=description content="I document the open-source tools I use to build this site and how I host it for free with support for SSL and CDN."><title>Building this website using open-source tools and hosting it for free&nbsp;&ndash;&nbsp;Hiren Patel</title><link rel=stylesheet href=/css/core.min.c2e4ab9ed6132e304c4b524f3918c3d500d50593d14d16eaa55ef0a3e0155132e84c35e2d78284591c5f0cd64e3a8477.css integrity=sha384-wuSrntYTLjBMS1JPORjD1QDVBZPRTRbqpV7wo+AVUTLoTDXi14KEWRxfDNZOOoR3><meta name=twitter:card content="summary"><meta name=twitter:title content="Building this website using open-source tools and hosting it for free"><link rel=preload href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css as=style onload='this.rel="stylesheet"'><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#191919><meta name=msapplication-TileColor content="#00aba9"><body><section id=header class="site header"><div class="header wrap"><span class="header left-side"><a class="site home" href=/><img alt loading=lazy class="site logo" src=/patelhiren-logo.png><span class="site name">Hiren Patel</span></a></span>
-<span class="header right-side"><div class="nav wrap"><nav class=nav><a class="nav item" href=/categories/>Categories</a><a class="nav item" href=/tags/>Tags</a><a class="nav item" href=/about/>About</a></nav></div></span></div><div class="site slogan wrap"><span class="title left-side">Documenting things as I learn.</span>
-<span class=right-side><div class=social-buttons><a href=/index.xml aria-label="Subscribe in your RSS reader"><span><i class="fa-solid fa-rss"></i>
-</span></a><a rel=me href=https://mastodon.social/@patelhiren target=_blank aria-label="Follow @patelhiren on Mastodon"><span><i class="fa-brands fa-mastodon"></i>
-</span></a><a href=https://twitter.com/patelhiren target=_blank aria-label="Follow @patelhiren on Twitter"><span><i class="fa-brands fa-twitter"></i></span></a></div></span></div></section><section id=content><div class=article-container><section class="article header"><h1 class="article title">Building this website using open-source tools and hosting it for free</h1><p class="article date">Apr 18, 2020</p></section><article class="article markdown-body"><p>For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.</p><p><strong>Introducing <a href=https://patelhiren.com title="Hiren Patel's Blog" target=_blank rel="noopener noreferrer">patelhiren.com</a> in all its glory. &#x1f389;</strong></p><h2 id=goals>Goals</h2><p>For this site I had a few basic goals in mind.</p><ul><li>It should serve as a log to help me remember and reivew how I did things. I hope that others may find it helpful as well.</li><li>The website should be fast and light. Should not be overburdened with Javascript.</li><li>Should be able to host website with a simple webserver. No server side software should be necessary.</li><li>Allowed me to keep my content in a standard text + image format for easy parsing even when not viewing via a browser. I did not want my content to be stored in binary formats in a database. I want it to be stored in plain text files on the filesystem.</li><li>Support code syntax highlighting.</li><li>Support SSL encryption on the website.</li><li>Support emoji.</li></ul><p>The above goals meant I was going to be building a Static Site using one of the many <a href=https://www.staticgen.com target=_blank rel="noopener noreferrer">Static Site Generator Tools</a></p><h2 id=tools>Tools</h2><p>After deciding I wanted a static site, I researched the various <a href=https://www.staticgen.com target=_blank rel="noopener noreferrer">Static Site Generator Tools</a> and settled on <a href=https://gohugo.io target=_blank rel="noopener noreferrer"><em>Hugo</em></a> as my choice.</p><p>Hugo written in <a href=https://golang.org target=_blank rel="noopener noreferrer">Go</a>, is highly reviewed and praised for its speed of site generation. It supports macOS (my primary OS of choice), Windows, Linux, OpenBSD and FreeBSD. It has a very well documented site and looks to have an active community developing and supporting it. It allows me to create my content in <a href=https://daringfireball.net/projects/markdown/ target=_blank rel="noopener noreferrer">Markdown</a> syntax thus allowing me to keep it in plain text on the filesystem. It also supports code syntax highlighting and emoji &#x1f44c;. You can check details of Hugo&rsquo;s Makrdown support at <a href=https://www.markdownguide.org/tools/hugo/ target=_blank rel="noopener noreferrer">markdownguide.org</a></p><p>Hugo supports a variety of <a href=https://themes.gohugo.io target=_blank rel="noopener noreferrer">Themes</a>. I settled on <a href=https://themes.gohugo.io/hugo-notepadium/ target=_blank rel="noopener noreferrer">Notepadium</a> because it provided most of what I wanted out of box. I plan to customize it a bit to my liking as I learn more.</p><h2 id=hosting>Hosting</h2><p>For hosting I decided to use <a href=https://pages.github.com target=_blank rel="noopener noreferrer">GitHub Pages</a>. GitHub Pages is free, supports SSL and provides automatic CDN for serving fast webpages closer to your user. It also had the added benefit of having my generated site auotmatically have commit history and remote backup.</p><h2 id=installing-hugo-and-building-your-site>Installing Hugo and Building your site</h2><p>I use macOS as my primary OS so these steps are for for the Mac. However the steps should be very similar if you are using any other supported OS. <a href=https://brew.sh target=_blank rel="noopener noreferrer">Homebrew</a> and <em>git</em> <sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup> is expected to be installed before you follow the rest of the steps.</p><p>Install Hugo</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl>brew install hugo
-</span></span></code></pre></td></tr></table></div></div><p>To verify the install run</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl>hugo version
-</span></span></code></pre></td></tr></table></div></div><p>Create your new site</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl>hugo new site patelhiren.com
-</span></span></code></pre></td></tr></table></div></div><p>Add the <em><a href=https://themes.gohugo.io/hugo-notepadium/ target=_blank rel="noopener noreferrer">Notepadium</a></em> Theme</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl><span class=nb>cd</span> patelhiren.com
-</span></span><span class=line><span class=cl>git init
-</span></span><span class=line><span class=cl>git submodule add https://github.com/cntrump/hugo-notepadium themes/notepadium
-</span></span></code></pre></td></tr></table></div></div><p>Activate the theme for your site by adding it to the <em>config.toml</em></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl><span class=nb>echo</span> <span class=s1>&#39;theme = &#34;notepadium&#34;&#39;</span> &gt;&gt; config.toml
-</span></span></code></pre></td></tr></table></div></div><p>Create a new post <sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl>hugo new blog/my-first-post/index.md
-</span></span></code></pre></td></tr></table></div></div><p>You can find your content under <em>content</em> folder. You can open the newly created index.md file in any Markdown editor of choice <sup id=fnref:3><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup> and edit and save your content. Here is an example post to suggest what&rsquo;s possible.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-txt data-lang=txt><span class=line><span class=cl>---
-</span></span><span class=line><span class=cl>title: &#34;My First Post&#34;
-</span></span><span class=line><span class=cl>description: &#34;This is my first post in Hugo. This shows up in Google search.&#34;
-</span></span><span class=line><span class=cl>date: 2020-04-18T16:08:20-04:00
-</span></span><span class=line><span class=cl>draft: true
-</span></span><span class=line><span class=cl>tags: [
-</span></span><span class=line><span class=cl>    &#34;Tag 1&#34;,
-</span></span><span class=line><span class=cl>    &#34;Tag 2&#34;
-</span></span><span class=line><span class=cl>]
-</span></span><span class=line><span class=cl>categories: [
-</span></span><span class=line><span class=cl>    &#34;Category 1&#34;,
-</span></span><span class=line><span class=cl>    &#34;Category 2&#34;
-</span></span><span class=line><span class=cl>]
-</span></span><span class=line><span class=cl>---
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>Hello everyone welcome to you website.
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>&lt;!--more--&gt;
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>This is the extended content of my first post.
-</span></span></code></pre></td></tr></table></div></div><p>Once you save your content you can test it locally by activating Hugo local web server.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl>hugo server -D
-</span></span></code></pre></td></tr></table></div></div><p>You can navigate to your local site at <a href=http://localhost:1313/ target=_blank rel="noopener noreferrer">http://localhost:1313/</a>.</p><p>Edit you <em>config.toml</em> to configure the rest of your site settings. Here is mine.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span><span class=lnt>30
-</span><span class=lnt>31
-</span><span class=lnt>32
-</span><span class=lnt>33
-</span><span class=lnt>34
-</span><span class=lnt>35
-</span><span class=lnt>36
-</span><span class=lnt>37
-</span><span class=lnt>38
-</span><span class=lnt>39
-</span><span class=lnt>40
-</span><span class=lnt>41
-</span><span class=lnt>42
-</span><span class=lnt>43
-</span><span class=lnt>44
-</span><span class=lnt>45
-</span><span class=lnt>46
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=line><span class=cl><span class=nx>baseURL</span> <span class=p>=</span> <span class=s2>&#34;https://patelhiren.com/&#34;</span>
-</span></span><span class=line><span class=cl><span class=nx>languageCode</span> <span class=p>=</span> <span class=s2>&#34;en-us&#34;</span>
-</span></span><span class=line><span class=cl><span class=nx>title</span> <span class=p>=</span> <span class=s2>&#34;Hiren Patel&#34;</span>
-</span></span><span class=line><span class=cl><span class=nx>theme</span> <span class=p>=</span> <span class=s2>&#34;notepadium&#34;</span>
-</span></span><span class=line><span class=cl><span class=nx>copyright</span> <span class=p>=</span> <span class=s2>&#34;©2020 Hiren Patel.&#34;</span>
-</span></span><span class=line><span class=cl><span class=nx>enableEmoji</span> <span class=p>=</span> <span class=kc>true</span>
-</span></span><span class=line><span class=cl><span class=nx>enableRobotsTXT</span> <span class=p>=</span> <span class=kc>true</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>markup</span><span class=p>.</span><span class=nx>highlight</span><span class=p>]</span>
-</span></span><span class=line><span class=cl><span class=nx>codeFences</span> <span class=p>=</span> <span class=kc>true</span>
-</span></span><span class=line><span class=cl><span class=nx>noClasses</span> <span class=p>=</span> <span class=kc>false</span>
-</span></span><span class=line><span class=cl><span class=nx>linenos</span> <span class=p>=</span> <span class=kc>true</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>markup</span><span class=p>.</span><span class=nx>goldmark</span><span class=p>.</span><span class=nx>renderer</span><span class=p>]</span>
-</span></span><span class=line><span class=cl><span class=nx>unsafe</span> <span class=p>=</span> <span class=kc>true</span>  <span class=c># enable raw HTML in Markdown</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>params</span><span class=p>]</span>
-</span></span><span class=line><span class=cl><span class=nx>style</span> <span class=p>=</span> <span class=s2>&#34;auto&#34;</span>  <span class=c># default: auto. light: light theme, dark: dark theme, auto: based on system.</span>
-</span></span><span class=line><span class=cl><span class=nx>dateFormat</span> <span class=p>=</span> <span class=s2>&#34;Jan 02, 2006&#34;</span>  <span class=c># if unset, default is &#34;2006-01-02&#34;</span>
-</span></span><span class=line><span class=cl><span class=nx>readingTime</span> <span class=p>=</span> <span class=kc>false</span>  <span class=c># show reading time after article date</span>
-</span></span><span class=line><span class=cl><span class=nx>logo</span> <span class=p>=</span> <span class=s2>&#34;patelhiren-logo.png&#34;</span>
-</span></span><span class=line><span class=cl><span class=nx>slogan</span> <span class=p>=</span> <span class=s2>&#34;Documenting things as I learn.&#34;</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>assets</span><span class=p>]</span>
-</span></span><span class=line><span class=cl><span class=nx>css</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;css/fonts.css&#34;</span><span class=p>,</span> <span class=s2>&#34;css/light.css&#34;</span><span class=p>,</span> <span class=s2>&#34;css/dark.css&#34;</span><span class=p>]</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>comments</span><span class=p>]</span>
-</span></span><span class=line><span class=cl><span class=nx>enable</span> <span class=p>=</span> <span class=kc>false</span>  <span class=c># En/Disable comments globally, default: false. You can always enable comments on per page.</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>share</span><span class=p>]</span>
-</span></span><span class=line><span class=cl><span class=nx>enable</span> <span class=p>=</span> <span class=kc>false</span>  <span class=c># En/Disable share globally, default: false. You can always enable share on per page.</span>
-</span></span><span class=line><span class=cl><span class=nx>addThisId</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>
-</span></span><span class=line><span class=cl><span class=nx>inlineToolId</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>math</span><span class=p>]</span>
-</span></span><span class=line><span class=cl><span class=nx>enable</span> <span class=p>=</span> <span class=kc>false</span> <span class=c># load math globally, default: false. You can always enable math on per page.</span>
-</span></span><span class=line><span class=cl><span class=nx>use</span> <span class=p>=</span> <span class=s2>&#34;katex&#34;</span>  <span class=c># builtin: &#34;katex&#34;, &#34;mathjax&#34;.  default: &#34;katex&#34;</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>syntax</span><span class=p>]</span>
-</span></span><span class=line><span class=cl><span class=nx>use</span> <span class=p>=</span> <span class=s2>&#34;none&#34;</span>  <span class=c># builtin: &#34;prismjs&#34;, &#34;hljs&#34;. &#34;none&#34; means Chroma</span>
-</span></span><span class=line><span class=cl><span class=nx>theme</span> <span class=p>=</span> <span class=s2>&#34;xcode&#34;</span>
-</span></span><span class=line><span class=cl><span class=nx>darkTheme</span> <span class=p>=</span> <span class=s2>&#34;xcode-dark&#34;</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>nav</span><span class=p>]</span>
-</span></span><span class=line><span class=cl><span class=nx>showCategories</span> <span class=p>=</span> <span class=kc>true</span>       <span class=c># /categories/</span>
-</span></span><span class=line><span class=cl><span class=nx>showTags</span> <span class=p>=</span> <span class=kc>true</span>             <span class=c># /tags/</span>
-</span></span></code></pre></td></tr></table></div></div><p>To build your static site run:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl>hugo -D
-</span></span></code></pre></td></tr></table></div></div><p>The output will be saved under <em>./public/</em> directory. You may copy the contents of this folder to any webserver and your website will be servered.</p><h2 id=hosting-your-site-on-github-pages>Hosting your site on GitHub Pages</h2><ul><li>Create a repository to hold your Hugo content and source files on GitHub. Mine is called <em>patelhiren.com</em></li><li>Create a repository called <em>&lt;username>.github.io</em>. Replace <em>&lt;username></em> with your GitHub username. Mine is called patelhiren.github.io.</li><li>Clone your source project via:</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl><span class=c1># adjust to match your git url.</span>
-</span></span><span class=line><span class=cl>git clone git@github.com:patelhiren/patelhiren.com.git
-</span></span></code></pre></td></tr></table></div></div><ul><li><p>Paste your existing source files in the new repository folder.</p></li><li><p>Run and verify your local Hugo files from local repo by running <code>hugo server -D</code> and accessing the site at <a href=http://localhost:1313/ target=_blank rel="noopener noreferrer">http://localhost:1313/</a>.</p></li><li><p>Once you are happy with the results:</p><ul><li>Press Ctrl+C to kill the server</li><li>Before proceeding completely remove the public directory</li></ul></li><li><p>Add your public site as a git submodule. Like so:</p></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl><span class=c1># adjust to match your GitHub Pages repo</span>
-</span></span><span class=line><span class=cl>git submodule add -b master git@github.com:patelhiren/patelhiren.github.io.git
-</span></span></code></pre></td></tr></table></div></div><h3 id=automating-the-deployment-process>Automating the deployment process</h3><p>Create a new file <code>deploy.sh</code> and set its contents to below script. This will allow you to run <code>deploy.sh</code> to build your site and deploy to GitHub in one go.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span><span class=lnt>30
-</span><span class=lnt>31
-</span><span class=lnt>32
-</span><span class=lnt>33
-</span><span class=lnt>34
-</span><span class=lnt>35
-</span><span class=lnt>36
-</span><span class=lnt>37
-</span><span class=lnt>38
-</span><span class=lnt>39
-</span><span class=lnt>40
-</span><span class=lnt>41
-</span><span class=lnt>42
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl><span class=cp>#!/bin/sh
-</span></span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=c1># If a command fails then the deploy stops</span>
-</span></span><span class=line><span class=cl><span class=nb>set</span> -e
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=nb>printf</span> <span class=s2>&#34;\033[0;32mDeploying updates to GitHub...\033[0m\n&#34;</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=c1># Go To Public folder</span>
-</span></span><span class=line><span class=cl><span class=nb>cd</span> public
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=c1># Discard local changes on public folder</span>
-</span></span><span class=line><span class=cl>git reset
-</span></span><span class=line><span class=cl>git checkout .
-</span></span><span class=line><span class=cl>git clean -fdx
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=c1># Pull the latest changes before updating</span>
-</span></span><span class=line><span class=cl>git checkout master
-</span></span><span class=line><span class=cl>git pull origin master
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=nb>cd</span> ..
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=c1># Garbage collect hugo image-processing generated images.</span>
-</span></span><span class=line><span class=cl>hugo --gc
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=c1># Build the project.</span>
-</span></span><span class=line><span class=cl>hugo <span class=c1># if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=c1># Go To Public folder</span>
-</span></span><span class=line><span class=cl><span class=nb>cd</span> public
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=c1># Add changes to git.</span>
-</span></span><span class=line><span class=cl>git add .
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=c1># Commit changes.</span>
-</span></span><span class=line><span class=cl><span class=nv>msg</span><span class=o>=</span><span class=s2>&#34;rebuilding site </span><span class=k>$(</span>date<span class=k>)</span><span class=s2>&#34;</span>
-</span></span><span class=line><span class=cl><span class=k>if</span> <span class=o>[</span> -n <span class=s2>&#34;</span><span class=nv>$*</span><span class=s2>&#34;</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
-</span></span><span class=line><span class=cl>  <span class=nv>msg</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$*</span><span class=s2>&#34;</span>
-</span></span><span class=line><span class=cl><span class=k>fi</span>
-</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;</span><span class=nv>$msg</span><span class=s2>&#34;</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=c1># Push source and build repos.</span>
-</span></span><span class=line><span class=cl>git push origin master
-</span></span></code></pre></td></tr></table></div></div><ul><li>Your site will then be available at <code>https://&lt;username>.github.io</code>.</li></ul><h2 id=customizing-github-pages-to-use-a-custom-domain>Customizing GitHub pages to use a custom domain</h2><p>If you plan to use your own doamin instead of the &lt;username>.github.io you need to follow the guide at <a href=https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site target=_blank rel="noopener noreferrer">Managing a custom domain for your GitHub Pages site</a>.</p><p>For my site I did the following:</p><ul><li>Create a file called <code>CNAME</code> and set its contents to <em>patelhiren.com</em>.</li><li>Added the <code>CNAME</code> file to the git repo at patelhiren.github.io.</li><li>Got to Repo Settings at <a href=https://github.com/patelhiren/patelhiren.github.io/settings target=_blank rel="noopener noreferrer">https://github.com/patelhiren/patelhiren.github.io/settings</a> and set <strong>Custom domain</strong> and <strong>Enforce HTTPS</strong> settings.</li></ul><p><span class=image-container><span class=link><a target=_blank rel="noopener noreferrer" href=images/01.png><picture><source srcset="/blog/website-built-with-open-source-and-hosted-for-free/images/01_hu_f8cf2a96e93b4973.png 400w,
-/blog/website-built-with-open-source-and-hosted-for-free/images/01_hu_4383a184a6f2d4d0.png 600w,
-/blog/website-built-with-open-source-and-hosted-for-free/images/01_hu_ad528813d2f7789d.png 1000w,
-/blog/website-built-with-open-source-and-hosted-for-free/images/01_hu_94bdcf91d0ad626f.png 1200w,
-/blog/website-built-with-open-source-and-hosted-for-free/images/01.png"><img alt="GitHub Pages Custom Domain Settings" src=/blog/website-built-with-open-source-and-hosted-for-free/images/01.png>
-</picture></a></span><span class=caption><span class=title>GitHub Pages Custom Subdomain Settings</span></span></span></a></p><h2 id=publishing-new-postchanges>Publishing new Post/Changes</h2><p>To publish a new post:</p><ul><li>Create a new post similar to to command below.</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl>hugo new blog/my-new-post/index.md
-</span></span></code></pre></td></tr></table></div></div><ul><li><p>Set and edit your post using Markdown tools.</p></li><li><p>Run and verify your local Hugo files from local repo by running <code>hugo server -D</code> and accessing the site at <a href=http://localhost:1313/ target=_blank rel="noopener noreferrer">http://localhost:1313/</a>.</p></li><li><p>Run <code>deploy.sh</code> to deploy your site.</p></li><li><p>Commit your changes to your source repo.</p></li></ul><h2 id=conclusion>Conclusion</h2><p>This is all that should be necessary. It looks like a lot of steps, but in practice it is very simple and doesn&rsquo;t require as much work to maintain for publishing new posts.</p><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p>For a git GUI, I prefer <a href=https://www.git-fork.com target=_blank rel="noopener noreferrer">Fork</a>.&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p>Creating a blog post this way with a folder as the post name allows you to keep images within the same folder instead of keeping images in the root folder. This felt like better grouping of content vs the default Hugo suggested way of generating new post via <em>hugo new blog/my-first-post</em>.&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:3><p>I prefer <a href=https://code.visualstudio.com target=_blank rel="noopener noreferrer">Visual Studio Code</a>. Tip: If using Visual Studio Code you can press <em>CMD+K,V</em> to activate side-by-side live preview of the Markdown you are typing.&#160;<a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></article><section class="article labels"><a class=category href=/categories/how-tos/>How Tos</a><a class=category href=/categories/web/>Web</a><a class=category href=/categories/patelhiren%2ecom/>patelhiren.com</a><a class=tag href=/tags/hugo/>Hugo</a><a class=tag href=/tags/github/>GitHub</a><a class=tag href=/tags/github-pages/>GitHub Pages</a></section></div><div class="article bottom"><section class="article navigation"><p><a class=link href=/blog/using-mermaid-js-to-generate-flow-charts/><span class="iconfont icon-article"></span>Using mermaid-js to generate Flow Charts</a></p><p><a class=link href=/blog/pngcrush-automator-action/><span class="iconfont icon-article"></span>PNG Crush Automator Action</a></p></section></div></section><section id=footer><div class=footer-wrap><p class=copyright>© Copyright 2026, © Copyright {year}, Hiren Patel</p><p class=disclaimer>Disclaimer: The opinions expressed herein are my own personal opinions and do not represent my employer’s view in any way.</p></div></section><script defer src=https://static.cloudflareinsights.com/beacon.min.js data-cf-beacon='{"token": "0ceb2b0172264816ba290291f3b99e4f"}'></script></body></html>
+<!DOCTYPE html>
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.157.0"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><meta name="description" content="I document the open-source tools I use to build this site and how I host it for free with support for SSL and CDN."><title>Building this website using open-source tools and hosting it for free&nbsp;&ndash;&nbsp;Hiren Patel</title><link rel="stylesheet" href="/css/core.min.0b118e14540ca98a7d5831215cbcf668e4d9e6213caec18b7f715a6c1981ff9f8ed2ff5375733a0c71aa1d6ac553f8ff.css" integrity="sha384-CxGOFFQMqYp9WDEhXLz2aOTZ5iE8rsGLf3FabBmB/5&#43;O0v9TdXM6DHGqHWrFU/j/"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Building this website using open-source tools and hosting it for free" /><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" as="style" onload="this.rel='stylesheet'" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#191919" />
+<meta name="msapplication-TileColor" content="#00aba9" />
+<body><section id="header" class="site header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><img alt="" loading="lazy" class="site logo" src="/patelhiren-logo.png"/><span class="site name">Hiren Patel</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/about/">About</a></nav></div></span></div><div class="site slogan wrap">
+            <span class="title left-side">Documenting things as I learn.</span>
+            <span class="right-side"><div class="social-buttons">
+    <a href="/index.xml" aria-label="Subscribe in your RSS reader">
+        <span>
+            <i class="fa-solid fa-rss"></i>
+        </span>
+    </a>
+    <a rel="me" href="https://mastodon.social/@patelhiren" target="_blank" aria-label="Follow @patelhiren on Mastodon">
+        <span>
+            <i class="fa-brands fa-mastodon"></i>
+        </span>
+    </a>
+    <a href="https://twitter.com/patelhiren" target="_blank" aria-label="Follow @patelhiren on Twitter">
+        <span>
+            <i class="fa-brands fa-twitter"></i>
+        </span>
+    </a>
+</div></span>
+        </div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">Building this website using open-source tools and hosting it for free</h1><p class="article date">Apr 18, 2020</p></section><article class="article markdown-body"><p>For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.</p>
+<p><strong>Introducing <a href="https://patelhiren.com"title="Hiren Patel&#39;s Blog"target="_blank" rel="noopener noreferrer">patelhiren.com</a> in all its glory. &#x1f389;</strong></p>
+<h2 id="goals">Goals</h2>
+<p>For this site I had a few basic goals in mind.</p>
+<ul>
+<li>It should serve as a log to help me remember and reivew how I did things. I hope that others may find it helpful as well.</li>
+<li>The website should be fast and light. Should not be overburdened with Javascript.</li>
+<li>Should be able to host website with a simple webserver. No server side software should be necessary.</li>
+<li>Allowed me to keep my content in a standard text + image format for easy parsing even when not viewing via a browser. I did not want my content to be stored in binary formats in a database. I want it to be stored in plain text files on the filesystem.</li>
+<li>Support code syntax highlighting.</li>
+<li>Support SSL encryption on the website.</li>
+<li>Support emoji.</li>
+</ul>
+<p>The above goals meant I was going to be building a Static Site using one of the many <a href="https://www.staticgen.com"target="_blank" rel="noopener noreferrer">Static Site Generator Tools</a></p>
+<h2 id="tools">Tools</h2>
+<p>After deciding I wanted a static site, I researched the various <a href="https://www.staticgen.com"target="_blank" rel="noopener noreferrer">Static Site Generator Tools</a> and settled on <a href="https://gohugo.io"target="_blank" rel="noopener noreferrer"><em>Hugo</em></a> as my choice.</p>
+<p>Hugo written in <a href="https://golang.org"target="_blank" rel="noopener noreferrer">Go</a>, is highly reviewed and praised for its speed of site generation. It supports macOS (my primary OS of choice), Windows, Linux, OpenBSD and FreeBSD. It has a very well documented site and looks to have an active community developing and supporting it. It allows me to create my content in <a href="https://daringfireball.net/projects/markdown/"target="_blank" rel="noopener noreferrer">Markdown</a> syntax thus allowing me to keep it in plain text on the filesystem. It also supports code syntax highlighting and emoji &#x1f44c;. You can check details of Hugo&rsquo;s Makrdown support at <a href="https://www.markdownguide.org/tools/hugo/"target="_blank" rel="noopener noreferrer">markdownguide.org</a></p>
+<p>Hugo supports a variety of <a href="https://themes.gohugo.io"target="_blank" rel="noopener noreferrer">Themes</a>. I settled on <a href="https://themes.gohugo.io/hugo-notepadium/"target="_blank" rel="noopener noreferrer">Notepadium</a> because it provided most of what I wanted out of box. I plan to customize it a bit to my liking as I learn more.</p>
+<h2 id="hosting">Hosting</h2>
+<p>For hosting I decided to use <a href="https://pages.github.com"target="_blank" rel="noopener noreferrer">GitHub Pages</a>. GitHub Pages is free, supports SSL and provides automatic CDN for serving fast webpages closer to your user. It also had the added benefit of having my generated site auotmatically have commit history and remote backup.</p>
+<h2 id="installing-hugo-and-building-your-site">Installing Hugo and Building your site</h2>
+<p>I use macOS as my primary OS so these steps are for for the Mac. However the steps should be very similar if you are using any other supported OS. <a href="https://brew.sh"target="_blank" rel="noopener noreferrer">Homebrew</a> and <em>git</em> <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> is expected to be installed before you follow the rest of the steps.</p>
+<p>Install Hugo</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">brew install hugo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>To verify the install run</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">hugo version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Create your new site</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">hugo new site patelhiren.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Add the <em><a href="https://themes.gohugo.io/hugo-notepadium/"target="_blank" rel="noopener noreferrer">Notepadium</a></em> Theme</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">cd</span> patelhiren.com
+</span></span><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git submodule add https://github.com/cntrump/hugo-notepadium themes/notepadium
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Activate the theme for your site by adding it to the <em>config.toml</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;theme = &#34;notepadium&#34;&#39;</span> &gt;&gt; config.toml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Create a new post <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">hugo new blog/my-first-post/index.md
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>You can find your content under <em>content</em> folder. You can open the newly created index.md file in any Markdown editor of choice <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> and edit and save your content. Here is an example post to suggest what&rsquo;s possible.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">title: &#34;My First Post&#34;
+</span></span><span class="line"><span class="cl">description: &#34;This is my first post in Hugo. This shows up in Google search.&#34;
+</span></span><span class="line"><span class="cl">date: 2020-04-18T16:08:20-04:00
+</span></span><span class="line"><span class="cl">draft: true
+</span></span><span class="line"><span class="cl">tags: [
+</span></span><span class="line"><span class="cl">    &#34;Tag 1&#34;,
+</span></span><span class="line"><span class="cl">    &#34;Tag 2&#34;
+</span></span><span class="line"><span class="cl">]
+</span></span><span class="line"><span class="cl">categories: [
+</span></span><span class="line"><span class="cl">    &#34;Category 1&#34;,
+</span></span><span class="line"><span class="cl">    &#34;Category 2&#34;
+</span></span><span class="line"><span class="cl">]
+</span></span><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Hello everyone welcome to you website.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;!--more--&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">This is the extended content of my first post.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Once you save your content you can test it locally by activating Hugo local web server.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">hugo server -D
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>You can navigate to your local site at <a href="http://localhost:1313/"target="_blank" rel="noopener noreferrer">http://localhost:1313/</a>.</p>
+<p>Edit you <em>config.toml</em> to configure the rest of your site settings. Here is mine.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">baseURL</span> <span class="p">=</span> <span class="s2">&#34;https://patelhiren.com/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">languageCode</span> <span class="p">=</span> <span class="s2">&#34;en-us&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;Hiren Patel&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;notepadium&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">copyright</span> <span class="p">=</span> <span class="s2">&#34;©2020 Hiren Patel.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">enableEmoji</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="nx">enableRobotsTXT</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">highlight</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">codeFences</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="nx">noClasses</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">linenos</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">goldmark</span><span class="p">.</span><span class="nx">renderer</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">unsafe</span> <span class="p">=</span> <span class="kc">true</span>  <span class="c"># enable raw HTML in Markdown</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;auto&#34;</span>  <span class="c"># default: auto. light: light theme, dark: dark theme, auto: based on system.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">dateFormat</span> <span class="p">=</span> <span class="s2">&#34;Jan 02, 2006&#34;</span>  <span class="c"># if unset, default is &#34;2006-01-02&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">readingTime</span> <span class="p">=</span> <span class="kc">false</span>  <span class="c"># show reading time after article date</span>
+</span></span><span class="line"><span class="cl"><span class="nx">logo</span> <span class="p">=</span> <span class="s2">&#34;patelhiren-logo.png&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">slogan</span> <span class="p">=</span> <span class="s2">&#34;Documenting things as I learn.&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">assets</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">css</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;css/fonts.css&#34;</span><span class="p">,</span> <span class="s2">&#34;css/light.css&#34;</span><span class="p">,</span> <span class="s2">&#34;css/dark.css&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">comments</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>  <span class="c"># En/Disable comments globally, default: false. You can always enable comments on per page.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">share</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>  <span class="c"># En/Disable share globally, default: false. You can always enable share on per page.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">addThisId</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">inlineToolId</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">math</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span> <span class="c"># load math globally, default: false. You can always enable math on per page.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">use</span> <span class="p">=</span> <span class="s2">&#34;katex&#34;</span>  <span class="c"># builtin: &#34;katex&#34;, &#34;mathjax&#34;.  default: &#34;katex&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">syntax</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">use</span> <span class="p">=</span> <span class="s2">&#34;none&#34;</span>  <span class="c"># builtin: &#34;prismjs&#34;, &#34;hljs&#34;. &#34;none&#34; means Chroma</span>
+</span></span><span class="line"><span class="cl"><span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;xcode&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">darkTheme</span> <span class="p">=</span> <span class="s2">&#34;xcode-dark&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">nav</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">showCategories</span> <span class="p">=</span> <span class="kc">true</span>       <span class="c"># /categories/</span>
+</span></span><span class="line"><span class="cl"><span class="nx">showTags</span> <span class="p">=</span> <span class="kc">true</span>             <span class="c"># /tags/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>To build your static site run:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">hugo -D
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The output will be saved under <em>./public/</em> directory. You may copy the contents of this folder to any webserver and your website will be servered.</p>
+<h2 id="hosting-your-site-on-github-pages">Hosting your site on GitHub Pages</h2>
+<ul>
+<li>Create a repository to hold your Hugo content and source files on GitHub. Mine is called <em>patelhiren.com</em></li>
+<li>Create a repository called <em>&lt;username&gt;.github.io</em>. Replace <em>&lt;username&gt;</em> with your GitHub username. Mine is called patelhiren.github.io.</li>
+<li>Clone your source project via:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># adjust to match your git url.</span>
+</span></span><span class="line"><span class="cl">git clone git@github.com:patelhiren/patelhiren.com.git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>Paste your existing source files in the new repository folder.</p>
+</li>
+<li>
+<p>Run and verify your local Hugo files from local repo by running <code>hugo server -D</code> and accessing the site at <a href="http://localhost:1313/"target="_blank" rel="noopener noreferrer">http://localhost:1313/</a>.</p>
+</li>
+<li>
+<p>Once you are happy with the results:</p>
+<ul>
+<li>Press Ctrl+C to kill the server</li>
+<li>Before proceeding completely remove the public directory</li>
+</ul>
+</li>
+<li>
+<p>Add your public site as a git submodule. Like so:</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># adjust to match your GitHub Pages repo</span>
+</span></span><span class="line"><span class="cl">git submodule add -b master git@github.com:patelhiren/patelhiren.github.io.git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="automating-the-deployment-process">Automating the deployment process</h3>
+<p>Create a new file <code>deploy.sh</code> and set its contents to below script. This will allow you to run <code>deploy.sh</code> to build your site and deploy to GitHub in one go.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># If a command fails then the deploy stops</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -e
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">printf</span> <span class="s2">&#34;\033[0;32mDeploying updates to GitHub...\033[0m\n&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Go To Public folder</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> public
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Discard local changes on public folder</span>
+</span></span><span class="line"><span class="cl">git reset
+</span></span><span class="line"><span class="cl">git checkout .
+</span></span><span class="line"><span class="cl">git clean -fdx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Pull the latest changes before updating</span>
+</span></span><span class="line"><span class="cl">git checkout master
+</span></span><span class="line"><span class="cl">git pull origin master
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ..
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Garbage collect hugo image-processing generated images.</span>
+</span></span><span class="line"><span class="cl">hugo --gc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Build the project.</span>
+</span></span><span class="line"><span class="cl">hugo <span class="c1"># if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Go To Public folder</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> public
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Add changes to git.</span>
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Commit changes.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;rebuilding site </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> -n <span class="s2">&#34;</span><span class="nv">$*</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$*</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;</span><span class="nv">$msg</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Push source and build repos.</span>
+</span></span><span class="line"><span class="cl">git push origin master
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Your site will then be available at <code>https://&lt;username&gt;.github.io</code>.</li>
+</ul>
+<h2 id="customizing-github-pages-to-use-a-custom-domain">Customizing GitHub pages to use a custom domain</h2>
+<p>If you plan to use your own doamin instead of the &lt;username&gt;.github.io you need to follow the guide at <a href="https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site"target="_blank" rel="noopener noreferrer">Managing a custom domain for your GitHub Pages site</a>.</p>
+<p>For my site I did the following:</p>
+<ul>
+<li>Create a file called <code>CNAME</code> and set its contents to <em>patelhiren.com</em>.</li>
+<li>Added the <code>CNAME</code> file to the git repo at patelhiren.github.io.</li>
+<li>Got to Repo Settings at <a href="https://github.com/patelhiren/patelhiren.github.io/settings"target="_blank" rel="noopener noreferrer">https://github.com/patelhiren/patelhiren.github.io/settings</a> and set <strong>Custom domain</strong> and <strong>Enforce HTTPS</strong> settings.</li>
+</ul>
+<p>
+
+<span class="image-container">
+    <span class="link">
+        <a target="_blank" rel="noopener noreferrer" href="images/01.png">
+            <picture><source 
+                    srcset="
+                    
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu_f8cf2a96e93b4973.png 400w,
+                    
+                    
+                    
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu_4383a184a6f2d4d0.png 600w,
+                    
+
+                    
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu_ad528813d2f7789d.png 1000w,
+                    
+
+                    
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu_94bdcf91d0ad626f.png 1200w,
+                    
+
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01.png
+                    " 
+                />
+                
+                <img alt="GitHub Pages Custom Domain Settings" 
+                        src="/blog/website-built-with-open-source-and-hosted-for-free/images/01.png" />
+            </picture>
+        </a>
+    </span>
+    <span class="caption">
+        <span class="title">GitHub Pages Custom Subdomain Settings</span>
+    </span>
+</span></a></p>
+<h2 id="publishing-new-postchanges">Publishing new Post/Changes</h2>
+<p>To publish a new post:</p>
+<ul>
+<li>Create a new post similar to to command below.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">hugo new blog/my-new-post/index.md
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>Set and edit your post using Markdown tools.</p>
+</li>
+<li>
+<p>Run and verify your local Hugo files from local repo by running <code>hugo server -D</code> and accessing the site at <a href="http://localhost:1313/"target="_blank" rel="noopener noreferrer">http://localhost:1313/</a>.</p>
+</li>
+<li>
+<p>Run <code>deploy.sh</code> to deploy your site.</p>
+</li>
+<li>
+<p>Commit your changes to your source repo.</p>
+</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>This is all that should be necessary. It looks like a lot of steps, but in practice it is very simple and doesn&rsquo;t require as much work to maintain for publishing new posts.</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>For a git GUI, I prefer <a href="https://www.git-fork.com"target="_blank" rel="noopener noreferrer">Fork</a>.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Creating a blog post this way with a folder as the post name allows you to keep images within the same folder instead of keeping images in the root folder. This felt like better grouping of content vs the default Hugo suggested way of generating new post via <em>hugo new blog/my-first-post</em>.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>I prefer <a href="https://code.visualstudio.com"target="_blank" rel="noopener noreferrer">Visual Studio Code</a>. Tip: If using Visual Studio Code you can press <em>CMD+K,V</em> to activate side-by-side live preview of the Markdown you are typing.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div></article><section class="article labels"><a class="category" href=/categories/how-tos/>How Tos</a><a class="category" href=/categories/web/>Web</a><a class="category" href=/categories/patelhiren%2ecom/>patelhiren.com</a><a class="tag" href=/tags/hugo/>Hugo</a><a class="tag" href=/tags/github/>GitHub</a><a class="tag" href=/tags/github-pages/>GitHub Pages</a></section>
+</div>
+<div class="article bottom"><section class="article navigation"><p><a class="link" href="/blog/using-mermaid-js-to-generate-flow-charts/"><span class="iconfont icon-article"></span>Using mermaid-js to generate Flow Charts</a></p><p><a class="link" href="/blog/pngcrush-automator-action/"><span class="iconfont icon-article"></span>PNG Crush Automator Action</a></p></section></div></section><section id="footer"><div class="footer-wrap">
+    <p class="copyright">© Copyright 2026, © Copyright {year}, Hiren Patel</p>
+    <p class="disclaimer">Disclaimer: The opinions expressed herein are my own personal opinions and do not represent my employer’s view in any way.</p>
+</div></section>
+    
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+        data-cf-beacon='{"token": "0ceb2b0172264816ba290291f3b99e4f"}'></script>
+    
+</body>
+
+</html>

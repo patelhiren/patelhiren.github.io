@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Terminal on Hiren Patel</title><link>https://patelhiren.com/tags/terminal/</link><description>Recent content in Terminal on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Sun, 12 Apr 2020 22:04:30 -0400</lastBuildDate><atom:link href="https://patelhiren.com/tags/terminal/index.xml" rel="self" type="application/rss+xml"/><item><title>PNG Crush Automator Action</title><link>https://patelhiren.com/blog/pngcrush-automator-action/</link><pubDate>Sun, 12 Apr 2020 22:04:30 -0400</pubDate><guid>https://patelhiren.com/blog/pngcrush-automator-action/</guid><description>&lt;p&gt;When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS &lt;a href="https://support.apple.com/guide/automator/welcome/mac"target="_blank" rel="noopener noreferrer"&gt;Automator&lt;/a&gt;.&lt;/p&gt;</description><content:encoded><![CDATA[<p>When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS <a href="https://support.apple.com/guide/automator/welcome/mac"target="_blank" rel="noopener noreferrer">Automator</a>.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Terminal on Hiren Patel</title>
+    <link>https://patelhiren.com/tags/terminal/</link>
+    <description>Recent content in Terminal on Hiren Patel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright {year}, Hiren Patel</copyright>
+    <lastBuildDate>Sun, 12 Apr 2020 22:04:30 -0400</lastBuildDate>
+    
+	<atom:link href="https://patelhiren.com/tags/terminal/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PNG Crush Automator Action</title>
+      <link>https://patelhiren.com/blog/pngcrush-automator-action/</link>
+      <pubDate>Sun, 12 Apr 2020 22:04:30 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/blog/pngcrush-automator-action/</guid>
+      <description>&lt;p&gt;When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS &lt;a href=&#34;https://support.apple.com/guide/automator/welcome/mac&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Automator&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS <a href="https://support.apple.com/guide/automator/welcome/mac"target="_blank" rel="noopener noreferrer">Automator</a>.</p>
 <p>To crush png images I use the opensource tool <a href="https://pmt.sourceforge.io/pngcrush/"target="_blank" rel="noopener noreferrer">PNG Crush</a>.</p>
 <p>If you have <a href="https://developer.apple.com/xcode/"target="_blank" rel="noopener noreferrer">Xcode</a> installed, the pngcrush tool is included as a part of the iOS SDK and there is no additional download required.</p>
 <p>If you do not have Xcode you may install <em>PNG Crush</em> via <a href="https://brew.sh"target="_blank" rel="noopener noreferrer">Homebrew</a> using the following command.</p>
@@ -294,4 +316,9 @@
     <span class="caption">
         <span class="title"></span>
     </span>
-</span></a></p>]]></content:encoded></item></channel></rss>
+</span></a></p>]]></content:encoded>
+      
+    </item>
+    
+  </channel>
+</rss>

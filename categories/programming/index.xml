@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Programming on Hiren Patel</title><link>https://patelhiren.com/categories/programming/</link><description>Recent content in Programming on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Wed, 25 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://patelhiren.com/categories/programming/index.xml" rel="self" type="application/rss+xml"/><item><title>Using macOS newsyslog to Rotate Service Logs</title><link>https://patelhiren.com/blog/macos-newsyslog-openclaw-logs/</link><pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate><guid>https://patelhiren.com/blog/macos-newsyslog-openclaw-logs/</guid><description>&lt;p&gt;I noticed my &lt;a href="https://clawd.bot/"target="_blank" rel="noopener noreferrer"&gt;OpenClaw&lt;/a&gt; gateway log files were growing unbounded. The service runs via &lt;a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html"target="_blank" rel="noopener noreferrer"&gt;launchd&lt;/a&gt;, and while the app has built-in log rotation, the stdout/stderr capture in the launchd plist was bypassing it entirely.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I noticed my <a href="https://clawd.bot/"target="_blank" rel="noopener noreferrer">OpenClaw</a> gateway log files were growing unbounded. The service runs via <a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html"target="_blank" rel="noopener noreferrer">launchd</a>, and while the app has built-in log rotation, the stdout/stderr capture in the launchd plist was bypassing it entirely.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Programming on Hiren Patel</title>
+    <link>https://patelhiren.com/categories/programming/</link>
+    <description>Recent content in Programming on Hiren Patel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright {year}, Hiren Patel</copyright>
+    <lastBuildDate>Wed, 25 Feb 2026 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://patelhiren.com/categories/programming/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Using macOS newsyslog to Rotate Service Logs</title>
+      <link>https://patelhiren.com/blog/macos-newsyslog-openclaw-logs/</link>
+      <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://patelhiren.com/blog/macos-newsyslog-openclaw-logs/</guid>
+      <description>&lt;p&gt;I noticed my &lt;a href=&#34;https://clawd.bot/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;OpenClaw&lt;/a&gt; gateway log files were growing unbounded. The service runs via &lt;a href=&#34;https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;launchd&lt;/a&gt;, and while the app has built-in log rotation, the stdout/stderr capture in the launchd plist was bypassing it entirely.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>I noticed my <a href="https://clawd.bot/"target="_blank" rel="noopener noreferrer">OpenClaw</a> gateway log files were growing unbounded. The service runs via <a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html"target="_blank" rel="noopener noreferrer">launchd</a>, and while the app has built-in log rotation, the stdout/stderr capture in the launchd plist was bypassing it entirely.</p>
 <h2 id="the-problem">The Problem</h2>
 <p>When a macOS service uses <code>StandardOutPath</code> and <code>StandardErrorPath</code> in its launchd plist, those files just append forever. My logs had grown to 38MB with no mechanism to clean them up:</p>
 <div class="highlight"><div class="chroma">
@@ -125,8 +147,20 @@ Service exited with abnormal code: 1
 <li><a href="https://www.freebsd.org/cgi/man.cgi?newsyslog%288%29"target="_blank" rel="noopener noreferrer">newsyslog man page</a></li>
 <li><a href="https://docs.openclaw.ai/"target="_blank" rel="noopener noreferrer">OpenClaw documentation</a></li>
 <li><a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html"target="_blank" rel="noopener noreferrer">launchd documentation</a></li>
-</ul>]]></content:encoded></item><item><title>Tag-Teaming Claude Code with an AI Agent via Tmux</title><link>https://patelhiren.com/blog/tag-teaming-claude-code-with-ai-agent/</link><pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate><guid>https://patelhiren.com/blog/tag-teaming-claude-code-with-ai-agent/</guid><description>&lt;p&gt;&lt;a href="https://claude.ai/code"target="_blank" rel="noopener noreferrer"&gt;Claude Code&lt;/a&gt; is an impressive CLI that brings sophisticated AI-assisted coding directly into the terminal. Its TUI (Text User Interface) provides rich feedback through interactive menus, progress bars, and side-by-side diffs. However, long-running tasks present a challenge: if you need to step away from your computer, the session momentum is often lost.&lt;/p&gt;
-&lt;p&gt;To solve this, I’ve developed a workflow using &lt;a href="https://github.com/tmux/tmux/wiki"target="_blank" rel="noopener noreferrer"&gt;Tmux&lt;/a&gt; as a shared terminal state. This allows me to hand off a live session to my &lt;a href="https://clawd.bot/"target="_blank" rel="noopener noreferrer"&gt;Clawdbot&lt;/a&gt; agent and, conversely, take over a session that the agent started. It also provides a mechanism to optionally switch between different account tokens (such as a work account) on the fly.&lt;/p&gt;</description><content:encoded><![CDATA[<p><a href="https://claude.ai/code"target="_blank" rel="noopener noreferrer">Claude Code</a> is an impressive CLI that brings sophisticated AI-assisted coding directly into the terminal. Its TUI (Text User Interface) provides rich feedback through interactive menus, progress bars, and side-by-side diffs. However, long-running tasks present a challenge: if you need to step away from your computer, the session momentum is often lost.</p>
+</ul>]]></content:encoded>
+      
+    </item>
+    
+    <item>
+      <title>Tag-Teaming Claude Code with an AI Agent via Tmux</title>
+      <link>https://patelhiren.com/blog/tag-teaming-claude-code-with-ai-agent/</link>
+      <pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://patelhiren.com/blog/tag-teaming-claude-code-with-ai-agent/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://claude.ai/code&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Claude Code&lt;/a&gt; is an impressive CLI that brings sophisticated AI-assisted coding directly into the terminal. Its TUI (Text User Interface) provides rich feedback through interactive menus, progress bars, and side-by-side diffs. However, long-running tasks present a challenge: if you need to step away from your computer, the session momentum is often lost.&lt;/p&gt;
+&lt;p&gt;To solve this, I’ve developed a workflow using &lt;a href=&#34;https://github.com/tmux/tmux/wiki&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Tmux&lt;/a&gt; as a shared terminal state. This allows me to hand off a live session to my &lt;a href=&#34;https://clawd.bot/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Clawdbot&lt;/a&gt; agent and, conversely, take over a session that the agent started. It also provides a mechanism to optionally switch between different account tokens (such as a work account) on the fly.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p><a href="https://claude.ai/code"target="_blank" rel="noopener noreferrer">Claude Code</a> is an impressive CLI that brings sophisticated AI-assisted coding directly into the terminal. Its TUI (Text User Interface) provides rich feedback through interactive menus, progress bars, and side-by-side diffs. However, long-running tasks present a challenge: if you need to step away from your computer, the session momentum is often lost.</p>
 <p>To solve this, I’ve developed a workflow using <a href="https://github.com/tmux/tmux/wiki"target="_blank" rel="noopener noreferrer">Tmux</a> as a shared terminal state. This allows me to hand off a live session to my <a href="https://clawd.bot/"target="_blank" rel="noopener noreferrer">Clawdbot</a> agent and, conversely, take over a session that the agent started. It also provides a mechanism to optionally switch between different account tokens (such as a work account) on the fly.</p>
 <h2 id="the-core-concept-persistence">The Core Concept: Persistence</h2>
 <p>The strategy relies on Tmux sessions to maintain a persistent terminal state in memory. By using named sessions, both the human and the AI agent can attach to and drive the exact same process. This ensures zero context loss when switching between &ldquo;manual&rdquo; and &ldquo;agent&rdquo; mode.</p>
@@ -241,7 +275,19 @@ Service exited with abnormal code: 1
 <li><strong>Naming</strong>: Use consistent session names so the agent knows where to look.</li>
 <li><strong>Power Settings</strong>: Configure your Mac to stay awake when the display is off to ensure the Tmux server remains active.</li>
 </ul>
-<p>By treating the terminal as a shared space, I’ve turned my AI agent into a true tag-team partner. We can hot-swap control of the keyboard and switch accounts on the fly without ever losing the &ldquo;zone.&rdquo;</p>]]></content:encoded></item><item><title>Setting up Keras Tensorflow2 on M1 Mac</title><link>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</link><pubDate>Fri, 21 Oct 2022 13:32:11 -0400</pubDate><guid>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</guid><description>&lt;p&gt;I am currently reading &lt;a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank" rel="noopener noreferrer"&gt;Deep Learning with TensorFlow and Keras&lt;/a&gt; to get started with Machine Learning/Deep Learning. Here is how I setup a local &lt;em&gt;Keras/Tensorflow 2.0&lt;/em&gt; environment on my &lt;em&gt;M1 Max MacBook Pro&lt;/em&gt; running &lt;em&gt;macOS 12.6&lt;/em&gt;.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I am currently reading <a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank" rel="noopener noreferrer">Deep Learning with TensorFlow and Keras</a> to get started with Machine Learning/Deep Learning. Here is how I setup a local <em>Keras/Tensorflow 2.0</em> environment on my <em>M1 Max MacBook Pro</em> running <em>macOS 12.6</em>.</p>
+<p>By treating the terminal as a shared space, I’ve turned my AI agent into a true tag-team partner. We can hot-swap control of the keyboard and switch accounts on the fly without ever losing the &ldquo;zone.&rdquo;</p>]]></content:encoded>
+      
+    </item>
+    
+    <item>
+      <title>Setting up Keras Tensorflow2 on M1 Mac</title>
+      <link>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</link>
+      <pubDate>Fri, 21 Oct 2022 13:32:11 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</guid>
+      <description>&lt;p&gt;I am currently reading &lt;a href=&#34;https://www.amazon.com/gp/product/B0B18D695W&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Deep Learning with TensorFlow and Keras&lt;/a&gt; to get started with Machine Learning/Deep Learning. Here is how I setup a local &lt;em&gt;Keras/Tensorflow 2.0&lt;/em&gt; environment on my &lt;em&gt;M1 Max MacBook Pro&lt;/em&gt; running &lt;em&gt;macOS 12.6&lt;/em&gt;.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>I am currently reading <a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank" rel="noopener noreferrer">Deep Learning with TensorFlow and Keras</a> to get started with Machine Learning/Deep Learning. Here is how I setup a local <em>Keras/Tensorflow 2.0</em> environment on my <em>M1 Max MacBook Pro</em> running <em>macOS 12.6</em>.</p>
 <p>Install <a href="https://docs.conda.io/en/latest/miniconda.html"target="_blank" rel="noopener noreferrer"><em>miniconda</em></a>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -389,7 +435,19 @@ Service exited with abnormal code: 1
 </span></span><span class="line"><span class="cl">* PhysicalDevice(name=&#39;/physical_device:GPU:0&#39;, device_type=&#39;GPU&#39;)
 </span></span></code></pre></td></tr></table>
 </div>
-</div>]]></content:encoded></item><item><title>Cross Compiling on macOS via Docker</title><link>https://patelhiren.com/blog/cross-compiling-on-macos-via-docker/</link><pubDate>Wed, 23 Dec 2020 09:31:48 -0500</pubDate><guid>https://patelhiren.com/blog/cross-compiling-on-macos-via-docker/</guid><description>&lt;p&gt;I needed to compile an arm64 binary to run on the &lt;a href="https://store.ui.com/collections/unifi-network-routing-switching/products/udm-pro"target="_blank" rel="noopener noreferrer"&gt;UniFi Dream Machine Pro&lt;/a&gt;. This is how I used docker to setup cross compilation tools and compile the binary on macOS.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I needed to compile an arm64 binary to run on the <a href="https://store.ui.com/collections/unifi-network-routing-switching/products/udm-pro"target="_blank" rel="noopener noreferrer">UniFi Dream Machine Pro</a>. This is how I used docker to setup cross compilation tools and compile the binary on macOS.</p>
+</div>]]></content:encoded>
+      
+    </item>
+    
+    <item>
+      <title>Cross Compiling on macOS via Docker</title>
+      <link>https://patelhiren.com/blog/cross-compiling-on-macos-via-docker/</link>
+      <pubDate>Wed, 23 Dec 2020 09:31:48 -0500</pubDate>
+      
+      <guid>https://patelhiren.com/blog/cross-compiling-on-macos-via-docker/</guid>
+      <description>&lt;p&gt;I needed to compile an arm64 binary to run on the &lt;a href=&#34;https://store.ui.com/collections/unifi-network-routing-switching/products/udm-pro&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;UniFi Dream Machine Pro&lt;/a&gt;. This is how I used docker to setup cross compilation tools and compile the binary on macOS.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>I needed to compile an arm64 binary to run on the <a href="https://store.ui.com/collections/unifi-network-routing-switching/products/udm-pro"target="_blank" rel="noopener noreferrer">UniFi Dream Machine Pro</a>. This is how I used docker to setup cross compilation tools and compile the binary on macOS.</p>
 <p>Get and install <a href="https://docs.docker.com/docker-for-mac/install/"target="_blank" rel="noopener noreferrer">Docker Desktop</a> is not already installed. Once installed we can use <a href="https://github.com/dockcross/dockcross"target="_blank" rel="noopener noreferrer">DockCross</a> to setup an cross compile tool chain we want. Here is an example of how I setup the linux-arm64 toolchain.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -437,11 +495,28 @@ Service exited with abnormal code: 1
 </div>
 </div><blockquote>
 <p><strong>Note:</strong> Using <em>$CC</em> is important. If you use <em>gcc</em> directly it will compile using <em>x86_64</em> version.</p>
-</blockquote>]]></content:encoded></item><item><title>Dagger 2 Beginner Tutorial</title><link>https://patelhiren.com/blog/dagger-2-beginner-tutorial/</link><pubDate>Fri, 22 May 2020 15:08:53 -0400</pubDate><guid>https://patelhiren.com/blog/dagger-2-beginner-tutorial/</guid><description>&lt;p&gt;While reviewing an Android project I discovered it was using &lt;a href="https://dagger.dev"target="_blank" rel="noopener noreferrer"&gt;Dagger 2&lt;/a&gt; framework. Dagger 2 is a dependency injection framework for Android that is developed by Google. I wanted a quick overview of frameworks major features.&lt;/p&gt;</description><content:encoded><![CDATA[<p>While reviewing an Android project I discovered it was using <a href="https://dagger.dev"target="_blank" rel="noopener noreferrer">Dagger 2</a> framework. Dagger 2 is a dependency injection framework for Android that is developed by Google. I wanted a quick overview of frameworks major features.</p>
+</blockquote>]]></content:encoded>
+      
+    </item>
+    
+    <item>
+      <title>Dagger 2 Beginner Tutorial</title>
+      <link>https://patelhiren.com/blog/dagger-2-beginner-tutorial/</link>
+      <pubDate>Fri, 22 May 2020 15:08:53 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/blog/dagger-2-beginner-tutorial/</guid>
+      <description>&lt;p&gt;While reviewing an Android project I discovered it was using &lt;a href=&#34;https://dagger.dev&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Dagger 2&lt;/a&gt; framework. Dagger 2 is a dependency injection framework for Android that is developed by Google. I wanted a quick overview of frameworks major features.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>While reviewing an Android project I discovered it was using <a href="https://dagger.dev"target="_blank" rel="noopener noreferrer">Dagger 2</a> framework. Dagger 2 is a dependency injection framework for Android that is developed by Google. I wanted a quick overview of frameworks major features.</p>
 <p>I found the below video series by <a href="https://codinginflow.com"target="_blank" rel="noopener noreferrer">codinginflow.com</a> extermely well done.</p>
 <blockquote>
 <p><a href="https://codinginflow.com/tutorials/android/dagger-2/part-1-introduction"target="_blank" rel="noopener noreferrer">Watch on codinginflow.com</a></p>
 <p><a href="https://www.youtube.com/playlist?list=PLrnPJCHvNZuA2ioi4soDZKz8euUQnJW65"target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
 <p>&ndash; <em>Florian (codinginflow.com)</em></p>
 </blockquote>
-<p>He also has a lot of other Android development related series available on his site.</p>]]></content:encoded></item></channel></rss>
+<p>He also has a lot of other Android development related series available on his site.</p>]]></content:encoded>
+      
+    </item>
+    
+  </channel>
+</rss>

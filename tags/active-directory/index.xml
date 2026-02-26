@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Active Directory on Hiren Patel</title><link>https://patelhiren.com/tags/active-directory/</link><description>Recent content in Active Directory on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Sat, 02 Jan 2021 17:30:27 -0500</lastBuildDate><atom:link href="https://patelhiren.com/tags/active-directory/index.xml" rel="self" type="application/rss+xml"/><item><title>macOS and Active Directory Passwords</title><link>https://patelhiren.com/blog/macos-and-active-directory-passwords/</link><pubDate>Sat, 02 Jan 2021 17:30:27 -0500</pubDate><guid>https://patelhiren.com/blog/macos-and-active-directory-passwords/</guid><description>&lt;p&gt;Macs connected to Active Directory routinely need to update passwords. When working remote, Active Directory password change is not exactly easy. Here are the steps I follow to update my Active Directory password and keep my local mac password in sync.&lt;/p&gt;</description><content:encoded><![CDATA[<p>Macs connected to Active Directory routinely need to update passwords. When working remote, Active Directory password change is not exactly easy. Here are the steps I follow to update my Active Directory password and keep my local mac password in sync.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Active Directory on Hiren Patel</title>
+    <link>https://patelhiren.com/tags/active-directory/</link>
+    <description>Recent content in Active Directory on Hiren Patel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright {year}, Hiren Patel</copyright>
+    <lastBuildDate>Sat, 02 Jan 2021 17:30:27 -0500</lastBuildDate>
+    
+	<atom:link href="https://patelhiren.com/tags/active-directory/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>macOS and Active Directory Passwords</title>
+      <link>https://patelhiren.com/blog/macos-and-active-directory-passwords/</link>
+      <pubDate>Sat, 02 Jan 2021 17:30:27 -0500</pubDate>
+      
+      <guid>https://patelhiren.com/blog/macos-and-active-directory-passwords/</guid>
+      <description>&lt;p&gt;Macs connected to Active Directory routinely need to update passwords. When working remote, Active Directory password change is not exactly easy. Here are the steps I follow to update my Active Directory password and keep my local mac password in sync.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>Macs connected to Active Directory routinely need to update passwords. When working remote, Active Directory password change is not exactly easy. Here are the steps I follow to update my Active Directory password and keep my local mac password in sync.</p>
 <p>Connect to corporate VPN so that Active Directory is reachable over VPN. Open Terminal and run the following command.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -32,4 +54,9 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Wait about a minute, log out and log back in. You should be logging in with the new password. If login still requires the old password the password sync with active directory did not happen yet. Log back in with the old password, connect to VPN (You will need to use your new password when connecting to VPN) and run the <code>dsconfigad -passinterval 0</code> command and wait a mintue or so before trying to log out/login.</p>
-<p>The process once finished will make sure your local keychain password and AD passwords are in sync.</p>]]></content:encoded></item></channel></rss>
+<p>The process once finished will make sure your local keychain password and AD passwords are in sync.</p>]]></content:encoded>
+      
+    </item>
+    
+  </channel>
+</rss>

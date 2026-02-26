@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Troubleshooting on Hiren Patel</title><link>https://patelhiren.com/categories/troubleshooting/</link><description>Recent content in Troubleshooting on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Fri, 10 Apr 2020 20:11:49 -0400</lastBuildDate><atom:link href="https://patelhiren.com/categories/troubleshooting/index.xml" rel="self" type="application/rss+xml"/><item><title>Catalina and Skype for Business Screensharing</title><link>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</link><pubDate>Fri, 10 Apr 2020 20:11:49 -0400</pubDate><guid>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</guid><description>&lt;p&gt;After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.&lt;/p&gt;</description><content:encoded><![CDATA[<p>After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Troubleshooting on Hiren Patel</title>
+    <link>https://patelhiren.com/categories/troubleshooting/</link>
+    <description>Recent content in Troubleshooting on Hiren Patel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright {year}, Hiren Patel</copyright>
+    <lastBuildDate>Fri, 10 Apr 2020 20:11:49 -0400</lastBuildDate>
+    
+	<atom:link href="https://patelhiren.com/categories/troubleshooting/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Catalina and Skype for Business Screensharing</title>
+      <link>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</link>
+      <pubDate>Fri, 10 Apr 2020 20:11:49 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</guid>
+      <description>&lt;p&gt;After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.</p>
 <p>macOS Catalina introduced new Privacy settings that prevents Skype for Business screensharing to work if proper permissions are not provided. On trying to start Screensharing via <strong>Conversations-&gt;Share Screen</strong> option, Skype would display a message stating check the <strong>Skype For Business</strong> option under <strong>System Preferences-&gt;Security &amp; Privacy-&gt;Privacy Tab-&gt;Screen Recording</strong>. However navigating there did not display &ldquo;Skype For Business* as an option.</p>
 <p>To correct it I first reset the &ldquo;Screen Recording&rdquo; permissions for Skype by running this command on Terminal.</p>
 <div class="highlight"><div class="chroma">
@@ -14,4 +36,9 @@
 </blockquote>
 <p>After running that command. I relaunched Skype, selected a Conversation and tried sharing via the screen via the menu option again. I got the same error I got earlier from Skype and no Screen Recording permission prompt was displayed by the OS.</p>
 <p>I had to select the &ldquo;Share Screen&rdquo; icon on the top right of the conversation window. When I tapped that, the OS permissions prompt for Screen Recording came up. I gave the required permission, restarted Skype and was successfully able to share my screen.</p>
-<p><em>For the record this was on Skype for Business version 16.28.175.</em></p>]]></content:encoded></item></channel></rss>
+<p><em>For the record this was on Skype for Business version 16.28.175.</em></p>]]></content:encoded>
+      
+    </item>
+    
+  </channel>
+</rss>

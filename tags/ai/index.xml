@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>AI on Hiren Patel</title><link>https://patelhiren.com/tags/ai/</link><description>Recent content in AI on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Mon, 19 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://patelhiren.com/tags/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>Deploying a Sandboxed Family Agent with Cross-Compiled Go Skills in Clawdbot</title><link>https://patelhiren.com/blog/deploying-sandboxed-family-agent-clawdbot/</link><pubDate>Mon, 19 Jan 2026 00:00:00 +0000</pubDate><guid>https://patelhiren.com/blog/deploying-sandboxed-family-agent-clawdbot/</guid><description>&lt;p&gt;I wanted to set up a &amp;ldquo;Family Agent&amp;rdquo; in &lt;a href="https://clawd.bot/"target="_blank" rel="noopener noreferrer"&gt;Clawdbot&lt;/a&gt; so my family could interact with tools like stock analysis and summarization via WhatsApp. However, I needed to ensure this agent was completely isolated from my personal credentials and host system. Here is how I configured a sandboxed environment and deployed cross-compiled &lt;a href="https://go.dev/"target="_blank" rel="noopener noreferrer"&gt;Go&lt;/a&gt; skills to solve this.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I wanted to set up a &ldquo;Family Agent&rdquo; in <a href="https://clawd.bot/"target="_blank" rel="noopener noreferrer">Clawdbot</a> so my family could interact with tools like stock analysis and summarization via WhatsApp. However, I needed to ensure this agent was completely isolated from my personal credentials and host system. Here is how I configured a sandboxed environment and deployed cross-compiled <a href="https://go.dev/"target="_blank" rel="noopener noreferrer">Go</a> skills to solve this.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>AI on Hiren Patel</title>
+    <link>https://patelhiren.com/tags/ai/</link>
+    <description>Recent content in AI on Hiren Patel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright {year}, Hiren Patel</copyright>
+    <lastBuildDate>Mon, 19 Jan 2026 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://patelhiren.com/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Deploying a Sandboxed Family Agent with Cross-Compiled Go Skills in Clawdbot</title>
+      <link>https://patelhiren.com/blog/deploying-sandboxed-family-agent-clawdbot/</link>
+      <pubDate>Mon, 19 Jan 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://patelhiren.com/blog/deploying-sandboxed-family-agent-clawdbot/</guid>
+      <description>&lt;p&gt;I wanted to set up a &amp;ldquo;Family Agent&amp;rdquo; in &lt;a href=&#34;https://clawd.bot/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Clawdbot&lt;/a&gt; so my family could interact with tools like stock analysis and summarization via WhatsApp. However, I needed to ensure this agent was completely isolated from my personal credentials and host system. Here is how I configured a sandboxed environment and deployed cross-compiled &lt;a href=&#34;https://go.dev/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Go&lt;/a&gt; skills to solve this.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>I wanted to set up a &ldquo;Family Agent&rdquo; in <a href="https://clawd.bot/"target="_blank" rel="noopener noreferrer">Clawdbot</a> so my family could interact with tools like stock analysis and summarization via WhatsApp. However, I needed to ensure this agent was completely isolated from my personal credentials and host system. Here is how I configured a sandboxed environment and deployed cross-compiled <a href="https://go.dev/"target="_blank" rel="noopener noreferrer">Go</a> skills to solve this.</p>
 <h2 id="customizing-the-sandbox-image">Customizing the Sandbox Image</h2>
 <p>Because some skills have specific runtime requirements—like the <code>summarize</code> skill needing Node.js 20+ to support newer regular expression flags—I created a custom <a href="https://www.docker.com/"target="_blank" rel="noopener noreferrer">Docker</a> image. Using a default image with Node.js v18 resulted in a <code>SyntaxError</code> when the tool&rsquo;s dependencies tried to load, so &ldquo;baking in&rdquo; the correct runtime was the first step.</p>
 <h3 id="the-dockerfile">The Dockerfile</h3>
@@ -184,4 +206,9 @@
 </div>
 </div><p>Clawdbot will automatically recreate the container from the image on the next request.</p>
 <h2 id="wrapping-up">Wrapping Up</h2>
-<p>By using Docker for isolation, enabling bridge networking for internet access, and cross-compiling Go binaries for both macOS and Linux, I’ve created a setup that is both high-performance and secure. This configuration allows my family to benefit from agentic workflows while maintaining strict control over credential access and runtime environments.</p>]]></content:encoded></item></channel></rss>
+<p>By using Docker for isolation, enabling bridge networking for internet access, and cross-compiling Go binaries for both macOS and Linux, I’ve created a setup that is both high-performance and secure. This configuration allows my family to benefit from agentic workflows while maintaining strict control over credential access and runtime environments.</p>]]></content:encoded>
+      
+    </item>
+    
+  </channel>
+</rss>

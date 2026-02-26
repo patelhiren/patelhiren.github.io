@@ -1,5 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Patelhiren.com on Hiren Patel</title><link>https://patelhiren.com/categories/patelhiren.com/</link><description>Recent content in Patelhiren.com on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Sat, 18 Apr 2020 16:08:20 -0400</lastBuildDate><atom:link href="https://patelhiren.com/categories/patelhiren.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Building this website using open-source tools and hosting it for free</title><link>https://patelhiren.com/blog/website-built-with-open-source-and-hosted-for-free/</link><pubDate>Sat, 18 Apr 2020 16:08:20 -0400</pubDate><guid>https://patelhiren.com/blog/website-built-with-open-source-and-hosted-for-free/</guid><description>&lt;p&gt;For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Introducing &lt;a href="https://patelhiren.com"title="Hiren Patel&amp;#39;s Blog"target="_blank" rel="noopener noreferrer"&gt;patelhiren.com&lt;/a&gt; in all its glory. &amp;#x1f389;&lt;/strong&gt;&lt;/p&gt;</description><content:encoded><![CDATA[<p>For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Patelhiren.com on Hiren Patel</title>
+    <link>https://patelhiren.com/categories/patelhiren.com/</link>
+    <description>Recent content in Patelhiren.com on Hiren Patel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright {year}, Hiren Patel</copyright>
+    <lastBuildDate>Sat, 18 Apr 2020 16:08:20 -0400</lastBuildDate>
+    
+	<atom:link href="https://patelhiren.com/categories/patelhiren.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Building this website using open-source tools and hosting it for free</title>
+      <link>https://patelhiren.com/blog/website-built-with-open-source-and-hosted-for-free/</link>
+      <pubDate>Sat, 18 Apr 2020 16:08:20 -0400</pubDate>
+      
+      <guid>https://patelhiren.com/blog/website-built-with-open-source-and-hosted-for-free/</guid>
+      <description>&lt;p&gt;For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Introducing &lt;a href=&#34;https://patelhiren.com&#34;title=&#34;Hiren Patel&amp;#39;s Blog&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;patelhiren.com&lt;/a&gt; in all its glory. &amp;#x1f389;&lt;/strong&gt;&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.</p>
 <p><strong>Introducing <a href="https://patelhiren.com"title="Hiren Patel&#39;s Blog"target="_blank" rel="noopener noreferrer">patelhiren.com</a> in all its glory. &#x1f389;</strong></p>
 <h2 id="goals">Goals</h2>
 <p>For this site I had a few basic goals in mind.</p>
@@ -470,4 +492,9 @@
 <p>I prefer <a href="https://code.visualstudio.com"target="_blank" rel="noopener noreferrer">Visual Studio Code</a>. Tip: If using Visual Studio Code you can press <em>CMD+K,V</em> to activate side-by-side live preview of the Markdown you are typing.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</div>]]></content:encoded></item></channel></rss>
+</div>]]></content:encoded>
+      
+    </item>
+    
+  </channel>
+</rss>
