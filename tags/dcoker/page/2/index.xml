@@ -1,0 +1,714 @@
+&lt;?xml version="1.0" encoding="utf-8" standalone="yes"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-us"><title>Dcoker on Hiren Patel</title><subtitle/><link href="http://Silver-Ghost.local:1313/tags/dcoker/"/><updated>2026-02-26T00:37:44-05:00</updated><id>http://Silver-Ghost.local:1313/tags/dcoker/</id><copyright>© Copyright 2026, Hiren Patel</copyright><entry><title>Dagger 2 Beginner Tutorial</title><link href="http://Silver-Ghost.local:1313/blog/dagger-2-beginner-tutorial/"/><published>2020-05-22T15:08:53-04:00</published><updated>2020-05-22T15:08:53-04:00</updated><id>http://Silver-Ghost.local:1313/blog/dagger-2-beginner-tutorial/</id><content type="html">&amp;lt;p&amp;gt;While reviewing an Android project I discovered it was using &amp;lt;a href=&amp;#34;https://dagger.dev&amp;#34;&amp;gt;Dagger 2&amp;lt;/a&amp;gt; framework. Dagger 2 is a dependency injection framework for Android that is developed by Google. I wanted a quick overview of frameworks major features.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;I found the below video series by &amp;lt;a href=&amp;#34;https://codinginflow.com&amp;#34;&amp;gt;codinginflow.com&amp;lt;/a&amp;gt; extermely well done.&amp;lt;/p&amp;gt;
+&amp;lt;blockquote&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;#34;https://codinginflow.com/tutorials/android/dagger-2/part-1-introduction&amp;#34;&amp;gt;Watch on codinginflow.com&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;#34;https://www.youtube.com/playlist?list=PLrnPJCHvNZuA2ioi4soDZKz8euUQnJW65&amp;#34;&amp;gt;Watch on YouTube&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;&amp;amp;ndash; &amp;lt;em&amp;gt;Florian (codinginflow.com)&amp;lt;/em&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/blockquote&amp;gt;
+&amp;lt;p&amp;gt;He also has a lot of other Android development related series available on his site.&amp;lt;/p&amp;gt;</content></entry><entry><title>Domain Specific DNS Servers on macOS</title><link href="http://Silver-Ghost.local:1313/blog/domain-specific-dns-servers-on-macos/"/><published>2020-05-22T14:36:00-04:00</published><updated>2020-05-22T14:36:00-04:00</updated><id>http://Silver-Ghost.local:1313/blog/domain-specific-dns-servers-on-macos/</id><content type="html">&amp;lt;p&amp;gt;My work has multiple domains (&amp;lt;code&amp;gt;corp.network&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;lab.network&amp;lt;/code&amp;gt;) that the nameservers resolve. When in the office the resolution works perfectly. However while conncting over VPN via Tunnelblick the resolution to lab.network was failing.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;I could go into my System Preferences-&amp;amp;gt;Network Settings and modify my wifi interface settings to enter a new DNS value for those specific domains. But that felt tedious. Instead I used the below method to specify custom DNS resolver settings for my work domains.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Under &amp;lt;code&amp;gt;/etc/resolver&amp;lt;/code&amp;gt; create a file with a name of your choice. I chose &amp;lt;code&amp;gt;corp.netowrk&amp;lt;/code&amp;gt; just for clarity.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Here is an example of what the contents could be.&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;2
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;3
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-cfg&amp;#34; data-lang=&amp;#34;cfg&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;na&amp;#34;&amp;gt;domain corp.network&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;na&amp;#34;&amp;gt;nameserver 10.0.0.1&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;na&amp;#34;&amp;gt;nameserver 10.0.0.2&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;I could create another file for the lab network with a different dns server.&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;2
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-cfg&amp;#34; data-lang=&amp;#34;cfg&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;na&amp;#34;&amp;gt;domain lab.network&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;na&amp;#34;&amp;gt;nameserver 10.0.1.1&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;The above would make it so any lookup to &amp;lt;code&amp;gt;xxx.corp.network&amp;lt;/code&amp;gt; would use the specified nameserver at &amp;lt;code&amp;gt;10.0.0.1&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;10.0.0.2&amp;lt;/code&amp;gt;.
+If I try to access &amp;lt;code&amp;gt;devserver.lab.network&amp;lt;/code&amp;gt; it would ask the nameserver at &amp;lt;code&amp;gt;10.0.1.1&amp;lt;/code&amp;gt; for its IP.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;You could take it a step further and provide backup lookup settings. For example you may have a server located at &amp;lt;code&amp;gt;demo.corp.com&amp;lt;/code&amp;gt; that resolves different IPs based on if you are connected to VPN or not. So &amp;lt;code&amp;gt;demo.corp.com&amp;lt;/code&amp;gt; should be resolved via VPN nameservers when you are connected to VPN, but via ISP name servers when not connected to VPN. To achive this you could create two files under &amp;lt;code&amp;gt;/etc/resolver&amp;lt;/code&amp;gt; like so.&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;2
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;3
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;4
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;5
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-cfg&amp;#34; data-lang=&amp;#34;cfg&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;na&amp;#34;&amp;gt;domain corp.com&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;na&amp;#34;&amp;gt;nameserver 10.0.0.1&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;na&amp;#34;&amp;gt;nameserver 10.0.0.2&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;na&amp;#34;&amp;gt;search_order 1&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;na&amp;#34;&amp;gt;timeout 5&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;2
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;3
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;4
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-cfg&amp;#34; data-lang=&amp;#34;cfg&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;na&amp;#34;&amp;gt;domain corp.com&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;na&amp;#34;&amp;gt;nameserver 1.1.1.1&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;na&amp;#34;&amp;gt;nameserver 1.0.0.1&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;na&amp;#34;&amp;gt;search_order 2&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;The above two files make it so the macOS DNS resolver will first try to use the VPN domains for resolution. If we dont get a response withing 5 seconds, it will fallback to the second file and use &amp;lt;a href=&amp;#34;https://1.1.1.1/dns/&amp;#34;&amp;gt;Cloudflare DNS&amp;lt;/a&amp;gt; to do an internet lookup of the IP address.&amp;lt;/p&amp;gt;</content></entry><entry><title>Using Tunnelblick to Connect to WatchGuard VPN</title><link href="http://Silver-Ghost.local:1313/blog/using-tunnelblick-to-connect-to-watchguard-vpn/"/><published>2020-04-26T12:55:50-04:00</published><updated>2020-04-26T12:55:50-04:00</updated><id>http://Silver-Ghost.local:1313/blog/using-tunnelblick-to-connect-to-watchguard-vpn/</id><content type="html">&amp;lt;p&amp;gt;I needed to connect to a corporate VPN that used &amp;lt;a href=&amp;#34;https://www.watchguard.com&amp;#34;&amp;gt;WatchGuard&amp;lt;/a&amp;gt;. The IT provided &amp;lt;em&amp;gt;Mobile VPN with SSL Client&amp;lt;/em&amp;gt; software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;I discovered that the &amp;lt;em&amp;gt;WatchGuard&amp;lt;/em&amp;gt; VPN internally is an OpenVPN server. I use &amp;lt;a href=&amp;#34;https://tunnelblick.net&amp;#34;&amp;gt;Tunnelblick&amp;lt;/a&amp;gt; for my personal OpenVPN connections and that has worked reliably on macOS Catalina. So if I just had the connection &amp;lt;em&amp;gt;ovpn&amp;lt;/em&amp;gt; config file I could use &amp;lt;em&amp;gt;Tunnelblick&amp;lt;/em&amp;gt; for my VPN connections.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;WatchGuard has a detailed support document that walks the user through downloading their software to use for VPN connection at &amp;lt;a href=&amp;#34;https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html&amp;#34;&amp;gt;https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Turns out that page also provides an option to download the &amp;lt;em&amp;gt;ovpn&amp;lt;/em&amp;gt; config that can be used with &amp;lt;em&amp;gt;Tunnelblick&amp;lt;/em&amp;gt;.&amp;lt;/p&amp;gt;
+&amp;lt;h2 id=&amp;#34;acquiring-the-ovpn-config&amp;#34;&amp;gt;Acquiring the OVPN config&amp;lt;/h2&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Browse to &amp;lt;code&amp;gt;https://&amp;amp;lt;yourvpnserverip:port&amp;amp;gt;/sslvpn.html&amp;lt;/code&amp;gt;. You will be greeted with a login page.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;img alt=&amp;#34;WatchGuard - Login Page&amp;#34; loading=&amp;#34;lazy&amp;#34; src=&amp;#34;/blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01.jpg&amp;#34; title=&amp;#34;WatchGuard - Login Page&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Login using your corporate credentials.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;You will be offered a download page.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;img alt=&amp;#34;WatchGuard - Download Page&amp;#34; loading=&amp;#34;lazy&amp;#34; src=&amp;#34;/blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02.jpg&amp;#34; title=&amp;#34;WatchGuard - Download Page&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Select the &amp;lt;strong&amp;gt;&amp;lt;em&amp;gt;Download&amp;lt;/em&amp;gt;&amp;lt;/strong&amp;gt; option under &amp;lt;em&amp;gt;Mobile VPN with SSL client profile&amp;lt;/em&amp;gt;.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;This will offer a &amp;lt;em&amp;gt;client.ovpn&amp;lt;/em&amp;gt; file that you can import into &amp;lt;em&amp;gt;Tunnelblick&amp;lt;/em&amp;gt; for connection to your corporate network.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;p&amp;gt;The page offer options to download the Mobile VPN with SSL Client software for Mac and Windows as well if you want those.&amp;lt;/p&amp;gt;</content></entry><entry><title>Using mermaid-js to generate Flow Charts</title><link href="http://Silver-Ghost.local:1313/blog/using-mermaid-js-to-generate-flow-charts/"/><published>2020-04-24T12:06:38-04:00</published><updated>2020-04-24T12:06:38-04:00</updated><id>http://Silver-Ghost.local:1313/blog/using-mermaid-js-to-generate-flow-charts/</id><content type="html">&amp;lt;p&amp;gt;I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about &amp;lt;a href=&amp;#34;https://github.com/mermaid-js/mermaid&amp;#34; title=&amp;#34;mermaid-js GitHub Page&amp;#34;&amp;gt;mermaid-js&amp;lt;/a&amp;gt; which allows one to use Markdown like syntax to generte various diagrams including flow charts.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;There is a live editor available at &amp;lt;a href=&amp;#34;https://mermaidjs.github.io/mermaid-live-editor/&amp;#34;&amp;gt;https://mermaidjs.github.io/mermaid-live-editor/&amp;lt;/a&amp;gt; that allows you to to enter Markdown like text and generate a PNG/SVG output that you can download and embed in your documentation.&amp;lt;/p&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-mermaid&amp;#34; data-lang=&amp;#34;mermaid&amp;#34;&amp;gt;graph TD
+A[Christmas] --&amp;amp;gt;|Get money| B(Go shopping)
+B --&amp;amp;gt; C{Let me think}
+C --&amp;amp;gt;|One| D[Laptop]
+C --&amp;amp;gt;|Two| E[iPhone]
+C --&amp;amp;gt;|Three| F[fa:fa-car Car]
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;p&amp;gt;The embedded code block above would generate a flow chart image like the one below.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;img alt=&amp;#34;mermaid - flow chart&amp;#34; loading=&amp;#34;lazy&amp;#34; src=&amp;#34;/blog/using-mermaid-js-to-generate-flow-charts/images/mermaid-diagram.png&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;mermaid-js supports generating&amp;lt;/p&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Flow Chart&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Sequence Diagram&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Class Diagram&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;State Diagram&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Gantt Chart&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Pie Chart&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;ER Diagram&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;p&amp;gt;Documentation is available at &amp;lt;a href=&amp;#34;https://mermaid-js.github.io/mermaid&amp;#34;&amp;gt;https://mermaid-js.github.io/mermaid&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;</content></entry><entry><title>Building this website using open-source tools and hosting it for free</title><link href="http://Silver-Ghost.local:1313/blog/website-built-with-open-source-and-hosted-for-free/"/><published>2020-04-18T16:08:20-04:00</published><updated>2020-04-18T16:08:20-04:00</updated><id>http://Silver-Ghost.local:1313/blog/website-built-with-open-source-and-hosted-for-free/</id><content type="html">&amp;lt;p&amp;gt;For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Introducing &amp;lt;a href=&amp;#34;https://patelhiren.com&amp;#34; title=&amp;#34;Hiren Patel&amp;#39;s Blog&amp;#34;&amp;gt;patelhiren.com&amp;lt;/a&amp;gt; in all its glory. &amp;amp;#x1f389;&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;h2 id=&amp;#34;goals&amp;#34;&amp;gt;Goals&amp;lt;/h2&amp;gt;
+&amp;lt;p&amp;gt;For this site I had a few basic goals in mind.&amp;lt;/p&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;It should serve as a log to help me remember and reivew how I did things. I hope that others may find it helpful as well.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;The website should be fast and light. Should not be overburdened with Javascript.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Should be able to host website with a simple webserver. No server side software should be necessary.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Allowed me to keep my content in a standard text + image format for easy parsing even when not viewing via a browser. I did not want my content to be stored in binary formats in a database. I want it to be stored in plain text files on the filesystem.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Support code syntax highlighting.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Support SSL encryption on the website.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Support emoji.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;p&amp;gt;The above goals meant I was going to be building a Static Site using one of the many &amp;lt;a href=&amp;#34;https://www.staticgen.com&amp;#34;&amp;gt;Static Site Generator Tools&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;h2 id=&amp;#34;tools&amp;#34;&amp;gt;Tools&amp;lt;/h2&amp;gt;
+&amp;lt;p&amp;gt;After deciding I wanted a static site, I researched the various &amp;lt;a href=&amp;#34;https://www.staticgen.com&amp;#34;&amp;gt;Static Site Generator Tools&amp;lt;/a&amp;gt; and settled on &amp;lt;a href=&amp;#34;https://gohugo.io&amp;#34;&amp;gt;&amp;lt;em&amp;gt;Hugo&amp;lt;/em&amp;gt;&amp;lt;/a&amp;gt; as my choice.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Hugo written in &amp;lt;a href=&amp;#34;https://golang.org&amp;#34;&amp;gt;Go&amp;lt;/a&amp;gt;, is highly reviewed and praised for its speed of site generation. It supports macOS (my primary OS of choice), Windows, Linux, OpenBSD and FreeBSD. It has a very well documented site and looks to have an active community developing and supporting it. It allows me to create my content in &amp;lt;a href=&amp;#34;https://daringfireball.net/projects/markdown/&amp;#34;&amp;gt;Markdown&amp;lt;/a&amp;gt; syntax thus allowing me to keep it in plain text on the filesystem. It also supports code syntax highlighting and emoji &amp;amp;#x1f44c;. You can check details of Hugo&amp;amp;rsquo;s Makrdown support at &amp;lt;a href=&amp;#34;https://www.markdownguide.org/tools/hugo/&amp;#34;&amp;gt;markdownguide.org&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Hugo supports a variety of &amp;lt;a href=&amp;#34;https://themes.gohugo.io&amp;#34;&amp;gt;Themes&amp;lt;/a&amp;gt;. I settled on &amp;lt;a href=&amp;#34;https://themes.gohugo.io/hugo-notepadium/&amp;#34;&amp;gt;Notepadium&amp;lt;/a&amp;gt; because it provided most of what I wanted out of box. I plan to customize it a bit to my liking as I learn more.&amp;lt;/p&amp;gt;
+&amp;lt;h2 id=&amp;#34;hosting&amp;#34;&amp;gt;Hosting&amp;lt;/h2&amp;gt;
+&amp;lt;p&amp;gt;For hosting I decided to use &amp;lt;a href=&amp;#34;https://pages.github.com&amp;#34;&amp;gt;GitHub Pages&amp;lt;/a&amp;gt;. GitHub Pages is free, supports SSL and provides automatic CDN for serving fast webpages closer to your user. It also had the added benefit of having my generated site auotmatically have commit history and remote backup.&amp;lt;/p&amp;gt;
+&amp;lt;h2 id=&amp;#34;installing-hugo-and-building-your-site&amp;#34;&amp;gt;Installing Hugo and Building your site&amp;lt;/h2&amp;gt;
+&amp;lt;p&amp;gt;I use macOS as my primary OS so these steps are for for the Mac. However the steps should be very similar if you are using any other supported OS. &amp;lt;a href=&amp;#34;https://brew.sh&amp;#34;&amp;gt;Homebrew&amp;lt;/a&amp;gt; and &amp;lt;em&amp;gt;git&amp;lt;/em&amp;gt; &amp;lt;sup id=&amp;#34;fnref:1&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;#fn:1&amp;#34; class=&amp;#34;footnote-ref&amp;#34; role=&amp;#34;doc-noteref&amp;#34;&amp;gt;1&amp;lt;/a&amp;gt;&amp;lt;/sup&amp;gt; is expected to be installed before you follow the rest of the steps.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Install Hugo&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-zsh&amp;#34; data-lang=&amp;#34;zsh&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;brew install hugo
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;To verify the install run&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-zsh&amp;#34; data-lang=&amp;#34;zsh&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;hugo version
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;Create your new site&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-zsh&amp;#34; data-lang=&amp;#34;zsh&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;hugo new site patelhiren.com
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;Add the &amp;lt;em&amp;gt;&amp;lt;a href=&amp;#34;https://themes.gohugo.io/hugo-notepadium/&amp;#34;&amp;gt;Notepadium&amp;lt;/a&amp;gt;&amp;lt;/em&amp;gt; Theme&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;2
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;3
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-zsh&amp;#34; data-lang=&amp;#34;zsh&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nb&amp;#34;&amp;gt;cd&amp;lt;/span&amp;gt; patelhiren.com
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;git init
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;git submodule add https://github.com/cntrump/hugo-notepadium themes/notepadium
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;Activate the theme for your site by adding it to the &amp;lt;em&amp;gt;config.toml&amp;lt;/em&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-zsh&amp;#34; data-lang=&amp;#34;zsh&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nb&amp;#34;&amp;gt;echo&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s1&amp;#34;&amp;gt;&amp;amp;#39;theme = &amp;amp;#34;notepadium&amp;amp;#34;&amp;amp;#39;&amp;lt;/span&amp;gt; &amp;amp;gt;&amp;amp;gt; config.toml
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;Create a new post &amp;lt;sup id=&amp;#34;fnref:2&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;#fn:2&amp;#34; class=&amp;#34;footnote-ref&amp;#34; role=&amp;#34;doc-noteref&amp;#34;&amp;gt;2&amp;lt;/a&amp;gt;&amp;lt;/sup&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-zsh&amp;#34; data-lang=&amp;#34;zsh&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;hugo new blog/my-first-post/index.md
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;You can find your content under &amp;lt;em&amp;gt;content&amp;lt;/em&amp;gt; folder. You can open the newly created index.md file in any Markdown editor of choice &amp;lt;sup id=&amp;#34;fnref:3&amp;#34;&amp;gt;&amp;lt;a href=&amp;#34;#fn:3&amp;#34; class=&amp;#34;footnote-ref&amp;#34; role=&amp;#34;doc-noteref&amp;#34;&amp;gt;3&amp;lt;/a&amp;gt;&amp;lt;/sup&amp;gt; and edit and save your content. Here is an example post to suggest what&amp;amp;rsquo;s possible.&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 1
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 2
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 3
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 4
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 5
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 6
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 7
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 8
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 9
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;10
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;11
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;12
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;13
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;14
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;15
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;16
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;17
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;18
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;19
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;20
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-txt&amp;#34; data-lang=&amp;#34;txt&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;---
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;title: &amp;amp;#34;My First Post&amp;amp;#34;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;description: &amp;amp;#34;This is my first post in Hugo. This shows up in Google search.&amp;amp;#34;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;date: 2020-04-18T16:08:20-04:00
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;draft: true
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;tags: [
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt; &amp;amp;#34;Tag 1&amp;amp;#34;,
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt; &amp;amp;#34;Tag 2&amp;amp;#34;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;]
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;categories: [
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt; &amp;amp;#34;Category 1&amp;amp;#34;,
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt; &amp;amp;#34;Category 2&amp;amp;#34;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;]
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;---
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;Hello everyone welcome to you website.
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;amp;lt;!--more--&amp;amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;This is the extended content of my first post.
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;Once you save your content you can test it locally by activating Hugo local web server.&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-zsh&amp;#34; data-lang=&amp;#34;zsh&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;hugo server -D
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;You can navigate to your local site at &amp;lt;a href=&amp;#34;http://localhost:1313/&amp;#34;&amp;gt;http://localhost:1313/&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Edit you &amp;lt;em&amp;gt;config.toml&amp;lt;/em&amp;gt; to configure the rest of your site settings. Here is mine.&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 1
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 2
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 3
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 4
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 5
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 6
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 7
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 8
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 9
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;10
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;11
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;12
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;13
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;14
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;15
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;16
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;17
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;18
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;19
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;20
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;21
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;22
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;23
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;24
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;25
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;26
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;27
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;28
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;29
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;30
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;31
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;32
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;33
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;34
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;35
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;36
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;37
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;38
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;39
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;40
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;41
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;42
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;43
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;44
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;45
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;46
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-toml&amp;#34; data-lang=&amp;#34;toml&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;baseURL&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;https://patelhiren.com/&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;languageCode&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;en-us&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;title&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;Hiren Patel&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;theme&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;notepadium&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;copyright&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;©2020 Hiren Patel.&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;enableEmoji&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;kc&amp;#34;&amp;gt;true&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;enableRobotsTXT&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;kc&amp;#34;&amp;gt;true&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;[&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;markup&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;highlight&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;]&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;codeFences&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;kc&amp;#34;&amp;gt;true&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;noClasses&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;kc&amp;#34;&amp;gt;false&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;linenos&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;kc&amp;#34;&amp;gt;true&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;[&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;markup&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;goldmark&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;renderer&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;]&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;unsafe&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;kc&amp;#34;&amp;gt;true&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;c&amp;#34;&amp;gt;# enable raw HTML in Markdown&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;[&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;params&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;]&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;style&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;auto&amp;amp;#34;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;c&amp;#34;&amp;gt;# default: auto. light: light theme, dark: dark theme, auto: based on system.&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;dateFormat&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;Jan 02, 2006&amp;amp;#34;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;c&amp;#34;&amp;gt;# if unset, default is &amp;amp;#34;2006-01-02&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;readingTime&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;kc&amp;#34;&amp;gt;false&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;c&amp;#34;&amp;gt;# show reading time after article date&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;logo&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;patelhiren-logo.png&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;slogan&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;Documenting things as I learn.&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;[&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;params&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;assets&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;]&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;css&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;[&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;css/fonts.css&amp;amp;#34;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;css/light.css&amp;amp;#34;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;,&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;css/dark.css&amp;amp;#34;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;]&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;[&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;params&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;comments&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;]&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;enable&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;kc&amp;#34;&amp;gt;false&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;c&amp;#34;&amp;gt;# En/Disable comments globally, default: false. You can always enable comments on per page.&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;[&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;params&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;share&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;]&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;enable&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;kc&amp;#34;&amp;gt;false&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;c&amp;#34;&amp;gt;# En/Disable share globally, default: false. You can always enable share on per page.&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;addThisId&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;inlineToolId&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;[&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;params&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;math&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;]&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;enable&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;kc&amp;#34;&amp;gt;false&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;c&amp;#34;&amp;gt;# load math globally, default: false. You can always enable math on per page.&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;use&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;katex&amp;amp;#34;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;c&amp;#34;&amp;gt;# builtin: &amp;amp;#34;katex&amp;amp;#34;, &amp;amp;#34;mathjax&amp;amp;#34;. default: &amp;amp;#34;katex&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;[&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;params&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;syntax&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;]&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;use&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;none&amp;amp;#34;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;c&amp;#34;&amp;gt;# builtin: &amp;amp;#34;prismjs&amp;amp;#34;, &amp;amp;#34;hljs&amp;amp;#34;. &amp;amp;#34;none&amp;amp;#34; means Chroma&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;theme&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;xcode&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;darkTheme&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;xcode-dark&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;[&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;params&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;nav&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;]&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;showCategories&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;kc&amp;#34;&amp;gt;true&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;c&amp;#34;&amp;gt;# /categories/&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nx&amp;#34;&amp;gt;showTags&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;kc&amp;#34;&amp;gt;true&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;c&amp;#34;&amp;gt;# /tags/&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;To build your static site run:&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-zsh&amp;#34; data-lang=&amp;#34;zsh&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;hugo -D
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;The output will be saved under &amp;lt;em&amp;gt;./public/&amp;lt;/em&amp;gt; directory. You may copy the contents of this folder to any webserver and your website will be servered.&amp;lt;/p&amp;gt;
+&amp;lt;h2 id=&amp;#34;hosting-your-site-on-github-pages&amp;#34;&amp;gt;Hosting your site on GitHub Pages&amp;lt;/h2&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Create a repository to hold your Hugo content and source files on GitHub. Mine is called &amp;lt;em&amp;gt;patelhiren.com&amp;lt;/em&amp;gt;&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Create a repository called &amp;lt;em&amp;gt;&amp;amp;lt;username&amp;amp;gt;.github.io&amp;lt;/em&amp;gt;. Replace &amp;lt;em&amp;gt;&amp;amp;lt;username&amp;amp;gt;&amp;lt;/em&amp;gt; with your GitHub username. Mine is called patelhiren.github.io.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Clone your source project via:&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;2
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-zsh&amp;#34; data-lang=&amp;#34;zsh&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# adjust to match your git url.&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;git clone git@github.com:patelhiren/patelhiren.com.git
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;Paste your existing source files in the new repository folder.&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;Run and verify your local Hugo files from local repo by running &amp;lt;code&amp;gt;hugo server -D&amp;lt;/code&amp;gt; and accessing the site at &amp;lt;a href=&amp;#34;http://localhost:1313/&amp;#34;&amp;gt;http://localhost:1313/&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;Once you are happy with the results:&amp;lt;/p&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Press Ctrl+C to kill the server&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Before proceeding completely remove the public directory&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;Add your public site as a git submodule. Like so:&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;2
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-zsh&amp;#34; data-lang=&amp;#34;zsh&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# adjust to match your GitHub Pages repo&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;git submodule add -b master git@github.com:patelhiren/patelhiren.github.io.git
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;h3 id=&amp;#34;automating-the-deployment-process&amp;#34;&amp;gt;Automating the deployment process&amp;lt;/h3&amp;gt;
+&amp;lt;p&amp;gt;Create a new file &amp;lt;code&amp;gt;deploy.sh&amp;lt;/code&amp;gt; and set its contents to below script. This will allow you to run &amp;lt;code&amp;gt;deploy.sh&amp;lt;/code&amp;gt; to build your site and deploy to GitHub in one go.&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 1
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 2
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 3
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 4
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 5
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 6
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 7
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 8
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 9
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;10
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;11
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;12
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;13
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;14
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;15
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;16
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;17
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;18
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;19
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;20
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;21
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;22
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;23
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;24
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;25
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;26
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;27
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;28
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;29
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;30
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;31
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;32
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;33
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;34
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;35
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;36
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;37
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;38
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;39
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;40
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;41
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;42
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-zsh&amp;#34; data-lang=&amp;#34;zsh&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cp&amp;#34;&amp;gt;#!/bin/sh
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# If a command fails then the deploy stops&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nb&amp;#34;&amp;gt;set&amp;lt;/span&amp;gt; -e
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nb&amp;#34;&amp;gt;printf&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;\033[0;32mDeploying updates to GitHub...\033[0m\n&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# Go To Public folder&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nb&amp;#34;&amp;gt;cd&amp;lt;/span&amp;gt; public
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# Discard local changes on public folder&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;git reset
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;git checkout .
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;git clean -fdx
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# Pull the latest changes before updating&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;git checkout master
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;git pull origin master
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nb&amp;#34;&amp;gt;cd&amp;lt;/span&amp;gt; ..
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# Garbage collect hugo image-processing generated images.&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;hugo --gc
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# Build the project.&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;hugo &amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# if using a theme, replace with `hugo -t &amp;amp;lt;YOURTHEME&amp;amp;gt;`&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# Go To Public folder&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nb&amp;#34;&amp;gt;cd&amp;lt;/span&amp;gt; public
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# Add changes to git.&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;git add .
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# Commit changes.&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;nv&amp;#34;&amp;gt;msg&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;o&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;rebuilding site &amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;k&amp;#34;&amp;gt;$(&amp;lt;/span&amp;gt;date&amp;lt;span class=&amp;#34;k&amp;#34;&amp;gt;)&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;k&amp;#34;&amp;gt;if&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;o&amp;#34;&amp;gt;[&amp;lt;/span&amp;gt; -n &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nv&amp;#34;&amp;gt;$*&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;o&amp;#34;&amp;gt;]&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;k&amp;#34;&amp;gt;then&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt; &amp;lt;span class=&amp;#34;nv&amp;#34;&amp;gt;msg&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;o&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nv&amp;#34;&amp;gt;$*&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;k&amp;#34;&amp;gt;fi&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;git commit -m &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nv&amp;#34;&amp;gt;$msg&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# Push source and build repos.&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;git push origin master
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Your site will then be available at &amp;lt;code&amp;gt;https://&amp;amp;lt;username&amp;amp;gt;.github.io&amp;lt;/code&amp;gt;.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;h2 id=&amp;#34;customizing-github-pages-to-use-a-custom-domain&amp;#34;&amp;gt;Customizing GitHub pages to use a custom domain&amp;lt;/h2&amp;gt;
+&amp;lt;p&amp;gt;If you plan to use your own doamin instead of the &amp;amp;lt;username&amp;amp;gt;.github.io you need to follow the guide at &amp;lt;a href=&amp;#34;https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site&amp;#34;&amp;gt;Managing a custom domain for your GitHub Pages site&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;For my site I did the following:&amp;lt;/p&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Create a file called &amp;lt;code&amp;gt;CNAME&amp;lt;/code&amp;gt; and set its contents to &amp;lt;em&amp;gt;patelhiren.com&amp;lt;/em&amp;gt;.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Added the &amp;lt;code&amp;gt;CNAME&amp;lt;/code&amp;gt; file to the git repo at patelhiren.github.io.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Got to Repo Settings at &amp;lt;a href=&amp;#34;https://github.com/patelhiren/patelhiren.github.io/settings&amp;#34;&amp;gt;https://github.com/patelhiren/patelhiren.github.io/settings&amp;lt;/a&amp;gt; and set &amp;lt;strong&amp;gt;Custom domain&amp;lt;/strong&amp;gt; and &amp;lt;strong&amp;gt;Enforce HTTPS&amp;lt;/strong&amp;gt; settings.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;img alt=&amp;#34;GitHub Pages Custom Domain Settings&amp;#34; loading=&amp;#34;lazy&amp;#34; src=&amp;#34;/blog/website-built-with-open-source-and-hosted-for-free/images/01.png&amp;#34; title=&amp;#34;GitHub Pages Custom Subdomain Settings&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;h2 id=&amp;#34;publishing-new-postchanges&amp;#34;&amp;gt;Publishing new Post/Changes&amp;lt;/h2&amp;gt;
+&amp;lt;p&amp;gt;To publish a new post:&amp;lt;/p&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Create a new post similar to to command below.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-zsh&amp;#34; data-lang=&amp;#34;zsh&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;hugo new blog/my-new-post/index.md
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;Set and edit your post using Markdown tools.&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;Run and verify your local Hugo files from local repo by running &amp;lt;code&amp;gt;hugo server -D&amp;lt;/code&amp;gt; and accessing the site at &amp;lt;a href=&amp;#34;http://localhost:1313/&amp;#34;&amp;gt;http://localhost:1313/&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;Run &amp;lt;code&amp;gt;deploy.sh&amp;lt;/code&amp;gt; to deploy your site.&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;Commit your changes to your source repo.&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;h2 id=&amp;#34;conclusion&amp;#34;&amp;gt;Conclusion&amp;lt;/h2&amp;gt;
+&amp;lt;p&amp;gt;This is all that should be necessary. It looks like a lot of steps, but in practice it is very simple and doesn&amp;amp;rsquo;t require as much work to maintain for publishing new posts.&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;footnotes&amp;#34; role=&amp;#34;doc-endnotes&amp;#34;&amp;gt;
+&amp;lt;hr&amp;gt;
+&amp;lt;ol&amp;gt;
+&amp;lt;li id=&amp;#34;fn:1&amp;#34;&amp;gt;
+&amp;lt;p&amp;gt;For a git GUI, I prefer &amp;lt;a href=&amp;#34;https://www.git-fork.com&amp;#34;&amp;gt;Fork&amp;lt;/a&amp;gt;.&amp;amp;#160;&amp;lt;a href=&amp;#34;#fnref:1&amp;#34; class=&amp;#34;footnote-backref&amp;#34; role=&amp;#34;doc-backlink&amp;#34;&amp;gt;&amp;amp;#x21a9;&amp;amp;#xfe0e;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li id=&amp;#34;fn:2&amp;#34;&amp;gt;
+&amp;lt;p&amp;gt;Creating a blog post this way with a folder as the post name allows you to keep images within the same folder instead of keeping images in the root folder. This felt like better grouping of content vs the default Hugo suggested way of generating new post via &amp;lt;em&amp;gt;hugo new blog/my-first-post&amp;lt;/em&amp;gt;.&amp;amp;#160;&amp;lt;a href=&amp;#34;#fnref:2&amp;#34; class=&amp;#34;footnote-backref&amp;#34; role=&amp;#34;doc-backlink&amp;#34;&amp;gt;&amp;amp;#x21a9;&amp;amp;#xfe0e;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li id=&amp;#34;fn:3&amp;#34;&amp;gt;
+&amp;lt;p&amp;gt;I prefer &amp;lt;a href=&amp;#34;https://code.visualstudio.com&amp;#34;&amp;gt;Visual Studio Code&amp;lt;/a&amp;gt;. Tip: If using Visual Studio Code you can press &amp;lt;em&amp;gt;CMD+K,V&amp;lt;/em&amp;gt; to activate side-by-side live preview of the Markdown you are typing.&amp;amp;#160;&amp;lt;a href=&amp;#34;#fnref:3&amp;#34; class=&amp;#34;footnote-backref&amp;#34; role=&amp;#34;doc-backlink&amp;#34;&amp;gt;&amp;amp;#x21a9;&amp;amp;#xfe0e;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ol&amp;gt;
+&amp;lt;/div&amp;gt;</content></entry><entry><title>PNG Crush Automator Action</title><link href="http://Silver-Ghost.local:1313/blog/pngcrush-automator-action/"/><published>2020-04-12T22:04:30-04:00</published><updated>2020-04-12T22:04:30-04:00</updated><id>http://Silver-Ghost.local:1313/blog/pngcrush-automator-action/</id><content type="html">&amp;lt;p&amp;gt;When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS &amp;lt;a href=&amp;#34;https://support.apple.com/guide/automator/welcome/mac&amp;#34;&amp;gt;Automator&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;To crush png images I use the opensource tool &amp;lt;a href=&amp;#34;https://pmt.sourceforge.io/pngcrush/&amp;#34;&amp;gt;PNG Crush&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;If you have &amp;lt;a href=&amp;#34;https://developer.apple.com/xcode/&amp;#34;&amp;gt;Xcode&amp;lt;/a&amp;gt; installed, the pngcrush tool is included as a part of the iOS SDK and there is no additional download required.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;If you do not have Xcode you may install &amp;lt;em&amp;gt;PNG Crush&amp;lt;/em&amp;gt; via &amp;lt;a href=&amp;#34;https://brew.sh&amp;#34;&amp;gt;Homebrew&amp;lt;/a&amp;gt; using the following command.&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-zsh&amp;#34; data-lang=&amp;#34;zsh&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;brew install pngcrush
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;If using Xcode method, the &amp;lt;em&amp;gt;&amp;lt;strong&amp;gt;pngcrush&amp;lt;/strong&amp;gt;&amp;lt;/em&amp;gt; binary will be at &amp;lt;code&amp;gt;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/pngcrush&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;If using Homebrew, the &amp;lt;em&amp;gt;&amp;lt;strong&amp;gt;pngcrush&amp;lt;/strong&amp;gt;&amp;lt;/em&amp;gt; binary will be at &amp;lt;code&amp;gt;/usr/local/bin/pngcrush&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;For the rest of the article I will assume the Homebrew method is used. You just need to adjust the paths for the binary if the Xcode method is used.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;To crush a PNG image via Terminal you can run the below command.&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;2
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-zsh&amp;#34; data-lang=&amp;#34;zsh&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# pngcrush will process the input.png and create a compressed crushed.png&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;pngcrush input.png crushed.png
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;h2 id=&amp;#34;automating-the-process-using-automator-on-macos&amp;#34;&amp;gt;Automating the process using Automator on macOS.&amp;lt;/h2&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Launch &amp;lt;em&amp;gt;&amp;lt;strong&amp;gt;Automator&amp;lt;/strong&amp;gt;&amp;lt;/em&amp;gt; via Spotlight Search.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Select &amp;lt;em&amp;gt;File&amp;lt;/em&amp;gt;, &amp;lt;em&amp;gt;New&amp;lt;/em&amp;gt; from the menu. Select &amp;lt;em&amp;gt;&amp;lt;strong&amp;gt;Quick Action&amp;lt;/strong&amp;gt;&amp;lt;/em&amp;gt; and click the &amp;lt;em&amp;gt;Choose&amp;lt;/em&amp;gt; button.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;img alt=&amp;#34;Automator - New&amp;#34; loading=&amp;#34;lazy&amp;#34; src=&amp;#34;/blog/pngcrush-automator-action/images/01.png&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;In the new windows that loads, select the options as below.
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Workflow receives current - &amp;lt;em&amp;gt;&amp;lt;strong&amp;gt;image files&amp;lt;/strong&amp;gt;&amp;lt;/em&amp;gt;&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;in - &amp;lt;em&amp;gt;&amp;lt;strong&amp;gt;Finder.app&amp;lt;/strong&amp;gt;&amp;lt;/em&amp;gt;&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;img alt=&amp;#34;Automator - New Action&amp;#34; loading=&amp;#34;lazy&amp;#34; src=&amp;#34;/blog/pngcrush-automator-action/images/02.png&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;In the search box, type &amp;lt;em&amp;gt;&amp;lt;strong&amp;gt;Shell&amp;lt;/strong&amp;gt;&amp;lt;/em&amp;gt; and select the &amp;lt;em&amp;gt;&amp;lt;strong&amp;gt;Run Shell Script&amp;lt;/strong&amp;gt;&amp;lt;/em&amp;gt; option to add to the automation on the right by double clicking on it.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;img alt=&amp;#34;Automator - Run Shell Script&amp;#34; loading=&amp;#34;lazy&amp;#34; src=&amp;#34;/blog/pngcrush-automator-action/images/03.png&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Change the &amp;lt;em&amp;gt;&amp;lt;strong&amp;gt;Pass Input&amp;lt;/strong&amp;gt;&amp;lt;/em&amp;gt; option to &amp;lt;em&amp;gt;&amp;lt;strong&amp;gt;as arguments&amp;lt;/strong&amp;gt;&amp;lt;/em&amp;gt;.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Enter the below script commands in the Shell Script box.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 1
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 2
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 3
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 4
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 5
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 6
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 7
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 8
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt; 9
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;10
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;11
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;12
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;13
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;14
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;15
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-zsh&amp;#34; data-lang=&amp;#34;zsh&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;k&amp;#34;&amp;gt;for&amp;lt;/span&amp;gt; f in &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nv&amp;#34;&amp;gt;$@&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;k&amp;#34;&amp;gt;do&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt; &amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# Verify that the extension of the file is actually png&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt; &amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# (case insensitive compare)&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt; &amp;lt;span class=&amp;#34;nv&amp;#34;&amp;gt;filename&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;o&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;k&amp;#34;&amp;gt;$(&amp;lt;/span&amp;gt;basename &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nv&amp;#34;&amp;gt;$f&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;k&amp;#34;&amp;gt;)&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt; &amp;lt;span class=&amp;#34;nv&amp;#34;&amp;gt;ext&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;o&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;si&amp;#34;&amp;gt;${&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nv&amp;#34;&amp;gt;filename&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;##*.&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;si&amp;#34;&amp;gt;}&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt; &amp;lt;span class=&amp;#34;k&amp;#34;&amp;gt;if&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;nb&amp;#34;&amp;gt;echo&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nv&amp;#34;&amp;gt;$ext&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;|&amp;lt;/span&amp;gt; grep -i png&amp;lt;span class=&amp;#34;p&amp;#34;&amp;gt;;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;k&amp;#34;&amp;gt;then&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt; &amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# If the file is a png, run pngcrush on it.&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt; &amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# Save the output in the same place with a temporary extension&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt; &amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# of .crushed_&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt; /opt/homebrew/bin/pngcrush &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nv&amp;#34;&amp;gt;$f&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nv&amp;#34;&amp;gt;$f&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;.crushed_&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt; &amp;lt;span class=&amp;#34;c1&amp;#34;&amp;gt;# Overwrite the original file with the crushed file.&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt; mv &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nv&amp;#34;&amp;gt;$f&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;.crushed_&amp;amp;#34;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;nv&amp;#34;&amp;gt;$f&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;s2&amp;#34;&amp;gt;&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt; &amp;lt;span class=&amp;#34;k&amp;#34;&amp;gt;fi&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;k&amp;#34;&amp;gt;done&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Save the automation as &amp;lt;em&amp;gt;&amp;lt;strong&amp;gt;PNG Crush&amp;lt;/strong&amp;gt;&amp;lt;/em&amp;gt;.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;img alt=&amp;#34;Automator - Final Code&amp;#34; loading=&amp;#34;lazy&amp;#34; src=&amp;#34;/blog/pngcrush-automator-action/images/04.png&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;You may now browse to any png file(s) in Finder and right click, select &amp;lt;em&amp;gt;&amp;lt;strong&amp;gt;Services&amp;lt;/strong&amp;gt;&amp;lt;/em&amp;gt; -&amp;amp;gt; &amp;lt;em&amp;gt;&amp;lt;strong&amp;gt;PNG Crush&amp;lt;/strong&amp;gt;&amp;lt;/em&amp;gt;.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;img alt=&amp;#34;Finder - Services Menu&amp;#34; loading=&amp;#34;lazy&amp;#34; src=&amp;#34;/blog/pngcrush-automator-action/images/05.png&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;While the automation is running you will see a spinning cog in you Menu bar in the top right. When the cog disappears the automation is done and your images have been processed by &amp;lt;em&amp;gt;&amp;lt;strong&amp;gt;pngcrush&amp;lt;/strong&amp;gt;&amp;lt;/em&amp;gt;.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;img alt=&amp;#34;Finder - Automator Running&amp;#34; loading=&amp;#34;lazy&amp;#34; src=&amp;#34;/blog/pngcrush-automator-action/images/06.png&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;</content></entry><entry><title>Catalina and Skype for Business Screensharing</title><link href="http://Silver-Ghost.local:1313/blog/catalina-and-skype-for-business-screensharing/"/><published>2020-04-10T20:11:49-04:00</published><updated>2020-04-10T20:11:49-04:00</updated><id>http://Silver-Ghost.local:1313/blog/catalina-and-skype-for-business-screensharing/</id><content type="html">&amp;lt;p&amp;gt;After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;macOS Catalina introduced new Privacy settings that prevents Skype for Business screensharing to work if proper permissions are not provided. On trying to start Screensharing via &amp;lt;strong&amp;gt;Conversations-&amp;amp;gt;Share Screen&amp;lt;/strong&amp;gt; option, Skype would display a message stating check the &amp;lt;strong&amp;gt;Skype For Business&amp;lt;/strong&amp;gt; option under &amp;lt;strong&amp;gt;System Preferences-&amp;amp;gt;Security &amp;amp;amp; Privacy-&amp;amp;gt;Privacy Tab-&amp;amp;gt;Screen Recording&amp;lt;/strong&amp;gt;. However navigating there did not display &amp;amp;ldquo;Skype For Business* as an option.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;To correct it I first reset the &amp;amp;ldquo;Screen Recording&amp;amp;rdquo; permissions for Skype by running this command on Terminal.&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-zsh&amp;#34; data-lang=&amp;#34;zsh&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;tccutil reset ScreenCapture com.microsoft.SkypeForBusiness
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;blockquote&amp;gt;
+&amp;lt;p&amp;gt;If you do not provide the &amp;lt;strong&amp;gt;com.microsoft.SkypeForBusiness&amp;lt;/strong&amp;gt; identifier, the Screen Recording permissions for all apps will be reset and you will have to provide permissions again as needed.&amp;lt;/p&amp;gt;
+&amp;lt;/blockquote&amp;gt;
+&amp;lt;p&amp;gt;After running that command. I relaunched Skype, selected a Conversation and tried sharing via the screen via the menu option again. I got the same error I got earlier from Skype and no Screen Recording permission prompt was displayed by the OS.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;I had to select the &amp;amp;ldquo;Share Screen&amp;amp;rdquo; icon on the top right of the conversation window. When I tapped that, the OS permissions prompt for Screen Recording came up. I gave the required permission, restarted Skype and was successfully able to share my screen.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;em&amp;gt;For the record this was on Skype for Business version 16.28.175.&amp;lt;/em&amp;gt;&amp;lt;/p&amp;gt;</content></entry><entry><title>Boot Camp on External Drive</title><link href="http://Silver-Ghost.local:1313/blog/boot-camp-on-external-drive/"/><published>2020-04-06T14:02:10-04:00</published><updated>2020-04-06T14:02:10-04:00</updated><id>http://Silver-Ghost.local:1313/blog/boot-camp-on-external-drive/</id><content type="html">&amp;lt;p&amp;gt;I had a spare SSD and a USB enclosure for it. Installing windows on an external drive is unsupported by Microsoft and the setup will abort stating Windows cannot be installed on an external drive. Here is how I managed to install Windows 10 Pro on the external SSD and boot from it on my iMac.&amp;lt;/p&amp;gt;
+&amp;lt;h6 id=&amp;#34;my-environment&amp;#34;&amp;gt;My Environment&amp;lt;/h6&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;27-inch iMac 2019, running macOS Catalina 10.15.4&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;120 GB ScanDisk Plus SSD&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;2.5-inch SATA USB enclosure&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;h6 id=&amp;#34;software-needed&amp;#34;&amp;gt;Software needed&amp;lt;/h6&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;VMware Fusion 11.5.3 (Trial is fine)&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Windows 10 ISO&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;h6 id=&amp;#34;directions&amp;#34;&amp;gt;Directions&amp;lt;/h6&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Launch Disk Utility and select the plugged in SSD. Format as below
+&amp;lt;img alt=&amp;#34;DiskUtility - Format Disk Settings&amp;#34; loading=&amp;#34;lazy&amp;#34; src=&amp;#34;/blog/boot-camp-on-external-drive/images/01.png&amp;#34; title=&amp;#34;Disk Utility - Format Disk&amp;#34;&amp;gt;&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Make a note of the Disk Id. In my case it was &amp;lt;code&amp;gt;disk5&amp;lt;/code&amp;gt;&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Create a new Windows 10 Virtual Machine under VMware Fusion.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Delete the default Disk the VMware Fusion creates when setting up the machine.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Exit VMware Fusion and launch Terminal and run the following command. Adjust the Virtual Manchine path as needed.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;2
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;3
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;4
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-zsh&amp;#34; data-lang=&amp;#34;zsh&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;/Applications/VMware&amp;lt;span class=&amp;#34;se&amp;#34;&amp;gt;\ &amp;lt;/span&amp;gt;Fusion.app/Contents/Library/vmware-rawdiskCreator &amp;lt;span class=&amp;#34;se&amp;#34;&amp;gt;\
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;create /dev/disk5 &amp;lt;span class=&amp;#34;se&amp;#34;&amp;gt;\
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;fullDevice ~/Virtual&amp;lt;span class=&amp;#34;se&amp;#34;&amp;gt;\ &amp;lt;/span&amp;gt;Machines.localized/Boot&amp;lt;span class=&amp;#34;se&amp;#34;&amp;gt;\ &amp;lt;/span&amp;gt;Camp.vmwarevm/external-hdd &amp;lt;span class=&amp;#34;se&amp;#34;&amp;gt;\
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;ide
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Open &amp;lt;code&amp;gt;Boot Camp.vmx&amp;lt;/code&amp;gt; file in a text editor like Visual Studio Code and add the below lines.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;div class=&amp;#34;chroma&amp;#34;&amp;gt;
+&amp;lt;table class=&amp;#34;lntable&amp;#34;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;1
+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;lnt&amp;#34;&amp;gt;2
+&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;td class=&amp;#34;lntd&amp;#34;&amp;gt;
+&amp;lt;pre tabindex=&amp;#34;0&amp;#34; class=&amp;#34;chroma&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-ini&amp;#34; data-lang=&amp;#34;ini&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;na&amp;#34;&amp;gt;ide1:0.present&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;o&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s&amp;#34;&amp;gt;&amp;amp;#34;TRUE&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;line&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;cl&amp;#34;&amp;gt;&amp;lt;span class=&amp;#34;na&amp;#34;&amp;gt;ide1:0.fileName&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;o&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;s&amp;#34;&amp;gt;&amp;amp;#34;external-hdd.vmdk&amp;amp;#34;&amp;lt;/span&amp;gt;
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;If you are running macOS Catalina you will need to give &amp;lt;code&amp;gt;Full Disk Access&amp;lt;/code&amp;gt; Permissions to &amp;lt;code&amp;gt;com.vmware.DiskHelper&amp;lt;/code&amp;gt;. If you do not see it in the list. Try to start the Virtual Machine. You will get an error starting after which the item will show up in the list.
+&amp;lt;img alt=&amp;#34;Security &amp;amp;amp; Privacy - Full Disk Access&amp;#34; loading=&amp;#34;lazy&amp;#34; src=&amp;#34;/blog/boot-camp-on-external-drive/images/02.png&amp;#34; title=&amp;#34;Security &amp;amp;amp; Privacy - Full Disk Access&amp;#34;&amp;gt;&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Quit and Restart VMWare fusion. Start the Boot Camp vm. You will be prompted for you admin password.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Once the VM starts boot off the Windows 10 ISO and install Windows 10 on the attached disk. Delete all partitions on the disk during install and let windows create new partitions as needed.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Once the install is fully finished, install VMware Tools to help facilitate copying of files.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;On the Mac launch &amp;lt;code&amp;gt;Boot Camp Assistant.app&amp;lt;/code&amp;gt;. From the &amp;lt;code&amp;gt;Action&amp;lt;/code&amp;gt; menu select &amp;lt;code&amp;gt;Download Windows Support Software&amp;lt;/code&amp;gt;. Follow the steps to get the Boot Camp windows drivers.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Copy the Drivers to the Windows machine. Shutdown the VM.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;You may now reboot into the windows partition by rebooting the Mac and holding down the Option key during boot.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;After Windows boots up, you will have to install the Boot Camp drivers by launching BootCamp setup from the &amp;lt;code&amp;gt;WindowsSupport\BootCamp\Setup.exe&amp;lt;/code&amp;gt; folder.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;h6 id=&amp;#34;additional-steps&amp;#34;&amp;gt;Additional Steps&amp;lt;/h6&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;After installation of the Boot Camp drivers and reboot, Windows still had a few missing drivers under Device Manager. All I had to do was select &amp;lt;code&amp;gt;Update Driver&amp;lt;/code&amp;gt; and select the &amp;lt;code&amp;gt;WindowsSupport\$WinPEDriver$&amp;lt;/code&amp;gt; folder to look for drivers.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Speakers were not working properly on the 2019 iMac even though all drivers were installed. I had to go to &amp;lt;code&amp;gt;Device Manager&amp;lt;/code&amp;gt;-&amp;amp;gt;&amp;lt;code&amp;gt;Sound, video and game controllers&amp;lt;/code&amp;gt;-&amp;amp;gt;&amp;lt;code&amp;gt;High Definition Audio Device&amp;lt;/code&amp;gt;. Select Update driver and point it to &amp;lt;code&amp;gt;WindowsSupport\$WinPEDriver$\Cirrus&amp;lt;/code&amp;gt;. This installed the correct drivers and the Speakers started working.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Another speed bump I ran into was that after a few Windows updates were applied windows declined to update to the November 2019 update stating installing Windows on External USB is unsupported. &amp;amp;#x1f612; I had to go to the Registry at &amp;lt;code&amp;gt;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control&amp;lt;/code&amp;gt; and set the &amp;lt;code&amp;gt;PortableOperatingSystem&amp;lt;/code&amp;gt; value to &amp;lt;code&amp;gt;0&amp;lt;/code&amp;gt; and reboot. After that the update installed ok. &amp;amp;#x1f60f;&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;</content></entry></feed>
