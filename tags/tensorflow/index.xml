@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>TensorFlow on Hiren Patel</title><link>https://patelhiren.com/tags/tensorflow/</link><description>Recent content in TensorFlow on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Fri, 21 Oct 2022 13:32:11 -0400</lastBuildDate><atom:link href="https://patelhiren.com/tags/tensorflow/index.xml" rel="self" type="application/rss+xml"/><item><title>Setting up Keras Tensorflow2 on M1 Mac</title><link>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</link><pubDate>Fri, 21 Oct 2022 13:32:11 -0400</pubDate><guid>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</guid><description>&lt;p&gt;I am currently reading &lt;a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank"&gt;Deep Learning with TensorFlow and Keras&lt;/a&gt; to get started with Machine Learning/Deep Learning. Here is how I setup a local &lt;em&gt;Keras/Tensorflow 2.0&lt;/em&gt; environment on my &lt;em&gt;M1 Max MacBook Pro&lt;/em&gt; running &lt;em&gt;macOS 12.6&lt;/em&gt;.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I am currently reading <a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank">Deep Learning with TensorFlow and Keras</a> to get started with Machine Learning/Deep Learning. Here is how I setup a local <em>Keras/Tensorflow 2.0</em> environment on my <em>M1 Max MacBook Pro</em> running <em>macOS 12.6</em>.</p>
-<p>Install <a href="https://docs.conda.io/en/latest/miniconda.html"target="_blank"><em>miniconda</em></a>.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>TensorFlow on Hiren Patel</title><link>https://patelhiren.com/tags/tensorflow/</link><description>Recent content in TensorFlow on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Fri, 21 Oct 2022 13:32:11 -0400</lastBuildDate><atom:link href="https://patelhiren.com/tags/tensorflow/index.xml" rel="self" type="application/rss+xml"/><item><title>Setting up Keras Tensorflow2 on M1 Mac</title><link>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</link><pubDate>Fri, 21 Oct 2022 13:32:11 -0400</pubDate><guid>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</guid><description>&lt;p&gt;I am currently reading &lt;a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank" rel="noopener noreferrer"&gt;Deep Learning with TensorFlow and Keras&lt;/a&gt; to get started with Machine Learning/Deep Learning. Here is how I setup a local &lt;em&gt;Keras/Tensorflow 2.0&lt;/em&gt; environment on my &lt;em&gt;M1 Max MacBook Pro&lt;/em&gt; running &lt;em&gt;macOS 12.6&lt;/em&gt;.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I am currently reading <a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank" rel="noopener noreferrer">Deep Learning with TensorFlow and Keras</a> to get started with Machine Learning/Deep Learning. Here is how I setup a local <em>Keras/Tensorflow 2.0</em> environment on my <em>M1 Max MacBook Pro</em> running <em>macOS 12.6</em>.</p>
+<p>Install <a href="https://docs.conda.io/en/latest/miniconda.html"target="_blank" rel="noopener noreferrer"><em>miniconda</em></a>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -8,7 +8,7 @@
 <pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">brew install --cask miniconda
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>I use zsh with <a href="https://iterm2.com"target="_blank">iTerm2</a> as my terminal so I need to initialize conda with the following command.</p>
+</div><p>I use zsh with <a href="https://iterm2.com"target="_blank" rel="noopener noreferrer">iTerm2</a> as my terminal so I need to initialize conda with the following command.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -100,7 +100,7 @@
 </div>
 </div><p>Another warning I ran into.</p>
 <blockquote>
-<p><em><strong>TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See <a href="https://ipywidgets.readthedocs.io/en/stable/user_install.html"target="_blank">https://ipywidgets.readthedocs.io/en/stable/user_install.html</a> from .autonotebook import tqdm as notebook_tqdm</strong></em></p>
+<p><em><strong>TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See <a href="https://ipywidgets.readthedocs.io/en/stable/user_install.html"target="_blank" rel="noopener noreferrer">https://ipywidgets.readthedocs.io/en/stable/user_install.html</a> from .autonotebook import tqdm as notebook_tqdm</strong></em></p>
 </blockquote>
 <p>To resolve I ran the below in my <em>tensorflow</em> environment.</p>
 <div class="highlight"><div class="chroma">
@@ -111,7 +111,7 @@
 <pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">python -m pip install ipywidgets widgetsnbextension pandas-profiling
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>You may now run <code>jupyter notebook</code> command from the <em>tensorflow</em> environment to start the jupyter notebook environment from the command line. I however prefer using <a href="https://code.visualstudio.com/"target="_blank">Visual Studio Code</a> and start an environment under vscode as documented below.</p>
+</div><p>You may now run <code>jupyter notebook</code> command from the <em>tensorflow</em> environment to start the jupyter notebook environment from the command line. I however prefer using <a href="https://code.visualstudio.com/"target="_blank" rel="noopener noreferrer">Visual Studio Code</a> and start an environment under vscode as documented below.</p>
 <ul>
 <li>Install the <code>Jupyter</code> extension under vscode.</li>
 <li>Load the <em>Command Pallet</em> using (<code>Cmd+Shift+P</code>) and select <code>Jupyter: Select Interpreter to Start Jupyter Server</code> and then select <code>Python 3.9.13 ('tensorflow')</code> or whatever environment you want to use.</li>
