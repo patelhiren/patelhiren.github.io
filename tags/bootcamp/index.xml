@@ -1,26 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Bootcamp on Hiren Patel</title>
-    <link>https://patelhiren.com/tags/bootcamp/</link>
-    <description>Recent content in Bootcamp on Hiren Patel</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Mon, 06 Apr 2020 14:02:10 -0400</lastBuildDate>
-    
-	<atom:link href="https://patelhiren.com/tags/bootcamp/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Boot Camp on External Drive</title>
-      <link>https://patelhiren.com/blog/boot-camp-on-external-drive/</link>
-      <pubDate>Mon, 06 Apr 2020 14:02:10 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/boot-camp-on-external-drive/</guid>
-      <description>&lt;p&gt;I had a spare SSD and a USB enclosure for it. Installing windows on an external drive is unsupported by Microsoft and the setup will abort stating Windows cannot be installed on an external drive. Here is how I managed to install Windows 10 Pro on the external SSD and boot from it on my iMac.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>I had a spare SSD and a USB enclosure for it. Installing windows on an external drive is unsupported by Microsoft and the setup will abort stating Windows cannot be installed on an external drive. Here is how I managed to install Windows 10 Pro on the external SSD and boot from it on my iMac.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Bootcamp on Hiren Patel</title><link>https://patelhiren.com/tags/bootcamp/</link><description>Recent content in Bootcamp on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Mon, 06 Apr 2020 14:02:10 -0400</lastBuildDate><atom:link href="https://patelhiren.com/tags/bootcamp/index.xml" rel="self" type="application/rss+xml"/><item><title>Boot Camp on External Drive</title><link>https://patelhiren.com/blog/boot-camp-on-external-drive/</link><pubDate>Mon, 06 Apr 2020 14:02:10 -0400</pubDate><guid>https://patelhiren.com/blog/boot-camp-on-external-drive/</guid><description>&lt;p&gt;I had a spare SSD and a USB enclosure for it. Installing windows on an external drive is unsupported by Microsoft and the setup will abort stating Windows cannot be installed on an external drive. Here is how I managed to install Windows 10 Pro on the external SSD and boot from it on my iMac.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I had a spare SSD and a USB enclosure for it. Installing windows on an external drive is unsupported by Microsoft and the setup will abort stating Windows cannot be installed on an external drive. Here is how I managed to install Windows 10 Pro on the external SSD and boot from it on my iMac.</p>
 <h6 id="my-environment">My Environment</h6>
 <ul>
 <li>27-inch iMac 2019, running macOS Catalina 10.15.4</li>
@@ -45,19 +23,19 @@
                     <source 
                         srcset="
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/01_hu17667460983435770336.png 400w,
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu_37e776f44f118384.png 400w,
                         
                         
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/01_hu9479640607445988879.png 600w,
-                        
-
-                        
-                        /blog/boot-camp-on-external-drive/images/Dark/01_hu7925333736478870640.png 1000w,
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu_5a4b76fb68f6a377.png 600w,
                         
 
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/01_hu11906557128860464724.png 1200w,
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu_a8f4274529767127.png 1000w,
+                        
+
+                        
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu_1562304620a92662.png 1200w,
                         
 
                         /blog/boot-camp-on-external-drive/images/Dark/01.png
@@ -66,19 +44,19 @@
                     /><source 
                     srcset="
                     
-                    /blog/boot-camp-on-external-drive/images/01_hu12634293452900107142.png 400w,
+                    /blog/boot-camp-on-external-drive/images/01_hu_888c9a07e5bcf836.png 400w,
                     
                     
                     
-                    /blog/boot-camp-on-external-drive/images/01_hu6812513141930793375.png 600w,
-                    
-
-                    
-                    /blog/boot-camp-on-external-drive/images/01_hu14211722585239382567.png 1000w,
+                    /blog/boot-camp-on-external-drive/images/01_hu_c97268cb491cf8ca.png 600w,
                     
 
                     
-                    /blog/boot-camp-on-external-drive/images/01_hu4083080257819648894.png 1200w,
+                    /blog/boot-camp-on-external-drive/images/01_hu_21da07b6bce4d901.png 1000w,
+                    
+
+                    
+                    /blog/boot-camp-on-external-drive/images/01_hu_15d32e45bb516e1b.png 1200w,
                     
 
                     /blog/boot-camp-on-external-drive/images/01.png
@@ -108,9 +86,9 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">/Applications/VMware<span class="se">\ </span>Fusion.app/Contents/Library/vmware-rawdiskCreator <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>create /dev/disk5 <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>fullDevice ~/Virtual<span class="se">\ </span>Machines.localized/Boot<span class="se">\ </span>Camp.vmwarevm/external-hdd <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>ide
+</span></span></span><span class="line"><span class="cl">create /dev/disk5 <span class="se">\
+</span></span></span><span class="line"><span class="cl">fullDevice ~/Virtual<span class="se">\ </span>Machines.localized/Boot<span class="se">\ </span>Camp.vmwarevm/external-hdd <span class="se">\
+</span></span></span><span class="line"><span class="cl">ide
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -138,19 +116,19 @@
                     <source 
                         srcset="
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/02_hu12640832218862831780.png 400w,
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hu_3d4b9e33a300de7f.png 400w,
                         
                         
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/02_hu15205263807232602344.png 600w,
-                        
-
-                        
-                        /blog/boot-camp-on-external-drive/images/Dark/02_hu15299460004328432526.png 1000w,
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hu_6059e001e0261bf0.png 600w,
                         
 
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/02_hu12704947302097744581.png 1200w,
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hu_8703ca8095b07d80.png 1000w,
+                        
+
+                        
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hu_e080a15a5fd63eda.png 1200w,
                         
 
                         /blog/boot-camp-on-external-drive/images/Dark/02.png
@@ -159,19 +137,19 @@
                     /><source 
                     srcset="
                     
-                    /blog/boot-camp-on-external-drive/images/02_hu718143400919912172.png 400w,
+                    /blog/boot-camp-on-external-drive/images/02_hu_8fe245289a05c4c3.png 400w,
                     
                     
                     
-                    /blog/boot-camp-on-external-drive/images/02_hu11413652094708466705.png 600w,
-                    
-
-                    
-                    /blog/boot-camp-on-external-drive/images/02_hu17395743318038478867.png 1000w,
+                    /blog/boot-camp-on-external-drive/images/02_hu_53845f4c0e8885cb.png 600w,
                     
 
                     
-                    /blog/boot-camp-on-external-drive/images/02_hu1391637072907716924.png 1200w,
+                    /blog/boot-camp-on-external-drive/images/02_hu_a9258d80a3d399b9.png 1000w,
+                    
+
+                    
+                    /blog/boot-camp-on-external-drive/images/02_hu_8190eeffba24d043.png 1200w,
                     
 
                     /blog/boot-camp-on-external-drive/images/02.png
@@ -200,9 +178,4 @@
 <li>After installation of the Boot Camp drivers and reboot, Windows still had a few missing drivers under Device Manager. All I had to do was select <code>Update Driver</code> and select the <code>WindowsSupport\$WinPEDriver$</code> folder to look for drivers.</li>
 <li>Speakers were not working properly on the 2019 iMac even though all drivers were installed. I had to go to <code>Device Manager</code>-&gt;<code>Sound, video and game controllers</code>-&gt;<code>High Definition Audio Device</code>. Select Update driver and point it to <code>WindowsSupport\$WinPEDriver$\Cirrus</code>. This installed the correct drivers and the Speakers started working.</li>
 <li>Another speed bump I ran into was that after a few Windows updates were applied windows declined to update to the November 2019 update stating installing Windows on External USB is unsupported. &#x1f612; I had to go to the Registry at <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control</code> and set the <code>PortableOperatingSystem</code> value to <code>0</code> and reboot. After that the update installed ok. &#x1f60f;</li>
-</ul>]]></content:encoded>
-      
-    </item>
-    
-  </channel>
-</rss>
+</ul>]]></content:encoded></item></channel></rss>

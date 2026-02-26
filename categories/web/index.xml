@@ -1,26 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Web on Hiren Patel</title>
-    <link>https://patelhiren.com/categories/web/</link>
-    <description>Recent content in Web on Hiren Patel</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Fri, 24 Apr 2020 12:06:38 -0400</lastBuildDate>
-    
-	<atom:link href="https://patelhiren.com/categories/web/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Using mermaid-js to generate Flow Charts</title>
-      <link>https://patelhiren.com/blog/using-mermaid-js-to-generate-flow-charts/</link>
-      <pubDate>Fri, 24 Apr 2020 12:06:38 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/using-mermaid-js-to-generate-flow-charts/</guid>
-      <description>&lt;p&gt;I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about &lt;a href=&#34;https://github.com/mermaid-js/mermaid&#34;title=&#34;mermaid-js GitHub Page&#34;target=&#34;_blank&#34;&gt;mermaid-js&lt;/a&gt; which allows one to use Markdown like syntax to generte various diagrams including flow charts.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about <a href="https://github.com/mermaid-js/mermaid"title="mermaid-js GitHub Page"target="_blank">mermaid-js</a> which allows one to use Markdown like syntax to generte various diagrams including flow charts.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Web on Hiren Patel</title><link>https://patelhiren.com/categories/web/</link><description>Recent content in Web on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Fri, 24 Apr 2020 12:06:38 -0400</lastBuildDate><atom:link href="https://patelhiren.com/categories/web/index.xml" rel="self" type="application/rss+xml"/><item><title>Using mermaid-js to generate Flow Charts</title><link>https://patelhiren.com/blog/using-mermaid-js-to-generate-flow-charts/</link><pubDate>Fri, 24 Apr 2020 12:06:38 -0400</pubDate><guid>https://patelhiren.com/blog/using-mermaid-js-to-generate-flow-charts/</guid><description>&lt;p&gt;I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about &lt;a href="https://github.com/mermaid-js/mermaid"title="mermaid-js GitHub Page"target="_blank"&gt;mermaid-js&lt;/a&gt; which allows one to use Markdown like syntax to generte various diagrams including flow charts.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about <a href="https://github.com/mermaid-js/mermaid"title="mermaid-js GitHub Page"target="_blank">mermaid-js</a> which allows one to use Markdown like syntax to generte various diagrams including flow charts.</p>
 <p>There is a live editor available at <a href="https://mermaidjs.github.io/mermaid-live-editor/"target="_blank">https://mermaidjs.github.io/mermaid-live-editor/</a> that allows you to to enter Markdown like text and generate a PNG/SVG output that you can download and embed in your documentation.</p>
 <pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph TD
 A[Christmas] --&gt;|Get money| B(Go shopping)
@@ -82,20 +60,8 @@ C --&gt;|Three| F[fa:fa-car Car]
 <li>Pie Chart</li>
 <li>ER Diagram</li>
 </ul>
-<p>Documentation is available at <a href="https://mermaid-js.github.io/mermaid"target="_blank">https://mermaid-js.github.io/mermaid</a>.</p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Building this website using open-source tools and hosting it for free</title>
-      <link>https://patelhiren.com/blog/website-built-with-open-source-and-hosted-for-free/</link>
-      <pubDate>Sat, 18 Apr 2020 16:08:20 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/website-built-with-open-source-and-hosted-for-free/</guid>
-      <description>&lt;p&gt;For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Introducing &lt;a href=&#34;https://patelhiren.com&#34;title=&#34;Hiren Patel&amp;#39;s Blog&#34;target=&#34;_blank&#34;&gt;patelhiren.com&lt;/a&gt; in all its glory. &amp;#x1f389;&lt;/strong&gt;&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.</p>
+<p>Documentation is available at <a href="https://mermaid-js.github.io/mermaid"target="_blank">https://mermaid-js.github.io/mermaid</a>.</p>]]></content:encoded></item><item><title>Building this website using open-source tools and hosting it for free</title><link>https://patelhiren.com/blog/website-built-with-open-source-and-hosted-for-free/</link><pubDate>Sat, 18 Apr 2020 16:08:20 -0400</pubDate><guid>https://patelhiren.com/blog/website-built-with-open-source-and-hosted-for-free/</guid><description>&lt;p&gt;For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Introducing &lt;a href="https://patelhiren.com"title="Hiren Patel&amp;#39;s Blog"target="_blank"&gt;patelhiren.com&lt;/a&gt; in all its glory. &amp;#x1f389;&lt;/strong&gt;&lt;/p&gt;</description><content:encoded><![CDATA[<p>For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.</p>
 <p><strong>Introducing <a href="https://patelhiren.com"title="Hiren Patel&#39;s Blog"target="_blank">patelhiren.com</a> in all its glory. &#x1f389;</strong></p>
 <h2 id="goals">Goals</h2>
 <p>For this site I had a few basic goals in mind.</p>
@@ -434,7 +400,7 @@ C --&gt;|Three| F[fa:fa-car Car]
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># If a command fails then the deploy stops</span>
 </span></span><span class="line"><span class="cl"><span class="nb">set</span> -e
 </span></span><span class="line"><span class="cl">
@@ -496,19 +462,19 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu13273166032454448240.png 400w,
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu_f8cf2a96e93b4973.png 400w,
                     
                     
                     
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu1759417586400108908.png 600w,
-                    
-
-                    
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu9227253634962248620.png 1000w,
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu_4383a184a6f2d4d0.png 600w,
                     
 
                     
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu10938347202659600624.png 1200w,
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu_ad528813d2f7789d.png 1000w,
+                    
+
+                    
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu_94bdcf91d0ad626f.png 1200w,
                     
 
                     /blog/website-built-with-open-source-and-hosted-for-free/images/01.png
@@ -566,19 +532,7 @@ C --&gt;|Three| F[fa:fa-car Car]
 <p>I prefer <a href="https://code.visualstudio.com"target="_blank">Visual Studio Code</a>. Tip: If using Visual Studio Code you can press <em>CMD+K,V</em> to activate side-by-side live preview of the Markdown you are typing.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</div>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>PNG Crush Automator Action</title>
-      <link>https://patelhiren.com/blog/pngcrush-automator-action/</link>
-      <pubDate>Sun, 12 Apr 2020 22:04:30 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/pngcrush-automator-action/</guid>
-      <description>&lt;p&gt;When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS &lt;a href=&#34;https://support.apple.com/guide/automator/welcome/mac&#34;target=&#34;_blank&#34;&gt;Automator&lt;/a&gt;.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS <a href="https://support.apple.com/guide/automator/welcome/mac"target="_blank">Automator</a>.</p>
+</div>]]></content:encoded></item><item><title>PNG Crush Automator Action</title><link>https://patelhiren.com/blog/pngcrush-automator-action/</link><pubDate>Sun, 12 Apr 2020 22:04:30 -0400</pubDate><guid>https://patelhiren.com/blog/pngcrush-automator-action/</guid><description>&lt;p&gt;When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS &lt;a href="https://support.apple.com/guide/automator/welcome/mac"target="_blank"&gt;Automator&lt;/a&gt;.&lt;/p&gt;</description><content:encoded><![CDATA[<p>When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS <a href="https://support.apple.com/guide/automator/welcome/mac"target="_blank">Automator</a>.</p>
 <p>To crush png images I use the opensource tool <a href="https://pmt.sourceforge.io/pngcrush/"target="_blank">PNG Crush</a>.</p>
 <p>If you have <a href="https://developer.apple.com/xcode/"target="_blank">Xcode</a> installed, the pngcrush tool is included as a part of the iOS SDK and there is no additional download required.</p>
 <p>If you do not have Xcode you may install <em>PNG Crush</em> via <a href="https://brew.sh"target="_blank">Homebrew</a> using the following command.</p>
@@ -617,19 +571,19 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/01_hu10299906894841770542.png 400w,
+                    /blog/pngcrush-automator-action/images/01_hu_d95041dc088645c0.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/01_hu15144809330729729250.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/01_hu7445959027752455568.png 1000w,
+                    /blog/pngcrush-automator-action/images/01_hu_f67064edb4c9c63a.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/01_hu11732919017207006832.png 1200w,
+                    /blog/pngcrush-automator-action/images/01_hu_6aef051758196510.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/01_hu_952b8bf6b7580b7a.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/01.png
@@ -661,19 +615,19 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/02_hu17727269787472406711.png 400w,
+                    /blog/pngcrush-automator-action/images/02_hu_d7ef3f8431f21b7b.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/02_hu14804665408686312687.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/02_hu3689528950084346152.png 1000w,
+                    /blog/pngcrush-automator-action/images/02_hu_3c3d4c35638f1389.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/02_hu6912418297809607524.png 1200w,
+                    /blog/pngcrush-automator-action/images/02_hu_744ab587dd4a6eef.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/02_hu_eed5e9567b32767d.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/02.png
@@ -700,19 +654,19 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/03_hu11889311241427984287.png 400w,
+                    /blog/pngcrush-automator-action/images/03_hu_1615e5758656a5ad.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/03_hu10259793895010358155.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/03_hu2327663832978502619.png 1000w,
+                    /blog/pngcrush-automator-action/images/03_hu_d42520d23e3e9e94.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/03_hu12576988910102508920.png 1200w,
+                    /blog/pngcrush-automator-action/images/03_hu_38fb3d4781ace6ff.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/03_hu_8f85eb205ca80c14.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/03.png
@@ -779,19 +733,19 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/04_hu7528804344232696783.png 400w,
+                    /blog/pngcrush-automator-action/images/04_hu_ff3d21d706da1bf.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/04_hu116686565856275343.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/04_hu18002071194194411037.png 1000w,
+                    /blog/pngcrush-automator-action/images/04_hu_6b831092052e4214.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/04_hu17761922244676043234.png 1200w,
+                    /blog/pngcrush-automator-action/images/04_hu_995d894793146157.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/04_hu_7806f2b963de23ca.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/04.png
@@ -816,19 +770,19 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/05_hu13314229300956893167.png 400w,
+                    /blog/pngcrush-automator-action/images/05_hu_13240fec6c145b38.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/05_hu2719413684304142717.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/05_hu3687499236447916352.png 1000w,
+                    /blog/pngcrush-automator-action/images/05_hu_1d42f284206c81f1.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/05_hu3546587971612518519.png 1200w,
+                    /blog/pngcrush-automator-action/images/05_hu_693c350105e2a6db.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/05_hu_2eb55f1fbe77e194.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/05.png
@@ -853,7 +807,7 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/06_hu3291881629291868817.png 400w,
+                    /blog/pngcrush-automator-action/images/06_hu_6d28ff6fbd865374.png 400w,
                     
                     
                     
@@ -874,9 +828,4 @@ C --&gt;|Three| F[fa:fa-car Car]
     <span class="caption">
         <span class="title"></span>
     </span>
-</span></a></p>]]></content:encoded>
-      
-    </item>
-    
-  </channel>
-</rss>
+</span></a></p>]]></content:encoded></item></channel></rss>

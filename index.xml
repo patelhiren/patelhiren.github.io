@@ -1,26 +1,412 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Hiren Patel</title>
-    <link>https://patelhiren.com/</link>
-    <description>Recent content on Hiren Patel</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Fri, 25 Oct 2024 19:50:11 -0400</lastBuildDate>
-    
-	<atom:link href="https://patelhiren.com/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Fixing File Associations on macOS Sequoia</title>
-      <link>https://patelhiren.com/blog/fixing-file-associations-on-macos-sequoia/</link>
-      <pubDate>Fri, 25 Oct 2024 19:50:11 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/fixing-file-associations-on-macos-sequoia/</guid>
-      <description>&lt;p&gt;After upgrading to macOS Sequoia (15.0), my QFX files would not open correctly in &lt;em&gt;&lt;a href=&#34;https://www.banktivity.com&#34;target=&#34;_blank&#34;&gt;Banktivity&lt;/a&gt;&lt;/em&gt;. Banktivity would not show as an option in &lt;em&gt;Open With&lt;/em&gt; in the File Info panel. I ended up having to use &lt;em&gt;lsregister&lt;/em&gt; utility to fix the association manually.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>After upgrading to macOS Sequoia (15.0), my QFX files would not open correctly in <em><a href="https://www.banktivity.com"target="_blank">Banktivity</a></em>. Banktivity would not show as an option in <em>Open With</em> in the File Info panel. I ended up having to use <em>lsregister</em> utility to fix the association manually.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Hiren Patel</title><link>https://patelhiren.com/</link><description>Recent content on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Wed, 25 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://patelhiren.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Using macOS newsyslog to Rotate Service Logs</title><link>https://patelhiren.com/blog/macos-newsyslog-openclaw-logs/</link><pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate><guid>https://patelhiren.com/blog/macos-newsyslog-openclaw-logs/</guid><description>&lt;p&gt;I noticed my &lt;a href="https://clawd.bot/"target="_blank"&gt;OpenClaw&lt;/a&gt; gateway log files were growing unbounded. The service runs via &lt;a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html"target="_blank"&gt;launchd&lt;/a&gt;, and while the app has built-in log rotation, the stdout/stderr capture in the launchd plist was bypassing it entirely.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I noticed my <a href="https://clawd.bot/"target="_blank">OpenClaw</a> gateway log files were growing unbounded. The service runs via <a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html"target="_blank">launchd</a>, and while the app has built-in log rotation, the stdout/stderr capture in the launchd plist was bypassing it entirely.</p>
+<h2 id="the-problem">The Problem</h2>
+<p>When a macOS service uses <code>StandardOutPath</code> and <code>StandardErrorPath</code> in its launchd plist, those files just append forever. My logs had grown to 38MB with no mechanism to clean them up:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -lh ~/.openclaw/logs/
+</span></span><span class="line"><span class="cl">-rw-r--r--  <span class="m">1</span> clawd  staff  3.9M Feb <span class="m">25</span> 17:48 gateway.log
+</span></span><span class="line"><span class="cl">-rw-r--r--  <span class="m">1</span> clawd  staff  38M  Feb <span class="m">25</span> 17:48 gateway.err.log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>OpenClaw&rsquo;s internal logger writes date-based rotating logs to <code>/tmp/openclaw/</code>, but launchd&rsquo;s stdout capture writes directly to the configured files, bypassing that rotation logic.</p>
+<h2 id="the-solution-newsyslog">The Solution: newsyslog</h2>
+<p>macOS includes <a href="https://www.freebsd.org/cgi/man.cgi?newsyslog%288%29"target="_blank">newsyslog</a>, a utility for managing log file rotation. It&rsquo;s already running on your system, checking logs periodically via launchd. You just need to tell it about your custom log files.</p>
+<h3 id="configuration">Configuration</h3>
+<p>Create a config file for your service logs:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo tee /etc/newsyslog.d/openclaw.conf <span class="s">&lt;&lt; &#39;EOF&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s"># OpenClaw gateway logs - rotate at 10MB, keep zero archives
+</span></span></span><span class="line"><span class="cl"><span class="s">/Users/clawd/.openclaw/logs/gateway.log    644  0  10000  *  B
+</span></span></span><span class="line"><span class="cl"><span class="s">/Users/clawd/.openclaw/logs/gateway.err.log 644  0  10000  *  B
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Field breakdown:</p>
+<ul>
+<li><code>644</code> — File permissions (owner read/write, others read-only)</li>
+<li><code>0</code> — Number of archived files to keep (zero = just truncate)</li>
+<li><code>10000</code> — Size threshold in KB (~10MB)</li>
+<li><code>*</code> — Rotate at any time (not just specific hours)</li>
+<li><code>B</code> — Treat as binary (no special encoding)</li>
+</ul>
+<h3 id="reload-and-verify">Reload and Verify</h3>
+<p>Tell newsyslog to reload its configuration:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo killall -HUP newsyslog
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Check that the config loaded correctly:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo newsyslog -v -f /etc/newsyslog.d/openclaw.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Force an immediate rotation to test:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo newsyslog -v -f /etc/newsyslog.d/openclaw.conf -R <span class="s2">&#34;manual&#34;</span> ~/.openclaw/logs/gateway.err.log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><strong>Note:</strong> The <code>-R</code> flag with a requestor name is optional. Plain <code>newsyslog -v -f /path/to/config</code> works fine for testing.</p>
+</blockquote>
+<h2 id="why-not-cron">Why Not Cron?</h2>
+<p>I considered a simple cron job:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="m">0</span> <span class="m">3</span> * * * truncate -s <span class="m">0</span> ~/.openclaw/logs/gateway.log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>That would work, but newsyslog is the native macOS tool for this. It&rsquo;s already running, already has permission handling figured out, and rotates based on file size rather than just time. If your log suddenly explodes to 500MB, newsyslog catches it on the next check cycle (every 30 minutes). Cron would wait until 3 AM.</p>
+<h2 id="result">Result</h2>
+<p>After setup, my 38MB error log was truncated to zero bytes:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -lh ~/.openclaw/logs/
+</span></span><span class="line"><span class="cl">-rw-r--r--  <span class="m">1</span> clawd  staff  4.9M Feb <span class="m">25</span> 18:02 gateway.log
+</span></span><span class="line"><span class="cl">-rw-r--r--  <span class="m">1</span> clawd  staff   0B  Feb <span class="m">25</span> 18:10 gateway.err.log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>No manual intervention needed going forward. When either file crosses 10MB, newsyslog truncates it automatically.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.freebsd.org/cgi/man.cgi?newsyslog%288%29"target="_blank">newsyslog man page</a></li>
+<li><a href="https://docs.openclaw.ai/"target="_blank">OpenClaw documentation</a></li>
+<li><a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html"target="_blank">launchd documentation</a></li>
+</ul>]]></content:encoded></item><item><title>Tag-Teaming Claude Code with an AI Agent via Tmux</title><link>https://patelhiren.com/blog/tag-teaming-claude-code-with-ai-agent/</link><pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate><guid>https://patelhiren.com/blog/tag-teaming-claude-code-with-ai-agent/</guid><description>&lt;p&gt;&lt;a href="https://claude.ai/code"target="_blank"&gt;Claude Code&lt;/a&gt; is an impressive CLI that brings sophisticated AI-assisted coding directly into the terminal. Its TUI (Text User Interface) provides rich feedback through interactive menus, progress bars, and side-by-side diffs. However, long-running tasks present a challenge: if you need to step away from your computer, the session momentum is often lost.&lt;/p&gt;
+&lt;p&gt;To solve this, I’ve developed a workflow using &lt;a href="https://github.com/tmux/tmux/wiki"target="_blank"&gt;Tmux&lt;/a&gt; as a shared terminal state. This allows me to hand off a live session to my &lt;a href="https://clawd.bot/"target="_blank"&gt;Clawdbot&lt;/a&gt; agent and, conversely, take over a session that the agent started. It also provides a mechanism to optionally switch between different account tokens (such as a work account) on the fly.&lt;/p&gt;</description><content:encoded><![CDATA[<p><a href="https://claude.ai/code"target="_blank">Claude Code</a> is an impressive CLI that brings sophisticated AI-assisted coding directly into the terminal. Its TUI (Text User Interface) provides rich feedback through interactive menus, progress bars, and side-by-side diffs. However, long-running tasks present a challenge: if you need to step away from your computer, the session momentum is often lost.</p>
+<p>To solve this, I’ve developed a workflow using <a href="https://github.com/tmux/tmux/wiki"target="_blank">Tmux</a> as a shared terminal state. This allows me to hand off a live session to my <a href="https://clawd.bot/"target="_blank">Clawdbot</a> agent and, conversely, take over a session that the agent started. It also provides a mechanism to optionally switch between different account tokens (such as a work account) on the fly.</p>
+<h2 id="the-core-concept-persistence">The Core Concept: Persistence</h2>
+<p>The strategy relies on Tmux sessions to maintain a persistent terminal state in memory. By using named sessions, both the human and the AI agent can attach to and drive the exact same process. This ensures zero context loss when switching between &ldquo;manual&rdquo; and &ldquo;agent&rdquo; mode.</p>
+<h2 id="configuration-storing-account-profiles">Configuration: Storing Account Profiles</h2>
+<p>To enable the agent to switch accounts, you can store secondary tokens in the <code>coding-agent</code> skill section of <code>clawdbot.json</code>. Using simple shorthand keys makes it easier to request them from a phone.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="s2">&#34;skills&#34;</span><span class="err">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;entries&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;coding-agent&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;env&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;CC_ACC2_TOKEN&#34;</span><span class="p">:</span> <span class="s2">&#34;your-token-here&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="workflow-1-human-to-agent-hand-off">Workflow 1: Human to Agent Hand-off</h2>
+<p>When I am working at my desk and need to step away, I follow these steps:</p>
+<ol>
+<li>
+<p><strong>Start a named Tmux session</strong>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tmux new -s hiren-claude
+</span></span><span class="line"><span class="cl">claude
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><strong>Pro-Tip</strong>: If you want to launch manually with a specific account token, use the <code>env</code> prefix within the Tmux command string to ensure the environment variable is correctly injected into the background session:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tmux new -s hiren-claude -d <span class="s2">&#34;env CLAUDE_CODE_OAUTH_TOKEN=&#39;your-token&#39; claude&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+</li>
+<li>
+<p><strong>Request Hand-off</strong>: From WhatsApp, I tell the agent:</p>
+<blockquote>
+<p>&ldquo;Take over session <code>hiren-claude</code>. Finish the refactor.&rdquo;</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="environment-inheritance">Environment Inheritance</h3>
+<p>If I start a session at my desk using <code>export CLAUDE_CODE_OAUTH_TOKEN=...</code>, the agent inherits that environment automatically when it takes over the Tmux pane. Keystrokes sent by the agent will be processed within that authenticated shell.</p>
+<h2 id="workflow-2-agent-to-human-take-over">Workflow 2: Agent to Human Take-over</h2>
+<p>The hand-off also works in reverse. I can have the agent start a complex task while I am away:</p>
+<h3 id="default-account-example">Default Account Example</h3>
+<p>I can instruct the agent to start a new run using my default CLI login:</p>
+<blockquote>
+<p>&ldquo;Start a new session <code>hiren-claude</code> and begin refactoring the database schema.&rdquo;</p>
+</blockquote>
+<p>Behind the scenes, the agent runs <code>tmux new -s hiren-claude -d &quot;claude '...'&quot;</code>.</p>
+<h3 id="specific-account-example">Specific Account Example</h3>
+<p>If I want the agent to use a specific account profile from the config:</p>
+<blockquote>
+<p>&ldquo;Start a new session <code>hiren-claude</code> using <code>cc-acc2-token</code> and fix the memory leak.&rdquo;</p>
+</blockquote>
+<p>The agent then prepends the token to the execution, mapping the <code>CC_ACC2_TOKEN</code> from the config to the <code>CLAUDE_CODE_OAUTH_TOKEN</code> required by the CLI.</p>
+<h3 id="human-take-over">Human Take-over</h3>
+<p>When I return to my computer, I can attach to the session and take full control immediately:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tmux attach -t hiren-claude
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Because Tmux lives in the background, this works even if the screen is locked, provided the computer remains awake.</p>
+<h2 id="benefits-of-the-tmux-bridge">Benefits of the Tmux Bridge</h2>
+<ul>
+<li><strong>Full TUI Support</strong>: Standard stdin/stdout redirection often breaks the interactive elements of Claude Code. Using Tmux preserves the full visual experience.</li>
+<li><strong>Real-time Monitoring</strong>: I can &ldquo;spectate&rdquo; the work by attaching to the session via SSH from a mobile device or another terminal.</li>
+<li><strong>Zero Friction</strong>: No need to re-authenticate or re-explain context when switching between human and AI control.</li>
+</ul>
+<h2 id="pro-tip-smooth-scrolling-in-tmux">Pro-Tip: Smooth Scrolling in Tmux</h2>
+<p>One common frustration when using Claude Code inside Tmux is scrolling. By default, using the mouse wheel might send &ldquo;Up/Down&rdquo; arrow keys, which moves the text in the entry box rather than scrolling the terminal history.</p>
+<p>To fix this, you can enable <strong>Mouse Mode</strong>. Add the following to your <code>~/.tmux.conf</code> file:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">set</span> -g mouse on
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>With this enabled, you can scroll through Claude&rsquo;s responses naturally. If you don&rsquo;t want to enable global mouse mode, you can always enter <strong>Copy Mode</strong> manually by pressing <code>Ctrl-b</code> then <code>[</code>. Once in copy mode, you can scroll freely; just press <code>q</code> to return to the prompt.</p>
+<h2 id="execution-reminders">Execution Reminders</h2>
+<ul>
+<li><strong>Installation</strong>: Ensure <code>tmux</code> is installed via <a href="https://brew.sh/"target="_blank">Homebrew</a> (<code>brew install tmux</code>).</li>
+<li><strong>Naming</strong>: Use consistent session names so the agent knows where to look.</li>
+<li><strong>Power Settings</strong>: Configure your Mac to stay awake when the display is off to ensure the Tmux server remains active.</li>
+</ul>
+<p>By treating the terminal as a shared space, I’ve turned my AI agent into a true tag-team partner. We can hot-swap control of the keyboard and switch accounts on the fly without ever losing the &ldquo;zone.&rdquo;</p>]]></content:encoded></item><item><title>Deploying a Sandboxed Family Agent with Cross-Compiled Go Skills in Clawdbot</title><link>https://patelhiren.com/blog/deploying-sandboxed-family-agent-clawdbot/</link><pubDate>Mon, 19 Jan 2026 00:00:00 +0000</pubDate><guid>https://patelhiren.com/blog/deploying-sandboxed-family-agent-clawdbot/</guid><description>&lt;p&gt;I wanted to set up a &amp;ldquo;Family Agent&amp;rdquo; in &lt;a href="https://clawd.bot/"target="_blank"&gt;Clawdbot&lt;/a&gt; so my family could interact with tools like stock analysis and summarization via WhatsApp. However, I needed to ensure this agent was completely isolated from my personal credentials and host system. Here is how I configured a sandboxed environment and deployed cross-compiled &lt;a href="https://go.dev/"target="_blank"&gt;Go&lt;/a&gt; skills to solve this.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I wanted to set up a &ldquo;Family Agent&rdquo; in <a href="https://clawd.bot/"target="_blank">Clawdbot</a> so my family could interact with tools like stock analysis and summarization via WhatsApp. However, I needed to ensure this agent was completely isolated from my personal credentials and host system. Here is how I configured a sandboxed environment and deployed cross-compiled <a href="https://go.dev/"target="_blank">Go</a> skills to solve this.</p>
+<h2 id="customizing-the-sandbox-image">Customizing the Sandbox Image</h2>
+<p>Because some skills have specific runtime requirements—like the <code>summarize</code> skill needing Node.js 20+ to support newer regular expression flags—I created a custom <a href="https://www.docker.com/"target="_blank">Docker</a> image. Using a default image with Node.js v18 resulted in a <code>SyntaxError</code> when the tool&rsquo;s dependencies tried to load, so &ldquo;baking in&rdquo; the correct runtime was the first step.</p>
+<h3 id="the-dockerfile">The Dockerfile</h3>
+<p>I used a <code>node:20-slim</code> base to ensure all modern Node dependencies were supported:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="s">node:20-slim</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="c"># Install system dependencies</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> apt-get install -y <span class="se">\
+</span></span></span><span class="line"><span class="cl">    curl <span class="se">\
+</span></span></span><span class="line"><span class="cl">    ca-certificates <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="o">&amp;&amp;</span> rm -rf /var/lib/apt/lists/*<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Building the image is a one-time task:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker build -t <span class="o">[</span>YOUR_DOCKER_IMAGE<span class="o">]</span>:1.0 .
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="cross-compiling-go-binaries-for-multi-platform-support">Cross-Compiling Go Binaries for Multi-Platform Support</h2>
+<p>To keep the agent high-performance, I wrote my custom skills (like <code>stock-analysis</code>) in Go. The beauty of Go is the ability to test locally on my M1 Max (<code>darwin/arm64</code>) and then cross-compile for the sandboxed Linux environment.</p>
+<p>By producing a single binary for each platform and placing them in the <code>dist/</code> folder of the skill, the agent can run the correct version regardless of the environment.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Build for macOS (Local Testing)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">GOOS</span><span class="o">=</span>darwin <span class="nv">GOARCH</span><span class="o">=</span>arm64 go build -o dist/stock-analysis main.go
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Build for Linux (Sandbox Deployment)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">GOOS</span><span class="o">=</span>linux <span class="nv">GOARCH</span><span class="o">=</span>arm64 go build -o dist/stock-analysis-linux main.go
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="bridging-the-llm-and-code-with-skillmd">Bridging the LLM and Code with <code>SKILL.md</code></h2>
+<p>Clawdbot uses a <code>SKILL.md</code> file to discover these binaries and understand how to use them. This file acts as the bridge between the LLM’s natural language and the Go code. For the stock analysis tool, I defined mandatory rules to ensure the agent returns the raw <code>stdout</code> verbatim, which is critical for trading data fidelity.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gu">### Command
+</span></span></span><span class="line"><span class="cl"><span class="gh"># macOS / Darwin
+</span></span></span><span class="line"><span class="cl">stock-analysis &lt;TICKER&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gh"># Linux / Sandbox
+</span></span></span><span class="line"><span class="cl">stock-analysis-linux &lt;TICKER&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="configuring-the-agent-and-docker-sandbox">Configuring the Agent and Docker Sandbox</h2>
+<p>With the image built and skills compiled, I defined the <code>family</code> agent in <code>clawdbot.json</code>. Setting the sandbox mode to <code>all</code> forces every tool execution into the Docker container.</p>
+<p>Crucially, because skills like <code>summarize</code> and <code>stock-analysis</code> need to reach out to external APIs and websites, I had to explicitly grant the sandbox internet access by setting the Docker network to <code>bridge</code> mode.</p>
+<h3 id="the-agent-json-structure">The Agent JSON Structure</h3>
+<p>The <code>env</code> block and <code>sandbox</code> settings live directly within the agent&rsquo;s definition. Here is the full structure for the <code>family</code> agent:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;family&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;family&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;env&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ANTHROPIC_API_KEY&#34;</span><span class="p">:</span> <span class="s2">&#34;{{auth:[YOUR_ANTHROPIC_PROFILE]}}&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;GEMINI_API_KEY&#34;</span><span class="p">:</span> <span class="s2">&#34;{{auth:[YOUR_GEMINI_PROFILE]}}&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;workspace&#34;</span><span class="p">:</span> <span class="s2">&#34;[WORKSPACE_PATH]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;sandbox&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;mode&#34;</span><span class="p">:</span> <span class="s2">&#34;all&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;workspaceAccess&#34;</span><span class="p">:</span> <span class="s2">&#34;rw&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;agent&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;docker&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;image&#34;</span><span class="p">:</span> <span class="s2">&#34;[YOUR_DOCKER_IMAGE]:1.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;network&#34;</span><span class="p">:</span> <span class="s2">&#34;bridge&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;tools&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;sandbox&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;tools&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;allow&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;exec&#34;</span><span class="p">,</span> <span class="s2">&#34;bash&#34;</span><span class="p">,</span> <span class="s2">&#34;read&#34;</span><span class="p">,</span> <span class="s2">&#34;write&#34;</span><span class="p">,</span> <span class="s2">&#34;summarize&#34;</span><span class="p">,</span> <span class="s2">&#34;stock-analysis&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I then bound this agent to a specific WhatsApp group ID so it only responds to family requests:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="s2">&#34;bindings&#34;</span><span class="err">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;agentId&#34;</span><span class="p">:</span> <span class="s2">&#34;family&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;match&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;channel&#34;</span><span class="p">:</span> <span class="s2">&#34;whatsapp&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;peer&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;kind&#34;</span><span class="p">:</span> <span class="s2">&#34;group&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;[YOUR_GROUP_ID]@g.us&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="lessons-learned">Lessons Learned</h2>
+<h3 id="1-secure-credential-injection">1. Secure Credential Injection</h3>
+<p>A key security feature of the sandbox is that it starts with a clean slate. By checking the sandbox logs, I could see that tools were failing because they lacked API keys. To fix this, I used explicit environment mapping in the JSON config.</p>
+<p>You must map the <strong>specific environment variables</strong> that your skills expect (like <code>GEMINI_API_KEY</code> or <code>ANTHROPIC_API_KEY</code>) to your secure Clawdbot authentication profiles inside the <code>env</code> block shown in the configuration section above.</p>
+<p>This ensures the agent is &ldquo;least privileged&rdquo;—it only has the specific tokens it needs to run its assigned skills.</p>
+<h2 id="pro-tip-refreshing-the-sandbox">Pro-Tip: Refreshing the Sandbox</h2>
+<p>Clawdbot creates the Docker container for the agent only one time. It persists across restarts for speed. If you need to force a clean slate or pick up changes in your custom image, simply delete the running container:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker rm -f <span class="o">[</span>CONTAINER_ID<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Clawdbot will automatically recreate the container from the image on the next request.</p>
+<h2 id="wrapping-up">Wrapping Up</h2>
+<p>By using Docker for isolation, enabling bridge networking for internet access, and cross-compiling Go binaries for both macOS and Linux, I’ve created a setup that is both high-performance and secure. This configuration allows my family to benefit from agentic workflows while maintaining strict control over credential access and runtime environments.</p>]]></content:encoded></item><item><title>Fixing File Associations on macOS Sequoia</title><link>https://patelhiren.com/blog/fixing-file-associations-on-macos-sequoia/</link><pubDate>Fri, 25 Oct 2024 19:50:11 -0400</pubDate><guid>https://patelhiren.com/blog/fixing-file-associations-on-macos-sequoia/</guid><description>&lt;p&gt;After upgrading to macOS Sequoia (15.0), my QFX files would not open correctly in &lt;em&gt;&lt;a href="https://www.banktivity.com"target="_blank"&gt;Banktivity&lt;/a&gt;&lt;/em&gt;. Banktivity would not show as an option in &lt;em&gt;Open With&lt;/em&gt; in the File Info panel. I ended up having to use &lt;em&gt;lsregister&lt;/em&gt; utility to fix the association manually.&lt;/p&gt;</description><content:encoded><![CDATA[<p>After upgrading to macOS Sequoia (15.0), my QFX files would not open correctly in <em><a href="https://www.banktivity.com"target="_blank">Banktivity</a></em>. Banktivity would not show as an option in <em>Open With</em> in the File Info panel. I ended up having to use <em>lsregister</em> utility to fix the association manually.</p>
 <p>The problem turned out to be that macOS Launch Services db had references to older versions of Banktivity that were no longer installed. I had version 9 installed, but it had assoications registered to version 7, 8 and 9. I also found that my iOS device had both Banktivity 7 and Banktivity 9 installed. I belive this was causing conflicts on macOS because of iCloud File Sync. I found out the associated by running the below command.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -71,19 +457,7 @@
 <pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain <span class="nb">local</span> -domain system -domain user
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>So I recommend not using this command.</p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Upgrading Portainer Community Edition on Docker</title>
-      <link>https://patelhiren.com/blog/upgrading-portainer-ce-on-docker/</link>
-      <pubDate>Sun, 19 Feb 2023 12:18:21 -0500</pubDate>
-      
-      <guid>https://patelhiren.com/blog/upgrading-portainer-ce-on-docker/</guid>
-      <description>&lt;p&gt;I run a docker instance under Ubuntu server on my local network. This is how I upgrade portainer to the latest version.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>I run a docker instance under Ubuntu server on my local network. This is how I upgrade portainer to the latest version.</p>
+</div><p>So I recommend not using this command.</p>]]></content:encoded></item><item><title>Upgrading Portainer Community Edition on Docker</title><link>https://patelhiren.com/blog/upgrading-portainer-ce-on-docker/</link><pubDate>Sun, 19 Feb 2023 12:18:21 -0500</pubDate><guid>https://patelhiren.com/blog/upgrading-portainer-ce-on-docker/</guid><description>&lt;p&gt;I run a docker instance under Ubuntu server on my local network. This is how I upgrade portainer to the latest version.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I run a docker instance under Ubuntu server on my local network. This is how I upgrade portainer to the latest version.</p>
 <p>Connect to the Ubuntu server via SSH and run the below commands.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -113,19 +487,7 @@
 </span></span><span class="line"><span class="cl">sudo docker run -d -p 8000:8000 -p 9000:9000 --name<span class="o">=</span>portainer --restart<span class="o">=</span>always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>This will upgrade portainer to the latest version. It should again be accessible at <code>http://&lt;&lt;server&gt;&gt;:9000</code>.</p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Set up Foscam Floodlight Camera in HomeKit</title>
-      <link>https://patelhiren.com/blog/set-up-foscam-floodlight-camera-in-homekit/</link>
-      <pubDate>Sun, 13 Nov 2022 16:32:58 -0500</pubDate>
-      
-      <guid>https://patelhiren.com/blog/set-up-foscam-floodlight-camera-in-homekit/</guid>
-      <description>&lt;p&gt;The &lt;a href=&#34;https://www.amazon.com/Foscam-Floodlight-Detection-Brightness-FLC/dp/B095S3HVL4&#34;target=&#34;_blank&#34;&gt;Foscam Floodlight Camera&lt;/a&gt; is competitively prized and has decent features including option to record 24/7 video locally to a micro sdcard without the need for a cloud subscription. It however does not support integration with HomeKit my preferred home automation platform. Here is how I setup the floodlight in HomeKit.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>The <a href="https://www.amazon.com/Foscam-Floodlight-Detection-Brightness-FLC/dp/B095S3HVL4"target="_blank">Foscam Floodlight Camera</a> is competitively prized and has decent features including option to record 24/7 video locally to a micro sdcard without the need for a cloud subscription. It however does not support integration with HomeKit my preferred home automation platform. Here is how I setup the floodlight in HomeKit.</p>
+</div><p>This will upgrade portainer to the latest version. It should again be accessible at <code>http://&lt;&lt;server&gt;&gt;:9000</code>.</p>]]></content:encoded></item><item><title>Set up Foscam Floodlight Camera in HomeKit</title><link>https://patelhiren.com/blog/set-up-foscam-floodlight-camera-in-homekit/</link><pubDate>Sun, 13 Nov 2022 16:32:58 -0500</pubDate><guid>https://patelhiren.com/blog/set-up-foscam-floodlight-camera-in-homekit/</guid><description>&lt;p&gt;The &lt;a href="https://www.amazon.com/Foscam-Floodlight-Detection-Brightness-FLC/dp/B095S3HVL4"target="_blank"&gt;Foscam Floodlight Camera&lt;/a&gt; is competitively prized and has decent features including option to record 24/7 video locally to a micro sdcard without the need for a cloud subscription. It however does not support integration with HomeKit my preferred home automation platform. Here is how I setup the floodlight in HomeKit.&lt;/p&gt;</description><content:encoded><![CDATA[<p>The <a href="https://www.amazon.com/Foscam-Floodlight-Detection-Brightness-FLC/dp/B095S3HVL4"target="_blank">Foscam Floodlight Camera</a> is competitively prized and has decent features including option to record 24/7 video locally to a micro sdcard without the need for a cloud subscription. It however does not support integration with HomeKit my preferred home automation platform. Here is how I setup the floodlight in HomeKit.</p>
 <p>Download and install the <a href="https://apps.apple.com/us/app/foscam-vms/id1521202507?mt=12"target="_blank">Foscam VMS</a> app from the Mac App Store. Signup and Signin to the Foscam Account.</p>
 <p>We will also need the <a href="https://apps.apple.com/us/app/foscam/id924381688"target="_blank">Foscam</a> iOS app.</p>
 <blockquote>
@@ -141,11 +503,11 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/01_hu854835216039767888.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/01_hu_773b19ee061b59e9.png 400w,
                     
                     
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/01_hu1155203469866038401.png 600w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/01_hu_e0c2a84500f14649.png 600w,
                     
 
                     
@@ -183,19 +545,19 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu10715603915529705066.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu_e967a3df745a2655.png 400w,
                     
                     
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu14316823806985360839.png 600w,
-                    
-
-                    
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu1555432292505962888.png 1000w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu_5f0892ff071d0809.png 600w,
                     
 
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu6728639325262776162.png 1200w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu_1374627ac368b204.png 1000w,
+                    
+
+                    
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu_875dce0e98a8ede4.png 1200w,
                     
 
                     /blog/set-up-foscam-floodlight-camera-in-homekit/images/02.png
@@ -229,19 +591,19 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu924322101021826482.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu_7dedb5b7b0214b87.png 400w,
                     
                     
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu3208633523759380406.png 600w,
-                    
-
-                    
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu10631119168180201951.png 1000w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu_38724bddb5e05a35.png 600w,
                     
 
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu13199576637089040714.png 1200w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu_4c4edfd964c758a.png 1000w,
+                    
+
+                    
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu_8ce81ea707b79d78.png 1200w,
                     
 
                     /blog/set-up-foscam-floodlight-camera-in-homekit/images/03.png
@@ -269,19 +631,19 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu1024207893000157201.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu_829d7ef50bcbc47c.png 400w,
                     
                     
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu13053976562220965075.png 600w,
-                    
-
-                    
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu5771694592035171665.png 1000w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu_1fad6398ddd9596c.png 600w,
                     
 
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu13745234138375822360.png 1200w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu_1e4036fcf8842c0a.png 1000w,
+                    
+
+                    
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu_6f946e15f93d9184.png 1200w,
                     
 
                     /blog/set-up-foscam-floodlight-camera-in-homekit/images/04.png
@@ -310,19 +672,19 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu11836542350063629728.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu_6599d8396401fd6.png 400w,
                     
                     
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu12152731951925620717.png 600w,
-                    
-
-                    
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu15930760081947996542.png 1000w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu_1894f20ac842e04d.png 600w,
                     
 
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu10783728860825662910.png 1200w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu_d04cb69c5adbcc42.png 1000w,
+                    
+
+                    
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu_3fef3246ebc34f44.png 1200w,
                     
 
                     /blog/set-up-foscam-floodlight-camera-in-homekit/images/05.png
@@ -358,7 +720,7 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/06_hu16984489087316007069.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/06_hu_6269430fb159b36f.png 400w,
                     
                     
                     
@@ -481,7 +843,7 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/09_hu1827515286913983319.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/09_hu_f250f80fe80710d9.png 400w,
                     
                     
                     
@@ -514,7 +876,7 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/10_hu4839033542985781733.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/10_hu_af57ad8a72614d48.png 400w,
                     
                     
                     
@@ -549,19 +911,7 @@
 <li>Enable HomeKit integration, and pair with HomeKit.</li>
 <li>The device will now let you to turn the floodlight on/off and set the brightness.</li>
 </ul>
-<p>I also blocked the camera ips from accessing the internet except the <em>NTP</em> port via my firewall. The cameras connect locally to my Home Hub (Apple TV) and then are available to HomeKit everywhere through that. So that is an additional level of privacy I enjoy. Overall this setup is working very well and HomeKit recognizes People/Pets/Vehicles and Packages pretty well and quickly.</p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Setting up Keras Tensorflow2 on M1 Mac</title>
-      <link>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</link>
-      <pubDate>Fri, 21 Oct 2022 13:32:11 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</guid>
-      <description>&lt;p&gt;I am currently reading &lt;a href=&#34;https://www.amazon.com/gp/product/B0B18D695W&#34;target=&#34;_blank&#34;&gt;Deep Learning with TensorFlow and Keras&lt;/a&gt; to get started with Machine Learning/Deep Learning. Here is how I setup a local &lt;em&gt;Keras/Tensorflow 2.0&lt;/em&gt; environment on my &lt;em&gt;M1 Max MacBook Pro&lt;/em&gt; running &lt;em&gt;macOS 12.6&lt;/em&gt;.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>I am currently reading <a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank">Deep Learning with TensorFlow and Keras</a> to get started with Machine Learning/Deep Learning. Here is how I setup a local <em>Keras/Tensorflow 2.0</em> environment on my <em>M1 Max MacBook Pro</em> running <em>macOS 12.6</em>.</p>
+<p>I also blocked the camera ips from accessing the internet except the <em>NTP</em> port via my firewall. The cameras connect locally to my Home Hub (Apple TV) and then are available to HomeKit everywhere through that. So that is an additional level of privacy I enjoy. Overall this setup is working very well and HomeKit recognizes People/Pets/Vehicles and Packages pretty well and quickly.</p>]]></content:encoded></item><item><title>Setting up Keras Tensorflow2 on M1 Mac</title><link>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</link><pubDate>Fri, 21 Oct 2022 13:32:11 -0400</pubDate><guid>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</guid><description>&lt;p&gt;I am currently reading &lt;a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank"&gt;Deep Learning with TensorFlow and Keras&lt;/a&gt; to get started with Machine Learning/Deep Learning. Here is how I setup a local &lt;em&gt;Keras/Tensorflow 2.0&lt;/em&gt; environment on my &lt;em&gt;M1 Max MacBook Pro&lt;/em&gt; running &lt;em&gt;macOS 12.6&lt;/em&gt;.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I am currently reading <a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank">Deep Learning with TensorFlow and Keras</a> to get started with Machine Learning/Deep Learning. Here is how I setup a local <em>Keras/Tensorflow 2.0</em> environment on my <em>M1 Max MacBook Pro</em> running <em>macOS 12.6</em>.</p>
 <p>Install <a href="https://docs.conda.io/en/latest/miniconda.html"target="_blank"><em>miniconda</em></a>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -709,19 +1059,7 @@
 </span></span><span class="line"><span class="cl">* PhysicalDevice(name=&#39;/physical_device:GPU:0&#39;, device_type=&#39;GPU&#39;)
 </span></span></code></pre></td></tr></table>
 </div>
-</div>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Setting Visual Studio Code as default text editor on macOS</title>
-      <link>https://patelhiren.com/blog/setting-vscode-as-default-text-editor-on-macos/</link>
-      <pubDate>Tue, 23 Mar 2021 22:29:29 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/setting-vscode-as-default-text-editor-on-macos/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://code.visualstudio.com&#34;target=&#34;_blank&#34;&gt;Visual Studio Code&lt;/a&gt; is quite capable has become my editor of choice on macOS. Here is how to set it as the default text editor instead of &lt;em&gt;Text Edit&lt;/em&gt;.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p><a href="https://code.visualstudio.com"target="_blank">Visual Studio Code</a> is quite capable has become my editor of choice on macOS. Here is how to set it as the default text editor instead of <em>Text Edit</em>.</p>
+</div>]]></content:encoded></item><item><title>Setting Visual Studio Code as default text editor on macOS</title><link>https://patelhiren.com/blog/setting-vscode-as-default-text-editor-on-macos/</link><pubDate>Tue, 23 Mar 2021 22:29:29 -0400</pubDate><guid>https://patelhiren.com/blog/setting-vscode-as-default-text-editor-on-macos/</guid><description>&lt;p&gt;&lt;a href="https://code.visualstudio.com"target="_blank"&gt;Visual Studio Code&lt;/a&gt; is quite capable has become my editor of choice on macOS. Here is how to set it as the default text editor instead of &lt;em&gt;Text Edit&lt;/em&gt;.&lt;/p&gt;</description><content:encoded><![CDATA[<p><a href="https://code.visualstudio.com"target="_blank">Visual Studio Code</a> is quite capable has become my editor of choice on macOS. Here is how to set it as the default text editor instead of <em>Text Edit</em>.</p>
 <p>Install <a href="https://github.com/moretension/duti"target="_blank">duti</a>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -748,19 +1086,7 @@
 </span></span><span class="line"><span class="cl">duti -s com.microsoft.VSCode public.data all
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>The changes should take effect right away and no reboot or relaunch of <em>Finder</em> should be needed.</p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>macOS and Active Directory Passwords</title>
-      <link>https://patelhiren.com/blog/macos-and-active-directory-passwords/</link>
-      <pubDate>Sat, 02 Jan 2021 17:30:27 -0500</pubDate>
-      
-      <guid>https://patelhiren.com/blog/macos-and-active-directory-passwords/</guid>
-      <description>&lt;p&gt;Macs connected to Active Directory routinely need to update passwords. When working remote, Active Directory password change is not exactly easy. Here are the steps I follow to update my Active Directory password and keep my local mac password in sync.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>Macs connected to Active Directory routinely need to update passwords. When working remote, Active Directory password change is not exactly easy. Here are the steps I follow to update my Active Directory password and keep my local mac password in sync.</p>
+</div><p>The changes should take effect right away and no reboot or relaunch of <em>Finder</em> should be needed.</p>]]></content:encoded></item><item><title>macOS and Active Directory Passwords</title><link>https://patelhiren.com/blog/macos-and-active-directory-passwords/</link><pubDate>Sat, 02 Jan 2021 17:30:27 -0500</pubDate><guid>https://patelhiren.com/blog/macos-and-active-directory-passwords/</guid><description>&lt;p&gt;Macs connected to Active Directory routinely need to update passwords. When working remote, Active Directory password change is not exactly easy. Here are the steps I follow to update my Active Directory password and keep my local mac password in sync.&lt;/p&gt;</description><content:encoded><![CDATA[<p>Macs connected to Active Directory routinely need to update passwords. When working remote, Active Directory password change is not exactly easy. Here are the steps I follow to update my Active Directory password and keep my local mac password in sync.</p>
 <p>Connect to corporate VPN so that Active Directory is reachable over VPN. Open Terminal and run the following command.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -794,19 +1120,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Wait about a minute, log out and log back in. You should be logging in with the new password. If login still requires the old password the password sync with active directory did not happen yet. Log back in with the old password, connect to VPN (You will need to use your new password when connecting to VPN) and run the <code>dsconfigad -passinterval 0</code> command and wait a mintue or so before trying to log out/login.</p>
-<p>The process once finished will make sure your local keychain password and AD passwords are in sync.</p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Cross Compiling on macOS via Docker</title>
-      <link>https://patelhiren.com/blog/cross-compiling-on-macos-via-docker/</link>
-      <pubDate>Wed, 23 Dec 2020 09:31:48 -0500</pubDate>
-      
-      <guid>https://patelhiren.com/blog/cross-compiling-on-macos-via-docker/</guid>
-      <description>&lt;p&gt;I needed to compile an arm64 binary to run on the &lt;a href=&#34;https://store.ui.com/collections/unifi-network-routing-switching/products/udm-pro&#34;target=&#34;_blank&#34;&gt;UniFi Dream Machine Pro&lt;/a&gt;. This is how I used docker to setup cross compilation tools and compile the binary on macOS.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>I needed to compile an arm64 binary to run on the <a href="https://store.ui.com/collections/unifi-network-routing-switching/products/udm-pro"target="_blank">UniFi Dream Machine Pro</a>. This is how I used docker to setup cross compilation tools and compile the binary on macOS.</p>
+<p>The process once finished will make sure your local keychain password and AD passwords are in sync.</p>]]></content:encoded></item><item><title>Cross Compiling on macOS via Docker</title><link>https://patelhiren.com/blog/cross-compiling-on-macos-via-docker/</link><pubDate>Wed, 23 Dec 2020 09:31:48 -0500</pubDate><guid>https://patelhiren.com/blog/cross-compiling-on-macos-via-docker/</guid><description>&lt;p&gt;I needed to compile an arm64 binary to run on the &lt;a href="https://store.ui.com/collections/unifi-network-routing-switching/products/udm-pro"target="_blank"&gt;UniFi Dream Machine Pro&lt;/a&gt;. This is how I used docker to setup cross compilation tools and compile the binary on macOS.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I needed to compile an arm64 binary to run on the <a href="https://store.ui.com/collections/unifi-network-routing-switching/products/udm-pro"target="_blank">UniFi Dream Machine Pro</a>. This is how I used docker to setup cross compilation tools and compile the binary on macOS.</p>
 <p>Get and install <a href="https://docs.docker.com/docker-for-mac/install/"target="_blank">Docker Desktop</a> is not already installed. Once installed we can use <a href="https://github.com/dockcross/dockcross"target="_blank">DockCross</a> to setup an cross compile tool chain we want. Here is an example of how I setup the linux-arm64 toolchain.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -830,7 +1144,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">./dockcross-linux-arm64 bash <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>-c <span class="s1">&#39;$CC -s -O3 main.c -o ./udp-broadcast-relay-redux&#39;</span>
+</span></span></span><span class="line"><span class="cl">-c <span class="s1">&#39;$CC -s -O3 main.c -o ./udp-broadcast-relay-redux&#39;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Examining the compiled binary with <em>file</em> command should display <em>ARM aarch64</em> architecture.</p>
@@ -854,38 +1168,14 @@
 </div>
 </div><blockquote>
 <p><strong>Note:</strong> Using <em>$CC</em> is important. If you use <em>gcc</em> directly it will compile using <em>x86_64</em> version.</p>
-</blockquote>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Dagger 2 Beginner Tutorial</title>
-      <link>https://patelhiren.com/blog/dagger-2-beginner-tutorial/</link>
-      <pubDate>Fri, 22 May 2020 15:08:53 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/dagger-2-beginner-tutorial/</guid>
-      <description>&lt;p&gt;While reviewing an Android project I discovered it was using &lt;a href=&#34;https://dagger.dev&#34;target=&#34;_blank&#34;&gt;Dagger 2&lt;/a&gt; framework. Dagger 2 is a dependency injection framework for Android that is developed by Google. I wanted a quick overview of frameworks major features.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>While reviewing an Android project I discovered it was using <a href="https://dagger.dev"target="_blank">Dagger 2</a> framework. Dagger 2 is a dependency injection framework for Android that is developed by Google. I wanted a quick overview of frameworks major features.</p>
+</blockquote>]]></content:encoded></item><item><title>Dagger 2 Beginner Tutorial</title><link>https://patelhiren.com/blog/dagger-2-beginner-tutorial/</link><pubDate>Fri, 22 May 2020 15:08:53 -0400</pubDate><guid>https://patelhiren.com/blog/dagger-2-beginner-tutorial/</guid><description>&lt;p&gt;While reviewing an Android project I discovered it was using &lt;a href="https://dagger.dev"target="_blank"&gt;Dagger 2&lt;/a&gt; framework. Dagger 2 is a dependency injection framework for Android that is developed by Google. I wanted a quick overview of frameworks major features.&lt;/p&gt;</description><content:encoded><![CDATA[<p>While reviewing an Android project I discovered it was using <a href="https://dagger.dev"target="_blank">Dagger 2</a> framework. Dagger 2 is a dependency injection framework for Android that is developed by Google. I wanted a quick overview of frameworks major features.</p>
 <p>I found the below video series by <a href="https://codinginflow.com"target="_blank">codinginflow.com</a> extermely well done.</p>
 <blockquote>
 <p><a href="https://codinginflow.com/tutorials/android/dagger-2/part-1-introduction"target="_blank">Watch on codinginflow.com</a></p>
 <p><a href="https://www.youtube.com/playlist?list=PLrnPJCHvNZuA2ioi4soDZKz8euUQnJW65"target="_blank">Watch on YouTube</a></p>
 <p>&ndash; <em>Florian (codinginflow.com)</em></p>
 </blockquote>
-<p>He also has a lot of other Android development related series available on his site.</p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Domain Specific DNS Servers on macOS</title>
-      <link>https://patelhiren.com/blog/domain-specific-dns-servers-on-macos/</link>
-      <pubDate>Fri, 22 May 2020 14:36:00 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/domain-specific-dns-servers-on-macos/</guid>
-      <description>&lt;p&gt;My work has multiple domains (&lt;code&gt;corp.network&lt;/code&gt; and &lt;code&gt;lab.network&lt;/code&gt;) that the nameservers resolve. When in the office the resolution works perfectly. However while conncting over VPN via Tunnelblick the resolution to lab.network was failing.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>My work has multiple domains (<code>corp.network</code> and <code>lab.network</code>) that the nameservers resolve. When in the office the resolution works perfectly. However while conncting over VPN via Tunnelblick the resolution to lab.network was failing.</p>
+<p>He also has a lot of other Android development related series available on his site.</p>]]></content:encoded></item><item><title>Domain Specific DNS Servers on macOS</title><link>https://patelhiren.com/blog/domain-specific-dns-servers-on-macos/</link><pubDate>Fri, 22 May 2020 14:36:00 -0400</pubDate><guid>https://patelhiren.com/blog/domain-specific-dns-servers-on-macos/</guid><description>&lt;p&gt;My work has multiple domains (&lt;code&gt;corp.network&lt;/code&gt; and &lt;code&gt;lab.network&lt;/code&gt;) that the nameservers resolve. When in the office the resolution works perfectly. However while conncting over VPN via Tunnelblick the resolution to lab.network was failing.&lt;/p&gt;</description><content:encoded><![CDATA[<p>My work has multiple domains (<code>corp.network</code> and <code>lab.network</code>) that the nameservers resolve. When in the office the resolution works perfectly. However while conncting over VPN via Tunnelblick the resolution to lab.network was failing.</p>
 <p>I could go into my System Preferences-&gt;Network Settings and modify my wifi interface settings to enter a new DNS value for those specific domains. But that felt tedious. Instead I used the below method to specify custom DNS resolver settings for my work domains.</p>
 <p>Under <code>/etc/resolver</code> create a file with a name of your choice. I chose <code>corp.netowrk</code> just for clarity.</p>
 <p>Here is an example of what the contents could be.</p>
@@ -945,19 +1235,7 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
 </span></span><span class="line"><span class="cl"><span class="na">search_order 2</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>The above two files make it so the macOS DNS resolver will first try to use the VPN domains for resolution. If we dont get a response withing 5 seconds, it will fallback to the second file and use <a href="https://1.1.1.1/dns/"target="_blank">Cloudflare DNS</a> to do an internet lookup of the IP address.</p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Using Tunnelblick to Connect to WatchGuard VPN</title>
-      <link>https://patelhiren.com/blog/using-tunnelblick-to-connect-to-watchguard-vpn/</link>
-      <pubDate>Sun, 26 Apr 2020 12:55:50 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/using-tunnelblick-to-connect-to-watchguard-vpn/</guid>
-      <description>&lt;p&gt;I needed to connect to a corporate VPN that used &lt;a href=&#34;https://www.watchguard.com&#34;target=&#34;_blank&#34;&gt;WatchGuard&lt;/a&gt;. The IT provided &lt;em&gt;Mobile VPN with SSL Client&lt;/em&gt; software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>I needed to connect to a corporate VPN that used <a href="https://www.watchguard.com"target="_blank">WatchGuard</a>. The IT provided <em>Mobile VPN with SSL Client</em> software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.</p>
+</div><p>The above two files make it so the macOS DNS resolver will first try to use the VPN domains for resolution. If we dont get a response withing 5 seconds, it will fallback to the second file and use <a href="https://1.1.1.1/dns/"target="_blank">Cloudflare DNS</a> to do an internet lookup of the IP address.</p>]]></content:encoded></item><item><title>Using Tunnelblick to Connect to WatchGuard VPN</title><link>https://patelhiren.com/blog/using-tunnelblick-to-connect-to-watchguard-vpn/</link><pubDate>Sun, 26 Apr 2020 12:55:50 -0400</pubDate><guid>https://patelhiren.com/blog/using-tunnelblick-to-connect-to-watchguard-vpn/</guid><description>&lt;p&gt;I needed to connect to a corporate VPN that used &lt;a href="https://www.watchguard.com"target="_blank"&gt;WatchGuard&lt;/a&gt;. The IT provided &lt;em&gt;Mobile VPN with SSL Client&lt;/em&gt; software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I needed to connect to a corporate VPN that used <a href="https://www.watchguard.com"target="_blank">WatchGuard</a>. The IT provided <em>Mobile VPN with SSL Client</em> software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.</p>
 <p>I discovered that the <em>WatchGuard</em> VPN internally is an OpenVPN server. I use <a href="https://tunnelblick.net"target="_blank">Tunnelblick</a> for my personal OpenVPN connections and that has worked reliably on macOS Catalina. So if I just had the connection <em>ovpn</em> config file I could use <em>Tunnelblick</em> for my VPN connections.</p>
 <p>WatchGuard has a detailed support document that walks the user through downloading their software to use for VPN connection at <a href="https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html"target="_blank">https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html</a>.</p>
 <p>Turns out that page also provides an option to download the <em>ovpn</em> config that can be used with <em>Tunnelblick</em>.</p>
@@ -973,7 +1251,7 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
             <picture><source 
                     srcset="
                     
-                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01_hu715290535129476507.jpg 400w,
+                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01_hu_5205600a052ec080.jpg 400w,
                     
                     
                     
@@ -1007,7 +1285,7 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
             <picture><source 
                     srcset="
                     
-                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02_hu6277794632518365184.jpg 400w,
+                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02_hu_2beb8b39f5863ef7.jpg 400w,
                     
                     
                     
@@ -1033,19 +1311,7 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
 <li>Select the <strong><em>Download</em></strong> option under <em>Mobile VPN with SSL client profile</em>.</li>
 <li>This will offer a <em>client.ovpn</em> file that you can import into <em>Tunnelblick</em> for connection to your corporate network.</li>
 </ul>
-<p>The page offer options to download the Mobile VPN with SSL Client software for Mac and Windows as well if you want those.</p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Using mermaid-js to generate Flow Charts</title>
-      <link>https://patelhiren.com/blog/using-mermaid-js-to-generate-flow-charts/</link>
-      <pubDate>Fri, 24 Apr 2020 12:06:38 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/using-mermaid-js-to-generate-flow-charts/</guid>
-      <description>&lt;p&gt;I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about &lt;a href=&#34;https://github.com/mermaid-js/mermaid&#34;title=&#34;mermaid-js GitHub Page&#34;target=&#34;_blank&#34;&gt;mermaid-js&lt;/a&gt; which allows one to use Markdown like syntax to generte various diagrams including flow charts.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about <a href="https://github.com/mermaid-js/mermaid"title="mermaid-js GitHub Page"target="_blank">mermaid-js</a> which allows one to use Markdown like syntax to generte various diagrams including flow charts.</p>
+<p>The page offer options to download the Mobile VPN with SSL Client software for Mac and Windows as well if you want those.</p>]]></content:encoded></item><item><title>Using mermaid-js to generate Flow Charts</title><link>https://patelhiren.com/blog/using-mermaid-js-to-generate-flow-charts/</link><pubDate>Fri, 24 Apr 2020 12:06:38 -0400</pubDate><guid>https://patelhiren.com/blog/using-mermaid-js-to-generate-flow-charts/</guid><description>&lt;p&gt;I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about &lt;a href="https://github.com/mermaid-js/mermaid"title="mermaid-js GitHub Page"target="_blank"&gt;mermaid-js&lt;/a&gt; which allows one to use Markdown like syntax to generte various diagrams including flow charts.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I often need to document a flow chart for new features I am planning to implement. Usually generating flow chart needed me to go to an application that would let me draw rectangles, text, etc. Today I learned about <a href="https://github.com/mermaid-js/mermaid"title="mermaid-js GitHub Page"target="_blank">mermaid-js</a> which allows one to use Markdown like syntax to generte various diagrams including flow charts.</p>
 <p>There is a live editor available at <a href="https://mermaidjs.github.io/mermaid-live-editor/"target="_blank">https://mermaidjs.github.io/mermaid-live-editor/</a> that allows you to to enter Markdown like text and generate a PNG/SVG output that you can download and embed in your documentation.</p>
 <pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph TD
 A[Christmas] --&gt;|Get money| B(Go shopping)
@@ -1107,20 +1373,8 @@ C --&gt;|Three| F[fa:fa-car Car]
 <li>Pie Chart</li>
 <li>ER Diagram</li>
 </ul>
-<p>Documentation is available at <a href="https://mermaid-js.github.io/mermaid"target="_blank">https://mermaid-js.github.io/mermaid</a>.</p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Building this website using open-source tools and hosting it for free</title>
-      <link>https://patelhiren.com/blog/website-built-with-open-source-and-hosted-for-free/</link>
-      <pubDate>Sat, 18 Apr 2020 16:08:20 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/website-built-with-open-source-and-hosted-for-free/</guid>
-      <description>&lt;p&gt;For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Introducing &lt;a href=&#34;https://patelhiren.com&#34;title=&#34;Hiren Patel&amp;#39;s Blog&#34;target=&#34;_blank&#34;&gt;patelhiren.com&lt;/a&gt; in all its glory. &amp;#x1f389;&lt;/strong&gt;&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.</p>
+<p>Documentation is available at <a href="https://mermaid-js.github.io/mermaid"target="_blank">https://mermaid-js.github.io/mermaid</a>.</p>]]></content:encoded></item><item><title>Building this website using open-source tools and hosting it for free</title><link>https://patelhiren.com/blog/website-built-with-open-source-and-hosted-for-free/</link><pubDate>Sat, 18 Apr 2020 16:08:20 -0400</pubDate><guid>https://patelhiren.com/blog/website-built-with-open-source-and-hosted-for-free/</guid><description>&lt;p&gt;For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Introducing &lt;a href="https://patelhiren.com"title="Hiren Patel&amp;#39;s Blog"target="_blank"&gt;patelhiren.com&lt;/a&gt; in all its glory. &amp;#x1f389;&lt;/strong&gt;&lt;/p&gt;</description><content:encoded><![CDATA[<p>For a while, I have been considering building a website to document things I learn. This year I decided to stop procsanating and get started with it.</p>
 <p><strong>Introducing <a href="https://patelhiren.com"title="Hiren Patel&#39;s Blog"target="_blank">patelhiren.com</a> in all its glory. &#x1f389;</strong></p>
 <h2 id="goals">Goals</h2>
 <p>For this site I had a few basic goals in mind.</p>
@@ -1459,7 +1713,7 @@ C --&gt;|Three| F[fa:fa-car Car]
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># If a command fails then the deploy stops</span>
 </span></span><span class="line"><span class="cl"><span class="nb">set</span> -e
 </span></span><span class="line"><span class="cl">
@@ -1521,19 +1775,19 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu13273166032454448240.png 400w,
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu_f8cf2a96e93b4973.png 400w,
                     
                     
                     
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu1759417586400108908.png 600w,
-                    
-
-                    
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu9227253634962248620.png 1000w,
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu_4383a184a6f2d4d0.png 600w,
                     
 
                     
-                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu10938347202659600624.png 1200w,
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu_ad528813d2f7789d.png 1000w,
+                    
+
+                    
+                    /blog/website-built-with-open-source-and-hosted-for-free/images/01_hu_94bdcf91d0ad626f.png 1200w,
                     
 
                     /blog/website-built-with-open-source-and-hosted-for-free/images/01.png
@@ -1591,19 +1845,7 @@ C --&gt;|Three| F[fa:fa-car Car]
 <p>I prefer <a href="https://code.visualstudio.com"target="_blank">Visual Studio Code</a>. Tip: If using Visual Studio Code you can press <em>CMD+K,V</em> to activate side-by-side live preview of the Markdown you are typing.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</div>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>PNG Crush Automator Action</title>
-      <link>https://patelhiren.com/blog/pngcrush-automator-action/</link>
-      <pubDate>Sun, 12 Apr 2020 22:04:30 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/pngcrush-automator-action/</guid>
-      <description>&lt;p&gt;When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS &lt;a href=&#34;https://support.apple.com/guide/automator/welcome/mac&#34;target=&#34;_blank&#34;&gt;Automator&lt;/a&gt;.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS <a href="https://support.apple.com/guide/automator/welcome/mac"target="_blank">Automator</a>.</p>
+</div>]]></content:encoded></item><item><title>PNG Crush Automator Action</title><link>https://patelhiren.com/blog/pngcrush-automator-action/</link><pubDate>Sun, 12 Apr 2020 22:04:30 -0400</pubDate><guid>https://patelhiren.com/blog/pngcrush-automator-action/</guid><description>&lt;p&gt;When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS &lt;a href="https://support.apple.com/guide/automator/welcome/mac"target="_blank"&gt;Automator&lt;/a&gt;.&lt;/p&gt;</description><content:encoded><![CDATA[<p>When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS <a href="https://support.apple.com/guide/automator/welcome/mac"target="_blank">Automator</a>.</p>
 <p>To crush png images I use the opensource tool <a href="https://pmt.sourceforge.io/pngcrush/"target="_blank">PNG Crush</a>.</p>
 <p>If you have <a href="https://developer.apple.com/xcode/"target="_blank">Xcode</a> installed, the pngcrush tool is included as a part of the iOS SDK and there is no additional download required.</p>
 <p>If you do not have Xcode you may install <em>PNG Crush</em> via <a href="https://brew.sh"target="_blank">Homebrew</a> using the following command.</p>
@@ -1642,19 +1884,19 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/01_hu10299906894841770542.png 400w,
+                    /blog/pngcrush-automator-action/images/01_hu_d95041dc088645c0.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/01_hu15144809330729729250.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/01_hu7445959027752455568.png 1000w,
+                    /blog/pngcrush-automator-action/images/01_hu_f67064edb4c9c63a.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/01_hu11732919017207006832.png 1200w,
+                    /blog/pngcrush-automator-action/images/01_hu_6aef051758196510.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/01_hu_952b8bf6b7580b7a.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/01.png
@@ -1686,19 +1928,19 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/02_hu17727269787472406711.png 400w,
+                    /blog/pngcrush-automator-action/images/02_hu_d7ef3f8431f21b7b.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/02_hu14804665408686312687.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/02_hu3689528950084346152.png 1000w,
+                    /blog/pngcrush-automator-action/images/02_hu_3c3d4c35638f1389.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/02_hu6912418297809607524.png 1200w,
+                    /blog/pngcrush-automator-action/images/02_hu_744ab587dd4a6eef.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/02_hu_eed5e9567b32767d.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/02.png
@@ -1725,19 +1967,19 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/03_hu11889311241427984287.png 400w,
+                    /blog/pngcrush-automator-action/images/03_hu_1615e5758656a5ad.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/03_hu10259793895010358155.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/03_hu2327663832978502619.png 1000w,
+                    /blog/pngcrush-automator-action/images/03_hu_d42520d23e3e9e94.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/03_hu12576988910102508920.png 1200w,
+                    /blog/pngcrush-automator-action/images/03_hu_38fb3d4781ace6ff.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/03_hu_8f85eb205ca80c14.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/03.png
@@ -1804,19 +2046,19 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/04_hu7528804344232696783.png 400w,
+                    /blog/pngcrush-automator-action/images/04_hu_ff3d21d706da1bf.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/04_hu116686565856275343.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/04_hu18002071194194411037.png 1000w,
+                    /blog/pngcrush-automator-action/images/04_hu_6b831092052e4214.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/04_hu17761922244676043234.png 1200w,
+                    /blog/pngcrush-automator-action/images/04_hu_995d894793146157.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/04_hu_7806f2b963de23ca.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/04.png
@@ -1841,19 +2083,19 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/05_hu13314229300956893167.png 400w,
+                    /blog/pngcrush-automator-action/images/05_hu_13240fec6c145b38.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/05_hu2719413684304142717.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/05_hu3687499236447916352.png 1000w,
+                    /blog/pngcrush-automator-action/images/05_hu_1d42f284206c81f1.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/05_hu3546587971612518519.png 1200w,
+                    /blog/pngcrush-automator-action/images/05_hu_693c350105e2a6db.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/05_hu_2eb55f1fbe77e194.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/05.png
@@ -1878,7 +2120,7 @@ C --&gt;|Three| F[fa:fa-car Car]
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/06_hu3291881629291868817.png 400w,
+                    /blog/pngcrush-automator-action/images/06_hu_6d28ff6fbd865374.png 400w,
                     
                     
                     
@@ -1899,19 +2141,7 @@ C --&gt;|Three| F[fa:fa-car Car]
     <span class="caption">
         <span class="title"></span>
     </span>
-</span></a></p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Catalina and Skype for Business Screensharing</title>
-      <link>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</link>
-      <pubDate>Fri, 10 Apr 2020 20:11:49 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</guid>
-      <description>&lt;p&gt;After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.</p>
+</span></a></p>]]></content:encoded></item><item><title>Catalina and Skype for Business Screensharing</title><link>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</link><pubDate>Fri, 10 Apr 2020 20:11:49 -0400</pubDate><guid>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</guid><description>&lt;p&gt;After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.&lt;/p&gt;</description><content:encoded><![CDATA[<p>After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.</p>
 <p>macOS Catalina introduced new Privacy settings that prevents Skype for Business screensharing to work if proper permissions are not provided. On trying to start Screensharing via <strong>Conversations-&gt;Share Screen</strong> option, Skype would display a message stating check the <strong>Skype For Business</strong> option under <strong>System Preferences-&gt;Security &amp; Privacy-&gt;Privacy Tab-&gt;Screen Recording</strong>. However navigating there did not display &ldquo;Skype For Business* as an option.</p>
 <p>To correct it I first reset the &ldquo;Screen Recording&rdquo; permissions for Skype by running this command on Terminal.</p>
 <div class="highlight"><div class="chroma">
@@ -1927,19 +2157,7 @@ C --&gt;|Three| F[fa:fa-car Car]
 </blockquote>
 <p>After running that command. I relaunched Skype, selected a Conversation and tried sharing via the screen via the menu option again. I got the same error I got earlier from Skype and no Screen Recording permission prompt was displayed by the OS.</p>
 <p>I had to select the &ldquo;Share Screen&rdquo; icon on the top right of the conversation window. When I tapped that, the OS permissions prompt for Screen Recording came up. I gave the required permission, restarted Skype and was successfully able to share my screen.</p>
-<p><em>For the record this was on Skype for Business version 16.28.175.</em></p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Boot Camp on External Drive</title>
-      <link>https://patelhiren.com/blog/boot-camp-on-external-drive/</link>
-      <pubDate>Mon, 06 Apr 2020 14:02:10 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/boot-camp-on-external-drive/</guid>
-      <description>&lt;p&gt;I had a spare SSD and a USB enclosure for it. Installing windows on an external drive is unsupported by Microsoft and the setup will abort stating Windows cannot be installed on an external drive. Here is how I managed to install Windows 10 Pro on the external SSD and boot from it on my iMac.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>I had a spare SSD and a USB enclosure for it. Installing windows on an external drive is unsupported by Microsoft and the setup will abort stating Windows cannot be installed on an external drive. Here is how I managed to install Windows 10 Pro on the external SSD and boot from it on my iMac.</p>
+<p><em>For the record this was on Skype for Business version 16.28.175.</em></p>]]></content:encoded></item><item><title>Boot Camp on External Drive</title><link>https://patelhiren.com/blog/boot-camp-on-external-drive/</link><pubDate>Mon, 06 Apr 2020 14:02:10 -0400</pubDate><guid>https://patelhiren.com/blog/boot-camp-on-external-drive/</guid><description>&lt;p&gt;I had a spare SSD and a USB enclosure for it. Installing windows on an external drive is unsupported by Microsoft and the setup will abort stating Windows cannot be installed on an external drive. Here is how I managed to install Windows 10 Pro on the external SSD and boot from it on my iMac.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I had a spare SSD and a USB enclosure for it. Installing windows on an external drive is unsupported by Microsoft and the setup will abort stating Windows cannot be installed on an external drive. Here is how I managed to install Windows 10 Pro on the external SSD and boot from it on my iMac.</p>
 <h6 id="my-environment">My Environment</h6>
 <ul>
 <li>27-inch iMac 2019, running macOS Catalina 10.15.4</li>
@@ -1964,19 +2182,19 @@ C --&gt;|Three| F[fa:fa-car Car]
                     <source 
                         srcset="
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/01_hu17667460983435770336.png 400w,
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu_37e776f44f118384.png 400w,
                         
                         
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/01_hu9479640607445988879.png 600w,
-                        
-
-                        
-                        /blog/boot-camp-on-external-drive/images/Dark/01_hu7925333736478870640.png 1000w,
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu_5a4b76fb68f6a377.png 600w,
                         
 
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/01_hu11906557128860464724.png 1200w,
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu_a8f4274529767127.png 1000w,
+                        
+
+                        
+                        /blog/boot-camp-on-external-drive/images/Dark/01_hu_1562304620a92662.png 1200w,
                         
 
                         /blog/boot-camp-on-external-drive/images/Dark/01.png
@@ -1985,19 +2203,19 @@ C --&gt;|Three| F[fa:fa-car Car]
                     /><source 
                     srcset="
                     
-                    /blog/boot-camp-on-external-drive/images/01_hu12634293452900107142.png 400w,
+                    /blog/boot-camp-on-external-drive/images/01_hu_888c9a07e5bcf836.png 400w,
                     
                     
                     
-                    /blog/boot-camp-on-external-drive/images/01_hu6812513141930793375.png 600w,
-                    
-
-                    
-                    /blog/boot-camp-on-external-drive/images/01_hu14211722585239382567.png 1000w,
+                    /blog/boot-camp-on-external-drive/images/01_hu_c97268cb491cf8ca.png 600w,
                     
 
                     
-                    /blog/boot-camp-on-external-drive/images/01_hu4083080257819648894.png 1200w,
+                    /blog/boot-camp-on-external-drive/images/01_hu_21da07b6bce4d901.png 1000w,
+                    
+
+                    
+                    /blog/boot-camp-on-external-drive/images/01_hu_15d32e45bb516e1b.png 1200w,
                     
 
                     /blog/boot-camp-on-external-drive/images/01.png
@@ -2027,9 +2245,9 @@ C --&gt;|Three| F[fa:fa-car Car]
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">/Applications/VMware<span class="se">\ </span>Fusion.app/Contents/Library/vmware-rawdiskCreator <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>create /dev/disk5 <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>fullDevice ~/Virtual<span class="se">\ </span>Machines.localized/Boot<span class="se">\ </span>Camp.vmwarevm/external-hdd <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>ide
+</span></span></span><span class="line"><span class="cl">create /dev/disk5 <span class="se">\
+</span></span></span><span class="line"><span class="cl">fullDevice ~/Virtual<span class="se">\ </span>Machines.localized/Boot<span class="se">\ </span>Camp.vmwarevm/external-hdd <span class="se">\
+</span></span></span><span class="line"><span class="cl">ide
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -2057,19 +2275,19 @@ C --&gt;|Three| F[fa:fa-car Car]
                     <source 
                         srcset="
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/02_hu12640832218862831780.png 400w,
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hu_3d4b9e33a300de7f.png 400w,
                         
                         
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/02_hu15205263807232602344.png 600w,
-                        
-
-                        
-                        /blog/boot-camp-on-external-drive/images/Dark/02_hu15299460004328432526.png 1000w,
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hu_6059e001e0261bf0.png 600w,
                         
 
                         
-                        /blog/boot-camp-on-external-drive/images/Dark/02_hu12704947302097744581.png 1200w,
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hu_8703ca8095b07d80.png 1000w,
+                        
+
+                        
+                        /blog/boot-camp-on-external-drive/images/Dark/02_hu_e080a15a5fd63eda.png 1200w,
                         
 
                         /blog/boot-camp-on-external-drive/images/Dark/02.png
@@ -2078,19 +2296,19 @@ C --&gt;|Three| F[fa:fa-car Car]
                     /><source 
                     srcset="
                     
-                    /blog/boot-camp-on-external-drive/images/02_hu718143400919912172.png 400w,
+                    /blog/boot-camp-on-external-drive/images/02_hu_8fe245289a05c4c3.png 400w,
                     
                     
                     
-                    /blog/boot-camp-on-external-drive/images/02_hu11413652094708466705.png 600w,
-                    
-
-                    
-                    /blog/boot-camp-on-external-drive/images/02_hu17395743318038478867.png 1000w,
+                    /blog/boot-camp-on-external-drive/images/02_hu_53845f4c0e8885cb.png 600w,
                     
 
                     
-                    /blog/boot-camp-on-external-drive/images/02_hu1391637072907716924.png 1200w,
+                    /blog/boot-camp-on-external-drive/images/02_hu_a9258d80a3d399b9.png 1000w,
+                    
+
+                    
+                    /blog/boot-camp-on-external-drive/images/02_hu_8190eeffba24d043.png 1200w,
                     
 
                     /blog/boot-camp-on-external-drive/images/02.png
@@ -2119,9 +2337,4 @@ C --&gt;|Three| F[fa:fa-car Car]
 <li>After installation of the Boot Camp drivers and reboot, Windows still had a few missing drivers under Device Manager. All I had to do was select <code>Update Driver</code> and select the <code>WindowsSupport\$WinPEDriver$</code> folder to look for drivers.</li>
 <li>Speakers were not working properly on the 2019 iMac even though all drivers were installed. I had to go to <code>Device Manager</code>-&gt;<code>Sound, video and game controllers</code>-&gt;<code>High Definition Audio Device</code>. Select Update driver and point it to <code>WindowsSupport\$WinPEDriver$\Cirrus</code>. This installed the correct drivers and the Speakers started working.</li>
 <li>Another speed bump I ran into was that after a few Windows updates were applied windows declined to update to the November 2019 update stating installing Windows on External USB is unsupported. &#x1f612; I had to go to the Registry at <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control</code> and set the <code>PortableOperatingSystem</code> value to <code>0</code> and reboot. After that the update installed ok. &#x1f60f;</li>
-</ul>]]></content:encoded>
-      
-    </item>
-    
-  </channel>
-</rss>
+</ul>]]></content:encoded></item></channel></rss>

@@ -1,26 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Catalina on Hiren Patel</title>
-    <link>https://patelhiren.com/tags/catalina/</link>
-    <description>Recent content in Catalina on Hiren Patel</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Fri, 22 May 2020 14:36:00 -0400</lastBuildDate>
-    
-	<atom:link href="https://patelhiren.com/tags/catalina/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Domain Specific DNS Servers on macOS</title>
-      <link>https://patelhiren.com/blog/domain-specific-dns-servers-on-macos/</link>
-      <pubDate>Fri, 22 May 2020 14:36:00 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/domain-specific-dns-servers-on-macos/</guid>
-      <description>&lt;p&gt;My work has multiple domains (&lt;code&gt;corp.network&lt;/code&gt; and &lt;code&gt;lab.network&lt;/code&gt;) that the nameservers resolve. When in the office the resolution works perfectly. However while conncting over VPN via Tunnelblick the resolution to lab.network was failing.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>My work has multiple domains (<code>corp.network</code> and <code>lab.network</code>) that the nameservers resolve. When in the office the resolution works perfectly. However while conncting over VPN via Tunnelblick the resolution to lab.network was failing.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Catalina on Hiren Patel</title><link>https://patelhiren.com/tags/catalina/</link><description>Recent content in Catalina on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Fri, 22 May 2020 14:36:00 -0400</lastBuildDate><atom:link href="https://patelhiren.com/tags/catalina/index.xml" rel="self" type="application/rss+xml"/><item><title>Domain Specific DNS Servers on macOS</title><link>https://patelhiren.com/blog/domain-specific-dns-servers-on-macos/</link><pubDate>Fri, 22 May 2020 14:36:00 -0400</pubDate><guid>https://patelhiren.com/blog/domain-specific-dns-servers-on-macos/</guid><description>&lt;p&gt;My work has multiple domains (&lt;code&gt;corp.network&lt;/code&gt; and &lt;code&gt;lab.network&lt;/code&gt;) that the nameservers resolve. When in the office the resolution works perfectly. However while conncting over VPN via Tunnelblick the resolution to lab.network was failing.&lt;/p&gt;</description><content:encoded><![CDATA[<p>My work has multiple domains (<code>corp.network</code> and <code>lab.network</code>) that the nameservers resolve. When in the office the resolution works perfectly. However while conncting over VPN via Tunnelblick the resolution to lab.network was failing.</p>
 <p>I could go into my System Preferences-&gt;Network Settings and modify my wifi interface settings to enter a new DNS value for those specific domains. But that felt tedious. Instead I used the below method to specify custom DNS resolver settings for my work domains.</p>
 <p>Under <code>/etc/resolver</code> create a file with a name of your choice. I chose <code>corp.netowrk</code> just for clarity.</p>
 <p>Here is an example of what the contents could be.</p>
@@ -80,19 +58,7 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
 </span></span><span class="line"><span class="cl"><span class="na">search_order 2</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>The above two files make it so the macOS DNS resolver will first try to use the VPN domains for resolution. If we dont get a response withing 5 seconds, it will fallback to the second file and use <a href="https://1.1.1.1/dns/"target="_blank">Cloudflare DNS</a> to do an internet lookup of the IP address.</p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Using Tunnelblick to Connect to WatchGuard VPN</title>
-      <link>https://patelhiren.com/blog/using-tunnelblick-to-connect-to-watchguard-vpn/</link>
-      <pubDate>Sun, 26 Apr 2020 12:55:50 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/using-tunnelblick-to-connect-to-watchguard-vpn/</guid>
-      <description>&lt;p&gt;I needed to connect to a corporate VPN that used &lt;a href=&#34;https://www.watchguard.com&#34;target=&#34;_blank&#34;&gt;WatchGuard&lt;/a&gt;. The IT provided &lt;em&gt;Mobile VPN with SSL Client&lt;/em&gt; software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>I needed to connect to a corporate VPN that used <a href="https://www.watchguard.com"target="_blank">WatchGuard</a>. The IT provided <em>Mobile VPN with SSL Client</em> software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.</p>
+</div><p>The above two files make it so the macOS DNS resolver will first try to use the VPN domains for resolution. If we dont get a response withing 5 seconds, it will fallback to the second file and use <a href="https://1.1.1.1/dns/"target="_blank">Cloudflare DNS</a> to do an internet lookup of the IP address.</p>]]></content:encoded></item><item><title>Using Tunnelblick to Connect to WatchGuard VPN</title><link>https://patelhiren.com/blog/using-tunnelblick-to-connect-to-watchguard-vpn/</link><pubDate>Sun, 26 Apr 2020 12:55:50 -0400</pubDate><guid>https://patelhiren.com/blog/using-tunnelblick-to-connect-to-watchguard-vpn/</guid><description>&lt;p&gt;I needed to connect to a corporate VPN that used &lt;a href="https://www.watchguard.com"target="_blank"&gt;WatchGuard&lt;/a&gt;. The IT provided &lt;em&gt;Mobile VPN with SSL Client&lt;/em&gt; software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I needed to connect to a corporate VPN that used <a href="https://www.watchguard.com"target="_blank">WatchGuard</a>. The IT provided <em>Mobile VPN with SSL Client</em> software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.</p>
 <p>I discovered that the <em>WatchGuard</em> VPN internally is an OpenVPN server. I use <a href="https://tunnelblick.net"target="_blank">Tunnelblick</a> for my personal OpenVPN connections and that has worked reliably on macOS Catalina. So if I just had the connection <em>ovpn</em> config file I could use <em>Tunnelblick</em> for my VPN connections.</p>
 <p>WatchGuard has a detailed support document that walks the user through downloading their software to use for VPN connection at <a href="https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html"target="_blank">https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html</a>.</p>
 <p>Turns out that page also provides an option to download the <em>ovpn</em> config that can be used with <em>Tunnelblick</em>.</p>
@@ -108,7 +74,7 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
             <picture><source 
                     srcset="
                     
-                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01_hu715290535129476507.jpg 400w,
+                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01_hu_5205600a052ec080.jpg 400w,
                     
                     
                     
@@ -142,7 +108,7 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
             <picture><source 
                     srcset="
                     
-                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02_hu6277794632518365184.jpg 400w,
+                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02_hu_2beb8b39f5863ef7.jpg 400w,
                     
                     
                     
@@ -168,19 +134,7 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
 <li>Select the <strong><em>Download</em></strong> option under <em>Mobile VPN with SSL client profile</em>.</li>
 <li>This will offer a <em>client.ovpn</em> file that you can import into <em>Tunnelblick</em> for connection to your corporate network.</li>
 </ul>
-<p>The page offer options to download the Mobile VPN with SSL Client software for Mac and Windows as well if you want those.</p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Catalina and Skype for Business Screensharing</title>
-      <link>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</link>
-      <pubDate>Fri, 10 Apr 2020 20:11:49 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</guid>
-      <description>&lt;p&gt;After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.</p>
+<p>The page offer options to download the Mobile VPN with SSL Client software for Mac and Windows as well if you want those.</p>]]></content:encoded></item><item><title>Catalina and Skype for Business Screensharing</title><link>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</link><pubDate>Fri, 10 Apr 2020 20:11:49 -0400</pubDate><guid>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</guid><description>&lt;p&gt;After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.&lt;/p&gt;</description><content:encoded><![CDATA[<p>After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.</p>
 <p>macOS Catalina introduced new Privacy settings that prevents Skype for Business screensharing to work if proper permissions are not provided. On trying to start Screensharing via <strong>Conversations-&gt;Share Screen</strong> option, Skype would display a message stating check the <strong>Skype For Business</strong> option under <strong>System Preferences-&gt;Security &amp; Privacy-&gt;Privacy Tab-&gt;Screen Recording</strong>. However navigating there did not display &ldquo;Skype For Business* as an option.</p>
 <p>To correct it I first reset the &ldquo;Screen Recording&rdquo; permissions for Skype by running this command on Terminal.</p>
 <div class="highlight"><div class="chroma">
@@ -196,9 +150,4 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
 </blockquote>
 <p>After running that command. I relaunched Skype, selected a Conversation and tried sharing via the screen via the menu option again. I got the same error I got earlier from Skype and no Screen Recording permission prompt was displayed by the OS.</p>
 <p>I had to select the &ldquo;Share Screen&rdquo; icon on the top right of the conversation window. When I tapped that, the OS permissions prompt for Screen Recording came up. I gave the required permission, restarted Skype and was successfully able to share my screen.</p>
-<p><em>For the record this was on Skype for Business version 16.28.175.</em></p>]]></content:encoded>
-      
-    </item>
-    
-  </channel>
-</rss>
+<p><em>For the record this was on Skype for Business version 16.28.175.</em></p>]]></content:encoded></item></channel></rss>

@@ -1,26 +1,110 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>MacOS on Hiren Patel</title>
-    <link>https://patelhiren.com/tags/macos/</link>
-    <description>Recent content in MacOS on Hiren Patel</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Fri, 25 Oct 2024 19:50:11 -0400</lastBuildDate>
-    
-	<atom:link href="https://patelhiren.com/tags/macos/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Fixing File Associations on macOS Sequoia</title>
-      <link>https://patelhiren.com/blog/fixing-file-associations-on-macos-sequoia/</link>
-      <pubDate>Fri, 25 Oct 2024 19:50:11 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/fixing-file-associations-on-macos-sequoia/</guid>
-      <description>&lt;p&gt;After upgrading to macOS Sequoia (15.0), my QFX files would not open correctly in &lt;em&gt;&lt;a href=&#34;https://www.banktivity.com&#34;target=&#34;_blank&#34;&gt;Banktivity&lt;/a&gt;&lt;/em&gt;. Banktivity would not show as an option in &lt;em&gt;Open With&lt;/em&gt; in the File Info panel. I ended up having to use &lt;em&gt;lsregister&lt;/em&gt; utility to fix the association manually.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>After upgrading to macOS Sequoia (15.0), my QFX files would not open correctly in <em><a href="https://www.banktivity.com"target="_blank">Banktivity</a></em>. Banktivity would not show as an option in <em>Open With</em> in the File Info panel. I ended up having to use <em>lsregister</em> utility to fix the association manually.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>MacOS on Hiren Patel</title><link>https://patelhiren.com/tags/macos/</link><description>Recent content in MacOS on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Wed, 25 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://patelhiren.com/tags/macos/index.xml" rel="self" type="application/rss+xml"/><item><title>Using macOS newsyslog to Rotate Service Logs</title><link>https://patelhiren.com/blog/macos-newsyslog-openclaw-logs/</link><pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate><guid>https://patelhiren.com/blog/macos-newsyslog-openclaw-logs/</guid><description>&lt;p&gt;I noticed my &lt;a href="https://clawd.bot/"target="_blank"&gt;OpenClaw&lt;/a&gt; gateway log files were growing unbounded. The service runs via &lt;a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html"target="_blank"&gt;launchd&lt;/a&gt;, and while the app has built-in log rotation, the stdout/stderr capture in the launchd plist was bypassing it entirely.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I noticed my <a href="https://clawd.bot/"target="_blank">OpenClaw</a> gateway log files were growing unbounded. The service runs via <a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html"target="_blank">launchd</a>, and while the app has built-in log rotation, the stdout/stderr capture in the launchd plist was bypassing it entirely.</p>
+<h2 id="the-problem">The Problem</h2>
+<p>When a macOS service uses <code>StandardOutPath</code> and <code>StandardErrorPath</code> in its launchd plist, those files just append forever. My logs had grown to 38MB with no mechanism to clean them up:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -lh ~/.openclaw/logs/
+</span></span><span class="line"><span class="cl">-rw-r--r--  <span class="m">1</span> clawd  staff  3.9M Feb <span class="m">25</span> 17:48 gateway.log
+</span></span><span class="line"><span class="cl">-rw-r--r--  <span class="m">1</span> clawd  staff  38M  Feb <span class="m">25</span> 17:48 gateway.err.log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>OpenClaw&rsquo;s internal logger writes date-based rotating logs to <code>/tmp/openclaw/</code>, but launchd&rsquo;s stdout capture writes directly to the configured files, bypassing that rotation logic.</p>
+<h2 id="the-solution-newsyslog">The Solution: newsyslog</h2>
+<p>macOS includes <a href="https://www.freebsd.org/cgi/man.cgi?newsyslog%288%29"target="_blank">newsyslog</a>, a utility for managing log file rotation. It&rsquo;s already running on your system, checking logs periodically via launchd. You just need to tell it about your custom log files.</p>
+<h3 id="configuration">Configuration</h3>
+<p>Create a config file for your service logs:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo tee /etc/newsyslog.d/openclaw.conf <span class="s">&lt;&lt; &#39;EOF&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s"># OpenClaw gateway logs - rotate at 10MB, keep zero archives
+</span></span></span><span class="line"><span class="cl"><span class="s">/Users/clawd/.openclaw/logs/gateway.log    644  0  10000  *  B
+</span></span></span><span class="line"><span class="cl"><span class="s">/Users/clawd/.openclaw/logs/gateway.err.log 644  0  10000  *  B
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Field breakdown:</p>
+<ul>
+<li><code>644</code> — File permissions (owner read/write, others read-only)</li>
+<li><code>0</code> — Number of archived files to keep (zero = just truncate)</li>
+<li><code>10000</code> — Size threshold in KB (~10MB)</li>
+<li><code>*</code> — Rotate at any time (not just specific hours)</li>
+<li><code>B</code> — Treat as binary (no special encoding)</li>
+</ul>
+<h3 id="reload-and-verify">Reload and Verify</h3>
+<p>Tell newsyslog to reload its configuration:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo killall -HUP newsyslog
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Check that the config loaded correctly:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo newsyslog -v -f /etc/newsyslog.d/openclaw.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Force an immediate rotation to test:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo newsyslog -v -f /etc/newsyslog.d/openclaw.conf -R <span class="s2">&#34;manual&#34;</span> ~/.openclaw/logs/gateway.err.log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><strong>Note:</strong> The <code>-R</code> flag with a requestor name is optional. Plain <code>newsyslog -v -f /path/to/config</code> works fine for testing.</p>
+</blockquote>
+<h2 id="why-not-cron">Why Not Cron?</h2>
+<p>I considered a simple cron job:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="m">0</span> <span class="m">3</span> * * * truncate -s <span class="m">0</span> ~/.openclaw/logs/gateway.log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>That would work, but newsyslog is the native macOS tool for this. It&rsquo;s already running, already has permission handling figured out, and rotates based on file size rather than just time. If your log suddenly explodes to 500MB, newsyslog catches it on the next check cycle (every 30 minutes). Cron would wait until 3 AM.</p>
+<h2 id="result">Result</h2>
+<p>After setup, my 38MB error log was truncated to zero bytes:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -lh ~/.openclaw/logs/
+</span></span><span class="line"><span class="cl">-rw-r--r--  <span class="m">1</span> clawd  staff  4.9M Feb <span class="m">25</span> 18:02 gateway.log
+</span></span><span class="line"><span class="cl">-rw-r--r--  <span class="m">1</span> clawd  staff   0B  Feb <span class="m">25</span> 18:10 gateway.err.log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>No manual intervention needed going forward. When either file crosses 10MB, newsyslog truncates it automatically.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.freebsd.org/cgi/man.cgi?newsyslog%288%29"target="_blank">newsyslog man page</a></li>
+<li><a href="https://docs.openclaw.ai/"target="_blank">OpenClaw documentation</a></li>
+<li><a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html"target="_blank">launchd documentation</a></li>
+</ul>]]></content:encoded></item><item><title>Fixing File Associations on macOS Sequoia</title><link>https://patelhiren.com/blog/fixing-file-associations-on-macos-sequoia/</link><pubDate>Fri, 25 Oct 2024 19:50:11 -0400</pubDate><guid>https://patelhiren.com/blog/fixing-file-associations-on-macos-sequoia/</guid><description>&lt;p&gt;After upgrading to macOS Sequoia (15.0), my QFX files would not open correctly in &lt;em&gt;&lt;a href="https://www.banktivity.com"target="_blank"&gt;Banktivity&lt;/a&gt;&lt;/em&gt;. Banktivity would not show as an option in &lt;em&gt;Open With&lt;/em&gt; in the File Info panel. I ended up having to use &lt;em&gt;lsregister&lt;/em&gt; utility to fix the association manually.&lt;/p&gt;</description><content:encoded><![CDATA[<p>After upgrading to macOS Sequoia (15.0), my QFX files would not open correctly in <em><a href="https://www.banktivity.com"target="_blank">Banktivity</a></em>. Banktivity would not show as an option in <em>Open With</em> in the File Info panel. I ended up having to use <em>lsregister</em> utility to fix the association manually.</p>
 <p>The problem turned out to be that macOS Launch Services db had references to older versions of Banktivity that were no longer installed. I had version 9 installed, but it had assoications registered to version 7, 8 and 9. I also found that my iOS device had both Banktivity 7 and Banktivity 9 installed. I belive this was causing conflicts on macOS because of iCloud File Sync. I found out the associated by running the below command.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -71,19 +155,7 @@
 <pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain <span class="nb">local</span> -domain system -domain user
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>So I recommend not using this command.</p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Setting Visual Studio Code as default text editor on macOS</title>
-      <link>https://patelhiren.com/blog/setting-vscode-as-default-text-editor-on-macos/</link>
-      <pubDate>Tue, 23 Mar 2021 22:29:29 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/setting-vscode-as-default-text-editor-on-macos/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://code.visualstudio.com&#34;target=&#34;_blank&#34;&gt;Visual Studio Code&lt;/a&gt; is quite capable has become my editor of choice on macOS. Here is how to set it as the default text editor instead of &lt;em&gt;Text Edit&lt;/em&gt;.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p><a href="https://code.visualstudio.com"target="_blank">Visual Studio Code</a> is quite capable has become my editor of choice on macOS. Here is how to set it as the default text editor instead of <em>Text Edit</em>.</p>
+</div><p>So I recommend not using this command.</p>]]></content:encoded></item><item><title>Setting Visual Studio Code as default text editor on macOS</title><link>https://patelhiren.com/blog/setting-vscode-as-default-text-editor-on-macos/</link><pubDate>Tue, 23 Mar 2021 22:29:29 -0400</pubDate><guid>https://patelhiren.com/blog/setting-vscode-as-default-text-editor-on-macos/</guid><description>&lt;p&gt;&lt;a href="https://code.visualstudio.com"target="_blank"&gt;Visual Studio Code&lt;/a&gt; is quite capable has become my editor of choice on macOS. Here is how to set it as the default text editor instead of &lt;em&gt;Text Edit&lt;/em&gt;.&lt;/p&gt;</description><content:encoded><![CDATA[<p><a href="https://code.visualstudio.com"target="_blank">Visual Studio Code</a> is quite capable has become my editor of choice on macOS. Here is how to set it as the default text editor instead of <em>Text Edit</em>.</p>
 <p>Install <a href="https://github.com/moretension/duti"target="_blank">duti</a>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -110,19 +182,7 @@
 </span></span><span class="line"><span class="cl">duti -s com.microsoft.VSCode public.data all
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>The changes should take effect right away and no reboot or relaunch of <em>Finder</em> should be needed.</p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>macOS and Active Directory Passwords</title>
-      <link>https://patelhiren.com/blog/macos-and-active-directory-passwords/</link>
-      <pubDate>Sat, 02 Jan 2021 17:30:27 -0500</pubDate>
-      
-      <guid>https://patelhiren.com/blog/macos-and-active-directory-passwords/</guid>
-      <description>&lt;p&gt;Macs connected to Active Directory routinely need to update passwords. When working remote, Active Directory password change is not exactly easy. Here are the steps I follow to update my Active Directory password and keep my local mac password in sync.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>Macs connected to Active Directory routinely need to update passwords. When working remote, Active Directory password change is not exactly easy. Here are the steps I follow to update my Active Directory password and keep my local mac password in sync.</p>
+</div><p>The changes should take effect right away and no reboot or relaunch of <em>Finder</em> should be needed.</p>]]></content:encoded></item><item><title>macOS and Active Directory Passwords</title><link>https://patelhiren.com/blog/macos-and-active-directory-passwords/</link><pubDate>Sat, 02 Jan 2021 17:30:27 -0500</pubDate><guid>https://patelhiren.com/blog/macos-and-active-directory-passwords/</guid><description>&lt;p&gt;Macs connected to Active Directory routinely need to update passwords. When working remote, Active Directory password change is not exactly easy. Here are the steps I follow to update my Active Directory password and keep my local mac password in sync.&lt;/p&gt;</description><content:encoded><![CDATA[<p>Macs connected to Active Directory routinely need to update passwords. When working remote, Active Directory password change is not exactly easy. Here are the steps I follow to update my Active Directory password and keep my local mac password in sync.</p>
 <p>Connect to corporate VPN so that Active Directory is reachable over VPN. Open Terminal and run the following command.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -156,19 +216,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Wait about a minute, log out and log back in. You should be logging in with the new password. If login still requires the old password the password sync with active directory did not happen yet. Log back in with the old password, connect to VPN (You will need to use your new password when connecting to VPN) and run the <code>dsconfigad -passinterval 0</code> command and wait a mintue or so before trying to log out/login.</p>
-<p>The process once finished will make sure your local keychain password and AD passwords are in sync.</p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Domain Specific DNS Servers on macOS</title>
-      <link>https://patelhiren.com/blog/domain-specific-dns-servers-on-macos/</link>
-      <pubDate>Fri, 22 May 2020 14:36:00 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/domain-specific-dns-servers-on-macos/</guid>
-      <description>&lt;p&gt;My work has multiple domains (&lt;code&gt;corp.network&lt;/code&gt; and &lt;code&gt;lab.network&lt;/code&gt;) that the nameservers resolve. When in the office the resolution works perfectly. However while conncting over VPN via Tunnelblick the resolution to lab.network was failing.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>My work has multiple domains (<code>corp.network</code> and <code>lab.network</code>) that the nameservers resolve. When in the office the resolution works perfectly. However while conncting over VPN via Tunnelblick the resolution to lab.network was failing.</p>
+<p>The process once finished will make sure your local keychain password and AD passwords are in sync.</p>]]></content:encoded></item><item><title>Domain Specific DNS Servers on macOS</title><link>https://patelhiren.com/blog/domain-specific-dns-servers-on-macos/</link><pubDate>Fri, 22 May 2020 14:36:00 -0400</pubDate><guid>https://patelhiren.com/blog/domain-specific-dns-servers-on-macos/</guid><description>&lt;p&gt;My work has multiple domains (&lt;code&gt;corp.network&lt;/code&gt; and &lt;code&gt;lab.network&lt;/code&gt;) that the nameservers resolve. When in the office the resolution works perfectly. However while conncting over VPN via Tunnelblick the resolution to lab.network was failing.&lt;/p&gt;</description><content:encoded><![CDATA[<p>My work has multiple domains (<code>corp.network</code> and <code>lab.network</code>) that the nameservers resolve. When in the office the resolution works perfectly. However while conncting over VPN via Tunnelblick the resolution to lab.network was failing.</p>
 <p>I could go into my System Preferences-&gt;Network Settings and modify my wifi interface settings to enter a new DNS value for those specific domains. But that felt tedious. Instead I used the below method to specify custom DNS resolver settings for my work domains.</p>
 <p>Under <code>/etc/resolver</code> create a file with a name of your choice. I chose <code>corp.netowrk</code> just for clarity.</p>
 <p>Here is an example of what the contents could be.</p>
@@ -228,19 +276,7 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
 </span></span><span class="line"><span class="cl"><span class="na">search_order 2</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>The above two files make it so the macOS DNS resolver will first try to use the VPN domains for resolution. If we dont get a response withing 5 seconds, it will fallback to the second file and use <a href="https://1.1.1.1/dns/"target="_blank">Cloudflare DNS</a> to do an internet lookup of the IP address.</p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Using Tunnelblick to Connect to WatchGuard VPN</title>
-      <link>https://patelhiren.com/blog/using-tunnelblick-to-connect-to-watchguard-vpn/</link>
-      <pubDate>Sun, 26 Apr 2020 12:55:50 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/using-tunnelblick-to-connect-to-watchguard-vpn/</guid>
-      <description>&lt;p&gt;I needed to connect to a corporate VPN that used &lt;a href=&#34;https://www.watchguard.com&#34;target=&#34;_blank&#34;&gt;WatchGuard&lt;/a&gt;. The IT provided &lt;em&gt;Mobile VPN with SSL Client&lt;/em&gt; software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>I needed to connect to a corporate VPN that used <a href="https://www.watchguard.com"target="_blank">WatchGuard</a>. The IT provided <em>Mobile VPN with SSL Client</em> software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.</p>
+</div><p>The above two files make it so the macOS DNS resolver will first try to use the VPN domains for resolution. If we dont get a response withing 5 seconds, it will fallback to the second file and use <a href="https://1.1.1.1/dns/"target="_blank">Cloudflare DNS</a> to do an internet lookup of the IP address.</p>]]></content:encoded></item><item><title>Using Tunnelblick to Connect to WatchGuard VPN</title><link>https://patelhiren.com/blog/using-tunnelblick-to-connect-to-watchguard-vpn/</link><pubDate>Sun, 26 Apr 2020 12:55:50 -0400</pubDate><guid>https://patelhiren.com/blog/using-tunnelblick-to-connect-to-watchguard-vpn/</guid><description>&lt;p&gt;I needed to connect to a corporate VPN that used &lt;a href="https://www.watchguard.com"target="_blank"&gt;WatchGuard&lt;/a&gt;. The IT provided &lt;em&gt;Mobile VPN with SSL Client&lt;/em&gt; software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I needed to connect to a corporate VPN that used <a href="https://www.watchguard.com"target="_blank">WatchGuard</a>. The IT provided <em>Mobile VPN with SSL Client</em> software did not work reliably on macOS Catalina. It sometimes show connected but unable to access remote vpn resources.</p>
 <p>I discovered that the <em>WatchGuard</em> VPN internally is an OpenVPN server. I use <a href="https://tunnelblick.net"target="_blank">Tunnelblick</a> for my personal OpenVPN connections and that has worked reliably on macOS Catalina. So if I just had the connection <em>ovpn</em> config file I could use <em>Tunnelblick</em> for my VPN connections.</p>
 <p>WatchGuard has a detailed support document that walks the user through downloading their software to use for VPN connection at <a href="https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html"target="_blank">https://www.watchguard.com/help/docs/fireware/12/en-US/Content/en-US/mvpn/ssl/mvpn_ssl_client-install_c.html</a>.</p>
 <p>Turns out that page also provides an option to download the <em>ovpn</em> config that can be used with <em>Tunnelblick</em>.</p>
@@ -256,7 +292,7 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
             <picture><source 
                     srcset="
                     
-                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01_hu715290535129476507.jpg 400w,
+                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/01_hu_5205600a052ec080.jpg 400w,
                     
                     
                     
@@ -290,7 +326,7 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
             <picture><source 
                     srcset="
                     
-                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02_hu6277794632518365184.jpg 400w,
+                    /blog/using-tunnelblick-to-connect-to-watchguard-vpn/images/02_hu_2beb8b39f5863ef7.jpg 400w,
                     
                     
                     
@@ -316,19 +352,7 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
 <li>Select the <strong><em>Download</em></strong> option under <em>Mobile VPN with SSL client profile</em>.</li>
 <li>This will offer a <em>client.ovpn</em> file that you can import into <em>Tunnelblick</em> for connection to your corporate network.</li>
 </ul>
-<p>The page offer options to download the Mobile VPN with SSL Client software for Mac and Windows as well if you want those.</p>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Catalina and Skype for Business Screensharing</title>
-      <link>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</link>
-      <pubDate>Fri, 10 Apr 2020 20:11:49 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</guid>
-      <description>&lt;p&gt;After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.</p>
+<p>The page offer options to download the Mobile VPN with SSL Client software for Mac and Windows as well if you want those.</p>]]></content:encoded></item><item><title>Catalina and Skype for Business Screensharing</title><link>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</link><pubDate>Fri, 10 Apr 2020 20:11:49 -0400</pubDate><guid>https://patelhiren.com/blog/catalina-and-skype-for-business-screensharing/</guid><description>&lt;p&gt;After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.&lt;/p&gt;</description><content:encoded><![CDATA[<p>After upgrading to macOS Catalina (10.15.4), Screensharing via Skype for Business stopped working. Here is waht I did to fix it.</p>
 <p>macOS Catalina introduced new Privacy settings that prevents Skype for Business screensharing to work if proper permissions are not provided. On trying to start Screensharing via <strong>Conversations-&gt;Share Screen</strong> option, Skype would display a message stating check the <strong>Skype For Business</strong> option under <strong>System Preferences-&gt;Security &amp; Privacy-&gt;Privacy Tab-&gt;Screen Recording</strong>. However navigating there did not display &ldquo;Skype For Business* as an option.</p>
 <p>To correct it I first reset the &ldquo;Screen Recording&rdquo; permissions for Skype by running this command on Terminal.</p>
 <div class="highlight"><div class="chroma">
@@ -344,9 +368,4 @@ If I try to access <code>devserver.lab.network</code> it would ask the nameserve
 </blockquote>
 <p>After running that command. I relaunched Skype, selected a Conversation and tried sharing via the screen via the menu option again. I got the same error I got earlier from Skype and no Screen Recording permission prompt was displayed by the OS.</p>
 <p>I had to select the &ldquo;Share Screen&rdquo; icon on the top right of the conversation window. When I tapped that, the OS permissions prompt for Screen Recording came up. I gave the required permission, restarted Skype and was successfully able to share my screen.</p>
-<p><em>For the record this was on Skype for Business version 16.28.175.</em></p>]]></content:encoded>
-      
-    </item>
-    
-  </channel>
-</rss>
+<p><em>For the record this was on Skype for Business version 16.28.175.</em></p>]]></content:encoded></item></channel></rss>

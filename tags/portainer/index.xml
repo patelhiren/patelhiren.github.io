@@ -1,26 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Portainer on Hiren Patel</title>
-    <link>https://patelhiren.com/tags/portainer/</link>
-    <description>Recent content in Portainer on Hiren Patel</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Sun, 19 Feb 2023 12:18:21 -0500</lastBuildDate>
-    
-	<atom:link href="https://patelhiren.com/tags/portainer/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Upgrading Portainer Community Edition on Docker</title>
-      <link>https://patelhiren.com/blog/upgrading-portainer-ce-on-docker/</link>
-      <pubDate>Sun, 19 Feb 2023 12:18:21 -0500</pubDate>
-      
-      <guid>https://patelhiren.com/blog/upgrading-portainer-ce-on-docker/</guid>
-      <description>&lt;p&gt;I run a docker instance under Ubuntu server on my local network. This is how I upgrade portainer to the latest version.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>I run a docker instance under Ubuntu server on my local network. This is how I upgrade portainer to the latest version.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Portainer on Hiren Patel</title><link>https://patelhiren.com/tags/portainer/</link><description>Recent content in Portainer on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Sun, 19 Feb 2023 12:18:21 -0500</lastBuildDate><atom:link href="https://patelhiren.com/tags/portainer/index.xml" rel="self" type="application/rss+xml"/><item><title>Upgrading Portainer Community Edition on Docker</title><link>https://patelhiren.com/blog/upgrading-portainer-ce-on-docker/</link><pubDate>Sun, 19 Feb 2023 12:18:21 -0500</pubDate><guid>https://patelhiren.com/blog/upgrading-portainer-ce-on-docker/</guid><description>&lt;p&gt;I run a docker instance under Ubuntu server on my local network. This is how I upgrade portainer to the latest version.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I run a docker instance under Ubuntu server on my local network. This is how I upgrade portainer to the latest version.</p>
 <p>Connect to the Ubuntu server via SSH and run the below commands.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -50,9 +28,4 @@
 </span></span><span class="line"><span class="cl">sudo docker run -d -p 8000:8000 -p 9000:9000 --name<span class="o">=</span>portainer --restart<span class="o">=</span>always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>This will upgrade portainer to the latest version. It should again be accessible at <code>http://&lt;&lt;server&gt;&gt;:9000</code>.</p>]]></content:encoded>
-      
-    </item>
-    
-  </channel>
-</rss>
+</div><p>This will upgrade portainer to the latest version. It should again be accessible at <code>http://&lt;&lt;server&gt;&gt;:9000</code>.</p>]]></content:encoded></item></channel></rss>

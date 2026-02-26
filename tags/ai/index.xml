@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>AI on Hiren Patel</title><link>https://patelhiren.com/tags/ai/</link><description>Recent content in AI on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Mon, 19 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://patelhiren.com/tags/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>Deploying a Sandboxed Family Agent with Cross-Compiled Go Skills in Clawdbot</title><link>https://patelhiren.com/blog/deploying-sandboxed-family-agent-clawdbot/</link><pubDate>Mon, 19 Jan 2026 00:00:00 +0000</pubDate><guid>https://patelhiren.com/blog/deploying-sandboxed-family-agent-clawdbot/</guid><description>&lt;p&gt;I wanted to set up a &amp;ldquo;Family Agent&amp;rdquo; in &lt;a href="https://clawd.bot/"target="_blank"&gt;Clawdbot&lt;/a&gt; so my family could interact with tools like stock analysis and summarization via WhatsApp. However, I needed to ensure this agent was completely isolated from my personal credentials and host system. Here is how I configured a sandboxed environment and deployed cross-compiled &lt;a href="https://go.dev/"target="_blank"&gt;Go&lt;/a&gt; skills to solve this.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I wanted to set up a &ldquo;Family Agent&rdquo; in <a href="https://clawd.bot/"target="_blank">Clawdbot</a> so my family could interact with tools like stock analysis and summarization via WhatsApp. However, I needed to ensure this agent was completely isolated from my personal credentials and host system. Here is how I configured a sandboxed environment and deployed cross-compiled <a href="https://go.dev/"target="_blank">Go</a> skills to solve this.</p>
+<h2 id="customizing-the-sandbox-image">Customizing the Sandbox Image</h2>
+<p>Because some skills have specific runtime requirements—like the <code>summarize</code> skill needing Node.js 20+ to support newer regular expression flags—I created a custom <a href="https://www.docker.com/"target="_blank">Docker</a> image. Using a default image with Node.js v18 resulted in a <code>SyntaxError</code> when the tool&rsquo;s dependencies tried to load, so &ldquo;baking in&rdquo; the correct runtime was the first step.</p>
+<h3 id="the-dockerfile">The Dockerfile</h3>
+<p>I used a <code>node:20-slim</code> base to ensure all modern Node dependencies were supported:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="s">node:20-slim</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="c"># Install system dependencies</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> apt-get install -y <span class="se">\
+</span></span></span><span class="line"><span class="cl">    curl <span class="se">\
+</span></span></span><span class="line"><span class="cl">    ca-certificates <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="o">&amp;&amp;</span> rm -rf /var/lib/apt/lists/*<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Building the image is a one-time task:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker build -t <span class="o">[</span>YOUR_DOCKER_IMAGE<span class="o">]</span>:1.0 .
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="cross-compiling-go-binaries-for-multi-platform-support">Cross-Compiling Go Binaries for Multi-Platform Support</h2>
+<p>To keep the agent high-performance, I wrote my custom skills (like <code>stock-analysis</code>) in Go. The beauty of Go is the ability to test locally on my M1 Max (<code>darwin/arm64</code>) and then cross-compile for the sandboxed Linux environment.</p>
+<p>By producing a single binary for each platform and placing them in the <code>dist/</code> folder of the skill, the agent can run the correct version regardless of the environment.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Build for macOS (Local Testing)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">GOOS</span><span class="o">=</span>darwin <span class="nv">GOARCH</span><span class="o">=</span>arm64 go build -o dist/stock-analysis main.go
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Build for Linux (Sandbox Deployment)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">GOOS</span><span class="o">=</span>linux <span class="nv">GOARCH</span><span class="o">=</span>arm64 go build -o dist/stock-analysis-linux main.go
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="bridging-the-llm-and-code-with-skillmd">Bridging the LLM and Code with <code>SKILL.md</code></h2>
+<p>Clawdbot uses a <code>SKILL.md</code> file to discover these binaries and understand how to use them. This file acts as the bridge between the LLM’s natural language and the Go code. For the stock analysis tool, I defined mandatory rules to ensure the agent returns the raw <code>stdout</code> verbatim, which is critical for trading data fidelity.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gu">### Command
+</span></span></span><span class="line"><span class="cl"><span class="gh"># macOS / Darwin
+</span></span></span><span class="line"><span class="cl">stock-analysis &lt;TICKER&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gh"># Linux / Sandbox
+</span></span></span><span class="line"><span class="cl">stock-analysis-linux &lt;TICKER&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="configuring-the-agent-and-docker-sandbox">Configuring the Agent and Docker Sandbox</h2>
+<p>With the image built and skills compiled, I defined the <code>family</code> agent in <code>clawdbot.json</code>. Setting the sandbox mode to <code>all</code> forces every tool execution into the Docker container.</p>
+<p>Crucially, because skills like <code>summarize</code> and <code>stock-analysis</code> need to reach out to external APIs and websites, I had to explicitly grant the sandbox internet access by setting the Docker network to <code>bridge</code> mode.</p>
+<h3 id="the-agent-json-structure">The Agent JSON Structure</h3>
+<p>The <code>env</code> block and <code>sandbox</code> settings live directly within the agent&rsquo;s definition. Here is the full structure for the <code>family</code> agent:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;family&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;family&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;env&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ANTHROPIC_API_KEY&#34;</span><span class="p">:</span> <span class="s2">&#34;{{auth:[YOUR_ANTHROPIC_PROFILE]}}&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;GEMINI_API_KEY&#34;</span><span class="p">:</span> <span class="s2">&#34;{{auth:[YOUR_GEMINI_PROFILE]}}&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;workspace&#34;</span><span class="p">:</span> <span class="s2">&#34;[WORKSPACE_PATH]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;sandbox&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;mode&#34;</span><span class="p">:</span> <span class="s2">&#34;all&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;workspaceAccess&#34;</span><span class="p">:</span> <span class="s2">&#34;rw&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;agent&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;docker&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;image&#34;</span><span class="p">:</span> <span class="s2">&#34;[YOUR_DOCKER_IMAGE]:1.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;network&#34;</span><span class="p">:</span> <span class="s2">&#34;bridge&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;tools&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;sandbox&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;tools&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;allow&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;exec&#34;</span><span class="p">,</span> <span class="s2">&#34;bash&#34;</span><span class="p">,</span> <span class="s2">&#34;read&#34;</span><span class="p">,</span> <span class="s2">&#34;write&#34;</span><span class="p">,</span> <span class="s2">&#34;summarize&#34;</span><span class="p">,</span> <span class="s2">&#34;stock-analysis&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I then bound this agent to a specific WhatsApp group ID so it only responds to family requests:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="s2">&#34;bindings&#34;</span><span class="err">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;agentId&#34;</span><span class="p">:</span> <span class="s2">&#34;family&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;match&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;channel&#34;</span><span class="p">:</span> <span class="s2">&#34;whatsapp&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;peer&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;kind&#34;</span><span class="p">:</span> <span class="s2">&#34;group&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;[YOUR_GROUP_ID]@g.us&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="lessons-learned">Lessons Learned</h2>
+<h3 id="1-secure-credential-injection">1. Secure Credential Injection</h3>
+<p>A key security feature of the sandbox is that it starts with a clean slate. By checking the sandbox logs, I could see that tools were failing because they lacked API keys. To fix this, I used explicit environment mapping in the JSON config.</p>
+<p>You must map the <strong>specific environment variables</strong> that your skills expect (like <code>GEMINI_API_KEY</code> or <code>ANTHROPIC_API_KEY</code>) to your secure Clawdbot authentication profiles inside the <code>env</code> block shown in the configuration section above.</p>
+<p>This ensures the agent is &ldquo;least privileged&rdquo;—it only has the specific tokens it needs to run its assigned skills.</p>
+<h2 id="pro-tip-refreshing-the-sandbox">Pro-Tip: Refreshing the Sandbox</h2>
+<p>Clawdbot creates the Docker container for the agent only one time. It persists across restarts for speed. If you need to force a clean slate or pick up changes in your custom image, simply delete the running container:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker rm -f <span class="o">[</span>CONTAINER_ID<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Clawdbot will automatically recreate the container from the image on the next request.</p>
+<h2 id="wrapping-up">Wrapping Up</h2>
+<p>By using Docker for isolation, enabling bridge networking for internet access, and cross-compiling Go binaries for both macOS and Linux, I’ve created a setup that is both high-performance and secure. This configuration allows my family to benefit from agentic workflows while maintaining strict control over credential access and runtime environments.</p>]]></content:encoded></item></channel></rss>

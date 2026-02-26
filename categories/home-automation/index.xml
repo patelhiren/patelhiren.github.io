@@ -1,26 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Home Automation on Hiren Patel</title>
-    <link>https://patelhiren.com/categories/home-automation/</link>
-    <description>Recent content in Home Automation on Hiren Patel</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Sun, 13 Nov 2022 16:32:58 -0500</lastBuildDate>
-    
-	<atom:link href="https://patelhiren.com/categories/home-automation/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Set up Foscam Floodlight Camera in HomeKit</title>
-      <link>https://patelhiren.com/blog/set-up-foscam-floodlight-camera-in-homekit/</link>
-      <pubDate>Sun, 13 Nov 2022 16:32:58 -0500</pubDate>
-      
-      <guid>https://patelhiren.com/blog/set-up-foscam-floodlight-camera-in-homekit/</guid>
-      <description>&lt;p&gt;The &lt;a href=&#34;https://www.amazon.com/Foscam-Floodlight-Detection-Brightness-FLC/dp/B095S3HVL4&#34;target=&#34;_blank&#34;&gt;Foscam Floodlight Camera&lt;/a&gt; is competitively prized and has decent features including option to record 24/7 video locally to a micro sdcard without the need for a cloud subscription. It however does not support integration with HomeKit my preferred home automation platform. Here is how I setup the floodlight in HomeKit.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>The <a href="https://www.amazon.com/Foscam-Floodlight-Detection-Brightness-FLC/dp/B095S3HVL4"target="_blank">Foscam Floodlight Camera</a> is competitively prized and has decent features including option to record 24/7 video locally to a micro sdcard without the need for a cloud subscription. It however does not support integration with HomeKit my preferred home automation platform. Here is how I setup the floodlight in HomeKit.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Home Automation on Hiren Patel</title><link>https://patelhiren.com/categories/home-automation/</link><description>Recent content in Home Automation on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Sun, 13 Nov 2022 16:32:58 -0500</lastBuildDate><atom:link href="https://patelhiren.com/categories/home-automation/index.xml" rel="self" type="application/rss+xml"/><item><title>Set up Foscam Floodlight Camera in HomeKit</title><link>https://patelhiren.com/blog/set-up-foscam-floodlight-camera-in-homekit/</link><pubDate>Sun, 13 Nov 2022 16:32:58 -0500</pubDate><guid>https://patelhiren.com/blog/set-up-foscam-floodlight-camera-in-homekit/</guid><description>&lt;p&gt;The &lt;a href="https://www.amazon.com/Foscam-Floodlight-Detection-Brightness-FLC/dp/B095S3HVL4"target="_blank"&gt;Foscam Floodlight Camera&lt;/a&gt; is competitively prized and has decent features including option to record 24/7 video locally to a micro sdcard without the need for a cloud subscription. It however does not support integration with HomeKit my preferred home automation platform. Here is how I setup the floodlight in HomeKit.&lt;/p&gt;</description><content:encoded><![CDATA[<p>The <a href="https://www.amazon.com/Foscam-Floodlight-Detection-Brightness-FLC/dp/B095S3HVL4"target="_blank">Foscam Floodlight Camera</a> is competitively prized and has decent features including option to record 24/7 video locally to a micro sdcard without the need for a cloud subscription. It however does not support integration with HomeKit my preferred home automation platform. Here is how I setup the floodlight in HomeKit.</p>
 <p>Download and install the <a href="https://apps.apple.com/us/app/foscam-vms/id1521202507?mt=12"target="_blank">Foscam VMS</a> app from the Mac App Store. Signup and Signin to the Foscam Account.</p>
 <p>We will also need the <a href="https://apps.apple.com/us/app/foscam/id924381688"target="_blank">Foscam</a> iOS app.</p>
 <blockquote>
@@ -36,11 +14,11 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/01_hu854835216039767888.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/01_hu_773b19ee061b59e9.png 400w,
                     
                     
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/01_hu1155203469866038401.png 600w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/01_hu_e0c2a84500f14649.png 600w,
                     
 
                     
@@ -78,19 +56,19 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu10715603915529705066.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu_e967a3df745a2655.png 400w,
                     
                     
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu14316823806985360839.png 600w,
-                    
-
-                    
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu1555432292505962888.png 1000w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu_5f0892ff071d0809.png 600w,
                     
 
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu6728639325262776162.png 1200w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu_1374627ac368b204.png 1000w,
+                    
+
+                    
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/02_hu_875dce0e98a8ede4.png 1200w,
                     
 
                     /blog/set-up-foscam-floodlight-camera-in-homekit/images/02.png
@@ -124,19 +102,19 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu924322101021826482.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu_7dedb5b7b0214b87.png 400w,
                     
                     
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu3208633523759380406.png 600w,
-                    
-
-                    
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu10631119168180201951.png 1000w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu_38724bddb5e05a35.png 600w,
                     
 
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu13199576637089040714.png 1200w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu_4c4edfd964c758a.png 1000w,
+                    
+
+                    
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/03_hu_8ce81ea707b79d78.png 1200w,
                     
 
                     /blog/set-up-foscam-floodlight-camera-in-homekit/images/03.png
@@ -164,19 +142,19 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu1024207893000157201.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu_829d7ef50bcbc47c.png 400w,
                     
                     
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu13053976562220965075.png 600w,
-                    
-
-                    
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu5771694592035171665.png 1000w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu_1fad6398ddd9596c.png 600w,
                     
 
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu13745234138375822360.png 1200w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu_1e4036fcf8842c0a.png 1000w,
+                    
+
+                    
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/04_hu_6f946e15f93d9184.png 1200w,
                     
 
                     /blog/set-up-foscam-floodlight-camera-in-homekit/images/04.png
@@ -205,19 +183,19 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu11836542350063629728.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu_6599d8396401fd6.png 400w,
                     
                     
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu12152731951925620717.png 600w,
-                    
-
-                    
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu15930760081947996542.png 1000w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu_1894f20ac842e04d.png 600w,
                     
 
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu10783728860825662910.png 1200w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu_d04cb69c5adbcc42.png 1000w,
+                    
+
+                    
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/05_hu_3fef3246ebc34f44.png 1200w,
                     
 
                     /blog/set-up-foscam-floodlight-camera-in-homekit/images/05.png
@@ -253,7 +231,7 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/06_hu16984489087316007069.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/06_hu_6269430fb159b36f.png 400w,
                     
                     
                     
@@ -376,7 +354,7 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/09_hu1827515286913983319.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/09_hu_f250f80fe80710d9.png 400w,
                     
                     
                     
@@ -409,7 +387,7 @@
             <picture><source 
                     srcset="
                     
-                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/10_hu4839033542985781733.png 400w,
+                    /blog/set-up-foscam-floodlight-camera-in-homekit/images/10_hu_af57ad8a72614d48.png 400w,
                     
                     
                     
@@ -444,9 +422,4 @@
 <li>Enable HomeKit integration, and pair with HomeKit.</li>
 <li>The device will now let you to turn the floodlight on/off and set the brightness.</li>
 </ul>
-<p>I also blocked the camera ips from accessing the internet except the <em>NTP</em> port via my firewall. The cameras connect locally to my Home Hub (Apple TV) and then are available to HomeKit everywhere through that. So that is an additional level of privacy I enjoy. Overall this setup is working very well and HomeKit recognizes People/Pets/Vehicles and Packages pretty well and quickly.</p>]]></content:encoded>
-      
-    </item>
-    
-  </channel>
-</rss>
+<p>I also blocked the camera ips from accessing the internet except the <em>NTP</em> port via my firewall. The cameras connect locally to my Home Hub (Apple TV) and then are available to HomeKit everywhere through that. So that is an additional level of privacy I enjoy. Overall this setup is working very well and HomeKit recognizes People/Pets/Vehicles and Packages pretty well and quickly.</p>]]></content:encoded></item></channel></rss>

@@ -1,197 +1,73 @@
-<!DOCTYPE html>
-<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.136.5"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title>Setting up Keras Tensorflow2 on M1 Mac&nbsp;&ndash;&nbsp;Hiren Patel</title><link rel="stylesheet" href="/css/core.min.f5c1c6e2b2716e31ef4ae9808411c8b9032f2db42a871fa413c47053fbcefba05f8f2b065af88ebc39259e344a9f16ba.css" integrity="sha384-9cHG4rJxbjHvSumAhBHIuQMvLbQqhx&#43;kE8RwU/vO&#43;6BfjysGWviOvDklnjRKnxa6"><meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Setting up Keras Tensorflow2 on M1 Mac" /><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" as="style" onload="this.rel='stylesheet'" />
-
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-<link rel="manifest" href="/site.webmanifest" />
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#191919" />
-<meta name="msapplication-TileColor" content="#00aba9" />
-<body>
-    <div class="base-body"><section id="header" class="site header">
-    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><img class="site logo" src="/patelhiren-logo.png" alt="website logo" width="42px" height="42px" /><span class="site name">Hiren Patel</span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/about/">About</a></nav></div></span></div><div class="site slogan wrap">
-            <span class="title left-side">Documenting things as I learn.</span>
-            <span class="right-side"><div class="social-buttons">
-    <a href="/index.xml" aria-label="Subscribe in your RSS reader">
-        <span>
-            <i class="fa-solid fa-rss"></i>
-        </span>
-    </a>
-    <a rel="me" href="https://mastodon.social/@patelhiren" target="_blank" aria-label="Follow @patelhiren on Mastodon">
-        <span>
-            <i class="fa-brands fa-mastodon"></i>
-        </span>
-    </a>
-    <a href="https://twitter.com/patelhiren" target="_blank" aria-label="Follow @patelhiren on Twitter">
-        <span>
-            <i class="fa-brands fa-twitter"></i>
-        </span>
-    </a>
-</div></span>
-        </div></section><div id="content"><div class="article-container"><section class="article header">
-    <h1 class="article title">Setting up Keras Tensorflow2 on M1 Mac</h1><p class="article date">Oct 21, 2022</p></section><article class="article markdown-body"><p>I am currently reading <a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank">Deep Learning with TensorFlow and Keras</a> to get started with Machine Learning/Deep Learning. Here is how I setup a local <em>Keras/Tensorflow 2.0</em> environment on my <em>M1 Max MacBook Pro</em> running <em>macOS 12.6</em>.</p>
-<p>Install <a href="https://docs.conda.io/en/latest/miniconda.html"target="_blank"><em>miniconda</em></a>.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">brew install --cask miniconda
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>I use zsh with <a href="https://iterm2.com"target="_blank">iTerm2</a> as my terminal so I need to initialize conda with the following command.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">conda init zsh
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>This will make it so everytime iTerm2 is opened, the conda <em>base</em> environment will be activated. I prefer to activate my environment manually, so I did the below to deactivate the base environment on launch of iTerm2.</p>
-<p>In <code>~/.zshrc</code> add the following section after the <code># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</code> line.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># Deactivate base conda environment. You can activate an environment using conda activate &lt;&lt;environment-name&gt;&gt;</span>
-</span></span><span class="line"><span class="cl">conda deactivate
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>We now create an environment named <em>tensorflow</em> where we could run our ML/DL Keras training.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">conda create -n tensorflow <span class="nv">python</span><span class="o">=</span>3.9
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>We then switch to the <em>tensorflow</em> environment and install dependencies.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># Activate tensorflow environment</span>
-</span></span><span class="line"><span class="cl">conda activate tensorflow
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Install apple tensorflow dependencies</span>
-</span></span><span class="line"><span class="cl">conda install -c apple tensorflow-deps
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Install tensorflow macos</span>
-</span></span><span class="line"><span class="cl">python -m pip install tensorflow-macos
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Install tensorflow metal plugin</span>
-</span></span><span class="line"><span class="cl">python -m pip install tensorflow-metal
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Install tensorflow readymade datasets</span>
-</span></span><span class="line"><span class="cl">python -m pip install tensorflow-datasets
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Install libjpeg (needed by mathplotlib)</span>
-</span></span><span class="line"><span class="cl">brew install libjpeg
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Install mathplotlib and jupyterlab</span>
-</span></span><span class="line"><span class="cl">conda install -y matplotlib jupyterlab
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>This may not be necessary for future installs. But I ran into an error with numpy when trying to run my notebook code.</p>
-<blockquote>
-<p><em><strong>module compiled against API version 0x10 but this version of numpy is 0xf</strong></em></p>
-</blockquote>
-<p>To correct this I had to run this command in my <em>tensorflow</em> environment.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">python -m pip install numpy --upgrade
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>Another warning I ran into.</p>
-<blockquote>
-<p><em><strong>TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See <a href="https://ipywidgets.readthedocs.io/en/stable/user_install.html"target="_blank">https://ipywidgets.readthedocs.io/en/stable/user_install.html</a> from .autonotebook import tqdm as notebook_tqdm</strong></em></p>
-</blockquote>
-<p>To resolve I ran the below in my <em>tensorflow</em> environment.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">python -m pip install ipywidgets widgetsnbextension pandas-profiling
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>You may now run <code>jupyter notebook</code> command from the <em>tensorflow</em> environment to start the jupyter notebook environment from the command line. I however prefer using <a href="https://code.visualstudio.com/"target="_blank">Visual Studio Code</a> and start an environment under vscode as documented below.</p>
-<ul>
-<li>Install the <code>Jupyter</code> extension under vscode.</li>
-<li>Load the <em>Command Pallet</em> using (<code>Cmd+Shift+P</code>) and select <code>Jupyter: Select Interpreter to Start Jupyter Server</code> and then select <code>Python 3.9.13 ('tensorflow')</code> or whatever environment you want to use.</li>
-<li>Load the <em>Command Pallet</em> using (<code>Cmd+Shift+P</code>) and select <code>Create: New Jupyter Notebook</code></li>
-<li>You may now run all the Jupyter notebook in vscode. When run the code cell, vscode will start the jupyter server if it is not already started in the selected environment.</li>
-</ul>
-<h3 id="code">Code</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;TensorFlow has access to the following devices:&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">():</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;* </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="output">Output</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">TensorFlow has access to the following devices:
-</span></span><span class="line"><span class="cl">* PhysicalDevice(name=&#39;/physical_device:CPU:0&#39;, device_type=&#39;CPU&#39;)
-</span></span><span class="line"><span class="cl">* PhysicalDevice(name=&#39;/physical_device:GPU:0&#39;, device_type=&#39;GPU&#39;)
-</span></span></code></pre></td></tr></table>
-</div>
-</div></article><section class="article labels"><a class="category" href=/categories/how-tos/>How Tos</a><a class="category" href=/categories/programming/>Programming</a><a class="category" href=/categories/machine-learning/>Machine Learning</a><a class="tag" href=/tags/artificial-intelligence/>Artificial Intelligence</a><a class="tag" href=/tags/machine-learning/>Machine Learning</a><a class="tag" href=/tags/deep-learning/>Deep Learning</a><a class="tag" href=/tags/tensorflow/>TensorFlow</a><a class="tag" href=/tags/keras/>Keras</a></section></div><section class="article navigation"><p><a class="link" href="/blog/set-up-foscam-floodlight-camera-in-homekit/"><span class="li">&larr;</span>Set up Foscam Floodlight Camera in HomeKit</a></p><p><a class="link" href="/blog/setting-vscode-as-default-text-editor-on-macos/"><span class="li">&rarr;</span>Setting Visual Studio Code as default text editor on macOS</a></p></section></div><section id="footer" class="footer"><div class="footer-wrap">
-    <p class="copyright">© Copyright 2024, Hiren Patel</p>
-    
-    <p class="disclaimer">Disclaimer: The opinions expressed herein are my own personal opinions and do not represent my employer’s view in any way.</p>
-    
-</div></section>
-    
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
-        data-cf-beacon='{"token": "0ceb2b0172264816ba290291f3b99e4f"}'></script>
-    
-</div>
-</body>
-
-</html>
+<!doctype html><html lang=en><meta charset=utf-8><meta name=generator content="Hugo 0.157.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=color-scheme content="light dark"><meta name=supported-color-schemes content="light dark"><title>Setting up Keras Tensorflow2 on M1 Mac&nbsp;&ndash;&nbsp;Hiren Patel</title><link rel=stylesheet href=/css/core.min.4a3158e547a2e12e14cb51e59907c17e21ab8d5b1dab7d0b5fdc5d46aa9cccd6370566d36e0d004ef7c21eb3830b3caf.css integrity=sha384-SjFY5Uei4S4Uy1HlmQfBfiGrjVsdq30LX9xdRqqczNY3BWbTbg0ATvfCHrODCzyv><meta name=twitter:card content="summary"><meta name=twitter:title content="Setting up Keras Tensorflow2 on M1 Mac"><link rel=preload href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css as=style onload='this.rel="stylesheet"'><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#191919><meta name=msapplication-TileColor content="#00aba9"><body><div class=base-body><section id=header class="site header"><div class="header wrap"><span class="header left-side"><a class="site home" href=/><img class="site logo" src=/patelhiren-logo.png alt="website logo" width=42px height=42px><span class="site name">Hiren Patel</span></a></span>
+<span class="header right-side"><div class="nav wrap"><nav class=nav><a class="nav item" href=/categories/>Categories</a><a class="nav item" href=/tags/>Tags</a><a class="nav item" href=/about/>About</a></nav></div></span></div><div class="site slogan wrap"><span class="title left-side">Documenting things as I learn.</span>
+<span class=right-side><div class=social-buttons><a href=/index.xml aria-label="Subscribe in your RSS reader"><span><i class="fa-solid fa-rss"></i>
+</span></a><a rel=me href=https://mastodon.social/@patelhiren target=_blank aria-label="Follow @patelhiren on Mastodon"><span><i class="fa-brands fa-mastodon"></i>
+</span></a><a href=https://twitter.com/patelhiren target=_blank aria-label="Follow @patelhiren on Twitter"><span><i class="fa-brands fa-twitter"></i></span></a></div></span></div></section><div id=content><div class=article-container><section class="article header"><h1 class="article title">Setting up Keras Tensorflow2 on M1 Mac</h1><p class="article date">Oct 21, 2022</p></section><article class="article markdown-body"><p>I am currently reading <a href=https://www.amazon.com/gp/product/B0B18D695W target=_blank>Deep Learning with TensorFlow and Keras</a> to get started with Machine Learning/Deep Learning. Here is how I setup a local <em>Keras/Tensorflow 2.0</em> environment on my <em>M1 Max MacBook Pro</em> running <em>macOS 12.6</em>.</p><p>Install <a href=https://docs.conda.io/en/latest/miniconda.html target=_blank><em>miniconda</em></a>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl>brew install --cask miniconda
+</span></span></code></pre></td></tr></table></div></div><p>I use zsh with <a href=https://iterm2.com target=_blank>iTerm2</a> as my terminal so I need to initialize conda with the following command.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl>conda init zsh
+</span></span></code></pre></td></tr></table></div></div><p>This will make it so everytime iTerm2 is opened, the conda <em>base</em> environment will be activated. I prefer to activate my environment manually, so I did the below to deactivate the base environment on launch of iTerm2.</p><p>In <code>~/.zshrc</code> add the following section after the <code># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</code> line.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl><span class=c1># Deactivate base conda environment. You can activate an environment using conda activate &lt;&lt;environment-name&gt;&gt;</span>
+</span></span><span class=line><span class=cl>conda deactivate
+</span></span></code></pre></td></tr></table></div></div><p>We now create an environment named <em>tensorflow</em> where we could run our ML/DL Keras training.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl>conda create -n tensorflow <span class=nv>python</span><span class=o>=</span>3.9
+</span></span></code></pre></td></tr></table></div></div><p>We then switch to the <em>tensorflow</em> environment and install dependencies.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl><span class=c1># Activate tensorflow environment</span>
+</span></span><span class=line><span class=cl>conda activate tensorflow
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Install apple tensorflow dependencies</span>
+</span></span><span class=line><span class=cl>conda install -c apple tensorflow-deps
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Install tensorflow macos</span>
+</span></span><span class=line><span class=cl>python -m pip install tensorflow-macos
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Install tensorflow metal plugin</span>
+</span></span><span class=line><span class=cl>python -m pip install tensorflow-metal
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Install tensorflow readymade datasets</span>
+</span></span><span class=line><span class=cl>python -m pip install tensorflow-datasets
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Install libjpeg (needed by mathplotlib)</span>
+</span></span><span class=line><span class=cl>brew install libjpeg
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Install mathplotlib and jupyterlab</span>
+</span></span><span class=line><span class=cl>conda install -y matplotlib jupyterlab
+</span></span></code></pre></td></tr></table></div></div><p>This may not be necessary for future installs. But I ran into an error with numpy when trying to run my notebook code.</p><blockquote><p><em><strong>module compiled against API version 0x10 but this version of numpy is 0xf</strong></em></p></blockquote><p>To correct this I had to run this command in my <em>tensorflow</em> environment.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl>python -m pip install numpy --upgrade
+</span></span></code></pre></td></tr></table></div></div><p>Another warning I ran into.</p><blockquote><p><em><strong>TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See <a href=https://ipywidgets.readthedocs.io/en/stable/user_install.html target=_blank>https://ipywidgets.readthedocs.io/en/stable/user_install.html</a> from .autonotebook import tqdm as notebook_tqdm</strong></em></p></blockquote><p>To resolve I ran the below in my <em>tensorflow</em> environment.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zsh data-lang=zsh><span class=line><span class=cl>python -m pip install ipywidgets widgetsnbextension pandas-profiling
+</span></span></code></pre></td></tr></table></div></div><p>You may now run <code>jupyter notebook</code> command from the <em>tensorflow</em> environment to start the jupyter notebook environment from the command line. I however prefer using <a href=https://code.visualstudio.com/ target=_blank>Visual Studio Code</a> and start an environment under vscode as documented below.</p><ul><li>Install the <code>Jupyter</code> extension under vscode.</li><li>Load the <em>Command Pallet</em> using (<code>Cmd+Shift+P</code>) and select <code>Jupyter: Select Interpreter to Start Jupyter Server</code> and then select <code>Python 3.9.13 ('tensorflow')</code> or whatever environment you want to use.</li><li>Load the <em>Command Pallet</em> using (<code>Cmd+Shift+P</code>) and select <code>Create: New Jupyter Notebook</code></li><li>You may now run all the Jupyter notebook in vscode. When run the code cell, vscode will start the jupyter server if it is not already started in the selected environment.</li></ul><h3 id=code>Code</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>tensorflow</span> <span class=k>as</span> <span class=nn>tf</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;TensorFlow has access to the following devices:&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>device</span> <span class=ow>in</span> <span class=n>tf</span><span class=o>.</span><span class=n>config</span><span class=o>.</span><span class=n>list_physical_devices</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;* </span><span class=si>{</span><span class=n>device</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=output>Output</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-txt data-lang=txt><span class=line><span class=cl>TensorFlow has access to the following devices:
+</span></span><span class=line><span class=cl>* PhysicalDevice(name=&#39;/physical_device:CPU:0&#39;, device_type=&#39;CPU&#39;)
+</span></span><span class=line><span class=cl>* PhysicalDevice(name=&#39;/physical_device:GPU:0&#39;, device_type=&#39;GPU&#39;)
+</span></span></code></pre></td></tr></table></div></div></article><section class="article labels"><a class=category href=/categories/how-tos/>How Tos</a><a class=category href=/categories/programming/>Programming</a><a class=category href=/categories/machine-learning/>Machine Learning</a><a class=tag href=/tags/artificial-intelligence/>Artificial Intelligence</a><a class=tag href=/tags/machine-learning/>Machine Learning</a><a class=tag href=/tags/deep-learning/>Deep Learning</a><a class=tag href=/tags/tensorflow/>TensorFlow</a><a class=tag href=/tags/keras/>Keras</a></section></div><section class="article navigation"><p><a class=link href=/blog/set-up-foscam-floodlight-camera-in-homekit/><span class=li>&larr;</span>Set up Foscam Floodlight Camera in HomeKit</a></p><p><a class=link href=/blog/setting-vscode-as-default-text-editor-on-macos/><span class=li>&rarr;</span>Setting Visual Studio Code as default text editor on macOS</a></p></section></div><section id=footer class=footer><div class=footer-wrap><p class=copyright>© Copyright 2026, Hiren Patel</p><p class=disclaimer>Disclaimer: The opinions expressed herein are my own personal opinions and do not represent my employer’s view in any way.</p></div></section><script defer src=https://static.cloudflareinsights.com/beacon.min.js data-cf-beacon='{"token": "0ceb2b0172264816ba290291f3b99e4f"}'></script></div></body></html>

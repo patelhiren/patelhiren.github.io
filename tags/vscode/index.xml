@@ -1,26 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Vscode on Hiren Patel</title>
-    <link>https://patelhiren.com/tags/vscode/</link>
-    <description>Recent content in Vscode on Hiren Patel</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Tue, 23 Mar 2021 22:29:29 -0400</lastBuildDate>
-    
-	<atom:link href="https://patelhiren.com/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Setting Visual Studio Code as default text editor on macOS</title>
-      <link>https://patelhiren.com/blog/setting-vscode-as-default-text-editor-on-macos/</link>
-      <pubDate>Tue, 23 Mar 2021 22:29:29 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/setting-vscode-as-default-text-editor-on-macos/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://code.visualstudio.com&#34;target=&#34;_blank&#34;&gt;Visual Studio Code&lt;/a&gt; is quite capable has become my editor of choice on macOS. Here is how to set it as the default text editor instead of &lt;em&gt;Text Edit&lt;/em&gt;.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p><a href="https://code.visualstudio.com"target="_blank">Visual Studio Code</a> is quite capable has become my editor of choice on macOS. Here is how to set it as the default text editor instead of <em>Text Edit</em>.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Vscode on Hiren Patel</title><link>https://patelhiren.com/tags/vscode/</link><description>Recent content in Vscode on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Tue, 23 Mar 2021 22:29:29 -0400</lastBuildDate><atom:link href="https://patelhiren.com/tags/vscode/index.xml" rel="self" type="application/rss+xml"/><item><title>Setting Visual Studio Code as default text editor on macOS</title><link>https://patelhiren.com/blog/setting-vscode-as-default-text-editor-on-macos/</link><pubDate>Tue, 23 Mar 2021 22:29:29 -0400</pubDate><guid>https://patelhiren.com/blog/setting-vscode-as-default-text-editor-on-macos/</guid><description>&lt;p&gt;&lt;a href="https://code.visualstudio.com"target="_blank"&gt;Visual Studio Code&lt;/a&gt; is quite capable has become my editor of choice on macOS. Here is how to set it as the default text editor instead of &lt;em&gt;Text Edit&lt;/em&gt;.&lt;/p&gt;</description><content:encoded><![CDATA[<p><a href="https://code.visualstudio.com"target="_blank">Visual Studio Code</a> is quite capable has become my editor of choice on macOS. Here is how to set it as the default text editor instead of <em>Text Edit</em>.</p>
 <p>Install <a href="https://github.com/moretension/duti"target="_blank">duti</a>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -47,9 +25,4 @@
 </span></span><span class="line"><span class="cl">duti -s com.microsoft.VSCode public.data all
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>The changes should take effect right away and no reboot or relaunch of <em>Finder</em> should be needed.</p>]]></content:encoded>
-      
-    </item>
-    
-  </channel>
-</rss>
+</div><p>The changes should take effect right away and no reboot or relaunch of <em>Finder</em> should be needed.</p>]]></content:encoded></item></channel></rss>

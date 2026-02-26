@@ -1,26 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Artificial Intelligence on Hiren Patel</title>
-    <link>https://patelhiren.com/tags/artificial-intelligence/</link>
-    <description>Recent content in Artificial Intelligence on Hiren Patel</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Fri, 21 Oct 2022 13:32:11 -0400</lastBuildDate>
-    
-	<atom:link href="https://patelhiren.com/tags/artificial-intelligence/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Setting up Keras Tensorflow2 on M1 Mac</title>
-      <link>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</link>
-      <pubDate>Fri, 21 Oct 2022 13:32:11 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</guid>
-      <description>&lt;p&gt;I am currently reading &lt;a href=&#34;https://www.amazon.com/gp/product/B0B18D695W&#34;target=&#34;_blank&#34;&gt;Deep Learning with TensorFlow and Keras&lt;/a&gt; to get started with Machine Learning/Deep Learning. Here is how I setup a local &lt;em&gt;Keras/Tensorflow 2.0&lt;/em&gt; environment on my &lt;em&gt;M1 Max MacBook Pro&lt;/em&gt; running &lt;em&gt;macOS 12.6&lt;/em&gt;.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>I am currently reading <a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank">Deep Learning with TensorFlow and Keras</a> to get started with Machine Learning/Deep Learning. Here is how I setup a local <em>Keras/Tensorflow 2.0</em> environment on my <em>M1 Max MacBook Pro</em> running <em>macOS 12.6</em>.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Artificial Intelligence on Hiren Patel</title><link>https://patelhiren.com/tags/artificial-intelligence/</link><description>Recent content in Artificial Intelligence on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Fri, 21 Oct 2022 13:32:11 -0400</lastBuildDate><atom:link href="https://patelhiren.com/tags/artificial-intelligence/index.xml" rel="self" type="application/rss+xml"/><item><title>Setting up Keras Tensorflow2 on M1 Mac</title><link>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</link><pubDate>Fri, 21 Oct 2022 13:32:11 -0400</pubDate><guid>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</guid><description>&lt;p&gt;I am currently reading &lt;a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank"&gt;Deep Learning with TensorFlow and Keras&lt;/a&gt; to get started with Machine Learning/Deep Learning. Here is how I setup a local &lt;em&gt;Keras/Tensorflow 2.0&lt;/em&gt; environment on my &lt;em&gt;M1 Max MacBook Pro&lt;/em&gt; running &lt;em&gt;macOS 12.6&lt;/em&gt;.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I am currently reading <a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank">Deep Learning with TensorFlow and Keras</a> to get started with Machine Learning/Deep Learning. Here is how I setup a local <em>Keras/Tensorflow 2.0</em> environment on my <em>M1 Max MacBook Pro</em> running <em>macOS 12.6</em>.</p>
 <p>Install <a href="https://docs.conda.io/en/latest/miniconda.html"target="_blank"><em>miniconda</em></a>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -168,9 +146,4 @@
 </span></span><span class="line"><span class="cl">* PhysicalDevice(name=&#39;/physical_device:GPU:0&#39;, device_type=&#39;GPU&#39;)
 </span></span></code></pre></td></tr></table>
 </div>
-</div>]]></content:encoded>
-      
-    </item>
-    
-  </channel>
-</rss>
+</div>]]></content:encoded></item></channel></rss>

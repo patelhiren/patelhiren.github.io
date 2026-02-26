@@ -1,26 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Terminal on Hiren Patel</title>
-    <link>https://patelhiren.com/tags/terminal/</link>
-    <description>Recent content in Terminal on Hiren Patel</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Sun, 12 Apr 2020 22:04:30 -0400</lastBuildDate>
-    
-	<atom:link href="https://patelhiren.com/tags/terminal/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>PNG Crush Automator Action</title>
-      <link>https://patelhiren.com/blog/pngcrush-automator-action/</link>
-      <pubDate>Sun, 12 Apr 2020 22:04:30 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/pngcrush-automator-action/</guid>
-      <description>&lt;p&gt;When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS &lt;a href=&#34;https://support.apple.com/guide/automator/welcome/mac&#34;target=&#34;_blank&#34;&gt;Automator&lt;/a&gt;.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS <a href="https://support.apple.com/guide/automator/welcome/mac"target="_blank">Automator</a>.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Terminal on Hiren Patel</title><link>https://patelhiren.com/tags/terminal/</link><description>Recent content in Terminal on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Sun, 12 Apr 2020 22:04:30 -0400</lastBuildDate><atom:link href="https://patelhiren.com/tags/terminal/index.xml" rel="self" type="application/rss+xml"/><item><title>PNG Crush Automator Action</title><link>https://patelhiren.com/blog/pngcrush-automator-action/</link><pubDate>Sun, 12 Apr 2020 22:04:30 -0400</pubDate><guid>https://patelhiren.com/blog/pngcrush-automator-action/</guid><description>&lt;p&gt;When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS &lt;a href="https://support.apple.com/guide/automator/welcome/mac"target="_blank"&gt;Automator&lt;/a&gt;.&lt;/p&gt;</description><content:encoded><![CDATA[<p>When using png files on the web it is often preferred to use tools like pngcrush on them to optimize their size. This is usually a manual process where a command line tool or website is used to process each image file. I decided to automate this process for me via macOS <a href="https://support.apple.com/guide/automator/welcome/mac"target="_blank">Automator</a>.</p>
 <p>To crush png images I use the opensource tool <a href="https://pmt.sourceforge.io/pngcrush/"target="_blank">PNG Crush</a>.</p>
 <p>If you have <a href="https://developer.apple.com/xcode/"target="_blank">Xcode</a> installed, the pngcrush tool is included as a part of the iOS SDK and there is no additional download required.</p>
 <p>If you do not have Xcode you may install <em>PNG Crush</em> via <a href="https://brew.sh"target="_blank">Homebrew</a> using the following command.</p>
@@ -59,19 +37,19 @@
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/01_hu10299906894841770542.png 400w,
+                    /blog/pngcrush-automator-action/images/01_hu_d95041dc088645c0.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/01_hu15144809330729729250.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/01_hu7445959027752455568.png 1000w,
+                    /blog/pngcrush-automator-action/images/01_hu_f67064edb4c9c63a.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/01_hu11732919017207006832.png 1200w,
+                    /blog/pngcrush-automator-action/images/01_hu_6aef051758196510.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/01_hu_952b8bf6b7580b7a.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/01.png
@@ -103,19 +81,19 @@
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/02_hu17727269787472406711.png 400w,
+                    /blog/pngcrush-automator-action/images/02_hu_d7ef3f8431f21b7b.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/02_hu14804665408686312687.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/02_hu3689528950084346152.png 1000w,
+                    /blog/pngcrush-automator-action/images/02_hu_3c3d4c35638f1389.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/02_hu6912418297809607524.png 1200w,
+                    /blog/pngcrush-automator-action/images/02_hu_744ab587dd4a6eef.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/02_hu_eed5e9567b32767d.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/02.png
@@ -142,19 +120,19 @@
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/03_hu11889311241427984287.png 400w,
+                    /blog/pngcrush-automator-action/images/03_hu_1615e5758656a5ad.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/03_hu10259793895010358155.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/03_hu2327663832978502619.png 1000w,
+                    /blog/pngcrush-automator-action/images/03_hu_d42520d23e3e9e94.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/03_hu12576988910102508920.png 1200w,
+                    /blog/pngcrush-automator-action/images/03_hu_38fb3d4781ace6ff.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/03_hu_8f85eb205ca80c14.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/03.png
@@ -221,19 +199,19 @@
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/04_hu7528804344232696783.png 400w,
+                    /blog/pngcrush-automator-action/images/04_hu_ff3d21d706da1bf.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/04_hu116686565856275343.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/04_hu18002071194194411037.png 1000w,
+                    /blog/pngcrush-automator-action/images/04_hu_6b831092052e4214.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/04_hu17761922244676043234.png 1200w,
+                    /blog/pngcrush-automator-action/images/04_hu_995d894793146157.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/04_hu_7806f2b963de23ca.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/04.png
@@ -258,19 +236,19 @@
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/05_hu13314229300956893167.png 400w,
+                    /blog/pngcrush-automator-action/images/05_hu_13240fec6c145b38.png 400w,
                     
                     
                     
-                    /blog/pngcrush-automator-action/images/05_hu2719413684304142717.png 600w,
-                    
-
-                    
-                    /blog/pngcrush-automator-action/images/05_hu3687499236447916352.png 1000w,
+                    /blog/pngcrush-automator-action/images/05_hu_1d42f284206c81f1.png 600w,
                     
 
                     
-                    /blog/pngcrush-automator-action/images/05_hu3546587971612518519.png 1200w,
+                    /blog/pngcrush-automator-action/images/05_hu_693c350105e2a6db.png 1000w,
+                    
+
+                    
+                    /blog/pngcrush-automator-action/images/05_hu_2eb55f1fbe77e194.png 1200w,
                     
 
                     /blog/pngcrush-automator-action/images/05.png
@@ -295,7 +273,7 @@
             <picture><source 
                     srcset="
                     
-                    /blog/pngcrush-automator-action/images/06_hu3291881629291868817.png 400w,
+                    /blog/pngcrush-automator-action/images/06_hu_6d28ff6fbd865374.png 400w,
                     
                     
                     
@@ -316,9 +294,4 @@
     <span class="caption">
         <span class="title"></span>
     </span>
-</span></a></p>]]></content:encoded>
-      
-    </item>
-    
-  </channel>
-</rss>
+</span></a></p>]]></content:encoded></item></channel></rss>

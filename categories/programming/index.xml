@@ -1,26 +1,226 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Programming on Hiren Patel</title>
-    <link>https://patelhiren.com/categories/programming/</link>
-    <description>Recent content in Programming on Hiren Patel</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Fri, 21 Oct 2022 13:32:11 -0400</lastBuildDate>
-    
-	<atom:link href="https://patelhiren.com/categories/programming/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Setting up Keras Tensorflow2 on M1 Mac</title>
-      <link>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</link>
-      <pubDate>Fri, 21 Oct 2022 13:32:11 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</guid>
-      <description>&lt;p&gt;I am currently reading &lt;a href=&#34;https://www.amazon.com/gp/product/B0B18D695W&#34;target=&#34;_blank&#34;&gt;Deep Learning with TensorFlow and Keras&lt;/a&gt; to get started with Machine Learning/Deep Learning. Here is how I setup a local &lt;em&gt;Keras/Tensorflow 2.0&lt;/em&gt; environment on my &lt;em&gt;M1 Max MacBook Pro&lt;/em&gt; running &lt;em&gt;macOS 12.6&lt;/em&gt;.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>I am currently reading <a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank">Deep Learning with TensorFlow and Keras</a> to get started with Machine Learning/Deep Learning. Here is how I setup a local <em>Keras/Tensorflow 2.0</em> environment on my <em>M1 Max MacBook Pro</em> running <em>macOS 12.6</em>.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Programming on Hiren Patel</title><link>https://patelhiren.com/categories/programming/</link><description>Recent content in Programming on Hiren Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© Copyright {year}, Hiren Patel</copyright><lastBuildDate>Wed, 25 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://patelhiren.com/categories/programming/index.xml" rel="self" type="application/rss+xml"/><item><title>Using macOS newsyslog to Rotate Service Logs</title><link>https://patelhiren.com/blog/macos-newsyslog-openclaw-logs/</link><pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate><guid>https://patelhiren.com/blog/macos-newsyslog-openclaw-logs/</guid><description>&lt;p&gt;I noticed my &lt;a href="https://clawd.bot/"target="_blank"&gt;OpenClaw&lt;/a&gt; gateway log files were growing unbounded. The service runs via &lt;a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html"target="_blank"&gt;launchd&lt;/a&gt;, and while the app has built-in log rotation, the stdout/stderr capture in the launchd plist was bypassing it entirely.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I noticed my <a href="https://clawd.bot/"target="_blank">OpenClaw</a> gateway log files were growing unbounded. The service runs via <a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html"target="_blank">launchd</a>, and while the app has built-in log rotation, the stdout/stderr capture in the launchd plist was bypassing it entirely.</p>
+<h2 id="the-problem">The Problem</h2>
+<p>When a macOS service uses <code>StandardOutPath</code> and <code>StandardErrorPath</code> in its launchd plist, those files just append forever. My logs had grown to 38MB with no mechanism to clean them up:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -lh ~/.openclaw/logs/
+</span></span><span class="line"><span class="cl">-rw-r--r--  <span class="m">1</span> clawd  staff  3.9M Feb <span class="m">25</span> 17:48 gateway.log
+</span></span><span class="line"><span class="cl">-rw-r--r--  <span class="m">1</span> clawd  staff  38M  Feb <span class="m">25</span> 17:48 gateway.err.log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>OpenClaw&rsquo;s internal logger writes date-based rotating logs to <code>/tmp/openclaw/</code>, but launchd&rsquo;s stdout capture writes directly to the configured files, bypassing that rotation logic.</p>
+<h2 id="the-solution-newsyslog">The Solution: newsyslog</h2>
+<p>macOS includes <a href="https://www.freebsd.org/cgi/man.cgi?newsyslog%288%29"target="_blank">newsyslog</a>, a utility for managing log file rotation. It&rsquo;s already running on your system, checking logs periodically via launchd. You just need to tell it about your custom log files.</p>
+<h3 id="configuration">Configuration</h3>
+<p>Create a config file for your service logs:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo tee /etc/newsyslog.d/openclaw.conf <span class="s">&lt;&lt; &#39;EOF&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s"># OpenClaw gateway logs - rotate at 10MB, keep zero archives
+</span></span></span><span class="line"><span class="cl"><span class="s">/Users/clawd/.openclaw/logs/gateway.log    644  0  10000  *  B
+</span></span></span><span class="line"><span class="cl"><span class="s">/Users/clawd/.openclaw/logs/gateway.err.log 644  0  10000  *  B
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Field breakdown:</p>
+<ul>
+<li><code>644</code> — File permissions (owner read/write, others read-only)</li>
+<li><code>0</code> — Number of archived files to keep (zero = just truncate)</li>
+<li><code>10000</code> — Size threshold in KB (~10MB)</li>
+<li><code>*</code> — Rotate at any time (not just specific hours)</li>
+<li><code>B</code> — Treat as binary (no special encoding)</li>
+</ul>
+<h3 id="reload-and-verify">Reload and Verify</h3>
+<p>Tell newsyslog to reload its configuration:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo killall -HUP newsyslog
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Check that the config loaded correctly:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo newsyslog -v -f /etc/newsyslog.d/openclaw.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Force an immediate rotation to test:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo newsyslog -v -f /etc/newsyslog.d/openclaw.conf -R <span class="s2">&#34;manual&#34;</span> ~/.openclaw/logs/gateway.err.log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><strong>Note:</strong> The <code>-R</code> flag with a requestor name is optional. Plain <code>newsyslog -v -f /path/to/config</code> works fine for testing.</p>
+</blockquote>
+<h2 id="why-not-cron">Why Not Cron?</h2>
+<p>I considered a simple cron job:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="m">0</span> <span class="m">3</span> * * * truncate -s <span class="m">0</span> ~/.openclaw/logs/gateway.log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>That would work, but newsyslog is the native macOS tool for this. It&rsquo;s already running, already has permission handling figured out, and rotates based on file size rather than just time. If your log suddenly explodes to 500MB, newsyslog catches it on the next check cycle (every 30 minutes). Cron would wait until 3 AM.</p>
+<h2 id="result">Result</h2>
+<p>After setup, my 38MB error log was truncated to zero bytes:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -lh ~/.openclaw/logs/
+</span></span><span class="line"><span class="cl">-rw-r--r--  <span class="m">1</span> clawd  staff  4.9M Feb <span class="m">25</span> 18:02 gateway.log
+</span></span><span class="line"><span class="cl">-rw-r--r--  <span class="m">1</span> clawd  staff   0B  Feb <span class="m">25</span> 18:10 gateway.err.log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>No manual intervention needed going forward. When either file crosses 10MB, newsyslog truncates it automatically.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.freebsd.org/cgi/man.cgi?newsyslog%288%29"target="_blank">newsyslog man page</a></li>
+<li><a href="https://docs.openclaw.ai/"target="_blank">OpenClaw documentation</a></li>
+<li><a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html"target="_blank">launchd documentation</a></li>
+</ul>]]></content:encoded></item><item><title>Tag-Teaming Claude Code with an AI Agent via Tmux</title><link>https://patelhiren.com/blog/tag-teaming-claude-code-with-ai-agent/</link><pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate><guid>https://patelhiren.com/blog/tag-teaming-claude-code-with-ai-agent/</guid><description>&lt;p&gt;&lt;a href="https://claude.ai/code"target="_blank"&gt;Claude Code&lt;/a&gt; is an impressive CLI that brings sophisticated AI-assisted coding directly into the terminal. Its TUI (Text User Interface) provides rich feedback through interactive menus, progress bars, and side-by-side diffs. However, long-running tasks present a challenge: if you need to step away from your computer, the session momentum is often lost.&lt;/p&gt;
+&lt;p&gt;To solve this, I’ve developed a workflow using &lt;a href="https://github.com/tmux/tmux/wiki"target="_blank"&gt;Tmux&lt;/a&gt; as a shared terminal state. This allows me to hand off a live session to my &lt;a href="https://clawd.bot/"target="_blank"&gt;Clawdbot&lt;/a&gt; agent and, conversely, take over a session that the agent started. It also provides a mechanism to optionally switch between different account tokens (such as a work account) on the fly.&lt;/p&gt;</description><content:encoded><![CDATA[<p><a href="https://claude.ai/code"target="_blank">Claude Code</a> is an impressive CLI that brings sophisticated AI-assisted coding directly into the terminal. Its TUI (Text User Interface) provides rich feedback through interactive menus, progress bars, and side-by-side diffs. However, long-running tasks present a challenge: if you need to step away from your computer, the session momentum is often lost.</p>
+<p>To solve this, I’ve developed a workflow using <a href="https://github.com/tmux/tmux/wiki"target="_blank">Tmux</a> as a shared terminal state. This allows me to hand off a live session to my <a href="https://clawd.bot/"target="_blank">Clawdbot</a> agent and, conversely, take over a session that the agent started. It also provides a mechanism to optionally switch between different account tokens (such as a work account) on the fly.</p>
+<h2 id="the-core-concept-persistence">The Core Concept: Persistence</h2>
+<p>The strategy relies on Tmux sessions to maintain a persistent terminal state in memory. By using named sessions, both the human and the AI agent can attach to and drive the exact same process. This ensures zero context loss when switching between &ldquo;manual&rdquo; and &ldquo;agent&rdquo; mode.</p>
+<h2 id="configuration-storing-account-profiles">Configuration: Storing Account Profiles</h2>
+<p>To enable the agent to switch accounts, you can store secondary tokens in the <code>coding-agent</code> skill section of <code>clawdbot.json</code>. Using simple shorthand keys makes it easier to request them from a phone.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="s2">&#34;skills&#34;</span><span class="err">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;entries&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;coding-agent&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;env&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;CC_ACC2_TOKEN&#34;</span><span class="p">:</span> <span class="s2">&#34;your-token-here&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="workflow-1-human-to-agent-hand-off">Workflow 1: Human to Agent Hand-off</h2>
+<p>When I am working at my desk and need to step away, I follow these steps:</p>
+<ol>
+<li>
+<p><strong>Start a named Tmux session</strong>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tmux new -s hiren-claude
+</span></span><span class="line"><span class="cl">claude
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><strong>Pro-Tip</strong>: If you want to launch manually with a specific account token, use the <code>env</code> prefix within the Tmux command string to ensure the environment variable is correctly injected into the background session:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tmux new -s hiren-claude -d <span class="s2">&#34;env CLAUDE_CODE_OAUTH_TOKEN=&#39;your-token&#39; claude&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+</li>
+<li>
+<p><strong>Request Hand-off</strong>: From WhatsApp, I tell the agent:</p>
+<blockquote>
+<p>&ldquo;Take over session <code>hiren-claude</code>. Finish the refactor.&rdquo;</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="environment-inheritance">Environment Inheritance</h3>
+<p>If I start a session at my desk using <code>export CLAUDE_CODE_OAUTH_TOKEN=...</code>, the agent inherits that environment automatically when it takes over the Tmux pane. Keystrokes sent by the agent will be processed within that authenticated shell.</p>
+<h2 id="workflow-2-agent-to-human-take-over">Workflow 2: Agent to Human Take-over</h2>
+<p>The hand-off also works in reverse. I can have the agent start a complex task while I am away:</p>
+<h3 id="default-account-example">Default Account Example</h3>
+<p>I can instruct the agent to start a new run using my default CLI login:</p>
+<blockquote>
+<p>&ldquo;Start a new session <code>hiren-claude</code> and begin refactoring the database schema.&rdquo;</p>
+</blockquote>
+<p>Behind the scenes, the agent runs <code>tmux new -s hiren-claude -d &quot;claude '...'&quot;</code>.</p>
+<h3 id="specific-account-example">Specific Account Example</h3>
+<p>If I want the agent to use a specific account profile from the config:</p>
+<blockquote>
+<p>&ldquo;Start a new session <code>hiren-claude</code> using <code>cc-acc2-token</code> and fix the memory leak.&rdquo;</p>
+</blockquote>
+<p>The agent then prepends the token to the execution, mapping the <code>CC_ACC2_TOKEN</code> from the config to the <code>CLAUDE_CODE_OAUTH_TOKEN</code> required by the CLI.</p>
+<h3 id="human-take-over">Human Take-over</h3>
+<p>When I return to my computer, I can attach to the session and take full control immediately:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tmux attach -t hiren-claude
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Because Tmux lives in the background, this works even if the screen is locked, provided the computer remains awake.</p>
+<h2 id="benefits-of-the-tmux-bridge">Benefits of the Tmux Bridge</h2>
+<ul>
+<li><strong>Full TUI Support</strong>: Standard stdin/stdout redirection often breaks the interactive elements of Claude Code. Using Tmux preserves the full visual experience.</li>
+<li><strong>Real-time Monitoring</strong>: I can &ldquo;spectate&rdquo; the work by attaching to the session via SSH from a mobile device or another terminal.</li>
+<li><strong>Zero Friction</strong>: No need to re-authenticate or re-explain context when switching between human and AI control.</li>
+</ul>
+<h2 id="pro-tip-smooth-scrolling-in-tmux">Pro-Tip: Smooth Scrolling in Tmux</h2>
+<p>One common frustration when using Claude Code inside Tmux is scrolling. By default, using the mouse wheel might send &ldquo;Up/Down&rdquo; arrow keys, which moves the text in the entry box rather than scrolling the terminal history.</p>
+<p>To fix this, you can enable <strong>Mouse Mode</strong>. Add the following to your <code>~/.tmux.conf</code> file:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">set</span> -g mouse on
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>With this enabled, you can scroll through Claude&rsquo;s responses naturally. If you don&rsquo;t want to enable global mouse mode, you can always enter <strong>Copy Mode</strong> manually by pressing <code>Ctrl-b</code> then <code>[</code>. Once in copy mode, you can scroll freely; just press <code>q</code> to return to the prompt.</p>
+<h2 id="execution-reminders">Execution Reminders</h2>
+<ul>
+<li><strong>Installation</strong>: Ensure <code>tmux</code> is installed via <a href="https://brew.sh/"target="_blank">Homebrew</a> (<code>brew install tmux</code>).</li>
+<li><strong>Naming</strong>: Use consistent session names so the agent knows where to look.</li>
+<li><strong>Power Settings</strong>: Configure your Mac to stay awake when the display is off to ensure the Tmux server remains active.</li>
+</ul>
+<p>By treating the terminal as a shared space, I’ve turned my AI agent into a true tag-team partner. We can hot-swap control of the keyboard and switch accounts on the fly without ever losing the &ldquo;zone.&rdquo;</p>]]></content:encoded></item><item><title>Setting up Keras Tensorflow2 on M1 Mac</title><link>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</link><pubDate>Fri, 21 Oct 2022 13:32:11 -0400</pubDate><guid>https://patelhiren.com/blog/setting-up-keras-tensorflow2-on-m1-mac/</guid><description>&lt;p&gt;I am currently reading &lt;a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank"&gt;Deep Learning with TensorFlow and Keras&lt;/a&gt; to get started with Machine Learning/Deep Learning. Here is how I setup a local &lt;em&gt;Keras/Tensorflow 2.0&lt;/em&gt; environment on my &lt;em&gt;M1 Max MacBook Pro&lt;/em&gt; running &lt;em&gt;macOS 12.6&lt;/em&gt;.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I am currently reading <a href="https://www.amazon.com/gp/product/B0B18D695W"target="_blank">Deep Learning with TensorFlow and Keras</a> to get started with Machine Learning/Deep Learning. Here is how I setup a local <em>Keras/Tensorflow 2.0</em> environment on my <em>M1 Max MacBook Pro</em> running <em>macOS 12.6</em>.</p>
 <p>Install <a href="https://docs.conda.io/en/latest/miniconda.html"target="_blank"><em>miniconda</em></a>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -168,19 +368,7 @@
 </span></span><span class="line"><span class="cl">* PhysicalDevice(name=&#39;/physical_device:GPU:0&#39;, device_type=&#39;GPU&#39;)
 </span></span></code></pre></td></tr></table>
 </div>
-</div>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Cross Compiling on macOS via Docker</title>
-      <link>https://patelhiren.com/blog/cross-compiling-on-macos-via-docker/</link>
-      <pubDate>Wed, 23 Dec 2020 09:31:48 -0500</pubDate>
-      
-      <guid>https://patelhiren.com/blog/cross-compiling-on-macos-via-docker/</guid>
-      <description>&lt;p&gt;I needed to compile an arm64 binary to run on the &lt;a href=&#34;https://store.ui.com/collections/unifi-network-routing-switching/products/udm-pro&#34;target=&#34;_blank&#34;&gt;UniFi Dream Machine Pro&lt;/a&gt;. This is how I used docker to setup cross compilation tools and compile the binary on macOS.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>I needed to compile an arm64 binary to run on the <a href="https://store.ui.com/collections/unifi-network-routing-switching/products/udm-pro"target="_blank">UniFi Dream Machine Pro</a>. This is how I used docker to setup cross compilation tools and compile the binary on macOS.</p>
+</div>]]></content:encoded></item><item><title>Cross Compiling on macOS via Docker</title><link>https://patelhiren.com/blog/cross-compiling-on-macos-via-docker/</link><pubDate>Wed, 23 Dec 2020 09:31:48 -0500</pubDate><guid>https://patelhiren.com/blog/cross-compiling-on-macos-via-docker/</guid><description>&lt;p&gt;I needed to compile an arm64 binary to run on the &lt;a href="https://store.ui.com/collections/unifi-network-routing-switching/products/udm-pro"target="_blank"&gt;UniFi Dream Machine Pro&lt;/a&gt;. This is how I used docker to setup cross compilation tools and compile the binary on macOS.&lt;/p&gt;</description><content:encoded><![CDATA[<p>I needed to compile an arm64 binary to run on the <a href="https://store.ui.com/collections/unifi-network-routing-switching/products/udm-pro"target="_blank">UniFi Dream Machine Pro</a>. This is how I used docker to setup cross compilation tools and compile the binary on macOS.</p>
 <p>Get and install <a href="https://docs.docker.com/docker-for-mac/install/"target="_blank">Docker Desktop</a> is not already installed. Once installed we can use <a href="https://github.com/dockcross/dockcross"target="_blank">DockCross</a> to setup an cross compile tool chain we want. Here is an example of how I setup the linux-arm64 toolchain.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -204,7 +392,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">./dockcross-linux-arm64 bash <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>-c <span class="s1">&#39;$CC -s -O3 main.c -o ./udp-broadcast-relay-redux&#39;</span>
+</span></span></span><span class="line"><span class="cl">-c <span class="s1">&#39;$CC -s -O3 main.c -o ./udp-broadcast-relay-redux&#39;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Examining the compiled binary with <em>file</em> command should display <em>ARM aarch64</em> architecture.</p>
@@ -228,28 +416,11 @@
 </div>
 </div><blockquote>
 <p><strong>Note:</strong> Using <em>$CC</em> is important. If you use <em>gcc</em> directly it will compile using <em>x86_64</em> version.</p>
-</blockquote>]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Dagger 2 Beginner Tutorial</title>
-      <link>https://patelhiren.com/blog/dagger-2-beginner-tutorial/</link>
-      <pubDate>Fri, 22 May 2020 15:08:53 -0400</pubDate>
-      
-      <guid>https://patelhiren.com/blog/dagger-2-beginner-tutorial/</guid>
-      <description>&lt;p&gt;While reviewing an Android project I discovered it was using &lt;a href=&#34;https://dagger.dev&#34;target=&#34;_blank&#34;&gt;Dagger 2&lt;/a&gt; framework. Dagger 2 is a dependency injection framework for Android that is developed by Google. I wanted a quick overview of frameworks major features.&lt;/p&gt;</description>
-      
-      <content:encoded><![CDATA[<p>While reviewing an Android project I discovered it was using <a href="https://dagger.dev"target="_blank">Dagger 2</a> framework. Dagger 2 is a dependency injection framework for Android that is developed by Google. I wanted a quick overview of frameworks major features.</p>
+</blockquote>]]></content:encoded></item><item><title>Dagger 2 Beginner Tutorial</title><link>https://patelhiren.com/blog/dagger-2-beginner-tutorial/</link><pubDate>Fri, 22 May 2020 15:08:53 -0400</pubDate><guid>https://patelhiren.com/blog/dagger-2-beginner-tutorial/</guid><description>&lt;p&gt;While reviewing an Android project I discovered it was using &lt;a href="https://dagger.dev"target="_blank"&gt;Dagger 2&lt;/a&gt; framework. Dagger 2 is a dependency injection framework for Android that is developed by Google. I wanted a quick overview of frameworks major features.&lt;/p&gt;</description><content:encoded><![CDATA[<p>While reviewing an Android project I discovered it was using <a href="https://dagger.dev"target="_blank">Dagger 2</a> framework. Dagger 2 is a dependency injection framework for Android that is developed by Google. I wanted a quick overview of frameworks major features.</p>
 <p>I found the below video series by <a href="https://codinginflow.com"target="_blank">codinginflow.com</a> extermely well done.</p>
 <blockquote>
 <p><a href="https://codinginflow.com/tutorials/android/dagger-2/part-1-introduction"target="_blank">Watch on codinginflow.com</a></p>
 <p><a href="https://www.youtube.com/playlist?list=PLrnPJCHvNZuA2ioi4soDZKz8euUQnJW65"target="_blank">Watch on YouTube</a></p>
 <p>&ndash; <em>Florian (codinginflow.com)</em></p>
 </blockquote>
-<p>He also has a lot of other Android development related series available on his site.</p>]]></content:encoded>
-      
-    </item>
-    
-  </channel>
-</rss>
+<p>He also has a lot of other Android development related series available on his site.</p>]]></content:encoded></item></channel></rss>
