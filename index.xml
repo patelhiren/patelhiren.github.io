@@ -7,10 +7,168 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Wed, 25 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 27 Feb 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Building the Weather-NWS Skill for OpenClaw</title>
+      <link>https://patelhiren.com/blog/building-weather-nws-skill-openclaw/</link>
+      <pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://patelhiren.com/blog/building-weather-nws-skill-openclaw/</guid>
+      <description>&lt;p&gt;I wanted snow accumulation forecasts from OpenClaw, but the wttr.in skill only returned &amp;ldquo;Heavy snow&amp;rdquo; text. I needed: how much snow, when it starts. I discovered the National Weather Service API—free, no API key, US-only—and built a unified skill with AirNow AQI and global fallback.&lt;/p&gt;</description>
+      
+      <content:encoded><![CDATA[<p>I wanted snow accumulation forecasts from OpenClaw, but the wttr.in skill only returned &ldquo;Heavy snow&rdquo; text. I needed: how much snow, when it starts. I discovered the National Weather Service API—free, no API key, US-only—and built a unified skill with AirNow AQI and global fallback.</p>
+<h2 id="discovery-nws-api">Discovery: NWS API</h2>
+<p>The <a href="https://api.weather.gov/"target="_blank" rel="noopener noreferrer">National Weather Service API</a> returns structured data:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="s2">&#34;snowfallAmount&#34;</span><span class="err">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;values&#34;</span><span class="p">:</span> <span class="p">[{</span><span class="nt">&#34;validTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2026-02-27T18:00:00/PT24H&#34;</span><span class="p">,</span> <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">13</span><span class="p">}],</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;unitCode&#34;</span><span class="p">:</span> <span class="s2">&#34;wmoUnit:mm&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>No API key required. Requests against <code>api.weather.gov</code> just work. But it&rsquo;s US-only—international locations need <a href="https://wttr.in/"target="_blank" rel="noopener noreferrer">wttr.in</a> fallback.</p>
+<p>Gridpoint API (<code>/gridpoints/{wfo}/{x},{y}</code>) has structured snow/ice/rain values. Zone forecast API is less detailed. Grid lookup requires geocoding first via <code>/points/{lat},{lon}</code>.</p>
+<p>Later I discovered <a href="https://www.airnow.gov/"target="_blank" rel="noopener noreferrer">AirNow</a> AQI—also no API key. Useful when deciding if post-storm shoveling is safe.</p>
+<h2 id="api-hierarchy">API Hierarchy</h2>
+<p>The skill auto-detects source based on location:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="n">is_us_location</span><span class="p">(</span><span class="n">location</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">get_nws_data</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>  <span class="c1"># Structured accumulations</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="n">get_wttr_data</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>     <span class="c1"># Text fallback</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="temporal-query-detection">Temporal Query Detection</h2>
+<p>wttr.in returns day summaries. I wanted hourly breakdowns for &ldquo;What time does the rain stop?&rdquo;</p>
+<p>The skill detects time qualifiers:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">strip_temporal_qualifiers</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="sa">r</span><span class="s1">&#39;\s+at\s+\d{1,2}\s*(?::\d</span><span class="si">{2}</span><span class="s1">)?\s*[APap][Mm]?&#39;</span><span class="p">,</span>  <span class="c1"># &#34;at 8 PM&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="sa">r</span><span class="s1">&#39;\s+around\s+\d{1,2}&#39;</span><span class="p">,</span>                            <span class="c1"># &#34;around 3&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="sa">r</span><span class="s1">&#39;\s+this\s+(?:morning|afternoon|evening)&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="sa">r</span><span class="s1">&#39;\s+tonight&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>When detected, it queries <code>/gridpoints/{wfo}/{x},{y}/forecast/hourly</code> instead—156 hourly periods (~7 days).</p>
+<h2 id="phase-implementation">Phase Implementation</h2>
+<h3 id="phase-1-core-with-grid-data">Phase 1: Core with Grid Data</h3>
+<p><code>get_weather.py</code> orchestrates the unified call:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./scripts/get_weather.py <span class="s2">&#34;Seattle&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Script flow:</p>
+<ol>
+<li>Geocode via NWS <code>/points</code> endpoint for grid ID and forecast URLs</li>
+<li>Fetch structured forecast or hourly if temporal detected</li>
+<li>If <code>--aqi</code> flag, fetch AirNow current + forecast</li>
+<li>For non-US locations, hit wttr.in</li>
+</ol>
+<h3 id="phase-2-station-observations">Phase 2: Station Observations</h3>
+<p>NWS has observed conditions at weather stations. Added <code>--current</code> flag to compare forecast vs reality:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="c1">// /stations/{stationId}/observations/latest
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;properties&#34;</span><span class="err">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;temperature&#34;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">43</span><span class="p">,</span> <span class="nt">&#34;unitCode&#34;</span><span class="p">:</span> <span class="s2">&#34;wmoUnit:degC&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;windSpeed&#34;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mf">5.14</span><span class="p">,</span> <span class="nt">&#34;unitCode&#34;</span><span class="p">:</span> <span class="s2">&#34;wmoUnit:km_h-1&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="phase-3-edge-cases">Phase 3: Edge Cases</h3>
+<ul>
+<li><strong>Aviation TAFs</strong>: Terminal forecasts via <code>/stations/{stationId}/tafs</code>. Most civilian stations lack TAF—use <code>--taf</code> explicitly</li>
+<li><strong>Astronomical</strong>: Sunrise/sunset via <code>skyfield</code> library with <code>--astro</code></li>
+<li><strong>Fire weather</strong>: Red flag warnings from NWS alerts API with <code>--fire</code></li>
+</ul>
+<h2 id="declaring-environment-variables">Declaring Environment Variables</h2>
+<p><a href="https://clawhub.ai/"target="_blank" rel="noopener noreferrer">Clawdhub.ai</a> validates skills before listing. Skills using environment variables must declare them in <code>SKILL.md</code> metadata or get flagged as suspicious.</p>
+<p>Added the <code>clawdis</code> block to register <code>AIRNOW_API_KEY</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">metadata</span><span class="p">:</span><span class="w"> </span>{<span class="s2">&#34;clawdhub&#34;</span><span class="p">:</span>{<span class="s2">&#34;emoji&#34;</span><span class="p">:</span><span class="s2">&#34;🌦️&#34;</span>}<span class="p">,</span><span class="s2">&#34;clawdis&#34;</span><span class="p">:</span>{<span class="s2">&#34;envVars&#34;</span><span class="p">:[</span>{<span class="s2">&#34;name&#34;</span><span class="p">:</span><span class="s2">&#34;AIRNOW_API_KEY&#34;</span><span class="p">,</span><span class="s2">&#34;required&#34;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">&#34;description&#34;</span><span class="p">:</span><span class="s2">&#34;AirNow API Key for AQI lookup&#34;</span>}<span class="p">]</span>}}<span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>This tells the validation system:</p>
+<ul>
+<li>The skill accepts an optional <code>AIRNOW_API_KEY</code> environment variable</li>
+<li>It&rsquo;s not required—AirNow works unauthenticated with stricter rate limits</li>
+<li>OpenClaw injects the variable if configured in <code>clawdbot.json</code></li>
+</ul>
+<h2 id="usage">Usage</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Standard forecast</span>
+</span></span><span class="line"><span class="cl">./scripts/get_weather.py <span class="s2">&#34;Boston&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Hourly with AQI</span>
+</span></span><span class="line"><span class="cl">./scripts/get_weather.py <span class="s2">&#34;Boston at 8 PM&#34;</span> --aqi
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Current observations vs forecast</span>
+</span></span><span class="line"><span class="cl">./scripts/get_weather.py <span class="s2">&#34;Boston&#34;</span> --current
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Aviation TAF (if available)</span>
+</span></span><span class="line"><span class="cl">./scripts/get_weather.py <span class="s2">&#34;JFK&#34;</span> --taf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Available on <a href="https://clawhub.ai/patelhiren/weather-nws"target="_blank" rel="noopener noreferrer">clawdhub.ai/patelhiren/weather-nws</a>.</p>]]></content:encoded>
+      
+    </item>
     
     <item>
       <title>Using macOS newsyslog to Rotate Service Logs</title>

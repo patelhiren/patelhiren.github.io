@@ -7,17 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Wed, 25 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 27 Feb 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>How Tos</title>
-      <link>https://patelhiren.com/categories/how-tos/</link>
-      <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
+      <title>AI Automation</title>
+      <link>https://patelhiren.com/categories/ai-automation/</link>
+      <pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://patelhiren.com/categories/how-tos/</guid>
+      <guid>https://patelhiren.com/categories/ai-automation/</guid>
       <description></description>
       
       <content:encoded><![CDATA[]]></content:encoded>
@@ -27,7 +27,7 @@
     <item>
       <title>Programming</title>
       <link>https://patelhiren.com/categories/programming/</link>
-      <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate>
       
       <guid>https://patelhiren.com/categories/programming/</guid>
       <description></description>
@@ -37,11 +37,11 @@
     </item>
     
     <item>
-      <title>AI Automation</title>
-      <link>https://patelhiren.com/categories/ai-automation/</link>
-      <pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate>
+      <title>How Tos</title>
+      <link>https://patelhiren.com/categories/how-tos/</link>
+      <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://patelhiren.com/categories/ai-automation/</guid>
+      <guid>https://patelhiren.com/categories/how-tos/</guid>
       <description></description>
       
       <content:encoded><![CDATA[]]></content:encoded>

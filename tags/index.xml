@@ -7,10 +7,70 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright {year}, Hiren Patel</copyright>
-    <lastBuildDate>Wed, 25 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 27 Feb 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://patelhiren.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>APIs</title>
+      <link>https://patelhiren.com/tags/apis/</link>
+      <pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://patelhiren.com/tags/apis/</guid>
+      <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
+    </item>
+    
+    <item>
+      <title>NWS</title>
+      <link>https://patelhiren.com/tags/nws/</link>
+      <pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://patelhiren.com/tags/nws/</guid>
+      <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
+    </item>
+    
+    <item>
+      <title>Openclaw</title>
+      <link>https://patelhiren.com/tags/openclaw/</link>
+      <pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://patelhiren.com/tags/openclaw/</guid>
+      <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://patelhiren.com/tags/python/</link>
+      <pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://patelhiren.com/tags/python/</guid>
+      <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
+    </item>
+    
+    <item>
+      <title>Weather</title>
+      <link>https://patelhiren.com/tags/weather/</link>
+      <pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://patelhiren.com/tags/weather/</guid>
+      <description></description>
+      
+      <content:encoded><![CDATA[]]></content:encoded>
+      
+    </item>
     
     <item>
       <title>Launchd</title>
@@ -54,18 +114,6 @@
       <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
       
       <guid>https://patelhiren.com/tags/newsyslog/</guid>
-      <description></description>
-      
-      <content:encoded><![CDATA[]]></content:encoded>
-      
-    </item>
-    
-    <item>
-      <title>Openclaw</title>
-      <link>https://patelhiren.com/tags/openclaw/</link>
-      <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://patelhiren.com/tags/openclaw/</guid>
       <description></description>
       
       <content:encoded><![CDATA[]]></content:encoded>
